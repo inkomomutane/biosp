@@ -27,12 +27,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int $genre_id
- * @property int $addresse_id
  * @property int $province_id
  * @property int $reason_opening_case_id
  * @property int $document_type_id
  * @property int $forwarded_service_id
  * @property int $purpose_of_visit_id
+ * 
+ * @property DocumentType $document_type
+ * @property ForwardedService $forwarded_service
+ * @property Genre $genre
+ * @property Province $province
+ * @property ReasonOpeningCase $reason_opening_case
  *
  * @package App\Models
  */
@@ -47,7 +52,6 @@ class Biospdatabase extends Model
 		'home_care' => 'bool',
 		'status' => 'bool',
 		'genre_id' => 'int',
-		'addresse_id' => 'int',
 		'province_id' => 'int',
 		'reason_opening_case_id' => 'int',
 		'document_type_id' => 'int',
@@ -74,11 +78,40 @@ class Biospdatabase extends Model
 		'date_received',
 		'status',
 		'genre_id',
-		'addresse_id',
 		'province_id',
 		'reason_opening_case_id',
 		'document_type_id',
 		'forwarded_service_id',
 		'purpose_of_visit_id'
 	];
+
+	public function document_type()
+	{
+		return $this->belongsTo(DocumentType::class);
+	}
+
+	public function forwarded_service()
+	{
+		return $this->belongsTo(ForwardedService::class);
+	}
+
+	public function genre()
+	{
+		return $this->belongsTo(Genre::class);
+	}
+
+	public function province()
+	{
+		return $this->belongsTo(Province::class);
+	}
+
+	public function purpose_of_visit()
+	{
+		return $this->belongsTo(PurposeOfVisit::class);
+	}
+
+	public function reason_opening_case()
+	{
+		return $this->belongsTo(ReasonOpeningCase::class);
+	}
 }

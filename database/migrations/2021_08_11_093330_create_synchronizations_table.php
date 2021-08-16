@@ -14,8 +14,9 @@ class CreateSynchronizationsTable extends Migration
     public function up()
     {
         Schema::create('synchronizations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigInteger('id', true);
+            $table->string('uuid', 45)->nullable();
+            $table->dateTime('sync_time')->nullable();
         });
     }
 

@@ -28,7 +28,6 @@ class CreateBiospdatabasesTable extends Migration
             $table->boolean('status')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('genre_id')->index('fk_biospdatabases_genres_idx');
-            $table->unsignedBigInteger('addresse_id')->index('fk_biospdatabases_addresses1_idx');
             $table->unsignedBigInteger('province_id')->index('fk_biospdatabases_province1_idx');
             $table->unsignedBigInteger('reason_opening_case_id')->index('fk_biospdatabases_reason_opening_cases1_idx');
             $table->unsignedBigInteger('document_type_id')->index('fk_biospdatabases_document_types1_idx');

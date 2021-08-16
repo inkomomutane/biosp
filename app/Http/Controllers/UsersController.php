@@ -18,7 +18,7 @@ class UsersController extends Controller
         $users = DB::table('users')
         ->orderBy('name', 'asc')
         ->get();  
-        return response()->json(['users'=>$users],200);
+        return response()->json($users,200);
     }
     public function getAllDataClient(){}
     
@@ -45,6 +45,9 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        return User::create(collect([
+            'name'=>$request->name
+        ]));
     }
 
     /**

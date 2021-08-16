@@ -14,7 +14,6 @@ class AddForeignKeysToBiospdatabasesTable extends Migration
     public function up()
     {
         Schema::table('biospdatabases', function (Blueprint $table) {
-            $table->foreign('addresse_id', 'fk_biospdatabases_addresses1')->references('id')->on('addresses')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('document_type_id', 'fk_biospdatabases_document_types1')->references('id')->on('document_types')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('forwarded_service_id', 'fk_biospdatabases_forwarded_services1')->references('id')->on('forwarded_services')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign('genre_id', 'fk_biospdatabases_genres')->references('id')->on('genres')->onUpdate('NO ACTION')->onDelete('NO ACTION');
@@ -32,7 +31,6 @@ class AddForeignKeysToBiospdatabasesTable extends Migration
     public function down()
     {
         Schema::table('biospdatabases', function (Blueprint $table) {
-            $table->dropForeign('fk_biospdatabases_addresses1');
             $table->dropForeign('fk_biospdatabases_document_types1');
             $table->dropForeign('fk_biospdatabases_forwarded_services1');
             $table->dropForeign('fk_biospdatabases_genres');

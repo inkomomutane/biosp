@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class AddressesController extends Controller
 {
@@ -11,9 +12,9 @@ class AddressesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $names)
     {
-        return response()->json(['address'=>Address::all()]);
+        
     }
 
     /**
@@ -32,20 +33,11 @@ class AddressesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $names)
     {
-        $address=$request->validate([
-            'name' => 'required|string'
-        ]);
-        $address = new Address();
-        $address['name']=$request->name;
-        ;
-        if ($address->save()) {
-         
-            return response()->json($address,200);
-        }
+      
+      
         
-             return response()->json("",401);
     }
 
     /**
@@ -80,9 +72,7 @@ class AddressesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $address = Address::find($id);
-        
-
+    
 
     }
 
@@ -94,12 +84,10 @@ class AddressesController extends Controller
      */
     public function destroy($id)
     {
-        $address =Address::find($id);
-        $address->delete();
-        return response()->json(['message'=>'address delered successfly']);
+       
     }
-
-    public function allDelete(Request $request)
+/*
+    public function allDelete(Colletion $request)
     {
         Address::WhereIn('id',$request->all())->delete();
     }
@@ -107,7 +95,8 @@ class AddressesController extends Controller
     public function allUpdate(Request $request)
     {
         
-        foreach($request->get()->toString() as $address){
+        
+        foreach($request->all() as $address){
             Address::WhereIn($address->id)->update([
                 'name'=>$address['name']
             ]);
@@ -123,5 +112,5 @@ class AddressesController extends Controller
             ]);
         }
     return response()->json('',200);}
-    
+    */
 }

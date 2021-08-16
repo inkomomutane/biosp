@@ -13,15 +13,11 @@ use App\Models\ReasonOpeningCase;
 use App\Models\User;
 class BiospdatabasesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
     public function index()
     {
-        
-        //
+        return response()->json(Biosdatabase::all());
     }
 
     /**
@@ -42,8 +38,14 @@ class BiospdatabasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+       $ths->validate($request,[
+           'uuid'=>'required|string',
+           'full_name'=>'required|string',
+           'number_of_visits'=>'required',
+           //''=>'required'
+           ]
+        );
+    }   
 
     /**
      * Display the specified resource.

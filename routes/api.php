@@ -38,9 +38,6 @@ Route::post('/register', 'PassportController@register');
 */
 
       Route::resource('address', 'AddressesController');
-      Route::post('allStore','AddressesController@allStore');
-      Route::post('allUpdate','AddressesController@allUpdate');
-      Route::post('allDelete','AddressesController@allDelete');
 /*
 |--------------------------------------------------------------------------
 |  the route of biospdatabase
@@ -71,7 +68,9 @@ Route::post('/register', 'PassportController@register');
 |--------------------------------------------------------------------------
 */
     Route::resource('provinces', 'ProvincesController');
-     
+    Route::post('allstore','ProvincesController@allstore');
+    Route::post('updated','ProvincesController@allUpdate');
+    Route::post('deleted','ProvincesController@deleted');
   /*
 |--------------------------------------------------------------------------
 |  the route of purpose of visits 
