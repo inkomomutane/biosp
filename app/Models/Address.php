@@ -16,9 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- * @property int $provinces_id
- * 
- * @property Province $province
+ * @property int $province_id
  *
  * @package App\Models
  */
@@ -27,16 +25,11 @@ class Address extends Model
 	protected $table = 'addresses';
 
 	protected $casts = [
-		'provinces_id' => 'int'
+		'province_id' => 'int'
 	];
 
 	protected $fillable = [
 		'name',
-		'provinces_id'
+		'province_id'
 	];
-
-	public function province()
-	{
-		return $this->belongsTo(Province::class, 'provinces_id');
-	}
 }

@@ -2,83 +2,80 @@
 
 namespace App\Http\Controllers;
 use App\Models\Genre;
+use App\Http\Requests\GenresRequest;
 use Illuminate\Http\Request;
 
 class GenresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //
+        try {
+
+            $data = Genre::all();
+
+            return response()->json(['Genres:'=>$data]);
+
+        } catch (\Throwable $th) {
+
+            throw $th;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(GenresRequest $request)
     {
-        //
+        
+        try {
+            Genre::create(collect(['name'=>$request->name])->toArray());
+
+            return response()->json(['message:'=>'data of provinces keep with successfly']);  
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+      
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
-        //
+        try {
+           $data = Genre::find($id);
+
+        if($data!=null){
+             
+            return response()->json(['Genre:'=>$data]);
+        }
+            return  response()->json(['message:'=>'Genre not found']);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
-        //
+        try {
+            $data = Genre::find($id);
+ 
+         if($data!=null){
+              
+             $data->delete();
+
+             return response()->json(['Genre:'=>$data]);
+         }
+             return  response()->json(['message:'=>'Genre not found']);
+ 
+         } catch (\Throwable $th) {
+             throw $th;
+         }
     }
 }

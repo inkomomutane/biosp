@@ -3,114 +3,90 @@
 namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class AddressesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $names)
+    
+    public function index()
     {
-        
+        try {
+
+            $data = Address::all();
+
+            return response()->json(['Neighborhoods:'=>$data]);
+
+        } catch (\Throwable $th) {
+
+            throw $th;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(AddressRequest $address)
     {
-        //
+        try {
+           
+            Address::create(
+                ['name'=>$address->name,
+                'province_id'=>$address->province_id
+                ]
+            );
+            return response()->json(['message'=>'insert Neighborhood with successfly']);  
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $names)
-    {
-      
-      
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
-        //found one address especify
-        return ($address = Address::find($id));
+        try {
+            
+            $data = Address::find($id);
+
+            if($data!=null){
+         
+                 return response()->json(['Neighborhood:'=>$data]);
+             }
+                
+                return  response()->json(['message'=>'Neighborhood not found']);
+
+             } catch (\Throwable $th) {
+        
+                    throw $th;
+              }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
+               dd($request->name);
+    }
+
     
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
-    {
-       
-    }
-/*
-    public function allDelete(Colletion $request)
-    {
-        Address::WhereIn('id',$request->all())->delete();
-    }
-
-    public function allUpdate(Request $request)
-    {
+    {  
         
+        try {
+            
+            $data = Address::find($id);
+
+            if($data!=null){
+         
+                 $data->delete();
+         
+                 return response()->json(['message'=>'Neighborhood deleted with successefly']);
+             }
+                
+                return  response()->json(['message'=>'Neighborhood not found']);
+
+             } catch (\Throwable $th) {
         
-        foreach($request->all() as $address){
-            Address::WhereIn($address->id)->update([
-                'name'=>$address['name']
-            ]);
-        }
-    return response()->json("",200);}
+                    throw $th;
+              }
 
-    public function allStore(Address $request)
-    {
 
-       foreach($request->all()->toString() as $address){
-          Address::create([
-                'name'=>$address['name']
-            ]);
-        }
-    return response()->json('',200);}
-    */
+    }
 }

@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * @property int $id
  * @property string|null $name
- * 
- * @property Collection|Biospdatabase[] $biospdatabases
  *
  * @package App\Models
  */
@@ -29,9 +26,4 @@ class DocumentType extends Model
 	protected $fillable = [
 		'name'
 	];
-
-	public function biospdatabases()
-	{
-		return $this->hasMany(Biospdatabase::class);
-	}
 }

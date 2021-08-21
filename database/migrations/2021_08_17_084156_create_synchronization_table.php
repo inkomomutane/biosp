@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSynchronizationsTable extends Migration
+class CreateSynchronizationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSynchronizationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('synchronizations', function (Blueprint $table) {
-            $table->bigInteger('id', true);
-            $table->string('uuid', 45)->nullable();
-            $table->dateTime('sync_time')->nullable();
+        Schema::create('synchronization', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->string('uuid', 45);
+            $table->timestamp('last_sync_time')->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateSynchronizationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('synchronizations');
+        Schema::dropIfExists('synchronization');
     }
 }

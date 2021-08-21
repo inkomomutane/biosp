@@ -3,70 +3,35 @@
 namespace App\Http\Controllers;
 use App\Models\Province;
 use App\Models\OauthAccessToken;
+use App\Http\Requests\ProvincesRequest;
 use Illuminate\Http\Request;
 use App\Models\Synchronization;
 
 class ProvincesController extends Controller
 {
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        return  response()->json(Province::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-    
-    public function deleted(Request  $request)
-    {
-      
         try {
-                $delete= Province::WhereIn('id',collect($request->all()))->delete();
-                return response()->json("number register deleted:"+$delete);
-               
+
+            $data = Province::all();
+
+            return response()->json(['Province:'=>$data]);
+
         } catch (\Throwable $th) {
-            dd($th);
+
+            throw $th;
         }
-       
-      return "teste";
+        
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function allstore(Request $request)
+
+    public function store(ProvincesRequest $provinces)
     {
-     //validate the field name
-        $this->validate($request,[
-            'name' => 'required|string'
-        ]);
+  
         try {
-        
-            $arrayobj = Province::all()->pluck('name');
-       
-           if($arrayobj->contains($request->name)||collect($request->name)->isEmpty()){
-
-              return ;
-            }
-        
-            Province::create(collect(['name'=>$request->name])->toArray());
-           
+            Province::create($provinces->all());
             return response()->json(['message'=>'data of provinces keep with successfly']);  
-
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -74,78 +39,49 @@ class ProvincesController extends Controller
     }
 
  
-
-   
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        return response()->json(Province::find(collect($id)));
-    }
-
-   // Str::upper('laravel')
-  
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-
-    }
-    public function allupdate(Resquest $request)
-    {
         try {
-            $datadb = Province::all();
+            $data = Province::find($id);
+
+        if($data!=null){
+            
+            return response()->json(['Province'=>$data]);
+        }
+            return  response()->json(['message'=>'Province not found']);
 
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-  /*  public function destroy($id)
+
+
+    public function update(Request $province, $id)
     {
-        $user =Auth::user();
 
-        $destry = Privince::find($id);
-        if($destroy->delete()){
+    }
+    
+ 
+   public function destroy($id)
+    {
+       
+        try {
+            
+            $data = Province::find($id);
 
-            Synchronization::create([
-                'uuid' =>$OauthAccessToken->id
-            ]);
-            return response()->json([
-                 'message'=>'registed deleted with successfly'
+            if($data!=null){
+         
+                 $data->delete();
+         
+                 return response()->json(['message'=>'Neighborhood deleted with successefly']);
+             }
+                
+                return  response()->json(['message'=>'Neighborhood not found']);
 
-            ]);
-        }
-        Synchronization::create([
-            'uuid' =>$OauthAccessToken->id
-        ]);
-     return resnponse()->json(['impossible delete resgister']);}*/
+             } catch (\Throwable $th) {
+        
+                    throw $th;
+              }
+    }
+       
 }

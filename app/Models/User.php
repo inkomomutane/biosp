@@ -26,7 +26,7 @@ use Laravel\Passport\HasApiTokens;
  *
  * @package App\Models
  */
-class User extends Authenticatable 
+class User extends Authenticatable
 {
 	use HasApiTokens, Notifiable;
 	protected $table = 'users';

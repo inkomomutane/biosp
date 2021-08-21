@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\DocumentType;
 use Illuminate\Http\Request;
+use App\Http\Requests\DocumentTypeRequest;
 
 class DocumentTypesController extends Controller
 {
@@ -13,17 +14,17 @@ class DocumentTypesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        try {
+            
+            $data = DocumentType::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            return response()->json(['docements'=>$data]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        
     }
 
     /**
@@ -32,9 +33,18 @@ class DocumentTypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocumentTypeRequest $request)
     {
-        //
+        try {
+            
+            DocumentType::create(collect(['name'=>$request->name])->toArray());
+            
+            return response()->json(['message'=>'data of document keep with successfly']); 
+             
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+      
     }
 
     /**
@@ -45,28 +55,26 @@ class DocumentTypesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        try {
+            $data = DocumentType::find($id);
+
+        if($data!=null){
+            
+            return response()->json(['document'=>$data]);
+        }
+            return  response()->json(['message'=>'document not found']);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+   
+    public function update(DocumentTypeRequest $request, $id)
     {
         //
     }
@@ -79,6 +87,20 @@ class DocumentTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+           $data = DocumentType::find($id);
+
+        if($data!=null){
+            
+            $data->delete();
+            
+            return response()->json(['message'=>'Document deleted with successefly']);
+        }
+            return  response()->json(['message'=>'document not found']);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
     }
 }

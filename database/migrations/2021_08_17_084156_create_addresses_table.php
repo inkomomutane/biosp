@@ -17,7 +17,7 @@ class CreateAddressesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name', 45)->nullable();
-            $table->unsignedBigInteger('provinces_id')->index('fk_addresses_provinces1_idx');
+            $table->unsignedBigInteger('province_id')->index('fk_addresses_provinces1_idx');
         });
     }
 

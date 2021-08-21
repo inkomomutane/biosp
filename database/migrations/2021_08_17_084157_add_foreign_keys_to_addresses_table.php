@@ -14,7 +14,7 @@ class AddForeignKeysToAddressesTable extends Migration
     public function up()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->foreign('provinces_id', 'fk_addresses_provinces1')->references('id')->on('provinces')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign('province_id', 'fk_addresses_provinces1')->references('id')->on('provinces')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'PassportController@login');
 Route::post('/register', 'PassportController@register');
 
-
 /*
 |--------------------------------------------------------------------------
 |  routes of access on   system 
@@ -25,11 +24,13 @@ Route::post('/register', 'PassportController@register');
             return $user->user();
         });
 /*
+/*
 |--------------------------------------------------------------------------
 |  the route of address
 |--------------------------------------------------------------------------
 */
        Route::resource('user', 'UsersController');
+      
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::post('/register', 'PassportController@register');
 */
 
       Route::resource('address', 'AddressesController');
+      
 /*
 |--------------------------------------------------------------------------
 |  the route of biospdatabase
@@ -68,9 +70,7 @@ Route::post('/register', 'PassportController@register');
 |--------------------------------------------------------------------------
 */
     Route::resource('provinces', 'ProvincesController');
-    Route::post('allstore','ProvincesController@allstore');
-    Route::post('updated','ProvincesController@allUpdate');
-    Route::post('deleted','ProvincesController@deleted');
+
   /*
 |--------------------------------------------------------------------------
 |  the route of purpose of visits 
@@ -84,7 +84,6 @@ Route::post('/register', 'PassportController@register');
 |  the route of provinces
 |--------------------------------------------------------------------------
 */
-Route::resource('purpose', 'PurposeOfVisitsController');
-    //Route::post('logout', 'PassportController@     });
+Route::resource('reason', 'ReasonOpeningCasesController');
 
 });

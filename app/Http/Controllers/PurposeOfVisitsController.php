@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\PurposeOfVisit;
 use Illuminate\Http\Request;
+use App\Http\Requests\PurposeOfVisitsRequest;
 
 class PurposeOfVisitsController extends Controller
 {
@@ -13,7 +14,17 @@ class PurposeOfVisitsController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            
+            $data = PurposeOfVisit::all();
+
+            return response()->json(['datas'=>$data]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        
     }
 
     /**
@@ -32,28 +43,37 @@ class PurposeOfVisitsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PurposeOfVisitsRequest $request)
     {
-        //
+        try {
+            PurposeOfVisit::create(collect(['name'=>$request->name])->toArray());
+            
+            return response()->json(['message'=>'data of Purpose keep with successfly']);  
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+      
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        try {
+            $data = PurposeOfVisit::find($id);
+
+        if($data!=null){
+            
+            return response()->json(['data'=>$data]);
+        }
+            return  response()->json(['message'=>'Purpose of Visit not found']);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit($id)
     {
         //
@@ -66,9 +86,9 @@ class PurposeOfVisitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PurposeOfVisitsRequest $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -79,6 +99,21 @@ class PurposeOfVisitsController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        try {
+            $data = PurposeOfVisit::find($id);
+ 
+         if($data!=null){
+             
+             $data->delete();
+             
+             return response()->json(['message'=>'Document deleted with successefly']);
+         }
+             return  response()->json(['message'=>'Purpose of Visit not found']);
+ 
+         } catch (\Throwable $th) {
+             throw $th;
+         }
+ 
+     }
+    
 }
