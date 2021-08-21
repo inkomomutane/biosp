@@ -1,89 +1,33 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| authetication  of route
+| API Routes
 |--------------------------------------------------------------------------
 |
-*/
-Route::post('/login', 'PassportController@login');
-Route::post('/register', 'PassportController@register');
-
-/*
-|--------------------------------------------------------------------------
-|  routes of access on   system 
-|--------------------------------------------------------------------------
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-    Route::middleware('auth:api')->group(function () {
-        Route::get('/auth',function (Request $user)
-        {
-            return $user->user();
-        });
-/*
-/*
-|--------------------------------------------------------------------------
-|  the route of address
-|--------------------------------------------------------------------------
-*/
-       Route::resource('user', 'UsersController');
-      
 
-/*
-|--------------------------------------------------------------------------
-|  the route of users
-|--------------------------------------------------------------------------
-*/
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-      Route::resource('address', 'AddressesController');
-      
-/*
-|--------------------------------------------------------------------------
-|  the route of biospdatabase
-|--------------------------------------------------------------------------
-*/
-
-      Route::resource('biospdatabase', 'BiospdatabasesController');
-
-
-/*
-|--------------------------------------------------------------------------
-|  the route of documents type 
-|--------------------------------------------------------------------------
-*/
-
-     Route::resource('documenttype', 'DocumentTypesController');
-     
-/*
-|--------------------------------------------------------------------------
-|  the route of genrer
-|--------------------------------------------------------------------------
-*/
-     Route::resource('genrer', 'GenresController');
-     
-     /*
-|--------------------------------------------------------------------------
-|  the route of provinces
-|--------------------------------------------------------------------------
-*/
-    Route::resource('provinces', 'ProvincesController');
-
-  /*
-|--------------------------------------------------------------------------
-|  the route of purpose of visits 
-|--------------------------------------------------------------------------
-*/
-    Route::resource('purpose', 'PurposeOfVisitsController');
-
-
-      /*
-|--------------------------------------------------------------------------
-|  the route of provinces
-|--------------------------------------------------------------------------
-*/
-Route::resource('reason', 'ReasonOpeningCasesController');
-
+Route::post('/create', function () {
+    if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        $user = Auth::user();
+        $user->tokens()->delete();
+        $success =  $user->createToken('MyLaravelApp');
+        //$success['userId'] = $user->id;
+        return response()->json(['success' => $success->plainTextToken]);
+    }
+    else{
+        return response()->json(['error'=>'Unauthorised'], 401);
+    }
 });
