@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,15 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/create', function () {
-    if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
-        $user = Auth::user();
-        $user->tokens()->delete();
-        $success =  $user->createToken('MyLaravelApp');
-        //$success['userId'] = $user->id;
-        return response()->json(['success' => $success->plainTextToken]);
-    }
-    else{
-        return response()->json(['error'=>'Unauthorised'], 401);
-    }
-});
+Route::post('/login',[UserController::class,'login']);
