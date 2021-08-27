@@ -23,8 +23,8 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "mpociot/laravel-test-factory-helper": "^2.1",
-        "reliese/laravel": "^1.1"
+        "reliese/laravel": "^1.1",
+        "thedoctor0/laravel-factory-generator": "^1.0"
     },
     "autoload": {
         "psr-4": {
