@@ -19,11 +19,11 @@ class SyncronizationFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
             'last_sync_at' => $this->faker->dateTime(),
-            'user_uuid' => $this->faker->uuid,
+            'user_uuid' => \App\Models\User::all()->random(1)->first(),
             'complete' => $this->faker->boolean,
         ];
     }

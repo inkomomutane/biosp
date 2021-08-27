@@ -8,6 +8,7 @@ namespace App\Models;
 
 use App\Traits\Uuids;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SpecifyTheService extends Model
 {
-    use Uuids;
+    use Uuids,HasFactory,HasFactory;
 	protected $table = 'specify_the_services';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

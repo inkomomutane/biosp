@@ -19,12 +19,12 @@ class NeighborhoodFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
             'uuid' => $this->faker->uuid,
             'name' => $this->faker->name,
-            'province_uuid' => \App\Models\Province::factory(),
+            'province_uuid' => \App\Models\Province::all()->random(1)->first(),
         ];
     }
 }

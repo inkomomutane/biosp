@@ -19,7 +19,7 @@ class ReasonOpeningCaseFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
             'uuid' => $this->faker->uuid,

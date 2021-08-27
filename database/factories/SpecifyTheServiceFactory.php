@@ -19,11 +19,11 @@ class SpecifyTheServiceFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'benificiary_uuid' => \App\Models\Benificiary::factory(),
-            'forwarded_service_uuid' => \App\Models\ForwardedService::factory(),
+            'benificiary_uuid' => \App\Models\Benificiary::all()->random(1)->first(),
+            'forwarded_service_uuid' => \App\Models\ForwardedService::all()->random(1)->first(),
             'specify_the_service' => $this->faker->word,
             'uuid' => $this->faker->uuid,
         ];
