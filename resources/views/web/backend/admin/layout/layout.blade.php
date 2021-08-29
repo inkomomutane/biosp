@@ -12,6 +12,7 @@
 </head>
 
 <body class="layout-4">
+@include('sweetalert::alert')
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
@@ -251,7 +252,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Benificiarios</span></a>
+                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-th"></i> <span>Benificiarios</span></a>
                         
                     </li>
 
@@ -261,17 +262,17 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bairros</span></a>
+                        <a href="{{route('neighborhoods.index')}}"><i class="fas fa-th"></i> <span>Bairros</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Generos</span></a>
+                        <a href="{{route('genres.index')}}"><i class="fas fa-th"></i> <span>Generos</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Tipo de Documentos</span></a>
+                        <a href="{{route('documents.index')}}"><i class="fas fa-th"></i> <span>Tipo de Documentos</span></a>
                         
                     </li>
 

@@ -26,7 +26,7 @@ class ProvincesController extends Controller
      */
     public function create()
     {
-        //
+        return view('web.backend.admin.provinces.create');
     }
 
     /**
@@ -37,20 +37,24 @@ class ProvincesController extends Controller
      */
     public function store(ProvincesRequest $request)
     {
-        
-       $getAll =DB::table('provinces')->get();
+        try {
+            $getAll =DB::table('provinces')->get();
 
-        if($getAll->contains(collect($request->all()))){
-           
-            return true ;
+            if($getAll->contains(collect($request->all()))){
+               
+                return true ;
+            }
+            
+            $result= DB::table('provinces')->insert([
+                'uuid'=>$request->uuid,
+                'name'=>$request->name
+            ]);
+    
+            return redirect()->back() ->with('success', 'Created successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->back() ->with('error', 'Error during the creation!');
         }
-        
-        $result= DB::table('provinces')->insert([
-            'uuid'=>$request->uuid,
-            'name'=>$request->name
-        ]);
-
-       return 'province created successfully.';
+      
     }
 
     /**
@@ -59,9 +63,21 @@ class ProvincesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
+        try {
+            $foundData = DB::table('provinces')->where('uuid',$uuid)->get();
+           if($foundData!=null){
+               
+               return view('web.backend.admin.provinces.show')->with('provinces',$foundData);
+           }
+
+           return 'register not found';
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
     }
 
     /**
@@ -70,9 +86,24 @@ class ProvincesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        try {
+           
+            $provinces = DB::table('provinces')->where('uuid',$uuid)->get();
+           
+            if($provinces!=null){
+               return view('web.backend.admin.provinces.edit')
+               ->with('provinces',$provinces);
+           }
+
+           return 'register not found';
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
+     
     }
 
     /**
@@ -84,15 +115,22 @@ class ProvincesController extends Controller
      */
     public function update(ProvincesRequest $request, $uuid)
     {
-        $datafound = DB::table('provinces')->where('uuid',$uuid);
-        if($datafound!=null){
-            $datafound['name']= $request->name;
-            $datafound->update();
-        return 'province updated successfully';
-    }
+     
+        try {
 
-    return 'invalid deleted register';
-        
+            $datafound = DB::table('provinces')->where('uuid',$uuid);
+            
+            $datafound->update([
+                    'name'=>$request->name,
+                ]);
+       
+                return redirect()->back() ->with('success', 'Created successfully!');
+       
+            } catch (\Throwable $th) {
+            //throw $th;
+        }
+            
+         
     }
 
     /**
@@ -108,11 +146,10 @@ class ProvincesController extends Controller
             
             $datafound->delete();
         
-        return 'province deleted successfully';
+        return redirect()->back();
     }
 
-    return 'invalid deleted register';
-    //$users = DB::table('users')->orderBy('id')->cursorPaginate(15);
+    return redirect()->back() ->with('error', 'Error during the creation!');
     
     }
 }

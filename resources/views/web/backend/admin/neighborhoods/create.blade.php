@@ -2,74 +2,39 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        <h4>HTML5 Form Basic</h4>
-    </div>
-    <div class="card-body">
-        <div class="alert alert-info">
-            <b>Note!</b> Not all browsers support HTML5 type input.
-        </div>
-        <div class="form-group">
-            <label>Text</label>
-            <input type="text" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Select</label>
-            <select class="form-control">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-            </select>
-        </div>
-      
-    </div>
-    <div class="card-footer text-right">
-        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-        <button class="btn btn-secondary" type="reset">Reset</button>
-    </div>
-</div>
-
-
-
-
-
-<div class="row">
-    <div class="col-12 col-md-6 col-lg-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>Input Text</h4>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label>Default Input Text</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Phone Number (US Format)</label>
-                    <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                        <i class="fas fa-phone"></i>
+    <form method="post" action="{{route('neighborhoods.store')}}">
+        @csrf
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card" style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
+                    <div class="card-header">
+                        <h4>Adicionar Bairro</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="uuid"  id="uuid" placeholder="uuid">
                         </div>
-                    </div>
-                    <input type="text" class="form-control phone-number">
+                        <div class="form-group">
+                            <select class="form-control" id="province_uuid" name="province_uuid" placeholder="provinces">
+                            @foreach ($provinces as $province)
+                                <option id="{{$province->uuid}}">{{$province->name}}</option>
+                            @endforeach
+                        </select>
+                            
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="bairro">
+                        </div>
+        
+                        <div class="card-footer text-right mr-12">
+                            <button class="btn btn-primary mr-1" type="submit">Salvar</button>
+                            <a href="{{route('neighborhoods.index')}}" class="btn btn-danger" type="reset">Cancelar</a>
+                        </div>
+                    
                     </div>
                 </div>
-               
-                
-               
-               
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
-                </div>
+    
             </div>
         </div>
-     
-
-        
-    </div>
-</div>
- 
+    </form>   
 @endsection
