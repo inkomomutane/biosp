@@ -7,11 +7,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Syncronization
- * 
+ *
  * @property Carbon|null $last_sync_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Syncronization extends Model
 {
+    use HasFactory;
 	protected $table = 'syncronizations';
 
 	protected $casts = [
@@ -38,4 +40,9 @@ class Syncronization extends Model
 		'user_uuid',
 		'complete'
 	];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_uuid');
+    }
 }

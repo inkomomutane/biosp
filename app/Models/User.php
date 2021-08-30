@@ -61,4 +61,9 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
 	}
+
+    public function lastSync()
+    {
+       return $this->hasMany(Syncronization::class,'user_uuid');
+    }
 }

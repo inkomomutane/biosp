@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('neighborhood_uuid')->index('fk_users_neighborhoods1_idx');
+            $table->string('neighborhood_uuid')->nullable()->index('fk_users_neighborhoods1_idx');
         });
     }
 

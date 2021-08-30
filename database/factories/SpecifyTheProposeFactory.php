@@ -19,11 +19,11 @@ class SpecifyTheProposeFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'purpose_of_visit_uuid' => \App\Models\PurposeOfVisit::factory(),
-            'benificiary_uuid' => \App\Models\Benificiary::factory(),
+            'purpose_of_visit_uuid' => \App\Models\PurposeOfVisit::all()->random(1)->first(),
+            'benificiary_uuid' => \App\Models\Benificiary::all()->random(1)->first(),
             'specify_the_propose' => $this->faker->word,
             'uuid' => $this->faker->uuid,
         ];

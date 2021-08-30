@@ -19,11 +19,11 @@ class GenreFactory extends Factory
     *
     * @return  array
     */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'uuid' => $this->faker->uuid,
-            'name' => $this->faker->name,
+            'uuid' => $this->faker->uuid(),
+            'name' => $this->faker->name(),
         ];
     }
 }

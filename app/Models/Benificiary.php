@@ -9,6 +9,7 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,7 +33,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $genre_uuid
  * @property string $provenace_uuid
  * @property string $reason_opening_case_uuid
+ * @property string $document_type_uuid
  *
+ * @property DocumentType $document_type
  * @property Genre $genre
  * @property Neighborhood $neighborhood
  * @property Provenace $provenace
@@ -44,7 +47,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Benificiary extends Model
 {
-	use SoftDeletes,Uuids;
+	use SoftDeletes,Uuids,HasFactory;
 	protected $table = 'benificiaries';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
@@ -74,8 +77,14 @@ class Benificiary extends Model
 		'neighborhood_uuid',
 		'genre_uuid',
 		'provenace_uuid',
-		'reason_opening_case_uuid'
+		'reason_opening_case_uuid',
+		'document_type_uuid'
 	];
+
+	public function document_type()
+	{
+		return $this->belongsTo(DocumentType::class, 'document_type_uuid');
+	}
 
 	public function genre()
 	{

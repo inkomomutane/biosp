@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SpecifyThePropose extends Model
 {
-    use Uuids;
+    use Uuids,HasFactory;
 	protected $table = 'specify_the_propose';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

@@ -8,6 +8,7 @@ namespace App\Models;
 
 use App\Traits\Uuids;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DocumentType extends Model
 {
-	use SoftDeletes,Uuids;
+	use SoftDeletes,Uuids,HasFactory;
 	protected $table = 'document_types';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
