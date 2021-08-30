@@ -40,4 +40,9 @@ class Syncronization extends Model
 		'user_uuid',
 		'complete'
 	];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_uuid');
+    }
 }

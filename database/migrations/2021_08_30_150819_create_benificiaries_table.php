@@ -30,6 +30,7 @@ class CreateBenificiariesTable extends Migration
             $table->string('genre_uuid')->index('fk_biospdatabases_genres1_idx');
             $table->string('provenace_uuid')->index('fk_biospdatabases_provenaces1_idx');
             $table->string('reason_opening_case_uuid')->index('fk_biospdatabases_reason_opening_cases1_idx');
+            $table->string('document_type_uuid')->index('fk_benificiaries_document_types1_idx');
         });
     }
 

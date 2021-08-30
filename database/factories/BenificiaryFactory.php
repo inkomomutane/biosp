@@ -36,6 +36,7 @@ class BenificiaryFactory extends Factory
             'genre_uuid' => \App\Models\Genre::all()->random(1)->first(),
             'provenace_uuid' => \App\Models\Provenace::all()->random(1)->first(),
             'reason_opening_case_uuid' => \App\Models\ReasonOpeningCase::all()->random(1)->first(),
+            'document_type_uuid' => \App\Models\DocumentType::all()->random(1)->first()
         ];
     }
 }
