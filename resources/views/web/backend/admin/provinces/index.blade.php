@@ -1,17 +1,13 @@
 @extends('web.backend.admin.layout.layout')
 
+@push('ccs')
+  <!-- CSS Libraries -->
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/datatables.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css')}}">
+@endpush
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- modules-datatables.html  Tue, 07 Jan 2020 03:38:57 GMT -->
-<head>
-<meta charset="UTF-8">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-<title>Modules &rsaquo; DataTables &mdash; CodiePie</title>
-
-</head>
 <div >
     <a href="{{route('province.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
  </div><br/>
@@ -25,7 +21,6 @@
             <table class="table table-striped v_center" id="table-2">
                 <thead>
                     <tr style="box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.1)">
-                    
                     <th>uuid</th>
                     <th>Provincias</th>
                     <th>created_at</th>
@@ -49,10 +44,6 @@
                             <a href="{{route('provinces.edit',$province->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
                             <a href="{{route('province.show',$province->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                             <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
-                       {{--
-                       
-                       
-                       --}}
                         </form> 
                         </td>
                         </tr>
@@ -64,27 +55,14 @@
     </div>
 </div>
 
-<body>
-
-<!-- General JS Scripts -->
-<script src="assets/bundles/lib.vendor.bundle.js"></script>
-<script src="js/CodiePie.js"></script>
-
-<!-- JS Libraies -->
-<script src="assets/modules/datatables/datatables.min.js"></script>
-<script src="assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
-<script src="assets/modules/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- Page Specific JS File -->
-<script src="js/page/modules-datatables.js"></script>
-
-<!-- Template JS File -->
-<script src="js/scripts.js"></script>
-<script src="js/custom.js"></script>
-</body>
-
-<!-- modules-datatables.html  Tue, 07 Jan 2020 03:39:02 GMT -->
-</html>
-
 @endsection
+
+@push('script')
+  <!-- JS Libraies -->
+  <script src="{{asset('assets/modules/datatables/datatables.min.js')}}"></script>
+  <script src="{{asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}}"></script>
+  <script src="{{asset('assets/modules/jquery-ui/jquery-ui.min.js')}}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{{asset('js/page/modules-datatables.js')}}"></script>
+@endpush

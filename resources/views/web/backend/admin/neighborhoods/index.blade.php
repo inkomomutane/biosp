@@ -1,4 +1,10 @@
 @extends('web.backend.admin.layout.layout')
+@push('ccs')
+  <!-- CSS Libraries -->
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/datatables.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css')}}">
+@endpush
 
 @section('content')
          <div class="padding-10">
@@ -7,11 +13,8 @@
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
         Lista de Bairros
-    </div> 
-    
+    </div>
     <div class="card-body">
-
-        
         <div class="table-responsive">
             <table class="table table-striped v_center" id="table-2">
                 <thead>
@@ -45,30 +48,20 @@
                          </td>
                         </tr>
                     @endforeach
-                    
-                    
-                   
-                  
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<!-- General JS Scripts -->
-<script src="assets/bundles/lib.vendor.bundle.js"></script>
-<script src="js/CodiePie.js"></script>
-
-<!-- JS Libraies -->
-<script src="assets/modules/datatables/datatables.min.js"></script>
-<script src="assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
-<script src="assets/modules/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- Page Specific JS File -->
-<script src="js/page/modules-datatables.js"></script>
-
-<!-- Template JS File -->
-<script src="js/scripts.js"></script>
-<script src="js/custom.js"></script>
 
 @endsection
+
+@push('script')
+  <!-- JS Libraies -->
+  <script src="{{asset('assets/modules/datatables/datatables.min.js')}}"></script>
+  <script src="{{asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}}"></script>
+  <script src="{{asset('assets/modules/jquery-ui/jquery-ui.min.js')}}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{{asset('js/page/modules-datatables.js')}}"></script>
+@endpush

@@ -14,9 +14,16 @@ class ProvincesController extends Controller
      */
     public function index()
     {
-   
+   try {
         $getAll = DB::table('provinces')->get();
+
         return view('web.backend.admin.provinces.index')->with('provinces',$getAll);
+
+   } catch (\Throwable $th) {
+       
+        throw $th;
+   }
+        
     }
 
     /**
@@ -38,14 +45,7 @@ class ProvincesController extends Controller
     public function store(ProvincesRequest $request)
     {
         try {
-            $getAll =DB::table('provinces')->get();
-
-            if($getAll->contains(collect($request->all()))){
-               
-                return true ;
-            }
-            
-            $result= DB::table('provinces')->insert([
+            DB::table('provinces')->insert([
                 'uuid'=>$request->uuid,
                 'name'=>$request->name
             ]);

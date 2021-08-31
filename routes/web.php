@@ -8,6 +8,7 @@ use App\Http\Controllers\ProvincesController;
 use App\Http\Controllers\DocumentsTypeController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\NeighborhoodsController;
+use App\Http\Controllers\ProvenacesContoller;
 use App\Http\Controllers\BenificiariesController;
 
 /*
@@ -68,6 +69,15 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('/document/{uuid}',[DocumentsTypeController::class,'edit'])->name('document.edit');
      Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('documents.update');
      Route::delete('/document/{uuid}',[DocumentsTypeController::class,'destroy'])->name('document.destroy');
+
+
+     Route::get('/allprovenaces',[ProvenacesContoller::class,'index'])->name('provenaces.index');
+     Route::get('/provenace',[ProvenacesContoller::class,'create'])->name('provenace.create');
+     Route::post('/provenaces',[ProvenacesContoller::class,'store'])->name('provenaces.store');
+     Route::get('/provenaces/{uuid}',[ProvenacesContoller::class,'show'])->name('provenace.show');
+     Route::get('/provenace/{uuid}',[ProvenacesContoller::class,'edit'])->name('provenace.edit');
+     Route::put('/provenace/{uuid}',[ProvenacesContoller::class,'update'])->name('provenace.update');
+     Route::delete('/provenace/{uuid}',[ProvenacesContoller::class,'destroy'])->name('provenace.destroy');
 });
 
 

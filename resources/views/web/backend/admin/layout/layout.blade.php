@@ -8,7 +8,7 @@
 <title>@yield('title') &mdash;</title>
 
 @include('web.backend.admin.layout.include.links.link')
-
+@stack('ccs')
 </head>
 
 <body class="layout-4">
@@ -277,9 +277,36 @@
                     </li>
 
                     <li class="dropdown">
+                        <a href="{{route('provenaces.index')}}"><i class="fas fa-th"></i> <span>Proviniencia </span></a>
+                        
+                    </li>
+
+
+                    <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
                         
                     </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>razao da  visita</span></a>  
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        
+                    </li>
+
+
 
                     <li class="dropdown">
                         <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Servicos</span></a>
@@ -307,7 +334,9 @@
         </footer>
     </div>
 </div>
+
 @include('web.backend.admin.layout.include.links.script')
+@stack('script')
 </body>
 
 <!-- index-0.html  Tue, 07 Jan 2020 03:35:42 GMT -->
