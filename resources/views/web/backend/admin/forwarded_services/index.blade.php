@@ -9,11 +9,11 @@
 @section('content')
 
 <div >
-    <a href="{{route('genre.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
+    <a href="{{route('forwardedservice.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
  </div><br/>
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
-        Lista de Gêneros
+        Lista de Proveniências
     </div>
     <div class="card-body">
 
@@ -21,6 +21,7 @@
             <table class="table table-striped v_center" id="table-2">
                 <thead>
                     <tr style="box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.1)">
+                    
                     <th>uuid</th>
                     <th>Provincias</th>
                     <th>created_at</th>
@@ -30,19 +31,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($genres as $genre)
+                    @foreach ($forwarded_services as $forwarded_service)
                     <tr>
-                        <td class="text-truncate" style="max-width:50px;">{{$genre->uuid}}</td>
-                        <td class="text-truncate" style="max-width:50px;">{{$genre->name}}</td>
-                        <td>{{$genre->created_at}}</td>
-                        <td>{{$genre->updated_at}}</td>
-                        <td>{{$genre->deleted_at}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$forwarded_service->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$forwarded_service->name}}</td>
+                        <td>{{$forwarded_service->created_at}}</td>
+                        <td>{{$forwarded_service->updated_at}}</td>
+                        <td>{{$forwarded_service->deleted_at}}</td>
                         <td>
-                       <form action="{{route('genre.destroy',$genre->uuid)}}" method="post">
+                       <form action="{{route('forwarded_service.destroy',$forwarded_service->uuid)}}" method="post">
                             @csrf 
                             @method('delete')
-                            <a href="{{route('genre.edit',$genre->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                            <a href="{{route('genre.show',$genre->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{route('forwardedservices.edit',$forwarded_service->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="{{route('forwardedservice.show',$forwarded_service->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                             <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
                        
                         </form> 

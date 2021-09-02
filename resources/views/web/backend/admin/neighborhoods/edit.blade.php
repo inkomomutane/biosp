@@ -36,7 +36,7 @@
                         </div>
                         
                         <div class="card-footer text-right mr-12">
-                            <button class="btn btn-primary mr-1" type="submit">Atualizar</button>
+                            <button class="btn btn-primary mr-1" type="submit">Actualizar</button>
                             <button class="btn btn-danger" type="reset">Cancelar</button>
                         </div>
                         @endforeach

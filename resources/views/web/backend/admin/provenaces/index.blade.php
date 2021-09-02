@@ -13,7 +13,7 @@
  </div><br/>
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
-        Lista de Provincias
+        Lista de Proveniências
     </div>
     <div class="card-body">
 
@@ -33,13 +33,13 @@
                 <tbody>
                     @foreach ($provenaces as $provenace)
                     <tr>
-                        <td>{{$provenace->uuid}}</td>
-                        <td class="align-middle">{{$provenace->name}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$provenace->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$provenace->name}}</td>
                         <td>{{$provenace->created_at}}</td>
                         <td>{{$provenace->updated_at}}</td>
                         <td>{{$provenace->deleted_at}}</td>
                         <td>
-                       <form action="{{route('genre.destroy',$provenace->uuid)}}" method="post">
+                       <form action="{{route('provenace.destroy',$provenace->uuid)}}" method="post">
                             @csrf 
                             @method('delete')
                             <a href="{{route('provenace.edit',$provenace->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>

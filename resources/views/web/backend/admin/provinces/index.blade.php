@@ -32,8 +32,8 @@
                 <tbody>
                     @foreach ($provinces as $province)
                     <tr>
-                        <td>{{$province->uuid}}</td>
-                        <td class="align-middle">{{$province->name}}</td>
+                        <td class="d-inline-block text-truncate" style="max-width: 50px;">{{$province->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$province->name}}</td>
                         <td>{{$province->created_at}}</td>
                         <td>{{$province->updated_at}}</td>
                         <td>{{$province->deleted_at}}</td>
@@ -48,7 +48,6 @@
                         </td>
                         </tr>
                     @endforeach
-                  
                 </tbody>
             </table>
         </div>

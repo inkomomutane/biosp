@@ -10,6 +10,7 @@ use App\Http\Controllers\GenresController;
 use App\Http\Controllers\NeighborhoodsController;
 use App\Http\Controllers\ProvenacesContoller;
 use App\Http\Controllers\BenificiariesController;
+use App\Http\Controllers\ForwardedServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +61,7 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('/benificiaries/{uuid}',[BenificiariesController::class,'edit'])->name('benificiaries.edit');
      Route::put('/benificiaries/{uuid}',[BenificiariesController::class,'update'])->name('benificiaries.update');
      Route::delete('/benificiary/{uuid}',[BenificiariesController::class,'destroy'])->name('benificiary.destroy');
-     
-
+    
      Route::get('/documents',[DocumentsTypeController::class,'index'])->name('documents.index');
      Route::get('/document',[DocumentsTypeController::class,'create'])->name('document.create');
      Route::post('/documents',[DocumentsTypeController::class,'store'])->name('documents.store');
@@ -70,7 +70,6 @@ Route::group(['middleware'=>'auth'],function(){
      Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('documents.update');
      Route::delete('/document/{uuid}',[DocumentsTypeController::class,'destroy'])->name('document.destroy');
 
-
      Route::get('/allprovenaces',[ProvenacesContoller::class,'index'])->name('provenaces.index');
      Route::get('/provenace',[ProvenacesContoller::class,'create'])->name('provenace.create');
      Route::post('/provenaces',[ProvenacesContoller::class,'store'])->name('provenaces.store');
@@ -78,6 +77,14 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('/provenace/{uuid}',[ProvenacesContoller::class,'edit'])->name('provenace.edit');
      Route::put('/provenace/{uuid}',[ProvenacesContoller::class,'update'])->name('provenace.update');
      Route::delete('/provenace/{uuid}',[ProvenacesContoller::class,'destroy'])->name('provenace.destroy');
+
+     Route::get('/allforwarded_services',[ForwardedServicesController::class,'index'])->name('forwardedservices.index');
+     Route::get('/forwarded_service',[ForwardedServicesController::class,'create'])->name('forwardedservice.create');
+     Route::post('/forwarded_services',[ForwardedServicesController::class,'store'])->name('forwardedservices.store');
+     Route::get('forwarded_services/{uuid}',[ForwardedServicesController::class,'show'])->name('forwardedservice.show');
+     Route::get('/forwarded_service/{uuid}',[ForwardedServicesController::class,'edit'])->name('forwardedservices.edit');
+     Route::put('/forwarded_service/{uuid}',[ForwardedServicesController::class,'update'])->name('forwarded_service.update');
+     Route::delete('/forwarded_service/{uuid}',[ForwardedServicesController::class,'destroy'])->name('forwarded_service.destroy');
 });
 
 

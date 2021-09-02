@@ -1,20 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\GenresRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class GenresController extends Controller
+use App\Http\Requests\ForwardedServicesRequest;
+
+class ForwardedServicesController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $getAll = DB::table('genres')->get();
-        return view('web.backend.admin.genres.index')->with('genres',$getAll);
+   try {
+        $getAll = DB::table('forwarded_services')->get();
+
+        return view('web.backend.admin.forwarded_services.index')->with('forwarded_services',$getAll);
+
+   } catch (\Throwable $th) {
+       
+        throw $th;
+   }
+        
     }
 
     /**
@@ -24,7 +34,7 @@ class GenresController extends Controller
      */
     public function create()
     {
-        return view('web.backend.admin.genres.create');
+        return view('web.backend.admin.forwarded_services.create');
     }
 
     /**
@@ -33,17 +43,10 @@ class GenresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenresRequest $request)
+    public function store(ForwardedServicesRequest $request)
     {
         try {
-            $getAll =DB::table('genres')->get();
-
-            if($getAll->contains(collect($request->all()))){
-               
-                return true ;
-            }
-            
-            $result= DB::table('genres')->insert([
+            DB::table('forwarded_services')->insert([
                 'uuid'=>$request->uuid,
                 'name'=>$request->name
             ]);
@@ -64,11 +67,10 @@ class GenresController extends Controller
     public function show($uuid)
     {
         try {
-            $foundData = DB::table('provinces')->where('uuid',$uuid)->get();
-           
-            if($foundData!=null){
+            $foundData = DB::table('forwarded_services')->where('uuid',$uuid)->get();
+           if($foundData!=null){
                
-               return view('web.backend.admin.genres.show')->with('genres',$foundData);
+               return view('web.backend.admin.forwarded_services.show')->with('forwarded_services',$foundData);
            }
 
            return 'register not found';
@@ -78,7 +80,6 @@ class GenresController extends Controller
             throw $th;
         }
     }
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -90,45 +91,22 @@ class GenresController extends Controller
     {
         try {
            
-            $genres = DB::table('genres')->where('uuid',$uuid)->get();
+            $forwarded_services = DB::table('forwarded_services')->where('uuid',$uuid)->get();
            
-            if($genres!=null){
-               return view('web.backend.admin.genres.edit')
-               ->with('genres',$genres);
+            if($forwarded_services!=null){
+               return view('web.backend.admin.forwarded_services.edit')
+               ->with('forwarded_services',$forwarded_services);
            }
+
+           return 'register not found';
 
         } catch (\Throwable $th) {
             
             throw $th;
         }
+     
     }
-/**$( document ).ready(function() {
-    $('#form').submit(function (e) {
-        e.preventDefault();
-        swal({
-            icon: "warning",
-            title: "Are you sure?",
-            text: "Do you want to submit and pay 10 Rupiah",
-            buttons: ["No, cancel pls!", "Yes, send it!"],
-        })
-        .then((value) => {
-            console.log('form submitted');
-        });
-    });
-});
 
-try {
-            Item::create([
-                'name' => $request->name,
-                'price' => $request->price
-            ]);
-
-            return redirect()->back()
-                ->with('success', 'Created successfully!');
-        } catch (\Exception $e){
-            return redirect()->back()
-                ->with('error', 'Error during the creation!');
-        } */
     /**
      * Update the specified resource in storage.
      *
@@ -136,22 +114,25 @@ try {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenresRequest $request, $uuid)
+    public function update(ForwardedServicesRequest $request, $uuid)
     {
-        
+     
         try {
 
-            $datafound = DB::table('genres')->where('uuid',$uuid);
+            $datafound = DB::table('forwarded_services')->where('uuid',$uuid);
             
             $datafound->update([
                     'name'=>$request->name,
                 ]);
        
-               return redirect()->route('genres.index') ->with('success', 'Created successfully!'); ;
+                return redirect()->back() ->with('success', 'Created successfully!');
        
             } catch (\Throwable $th) {
-            //throw $th;
+            
+                throw $th;
         }
+            
+         
     }
 
     /**
@@ -162,10 +143,9 @@ try {
      */
     public function destroy($uuid)
     {
-    
-    $datafound = DB::table('genres')->where('uuid',$uuid);
+        $datafound = DB::table('forwarded_services')->where('uuid',$uuid);
         
-    if($datafound!=null){
+        if($datafound!=null){
             
             $datafound->delete();
         
@@ -175,5 +155,4 @@ try {
     return redirect()->back() ->with('error', 'Error during the creation!');
     
     }
-    
 }

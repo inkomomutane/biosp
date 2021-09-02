@@ -30,9 +30,9 @@
                 <tbody>
                     @foreach ($neighborhoods as $neighborhood)
                     <tr>
-                        <td>{{$neighborhood->uuid}}</td>
-                        <td class="align-middle">{{$neighborhood->name}}</td>
-                        <td>{{$neighborhood->province_uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->name}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->province_uuid}}</td>
                         <td>{{$neighborhood->created_at}}</td>
                         <td>{{$neighborhood->updated_at}}</td>
                        

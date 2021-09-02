@@ -142,6 +142,7 @@ class ProvincesController extends Controller
     public function destroy($uuid)
     {
         $datafound = DB::table('provinces')->where('uuid',$uuid);
+        
         if($datafound!=null){
             
             $datafound->delete();

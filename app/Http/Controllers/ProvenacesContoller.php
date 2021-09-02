@@ -32,7 +32,7 @@ class ProvenacesContoller extends Controller
      */
     public function create()
     {
-        //
+        return view('web.backend.admin.provenaces.create');
     }
 
     /**
@@ -41,9 +41,19 @@ class ProvenacesContoller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProvenacesRequest $request)
     {
-        //
+        try {
+
+            DB::table('provenaces')->insert([
+                'uuid'=>$request->uuid,
+                'name'=>$request->name
+            ]);
+    
+            return redirect()->back() ->with('success', 'Created successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->back() ->with('error', 'Error during the creation!');
+        }
     }
 
     /**
@@ -52,9 +62,22 @@ class ProvenacesContoller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uuid)
     {
-        //
+        try {
+            $foundData = DB::table('provenaces')->where('uuid',$uuid)->get();
+           
+            if($foundData!=null){
+               
+               return view('web.backend.admin.provenaces.show')->with('provenaces',$foundData);
+           }
+
+           return 'register not found';
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
     }
 
     /**
@@ -63,9 +86,23 @@ class ProvenacesContoller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        try {
+           
+            $provenaces = DB::table('provenaces')->where('uuid',$uuid)->get();
+           
+            if($provenaces!=null){
+               return view('web.backend.admin.provenaces.edit')
+               ->with('provenaces',$provenaces);
+           }
+
+           return 'register not found';
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
     }
 
     /**
@@ -75,9 +112,23 @@ class ProvenacesContoller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProvenacesRequest $request, $uuid)
     {
-        //
+        try {
+
+            $datafound = DB::table('provenaces')->where('uuid',$uuid);
+            
+            $datafound->update([
+                    'name'=>$request->name,
+                ]);
+       
+                return redirect()->back() ->with('success', 'Created successfully!');
+       
+            } catch (\Throwable $th) {
+            
+                throw $th;
+        }
+           
     }
 
     /**
@@ -86,8 +137,19 @@ class ProvenacesContoller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        $datafound = DB::table('provenaces')->where('uuid',$uuid);
+        
+        if($datafound!=null){
+            
+            $datafound->delete();
+        
+        return redirect()->back();
     }
+
+    return redirect()->back() ->with('error', 'Error during the creation!');
+    
+    }
+    
 }

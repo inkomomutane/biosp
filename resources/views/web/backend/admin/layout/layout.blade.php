@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-<title>@yield('title') &mdash;</title>
+<title>@yield('title')</title>
 
 @include('web.backend.admin.layout.include.links.link')
 @stack('ccs')
@@ -14,9 +14,9 @@
 <body class="layout-4">
 @include('sweetalert::alert')
 <!-- Page Loader -->
-<div class="page-loader-wrapper">
+{{--<div class="page-loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
-</div>
+</div>--}}
 
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
@@ -248,17 +248,17 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Users</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Usuários</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-th"></i> <span>Benificiarios</span></a>
+                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-th"></i> <span>Beneficiários</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-th"></i> <span>Provinces</span></a>
+                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-th"></i> <span>Províncias</span></a>
                     </li>
                     
                     <li class="dropdown">
@@ -267,8 +267,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('genres.index')}}"><i class="fas fa-th"></i> <span>Generos</span></a>
-                        
+                        <a href="{{route('genres.index')}}"><i class="fas fa-th"></i> <span>Gêneros</span></a>   
                     </li>
 
                     <li class="dropdown">
@@ -277,42 +276,30 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('provenaces.index')}}"><i class="fas fa-th"></i> <span>Proviniencia </span></a>
+                        <a href="{{route('provenaces.index')}}"><i class="fas fa-th"></i> <span>Proveniências</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>razao da  visita</span></a>  
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposta Especificadas</span></a>  
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Serviços Especificados</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
+                        <a href="{{route('forwardedservices.index')}}"><i class="fas fa-th"></i> <span>Serviços Encaminhados</span></a>
                         
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposito da Visita</span></a>
-                        
-                    </li>
-
-
-
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Servicos</span></a>
-                        
-                    </li>
-                   
                 </ul>
                 
             </aside>
