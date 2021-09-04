@@ -3,7 +3,7 @@
 @section('content')
 <div class="card-body">
 
-        
+
     <div class="table-responsive">
         <table class="table table-striped v_center" id="table-2">
             <thead>
@@ -29,28 +29,28 @@
                     <td class=>{{$benificiary->birth_date}}</td>
                     <td class=>{{$benificiary->phone}}</td>
                     <td class=>{{$benificiary->service_date}}</td>
-                    <td class=>{{$benificiary->purpose_of_visit}}</td>
+                    <td class=>{{$benificiary->purpose_of_visit_uuid}}</td>
                     <td class=>{{$benificiary->date_received}}</td>
                     <td class=>{{$benificiary->status}}</td>
                     <td class=>{{$benificiary->number_of_visits}}</td>
-                    
-                   
-                        
+
+
+
                         <td>
                    <form action="{{route('benificiary.destroy',$benificiary->uuid)}}" method="post">
-                        @csrf 
+                        @csrf
                         @method('delete')
                         <a href="{{route('benificiaries.edit',$benificiary->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
                         <a href="{{route('benificiary.show',$benificiary->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                         <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
-                    </form> 
+                    </form>
                      </td>
                     </tr>
                 @endforeach
-                
-                
-               
-              
+
+
+
+
             </tbody>
         </table>
     </div>

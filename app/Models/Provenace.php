@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Provenace extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+    use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'provenaces';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

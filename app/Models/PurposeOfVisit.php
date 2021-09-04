@@ -22,13 +22,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  *
- * @property Collection|SpecifyThePropose[] $specify_the_proposes
+ * @property Collection|Benificiary[] $benificiaries
  *
  * @package App\Models
  */
 class PurposeOfVisit extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+    use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'purpose_of_visits';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
@@ -37,8 +37,8 @@ class PurposeOfVisit extends Model
 		'name'
 	];
 
-	public function specify_the_proposes()
+	public function benificiaries()
 	{
-		return $this->hasMany(SpecifyThePropose::class, 'purpose_of_visit_uuid');
+		return $this->hasMany(Benificiary::class, 'purpose_of_visit_uuid');
 	}
 }

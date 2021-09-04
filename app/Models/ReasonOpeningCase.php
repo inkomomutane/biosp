@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ReasonOpeningCase extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+	use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'reason_opening_cases';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

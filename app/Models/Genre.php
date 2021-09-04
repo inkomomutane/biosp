@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Genre extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+    use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'genres';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

@@ -8,7 +8,6 @@ namespace App\Models;
 
 use App\Traits\Uuids;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,31 +22,38 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $phone
  * @property Carbon|null $service_date
  * @property bool|null $home_care
- * @property string|null $purpose_of_visit
  * @property Carbon|null $date_received
  * @property bool|null $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property string $neighborhood_uuid
- * @property string $genre_uuid
- * @property string $provenace_uuid
- * @property string $reason_opening_case_uuid
- * @property string $document_type_uuid
+ * @property string|null $other_document_type
+ * @property string|null $other_reason_opening_case
+ * @property string|null $forwarded_correct_service_uuid
+ * @property string|null $other_forwarded_service
+ * @property string|null $specify_forwarded_service
+ * @property string|null $visit_proposes
+ * @property string|null $neighborhood_uuid
+ * @property string|null $genre_uuid
+ * @property string|null $provenace_uuid
+ * @property string|null $reason_opening_case_uuid
+ * @property string|null $document_type_uuid
+ * @property string|null $forwarded_service_uuid
+ * @property string|null $purpose_of_visit_uuid
  *
- * @property DocumentType $document_type
- * @property Genre $genre
- * @property Neighborhood $neighborhood
- * @property Provenace $provenace
- * @property ReasonOpeningCase $reason_opening_case
- * @property Collection|SpecifyThePropose[] $specify_the_proposes
- * @property Collection|SpecifyTheService[] $specify_the_services
+ * @property DocumentType|null $document_type
+ * @property ForwardedService|null $forwarded_service
+ * @property PurposeOfVisit|null $purpose_of_visit
+ * @property Genre|null $genre
+ * @property Neighborhood|null $neighborhood
+ * @property Provenace|null $provenace
+ * @property ReasonOpeningCase|null $reason_opening_case
  *
  * @package App\Models
  */
 class Benificiary extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+    use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'benificiaries';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
@@ -71,19 +77,36 @@ class Benificiary extends Model
 		'phone',
 		'service_date',
 		'home_care',
-		'purpose_of_visit',
 		'date_received',
 		'status',
+		'other_document_type',
+		'other_reason_opening_case',
+		'forwarded_correct_service_uuid',
+		'other_forwarded_service',
+		'specify_forwarded_service',
+		'visit_proposes',
 		'neighborhood_uuid',
 		'genre_uuid',
 		'provenace_uuid',
 		'reason_opening_case_uuid',
-		'document_type_uuid'
+		'document_type_uuid',
+		'forwarded_service_uuid',
+		'purpose_of_visit_uuid'
 	];
 
 	public function document_type()
 	{
 		return $this->belongsTo(DocumentType::class, 'document_type_uuid');
+	}
+
+	public function forwarded_service()
+	{
+		return $this->belongsTo(ForwardedService::class, 'forwarded_service_uuid');
+	}
+
+	public function purpose_of_visit()
+	{
+		return $this->belongsTo(PurposeOfVisit::class, 'purpose_of_visit_uuid');
 	}
 
 	public function genre()
@@ -104,15 +127,5 @@ class Benificiary extends Model
 	public function reason_opening_case()
 	{
 		return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_uuid');
-	}
-
-	public function specify_the_proposes()
-	{
-		return $this->hasMany(SpecifyThePropose::class, 'benificiary_uuid');
-	}
-
-	public function specify_the_services()
-	{
-		return $this->hasMany(SpecifyTheService::class, 'benificiary_uuid');
 	}
 }

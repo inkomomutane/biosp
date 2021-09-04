@@ -21,17 +21,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- * @property string $province_uuid
+ * @property string|null $province_uuid
  *
- * @property Province $province
+ * @property Province|null $province
  * @property Collection|Benificiary[] $benificiaries
  * @property Collection|User[] $users
  *
  * @package App\Models
  */
 class Neighborhood extends Model
-{
-	use SoftDeletes,Uuids,HasFactory;
+{	use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'neighborhoods';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

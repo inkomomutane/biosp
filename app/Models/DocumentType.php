@@ -8,6 +8,7 @@ namespace App\Models;
 
 use App\Traits\Uuids;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,11 +22,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $name
  * @property string $uuid
  *
+ * @property Collection|Benificiary[] $benificiaries
+ *
  * @package App\Models
  */
 class DocumentType extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+	use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'document_types';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
@@ -33,4 +36,9 @@ class DocumentType extends Model
 	protected $fillable = [
 		'name'
 	];
+
+	public function benificiaries()
+	{
+		return $this->hasMany(Benificiary::class, 'document_type_uuid');
+	}
 }
