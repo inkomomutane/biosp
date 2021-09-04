@@ -26,6 +26,12 @@ class CreateBenificiariesTable extends Migration
             $table->boolean('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->string('other_document_type');
+            $table->string('other_reason_opening_case');
+            $table->string('forwarded_correct_service_uuid')->index('fk_biospdatabases_forwarded_correct_services1_idx');
+            $table->string('other_forwarded_service');
+            $table->string('specify_forwarded_service');
+            $table->string('visit_proposes');
             $table->string('neighborhood_uuid')->index('fk_biospdatabases_neighborhoods1_idx');
             $table->string('genre_uuid')->index('fk_biospdatabases_genres1_idx');
             $table->string('provenace_uuid')->index('fk_biospdatabases_provenaces1_idx');
