@@ -11,6 +11,9 @@ use App\Http\Controllers\NeighborhoodsController;
 use App\Http\Controllers\ProvenacesContoller;
 use App\Http\Controllers\BenificiariesController;
 use App\Http\Controllers\ForwardedServicesController;
+use App\Http\Controllers\PurposeOfVisitsController;
+use App\Http\Controllers\ReasonOpeningCasesController;
+use App\Http\Controllers\SpecifyTheProposeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,7 @@ Route::group(['middleware'=>'auth'],function(){
   
      Route::get('/benificiary',[BenificiariesController::class,'index'])->name('benificiary.index');
 
-     Route::get('/users',[BenificiariesController::class,'index'])->name('users.index');
+     Route::get('/users',[UsersController::class,'index'])->name('users.index');
      Route::get('/allprovinces',[ProvincesController::class,'index'])->name('provinces.index');
      Route::post('/provinces',[ProvincesController::class,'store'])->name('province.store'); 
      Route::get('/province',[ProvincesController::class,'create'])->name('province.create');
@@ -85,6 +88,30 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('/forwarded_service/{uuid}',[ForwardedServicesController::class,'edit'])->name('forwardedservices.edit');
      Route::put('/forwarded_service/{uuid}',[ForwardedServicesController::class,'update'])->name('forwarded_service.update');
      Route::delete('/forwarded_service/{uuid}',[ForwardedServicesController::class,'destroy'])->name('forwarded_service.destroy');
+
+     Route::get('/allpurpose_of_visits',[PurposeOfVisitsController::class,'index'])->name('purposeofvisits.index');
+     Route::get('/purpose_of_visit',[PurposeOfVisitsController::class,'create'])->name('purposeofvisit.create');
+     Route::post('/purpose_of_visits',[PurposeOfVisitsController::class,'store'])->name('purposeofvisits.store');
+     Route::get('purpose_of_visits/{uuid}',[PurposeOfVisitsController::class,'show'])->name('purposeofvisit.show');
+     Route::get('/purpose_of_visit/{uuid}',[PurposeOfVisitsController::class,'edit'])->name('purposeofvisit.edit');
+     Route::put('/purpose_of_visit/{uuid}',[PurposeOfVisitsController::class,'update'])->name('purposeofvisit.update');
+     Route::delete('/purpose_of_visit/{uuid}',[PurposeOfVisitsController::class,'destroy'])->name('purposeofvisit.destroy');
+
+     Route::get('/allreason_opening_cases',[ReasonOpeningCasesController::class,'index'])->name('reasonopeningcases.index');
+     Route::get('/reason_opening_case',[ReasonOpeningCasesController::class,'create'])->name('reasonopeningcase.create');
+     Route::post('/reason_opening_cases',[ReasonOpeningCasesController::class,'store'])->name('reasonopeningcases.store');
+     Route::get('reason_opening_cases/{uuid}',[ReasonOpeningCasesController::class,'show'])->name('reasonopeningcases.show');
+     Route::get('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'edit'])->name('reasonopeningcase.edit');
+     Route::put('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'update'])->name('reasonopeningcase.update');
+     Route::delete('/reasonopeningcase/{uuid}',[ReasonOpeningCasesController::class,'destroy'])->name('reasonopeningcase.destroy');
+
+     Route::get('/allspecify_the_propose',[SpecifyTheProposeController::class,'index'])->name('specifythepropose.index');
+     Route::get('/specify_the_propose',[SpecifyTheProposeController::class,'create'])->name('specifythepropose.create');
+     Route::post('/specify_the_propose',[SpecifyTheProposeController::class,'store'])->name('specifythepropose.store');
+     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'show'])->name('specifythepropose.show');
+     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'edit'])->name('specifythepropose.edit');
+     Route::put('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'update'])->name('specifythepropose.update');
+     Route::delete('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'destroy'])->name('specifythepropose.destroy');
 });
 
 

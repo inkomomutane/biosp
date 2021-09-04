@@ -33,12 +33,13 @@
                 <tbody>
                     @foreach ($document_types as $document_type)
                     <tr>
-                        <td>{{$document_type->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$document_type->uuid}}</td>
                         <td class="align-middle">{{$document_type->name}}</td>
                         <td>{{$document_type->created_at}}</td>
                         <td>{{$document_type->updated_at}}</td>
                         <td>{{$document_type->deleted_at}}</td>
                         <td>
+
                        <form action="{{route('document.destroy',$document_type->uuid)}}" method="post">
                             @csrf 
                             @method('delete')

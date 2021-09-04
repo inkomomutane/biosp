@@ -15,6 +15,7 @@ class NeighborhoodsController extends Controller
     {
         try {
         $getAll = DB::table('neighborhoods')->get();
+        
         return view('web.backend.admin.neighborhoods.index')->with('neighborhoods',$getAll);
 
         } catch (\Throwable $th) {
