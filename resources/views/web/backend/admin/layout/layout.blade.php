@@ -248,7 +248,7 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Usuários</span></a>
+                        <a href="{{route('users.index')}}"><i class="fas fa-th"></i> <span>Usuários</span></a>
                     </li>
 
                     <li class="dropdown">
@@ -280,9 +280,14 @@
                         
                     </li>
 
+                    <li class="dropdown">
+                        <a href="{{route('purposeofvisits.index')}}"><i class="fas fa-th"></i> <span>Propósito das Visitas</span></a>
+                        
+                    </li>
+
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
+                        <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
                         
                     </li>
 
