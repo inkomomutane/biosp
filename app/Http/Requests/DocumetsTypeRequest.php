@@ -24,8 +24,7 @@ class DocumetsTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required',
-            'name'=>'required|string'
+            'name'=>'required|string|unique:document_types'
         ];
     }
 }

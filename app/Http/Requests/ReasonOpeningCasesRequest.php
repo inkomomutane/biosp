@@ -24,7 +24,6 @@ class ReasonOpeningCasesRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required|string',
             'name'=>'required|string|unique:reason_opening_cases'
         ];
     }

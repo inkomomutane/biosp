@@ -248,17 +248,17 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="{{route('users.index')}}"><i class="fas fa-th"></i> <span>Usuários</span></a>
+                        <a href="{{route('users.index')}}"><i class="far fa-user"></i> <span>Usuários</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-th"></i> <span>Beneficiários</span></a>
+                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-users"></i> <span>Beneficiários</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-th"></i> <span>Províncias</span></a>
+                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-map-marker-alt"></i> <span>Províncias</span></a>
                     </li>
                     
                     <li class="dropdown">
@@ -267,32 +267,32 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('genres.index')}}"><i class="fas fa-th"></i> <span>Gêneros</span></a>   
+                        <a href="{{route('genres.index')}}"><i class="fas fa-rocket"></i> <span>Gêneros</span></a>   
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('documents.index')}}"><i class="fas fa-th"></i> <span>Tipo de Documentos</span></a>
+                        <a href="{{route('documents.index')}}"><i class="far fa-file-alt"></i> <span>Tipo de Documentos</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('provenaces.index')}}"><i class="fas fa-th"></i> <span>Proveniências</span></a>
+                        <a href="{{route('provenaces.index')}}"><i class="fas fa-ellipsis-h"></i> <span>Proveniências</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('purposeofvisits.index')}}"><i class="fas fa-th"></i> <span>Propósito das Visitas</span></a>
+                        <a href="{{route('purposeofvisits.index')}}"><i class="fas fa-pencil-ruler"></i> <span>Propósito das Visitas</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
+                        <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-exclamation"></i> <span>Objectvo de Abertura de Processo</span></a>
                         
                     </li>
-                    
+
                     <li class="dropdown">
-                        <a href="{{route('forwardedservices.index')}}"><i class="fas fa-th"></i> <span>Serviços Encaminhados</span></a>
+                        <a href="{{route('forwardedservices.index')}}"><i class="fas fa-bicycle"></i> <span>Serviços Encaminhados</span></a>
                         
                     </li>
 
@@ -322,5 +322,4 @@
 @stack('script')
 </body>
 
-<!-- index-0.html  Tue, 07 Jan 2020 03:35:42 GMT -->
 </html>

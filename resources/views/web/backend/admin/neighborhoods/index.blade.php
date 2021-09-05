@@ -21,7 +21,6 @@
                     <tr style="box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.1)">
                     <th>uuid</th>
                     <th>Bairros</th>
-                    <th>Provincias</th>
                     <th>created_at</th>
                     <th>update_at</th>
                     <th class="text-center">Action</th>
@@ -32,7 +31,6 @@
                     <tr>
                         <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->uuid}}</td>
                         <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->name}}</td>
-                        <td class="text-truncate" style="max-width: 50px;">{{$neighborhood->province_uuid}}</td>
                         <td>{{$neighborhood->created_at}}</td>
                         <td>{{$neighborhood->updated_at}}</td>
                        

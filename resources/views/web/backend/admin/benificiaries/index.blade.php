@@ -8,12 +8,10 @@
 @endpush
 @section('content')
 
-<div >
-    <a href="{{route('province.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
- </div><br/>
+
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
-        Lista de Provincias
+        Lista de Beneficiários
     </div>
     <div class="card-body">
 
@@ -24,24 +22,31 @@
                     <th>uuid</th>
                     <th>Nome</th>
                     <th>Data de Nasc</th>
-                    <th>Telefone</th>
-                    <th>deleted_at</th>
+                    <th>Bairro</th>
+                    <th>Tel</th>
+                    <th>Gênero</th> 
+                    <th>Doc</th> 
                     <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($benificiaries as $benificiarie)
                     <tr>
-                        <td class="d-inline-block text-truncate" style="max-width: 10px;">{{$benificiarie->uuid}}</td>
-                        <td class="text-truncate" style="max-width: 100px;">{{$benificiarie->full_name}}</td>
-                    
-
+                        <td class="d-inline-block text-truncate" style="max-width: 30px;">{{$benificiarie->uuid}}</td>
+                        <td class="text-truncate" style="max-width: 80px;">{{$benificiarie->full_name}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$benificiarie->birth_date}}</td>
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->neighborhood['name']}}</td>
+                        <td class="text-truncate" style="max-width: 50px;">{{$benificiarie->phone}}</td>
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->genre['name']}}</td>
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->document_type['name']}}</td>
+                       
+                       
                         <td>
-                       <form action="#" method="post">
+                       <form action="{{route('benificiary.destroy',$benificiarie->uuid)}}" method="post">
                             @csrf 
                             @method('delete')
-                            <a href="#" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                            <a href="#" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{route('benificiaries.edit')}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="{{route('benificiary.show')}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                             <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
                         </form> 
                         </td>

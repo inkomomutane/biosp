@@ -27,4 +27,22 @@ class BenificiariesController extends Controller
     {
         return view('web.backend.admin.benificiaries.create');
     }
+
+    public function destroy($uuid)
+    {
+        try {
+            $data = BenificiaryResource::find($uuid);
+
+            if($data!=null){
+                
+                $data->delete();
+    
+            }
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
+        
+        
+    }
 }

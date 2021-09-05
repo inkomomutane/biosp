@@ -24,7 +24,6 @@ class ProvenacesRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required|string',
             'name'=>'required|string|unique:provenaces'
         ];
     }

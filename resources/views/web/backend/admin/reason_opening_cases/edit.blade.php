@@ -6,7 +6,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card" style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
                     <div class="card-header">
-                        <h4>Actulizar Objectvo de Abertura de Processoa</h4>
+                        <h4>Editar Objectvo de Abertura de Processoa</h4>
                     </div>
                    
                     <div class="card-body">
@@ -19,7 +19,7 @@
                               <input type="text" class="form-control" name="uuid" id="uuid" readonly="" value="{{$reason_opening_case->uuid}}">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="form-control" name="name" id="name" placeholder="provincia" value="{{$reason_opening_case->name}}">
+                              <input type="text" class="form-control" name="name" id="name"  value="{{$reason_opening_case->name}}">
                             </div>
 
                             <div class="card-footer text-right mr-12">

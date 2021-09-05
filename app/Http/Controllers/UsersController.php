@@ -100,7 +100,28 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            Validator::make($request->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+    
+            $data= User::find($id);
+            
+            $data->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+            return redirect()->route('users.index') ->with('success', 'Updated successfully!');
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
+       
+            
+         
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\ForwardedService;
 use App\Http\Requests\ForwardedServicesRequest;
 
 class ForwardedServicesController extends Controller
@@ -46,8 +47,7 @@ class ForwardedServicesController extends Controller
     public function store(ForwardedServicesRequest $request)
     {
         try {
-            DB::table('forwarded_services')->insert([
-                'uuid'=>$request->uuid,
+            ForwardedService::create([
                 'name'=>$request->name
             ]);
     
@@ -125,7 +125,7 @@ class ForwardedServicesController extends Controller
                     'name'=>$request->name,
                 ]);
        
-                return redirect()->back() ->with('success', 'Created successfully!');
+                return redirect()->route('forwardedservices.index')->with('success', 'Updated successfully!');
        
             } catch (\Throwable $th) {
             

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\DocumentType;
 use App\Http\Requests\DocumetsTypeRequest;
 class DocumentsTypeController extends Controller
 {
@@ -38,15 +39,8 @@ class DocumentsTypeController extends Controller
     public function store(DocumetsTypeRequest $request)
     {
         try {
-            $getAll =DB::table('document_types')->get();
-
-            if($getAll->contains(collect($request->all()))){
-               
-                return true ;
-            }
-            
-            $result= DB::table('document_types')->insert([
-                'uuid'=>$request->uuid,
+           
+            DocumentType::create([
                 'name'=>$request->name
             ]);
     
@@ -120,7 +114,7 @@ class DocumentsTypeController extends Controller
                     'name'=>$request->name,
                 ]);
        
-               return redirect()->route('documents.index') ->with('success', 'Created successfully!'); ;
+               return redirect()->route('documents.index') ->with('success', 'Updated successfully!'); ;
        
             } catch (\Throwable $th) {
             

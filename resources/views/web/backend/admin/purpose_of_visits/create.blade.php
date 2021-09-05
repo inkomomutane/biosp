@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form method="post" action="{{route('province.store')}}">
+    <form method="post" action="{{route('purposeofvisits.store')}}">
         @csrf
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6 col-lg-6">
@@ -11,17 +11,14 @@
                         <h4>Adicionar Propósito da Visita</h4>
                     </div>
                     <div class="card-body">
+                      
                         <div class="form-group">
-                            <input type="text" class="form-control" name="uuid"  id="uuid" placeholder="uuid">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="provincia">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="name ">
                         </div>
         
                         <div class="card-footer text-right mr-12">
                             <button class="btn btn-primary mr-1" type="submit">Salvar</button>
-                            <a href="{{route('provinces.index')}}" class="btn btn-danger" type="reset">Cancelar</a>
+                            <a href="{{route('purposeofvisits.index')}}" class="btn btn-danger" type="reset">Cancelar</a>
                         </div>
                     
                     </div>

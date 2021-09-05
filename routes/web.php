@@ -106,15 +106,9 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('reason_opening_cases/{uuid}',[ReasonOpeningCasesController::class,'show'])->name('reasonopeningcases.show');
      Route::get('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'edit'])->name('reasonopeningcase.edit');
      Route::put('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'update'])->name('reasonopeningcase.update');
-     Route::delete('/reasonopeningcase/{uuid}',[ReasonOpeningCasesController::class,'destroy'])->name('reasonopeningcase.destroy');
+     Route::delete('/reasonopeningcases/{uuid}',[ReasonOpeningCasesController::class,'destroy'])->name('reasonopeningcases.destroy');
 
-     Route::get('/allspecify_the_propose',[SpecifyTheProposeController::class,'index'])->name('specifythepropose.index');
-     Route::get('/specify_the_propose',[SpecifyTheProposeController::class,'create'])->name('specifythepropose.create');
-     Route::post('/specify_the_propose',[SpecifyTheProposeController::class,'store'])->name('specifythepropose.store');
-     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'show'])->name('specifythepropose.show');
-     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'edit'])->name('specifythepropose.edit');
-     Route::put('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'update'])->name('specifythepropose.update');
-     Route::delete('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'destroy'])->name('specifythepropose.destroy');
+     
 });
 
 

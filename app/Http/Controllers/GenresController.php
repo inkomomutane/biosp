@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\GenresRequest;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class GenresController extends Controller
@@ -36,15 +37,7 @@ class GenresController extends Controller
     public function store(GenresRequest $request)
     {
         try {
-            $getAll =DB::table('genres')->get();
-
-            if($getAll->contains(collect($request->all()))){
-               
-                return true ;
-            }
-            
-            $result= DB::table('genres')->insert([
-                'uuid'=>$request->uuid,
+            DocumentType::create([
                 'name'=>$request->name
             ]);
     

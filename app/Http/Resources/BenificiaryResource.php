@@ -29,14 +29,12 @@ class BenificiaryResource extends JsonResource
             'other_forwarded_service'=>$this->ther_forwarded_service,
             'specify_forwarded_service'=>$this->specify_forwarded_service,
             'visit_proposes'=>$this->visit_proposes,
-            'neighborhood_uuid'=>$this->neighborhood,
-            'genre_uuid'=>$this->genre,
-            'provenace_uuid'=>$this->provenace,
-            'reason_opening_case_uuid'=>$this->reason_opening_case,
-            'reason_opening_case_uuid',
-            'document_type_uuid'=>$this->document_type,
-            'forwarded_service_uuid',
-            'purpose_of_visit_uuid'=>$this->purpose_of_visit,
+            'neighborhood_uuid'=>$this->neighborhood->name,
+            'genre_uuid'=>$this->genre->name,
+            'provenace_uuid'=>$this->provenace->name,
+            'reason_opening_case_uuid'=>$this->reason_opening_case->name,
+            'document_type_uuid'=>$this->document_type->name,
+            'purpose_of_visit_uuid'=>$this->purpose_of_visit->name,
             
             
             
