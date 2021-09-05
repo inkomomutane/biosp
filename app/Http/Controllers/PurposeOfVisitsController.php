@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PurposeOfVisit;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PurposeOfVisitsRequest;
 class PurposeOfVisitsController extends Controller
@@ -45,8 +46,8 @@ class PurposeOfVisitsController extends Controller
     public function store(PurposeOfVisitsRequest $request)
     {
         try {
-            DB::table('purpose_of_visits')->insert([
-                'uuid'=>$request->uuid,
+            
+            PurposeOfVisit::create([
                 'name'=>$request->name
             ]);
     
@@ -124,7 +125,7 @@ class PurposeOfVisitsController extends Controller
                     'name'=>$request->name,
                 ]);
        
-                return redirect()->back() ->with('success', 'Created successfully!');
+                return redirect()->route('purposeofvisits.index') ->with('success', 'Updated successfully!'); 
        
             } catch (\Throwable $th) {
             //throw $th;

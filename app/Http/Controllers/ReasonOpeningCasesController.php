@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\ReasonOpeningCase;
 use App\Http\Requests\ReasonOpeningCasesRequest;
 
 class ReasonOpeningCasesController extends Controller
@@ -45,8 +46,7 @@ class ReasonOpeningCasesController extends Controller
     public function store(ReasonOpeningCasesRequest $request)
     {
         try {
-            DB::table('reason_opening_cases')->insert([
-                'uuid'=>$request->uuid,
+            ReasonOpeningCase::create([
                 'name'=>$request->name
             ]);
     
@@ -118,13 +118,14 @@ class ReasonOpeningCasesController extends Controller
      
         try {
 
-            $datafound = DB::table('reason_opening_cases ')->where('uuid',$uuid);
+
+            $datafound = ReasonOpeningCase::find($uuid);
             
             $datafound->update([
                     'name'=>$request->name,
                 ]);
        
-                return redirect()->back() ->with('success', 'Created successfully!');
+                return redirect()->route('purposeofvisits.index') ->with('success', 'Updated successfully!');
        
             } catch (\Throwable $th) {
             
@@ -142,16 +143,18 @@ class ReasonOpeningCasesController extends Controller
      */
     public function destroy($uuid)
     {
-        $datafound = DB::table('reason_opening_cases ')->where('uuid',$uuid);
-        
+        $datafound = ReasonOpeningCase::find($uuid);
+
         if($datafound!=null){
             
             $datafound->delete();
+            
+        }
         
-        return redirect()->back();
+        return redirect()->back() ->with('error', 'Error during the creation!');
     }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
+   
     
-    }
+    
 }

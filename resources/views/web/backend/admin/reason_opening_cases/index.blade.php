@@ -38,7 +38,7 @@
                         <td>{{$reason_opening_case->updated_at}}</td>
                         <td>{{$reason_opening_case->deleted_at}}</td>
                         <td>
-                       <form action="{{route('reasonopeningcase.destroy',$reason_opening_case->uuid)}}" method="post">
+                       <form action="{{route('reasonopeningcases.destroy',$reason_opening_case->uuid)}}" method="post">
                             @csrf 
                             @method('delete')
                             <a href="{{route('reasonopeningcase.edit',$reason_opening_case->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>

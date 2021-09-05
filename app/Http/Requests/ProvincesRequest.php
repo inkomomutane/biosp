@@ -24,14 +24,12 @@ class ProvincesRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required|string',
             'name'=>'required|string|unique:provinces'
         ];
     }
 
     public function massege(){
         return [
-        'uuid.required'=>'please writter this field',
         'name.required'=>'please writter this field'
         ];
     }

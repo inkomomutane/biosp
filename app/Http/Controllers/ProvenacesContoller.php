@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Provenace;
 use App\Http\Requests\ProvenacesRequest;
 class ProvenacesContoller extends Controller
 {
@@ -45,8 +46,7 @@ class ProvenacesContoller extends Controller
     {
         try {
 
-            DB::table('provenaces')->insert([
-                'uuid'=>$request->uuid,
+            Provenace::create([
                 'name'=>$request->name
             ]);
     

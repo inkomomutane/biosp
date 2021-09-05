@@ -11,10 +11,7 @@
                         <h4>Adicionar Província</h4>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="uuid"  id="uuid" placeholder="uuid">
-                        </div>
-
+                    
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" id="name" placeholder="provincia">
                         </div>

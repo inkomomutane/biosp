@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Resources\NeighborhoodsResource;
+use App\Models\Neighborhood;
 use App\Http\Requests\NeighborhoodsRequest;
 class NeighborhoodsController extends Controller
 {
@@ -13,10 +15,9 @@ class NeighborhoodsController extends Controller
      */
     public function index()
     {
-        try {
-        $getAll = DB::table('neighborhoods')->get();
-        
-        return view('web.backend.admin.neighborhoods.index')->with('neighborhoods',$getAll);
+        try { 
+        return view('web.backend.admin.neighborhoods.index')
+        ->with('neighborhoods',NeighborhoodsResource::collection(Neighborhood::all()));
 
         } catch (\Throwable $th) {
             throw $th;

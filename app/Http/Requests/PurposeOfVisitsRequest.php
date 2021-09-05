@@ -24,7 +24,6 @@ class PurposeOfVisitsRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required|string',
             'name'=>'required|string|unique:purpose_of_visits'
         ];
     }

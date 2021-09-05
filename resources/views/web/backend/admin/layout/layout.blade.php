@@ -227,7 +227,7 @@
         <div class="main-sidebar sidebar-style-2">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="index-2.html">CodiePie</a>
+                    <a href="index-2.html">Admin</a>
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
                     <a href="index-2.html">CP</a>
@@ -235,7 +235,7 @@
                 <ul class="sidebar-menu">
                     <li class="menu-header">Dashboard</li>
                     <li class="dropdown active">
-                        <a href="#" ><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                        <a href="{{route('dashboard.index')}}" ><i class="fas fa-fire"></i><span>Dashboard</span></a>
                         
                     </li>
                     <li class="menu-header">Starter</li>
@@ -248,17 +248,17 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="{{route('users.index')}}"><i class="fas fa-th"></i> <span>Usuários</span></a>
+                        <a href="{{route('users.index')}}"><i class="far fa-user"></i> <span>Usuários</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-th"></i> <span>Beneficiários</span></a>
+                        <a href="{{route('benificiaries.index')}}"><i class="fas fa-users"></i> <span>Beneficiários</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-th"></i> <span>Províncias</span></a>
+                        <a href="{{route('provinces.index')}}" class="nav-link"><i class="fas fa-map-marker-alt"></i> <span>Províncias</span></a>
                     </li>
                     
                     <li class="dropdown">
@@ -267,41 +267,32 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('genres.index')}}"><i class="fas fa-th"></i> <span>Gêneros</span></a>   
+                        <a href="{{route('genres.index')}}"><i class="fas fa-rocket"></i> <span>Gêneros</span></a>   
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('documents.index')}}"><i class="fas fa-th"></i> <span>Tipo de Documentos</span></a>
+                        <a href="{{route('documents.index')}}"><i class="far fa-file-alt"></i> <span>Tipo de Documentos</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('provenaces.index')}}"><i class="fas fa-th"></i> <span>Proveniências</span></a>
+                        <a href="{{route('provenaces.index')}}"><i class="fas fa-ellipsis-h"></i> <span>Proveniências</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="{{route('purposeofvisits.index')}}"><i class="fas fa-th"></i> <span>Propósito das Visitas</span></a>
+                        <a href="{{route('purposeofvisits.index')}}"><i class="fas fa-pencil-ruler"></i> <span>Propósito das Visitas</span></a>
                         
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
+                        <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-exclamation"></i> <span>Objectvo de Abertura de Processo</span></a>
                         
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposta Especificadas</span></a>  
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Serviços Especificados</span></a>
-                        
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="{{route('forwardedservices.index')}}"><i class="fas fa-th"></i> <span>Serviços Encaminhados</span></a>
+                        <a href="{{route('forwardedservices.index')}}"><i class="fas fa-bicycle"></i> <span>Serviços Encaminhados</span></a>
                         
                     </li>
 
@@ -331,5 +322,4 @@
 @stack('script')
 </body>
 
-<!-- index-0.html  Tue, 07 Jan 2020 03:35:42 GMT -->
 </html>

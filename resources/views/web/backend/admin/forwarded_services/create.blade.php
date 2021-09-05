@@ -11,12 +11,9 @@
                         <h4>Adicionar Serviço de  Encaminhamento</h4>
                     </div>
                     <div class="card-body">
+                        
                         <div class="form-group">
-                            <input type="text" class="form-control" name="uuid"  id="uuid" placeholder="uuid">
-                        </div>
-                       
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" id="name" placeholder=" proveniência">
+                            <input type="text" class="form-control" name="name" id="name" placeholder=" name">
                         </div>
         
                         <div class="card-footer text-right mr-12">

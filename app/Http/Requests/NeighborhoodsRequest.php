@@ -24,8 +24,7 @@ class NeighborhoodsRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'=>'required|string',
-            'name'=>'required|string',
+            'name'=>'required|string|unique:neighborhoods',
             'province_uuid'=>'required'
         ];
     }

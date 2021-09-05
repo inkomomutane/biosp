@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/sync/ben',[Sync::class,'ben']);
     Route::get('/sync/settings',[Sync::class,'settings']);
     Route::post('/sync/create',[Sync::class,'addCreated']);
-    Route::patch('/sync/update/{benificiary}',[Sync::class,'updateUpdated']);
-    Route::delete('/sync/delete/{benificiary}',[Sync::class,'deleteDeleted']);
+    Route::post('/sync/update/{benificiary}',[Sync::class,'updateUpdated']);
+    Route::post('/sync/delete/{benificiary}',[Sync::class,'deleteDeleted']);
 });
 

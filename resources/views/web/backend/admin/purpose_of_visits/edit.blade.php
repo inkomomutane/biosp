@@ -6,7 +6,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card" style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
                     <div class="card-header">
-                        <h4>Actulizar Propósito da Visita</h4>
+                        <h4>Editar Propósito da Visita</h4>
                     </div>
                    
                     <div class="card-body">

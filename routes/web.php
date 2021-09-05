@@ -21,18 +21,21 @@ use App\Http\Controllers\SpecifyTheProposeController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
 Route::group(['middleware'=>'auth'],function(){
     
      Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
-  
-     Route::get('/benificiary',[BenificiariesController::class,'index'])->name('benificiary.index');
 
-     Route::get('/users',[UsersController::class,'index'])->name('users.index');
+     Route::get('/allusers',[UsersController::class,'index'])->name('users.index');
+     Route::get('/user',[UsersController::class,'create'])->name('user.create');
+     Route::post('/users',[UsersController::class,'store'])->name('users.store');
+     Route::get('/user/{uuid}',[UsersController::class,'edit'])->name('user.edit');
+     Route::put('/user/{uuid}',[UsersController::class,'update'])->name('user.update');
+     Route::get('/users/{uuid}',[UsersController::class,'show'])->name('users.show');
+     Route::delete('/user/{uuid}',[UsersController::class,'destroy'])->name('use.destroy');
+
+
      Route::get('/allprovinces',[ProvincesController::class,'index'])->name('provinces.index');
      Route::post('/provinces',[ProvincesController::class,'store'])->name('province.store'); 
      Route::get('/province',[ProvincesController::class,'create'])->name('province.create');
@@ -70,7 +73,7 @@ Route::group(['middleware'=>'auth'],function(){
      Route::post('/documents',[DocumentsTypeController::class,'store'])->name('documents.store');
      Route::get('/documents/{uuid}',[DocumentsTypeController::class,'show'])->name('documents.show');
      Route::get('/document/{uuid}',[DocumentsTypeController::class,'edit'])->name('document.edit');
-     Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('documents.update');
+     Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('document.update');
      Route::delete('/document/{uuid}',[DocumentsTypeController::class,'destroy'])->name('document.destroy');
 
      Route::get('/allprovenaces',[ProvenacesContoller::class,'index'])->name('provenaces.index');
@@ -103,15 +106,9 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('reason_opening_cases/{uuid}',[ReasonOpeningCasesController::class,'show'])->name('reasonopeningcases.show');
      Route::get('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'edit'])->name('reasonopeningcase.edit');
      Route::put('/reason_opening_case/{uuid}',[ReasonOpeningCasesController::class,'update'])->name('reasonopeningcase.update');
-     Route::delete('/reasonopeningcase/{uuid}',[ReasonOpeningCasesController::class,'destroy'])->name('reasonopeningcase.destroy');
+     Route::delete('/reasonopeningcases/{uuid}',[ReasonOpeningCasesController::class,'destroy'])->name('reasonopeningcases.destroy');
 
-     Route::get('/allspecify_the_propose',[SpecifyTheProposeController::class,'index'])->name('specifythepropose.index');
-     Route::get('/specify_the_propose',[SpecifyTheProposeController::class,'create'])->name('specifythepropose.create');
-     Route::post('/specify_the_propose',[SpecifyTheProposeController::class,'store'])->name('specifythepropose.store');
-     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'show'])->name('specifythepropose.show');
-     Route::get('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'edit'])->name('specifythepropose.edit');
-     Route::put('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'update'])->name('specifythepropose.update');
-     Route::delete('/specify_the_propose/{uuid}',[SpecifyTheProposeController::class,'destroy'])->name('specifythepropose.destroy');
+     
 });
 
 

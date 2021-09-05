@@ -45,13 +45,16 @@ class ProvincesController extends Controller
     public function store(ProvincesRequest $request)
     {
         try {
-            DB::table('provinces')->insert([
-                'uuid'=>$request->uuid,
+
+            Province::create([
                 'name'=>$request->name
             ]);
-    
+
             return redirect()->back() ->with('success', 'Created successfully!');
+
         } catch (\Throwable $th) {
+            
+            dd($th);
             return redirect()->back() ->with('error', 'Error during the creation!');
         }
       
@@ -124,10 +127,11 @@ class ProvincesController extends Controller
                     'name'=>$request->name,
                 ]);
        
-                return redirect()->back() ->with('success', 'Created successfully!');
+                return redirect()->route('provinces.index')->with('success', 'Updated successfully!');
        
             } catch (\Throwable $th) {
-            //throw $th;
+            
+                throw $th;
         }
             
          
