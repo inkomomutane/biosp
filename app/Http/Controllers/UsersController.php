@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('web.backend.admin.users.create');
     }
 
     /**
@@ -34,7 +35,18 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+
     }
 
     /**

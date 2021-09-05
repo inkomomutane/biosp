@@ -34,10 +34,8 @@
                     <tr>
                         <td class="d-inline-block text-truncate" style="max-width: 50px;">{{$specify_the_propose->specify_the_propose}}</td>
 
-                        @foreach ($benificiaries as $item)
-                            {{$item->full_name}}
-                        @endforeach
-                        <td class="d-inline-block text-truncate" style="max-width: 50px;">{{$specify_the_propose->full_name}}</td>
+                        
+                        <td class="d-inline-block text-truncate" style="max-width: 50px;"></td>
                         {{--<td class="text-truncate" style="max-width: 50px;">{{$purpose_of_visit->name}}</td>
                         <td>{{$purpose_of_visit->created_at}}</td>
                         <td>{{$purpose_of_visit->updated_at}}</td>

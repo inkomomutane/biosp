@@ -13,4 +13,9 @@ class BenificiariesController extends Controller
         $getAll = DB::table('benificiaries')->get();
         return view('web.backend.admin.benificiaries.index')->with('benificiaries',$getAll)->with('');
     }
+
+    public function create()
+    {
+        return view('web.backend.admin.benificiaries.create');
+    }
 }

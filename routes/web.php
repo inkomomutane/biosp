@@ -26,13 +26,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::group(['middleware'=>'auth'],function(){
     
      Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
-  
-     Route::get('/benificiary',[BenificiariesController::class,'index'])->name('benificiary.index');
 
-     Route::get('/users',[UsersController::class,'index'])->name('users.index');
+     Route::get('/allusers',[UsersController::class,'index'])->name('users.index');
+     Route::get('/user',[UsersController::class,'create'])->name('user.create');
+     Route::post('/users',[UsersController::class,'store'])->name('users.store');
+     Route::get('/users/{{uuid}}',[UsersController::class,'edit'])->name('users.edit');
+
+
      Route::get('/allprovinces',[ProvincesController::class,'index'])->name('provinces.index');
      Route::post('/provinces',[ProvincesController::class,'store'])->name('province.store'); 
      Route::get('/province',[ProvincesController::class,'create'])->name('province.create');

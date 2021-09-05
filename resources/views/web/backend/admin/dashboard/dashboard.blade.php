@@ -10,7 +10,7 @@
             </div>
             <div class="card-wrap" >
                 <div class="card-header">
-                    <h4>Total Admin</h4>
+                    <h4>Total Beneficiários</h4>
                 </div>
                 <div class="card-body">
                     10

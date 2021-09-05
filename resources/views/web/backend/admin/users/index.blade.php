@@ -9,7 +9,7 @@
 @section('content')
 
 <div >
-    <a href="#" class="btn btn-icon btn-lg btn-success" >add</a>
+    <a href="{{route('user.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
  </div><br/>
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
@@ -24,7 +24,6 @@
                     <th>uuid</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Privigelio</th>
                     <th>created_at</th>
                     <th>update_at</th>
                     <th>deleted_at</th>
