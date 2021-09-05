@@ -9,9 +9,18 @@ class BenificiariesController extends Controller
 {
     public function index()
     {
-       // $getAll = BenificiaryResource::collection(Benificiary::all());
-        $getAll = DB::table('benificiaries')->get();
-        return view('web.backend.admin.benificiaries.index')->with('benificiaries',$getAll)->with('');
+        try {
+    
+            
+            return view('web.backend.admin.benificiaries.index')
+            ->with('benificiaries',BenificiaryResource::collection(Benificiary::all()));
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
+   
+      
     }
 
     public function create()

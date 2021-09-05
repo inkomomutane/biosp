@@ -290,16 +290,7 @@
                         <a href="{{route('reasonopeningcases.index')}}"><i class="fas fa-th"></i> <span>Objectvo de Abertura de Processo</span></a>
                         
                     </li>
-
-                    <li class="dropdown">
-                        <a href="{{route('specifythepropose.index')}}"><i class="fas fa-th"></i> <span>Proposta Especificadas</span></a>  
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Serviços Especificados</span></a>
-                        
-                    </li>
-
+                    
                     <li class="dropdown">
                         <a href="{{route('forwardedservices.index')}}"><i class="fas fa-th"></i> <span>Serviços Encaminhados</span></a>
                         

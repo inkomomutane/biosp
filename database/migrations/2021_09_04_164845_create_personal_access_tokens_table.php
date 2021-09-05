@@ -18,11 +18,11 @@ class CreatePersonalAccessTokensTable extends Migration
             $table->string('tokenable_type');
             $table->string('tokenable_id');
             $table->string('name');
-            $table->string('token', 64)->unique();
+            $table->string('token')->unique();
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
-            $table->index(['tokenable_type', 'tokenable_id']);
+            //$table->index(['tokenable_type', 'tokenable_id']);
         });
     }
 

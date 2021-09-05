@@ -32,7 +32,7 @@
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td class="text-truncate" style="max-width:40px;">{{$user->uuid}}</td>
+                        <td class="text-truncate" style="max-width:30px;">{{$user->uuid}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->created_at}}</td>
