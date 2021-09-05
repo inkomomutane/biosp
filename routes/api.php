@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BenificiaryController;
+use App\Http\Controllers\Api\Syncronization\Sync;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Syncronization;
 use Illuminate\Http\Request;
@@ -18,18 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::middleware('auth:sanctum')->get('/sync', function (Request $request) {
-    return ;
-});
 
 
 
-Route::middleware('auth:sanctum')->get('/ben', [BenificiaryController::class,'createdAfter']);
+
+
 
 Route::post('/login',[UserController::class,'login']);
-Route::post('/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout',[UserController::class,'logout']);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::get('/sync/ben',[Sync::class,'ben']);
+    Route::get('/sync/settings',[Sync::class,'settings']);
+    Route::post('/sync/create',[Sync::class,'addCreated']);
+    Route::patch('/sync/update/{benificiary}',[Sync::class,'updateUpdated']);
+    Route::delete('/sync/delete/{benificiary}',[Sync::class,'deleteDeleted']);
+});
 

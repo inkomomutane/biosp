@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Benificiary;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BenificiaryController extends Controller
 {
@@ -25,10 +27,10 @@ class BenificiaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Array $data)
+    public  function store(Array $data)
     {
         try {
-            $done = Benificiary::crete($data);
+            $done = Benificiary::create($data);
             if($done){
                 return true;
             }else{
@@ -45,9 +47,9 @@ class BenificiaryController extends Controller
      * @param  \App\Models\Benificiary  $benificiary
      * @return \Illuminate\Http\Response
      */
-    public function show(String $uuid)
+    public  function show(String $uuid)
     {
-        return Benificiary::find($uuid)->first();
+        return Benificiary::where('uuid',$uuid)->first();
     }
 
     /**
@@ -78,10 +80,10 @@ class BenificiaryController extends Controller
      */
     public function destroy(String $uuid)
     {
-        $toUpdate = $this->show($uuid);
-        if($toUpdate){
+        $toDestroy = $this->show($uuid);
+        if($toDestroy){
            try {
-            $toUpdate->delete();
+            $toDestroy->delete();
             return true;
            } catch (\Throwable $th) {
             return false;
@@ -111,7 +113,8 @@ class BenificiaryController extends Controller
     }
     private function lastSync()
     {
-        return auth()->user()->lastSync()->orderBy('last_sync_at','asc')->first()->last_sync_at;
+        $user = User::where('uuid',auth()->user()->uuid)->first();
+        return  $user->lastSync()->orderBy('last_sync_at','asc')->first()->last_sync_at;
     }
 
 }
