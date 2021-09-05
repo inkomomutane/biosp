@@ -86,9 +86,21 @@ class DocumentsTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uuid)
     {
-        //
+        try {
+           
+            $document_types = DB::table('document_types')->where('uuid',$uuid)->get();
+           
+            if($document_types!=null){
+               return view('web.backend.admin.document_types.edit')
+               ->with('document_types',$document_types);
+           }
+
+        } catch (\Throwable $th) {
+            
+            throw $th;
+        }
     }
 
     /**
@@ -98,9 +110,22 @@ class DocumentsTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocumetsTypeRequest $request, $uuid)
     {
-        //
+        try {
+
+            $datafound = DB::table('document_types')->where('uuid',$uuid);
+            
+            $datafound->update([
+                    'name'=>$request->name,
+                ]);
+       
+               return redirect()->route('documents.index') ->with('success', 'Created successfully!'); ;
+       
+            } catch (\Throwable $th) {
+            
+                throw $th;
+        }
     }
 
     /**
@@ -109,8 +134,18 @@ class DocumentsTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        //
+        $datafound = DB::table('document_types')->where('uuid',$uuid);
+        
+        if($datafound!=null){
+            
+            $datafound->delete();
+        
+        return redirect()->back();
+    }
+
+    return redirect()->back() ->with('error', 'Error during the deleted!');
+    
     }
 }

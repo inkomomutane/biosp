@@ -26,28 +26,25 @@
                     <th>Email</th>
                     <th>created_at</th>
                     <th>update_at</th>
-                    <th>deleted_at</th>
                     <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td class="text-truncate" style="max-width:80px;">{{$user->uuid}}</td>
+                        <td class="text-truncate" style="max-width:40px;">{{$user->uuid}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->created_at}}</td>
                         <td>{{$user->updated_at}}</td>
-                        <td>{{$user->deleted_at}}</td>
                         <td>
-                      {{-- <form action="{{route('user.destroy',$user->uuid)}}" method="post">
+                      <form action="{{route('use.destroy',$user->uuid)}}" method="post">
                             @csrf 
                             @method('delete')
                             <a href="{{route('user.edit',$user->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                            <a href="{{route('user.show',$user->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{route('users.show',$user->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                             <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
-                       
-                        </form> --}}
+                        </form>
                         </td>
                         </tr>
                     @endforeach

@@ -36,7 +36,7 @@ class SpecifyTheProposeController extends Controller
      */
     public function create()
     {
-        return view('web.backend.admin.reason_opening_cases.create');
+        return view('web.backend.admin.specify_the_propose.create');
     }
 
     /**

@@ -34,7 +34,10 @@ Route::group(['middleware'=>'auth'],function(){
      Route::get('/allusers',[UsersController::class,'index'])->name('users.index');
      Route::get('/user',[UsersController::class,'create'])->name('user.create');
      Route::post('/users',[UsersController::class,'store'])->name('users.store');
-     Route::get('/users/{{uuid}}',[UsersController::class,'edit'])->name('users.edit');
+     Route::get('/user/{uuid}',[UsersController::class,'edit'])->name('user.edit');
+     Route::put('/user/{uuid}',[UsersController::class,'update'])->name('user.update');
+     Route::get('/users/{uuid}',[UsersController::class,'show'])->name('users.show');
+     Route::delete('/user/{uuid}',[UsersController::class,'destroy'])->name('use.destroy');
 
 
      Route::get('/allprovinces',[ProvincesController::class,'index'])->name('provinces.index');
@@ -74,7 +77,7 @@ Route::group(['middleware'=>'auth'],function(){
      Route::post('/documents',[DocumentsTypeController::class,'store'])->name('documents.store');
      Route::get('/documents/{uuid}',[DocumentsTypeController::class,'show'])->name('documents.show');
      Route::get('/document/{uuid}',[DocumentsTypeController::class,'edit'])->name('document.edit');
-     Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('documents.update');
+     Route::put('/document/{uuid}',[DocumentsTypeController::class,'update'])->name('document.update');
      Route::delete('/document/{uuid}',[DocumentsTypeController::class,'destroy'])->name('document.destroy');
 
      Route::get('/allprovenaces',[ProvenacesContoller::class,'index'])->name('provenaces.index');

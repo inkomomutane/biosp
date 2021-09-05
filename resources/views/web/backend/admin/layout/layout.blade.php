@@ -292,7 +292,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Proposta Especificadas</span></a>  
+                        <a href="{{route('specifythepropose.index')}}"><i class="fas fa-th"></i> <span>Proposta Especificadas</span></a>  
                     </li>
 
                     <li class="dropdown">

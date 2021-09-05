@@ -9,7 +9,7 @@
 @section('content')
 
 <div >
-    <a href="#" class="btn btn-icon btn-lg btn-success" >add</a>
+    <a href="{{route('specifythepropose.create')}}" class="btn btn-icon btn-lg btn-success" >add</a>
  </div><br/>
 <div class="card"  style="box-shadow: 3px 3px 3px 3px rgba(0,0,0, 0.2)">
     <div class="card-header">
