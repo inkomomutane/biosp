@@ -9,10 +9,8 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -26,9 +24,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string $neighborhood_uuid
+ * @property string|null $neighborhood_uuid
  *
- * @property Neighborhood $neighborhood
+ * @property Neighborhood|null $neighborhood
  *
  * @package App\Models
  */

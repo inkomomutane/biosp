@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Syncronization::factory(10)->create();
         \App\Models\Neighborhood::factory(12)->create();
         \App\Models\Benificiary::factory(30)->create();
-        \App\Models\SpecifyThePropose::factory(12)->create();
-        \App\Models\SpecifyTheService::factory(15)->create();
         \App\Models\Syncronization::factory(60)->create();
 
     }

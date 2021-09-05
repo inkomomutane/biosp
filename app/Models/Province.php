@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Province extends Model
 {
-	use SoftDeletes,Uuids,HasFactory;
+	use Uuids,HasFactory,SoftDeletes;
 	protected $table = 'provinces';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
