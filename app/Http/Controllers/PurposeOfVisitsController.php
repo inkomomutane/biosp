@@ -2,156 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PurposeOfVisits\Setting;
 use App\Models\PurposeOfVisit;
-use Illuminate\Support\Facades\DB;
-use App\Http\Requests\PurposeOfVisitsRequest;
+
 class PurposeOfVisitsController extends Controller
-{
-     /**
+{//
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-   try {
-        $getAll = DB::table('purpose_of_visits')->get();
-
-        return view('web.backend.admin.purpose_of_visits.index')->with('purpose_of_visits',$getAll);
-
-   } catch (\Throwable $th) {
-       
-        throw $th;
-   }
-        
+        return view('backend.purpose_of_visit.purpose_of_visit')->with('purpose_of_visits', PurposeOfVisit::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.purpose_of_visits.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PurposeOfVisit\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PurposeOfVisitsRequest $request)
+    public function store(Setting $request)
     {
         try {
-            
-            PurposeOfVisit::create([
-                'name'=>$request->name
-            ]);
-    
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            PurposeOfVisit::create($request->all());
+            session()->flash('success', 'Objectivo da visita criado com sucesso.');
+            return redirect()->route('purpose_of_visit.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação do Objectivo da visita.');
+            return redirect()->route('purpose_of_visit.index');
         }
-      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\PurposeOfVisit  $PurposeOfVisit
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(PurposeOfVisit $purpose_of_visit)
     {
-        try {
-            $foundData = DB::table('purpose_of_visits')->where('uuid',$uuid)->get();
-           if($foundData!=null){
-               
-               return view('web.backend.admin.purpose_of_visits.show')->with('purpose_of_visits',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $purpose_of_visit;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $purpose_of_visits = DB::table('purpose_of_visits')->where('uuid',$uuid)->get();
-           
-            if($purpose_of_visits!=null){
-               return view('web.backend.admin.purpose_of_visits.edit')
-               ->with('purpose_of_visits',$purpose_of_visits);
-           }
 
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\PurposeOfVisit  $PurposeOfVisit
      * @return \Illuminate\Http\Response
      */
-    public function update(PurposeOfVisitsRequest $request, $uuid)
+    public function update(Setting $request, PurposeOfVisit $purpose_of_visit)
     {
-     
         try {
-
-            $datafound = DB::table('purpose_of_visits')->where('uuid',$uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-                return redirect()->route('purposeofvisits.index') ->with('success', 'Updated successfully!'); 
-       
-            } catch (\Throwable $th) {
-            //throw $th;
+            $purpose_of_visit->update($request->all());
+            session()->flash('success', 'Objectivo da visita actualizada com sucesso.');
+            return redirect()->route('purpose_of_visit.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do objectivo da visita.');
+            return redirect()->route('purpose_of_visit.index');
         }
-            
-         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\PurposeOfVisit  $PurposeOfVisit
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(PurposeOfVisit $purpose_of_visit)
     {
-        $datafound = DB::table('purpose_of_visits')->where('uuid',$uuid);
-        
-        if($datafound!=null){
-            
-            $datafound->delete();
-        
-        return redirect()->back();
+
+
+        if ($purpose_of_visit && $purpose_of_visit->benificiaries()->count() == 0) {
+            try {
+                $purpose_of_visit->delete();
+                session()->flash('success', 'Objectivo da visita deletado com sucesso.');
+                return redirect()->route('purpose_of_visit.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar objectivo da visita.');
+                return redirect()->route('purpose_of_visit.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O objectivo da visita esta sendo usado em um benificiario."');
+            return redirect()->route('purpose_of_visit.index');
+        }
     }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
-    
-    }
 }

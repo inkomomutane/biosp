@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\ReasonOpeningCase\Setting;
 use App\Models\ReasonOpeningCase;
-use App\Http\Requests\ReasonOpeningCasesRequest;
 
 class ReasonOpeningCasesController extends Controller
 {
@@ -15,146 +14,83 @@ class ReasonOpeningCasesController extends Controller
      */
     public function index()
     {
-   try {
-        $getAll = DB::table('reason_opening_cases')->get();
-
-        return view('web.backend.admin.reason_opening_cases.index')->with('reason_opening_cases',$getAll);
-
-   } catch (\Throwable $th) {
-       
-        throw $th;
-   }
-        
+        return view('backend.reason_opening_case.reason_opening_case')->with('reason_opening_cases', ReasonOpeningCase::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.reason_opening_cases.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ReasonOpeningCase\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReasonOpeningCasesRequest $request)
+    public function store(Setting $request)
     {
         try {
-            ReasonOpeningCase::create([
-                'name'=>$request->name
-            ]);
-    
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            ReasonOpeningCase::create($request->all());
+            session()->flash('success', 'Motivo de abertura de processo criado com sucesso.');
+            return redirect()->route('reason_opening_case.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação do Motivo de abertura de processo.');
+            return redirect()->route('reason_opening_case.index');
         }
-      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ReasonOpeningCase  $ReasonOpeningCase
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(ReasonOpeningCase $reason_opening_case)
     {
-        try {
-            $foundData = DB::table('reason_opening_cases')->where('uuid',$uuid)->get();
-           if($foundData!=null){
-               
-               return view('web.backend.admin.reason_opening_cases.show')->with('reason_opening_cases',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $reason_opening_case;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $reason_opening_cases = DB::table('reason_opening_cases')->where('uuid',$uuid)->get();
-           
-            if($reason_opening_cases !=null){
-               return view('web.backend.admin.reason_opening_cases.edit')
-               ->with('reason_opening_cases',$reason_opening_cases);
-           }
 
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\ReasonOpeningCase  $ReasonOpeningCase
      * @return \Illuminate\Http\Response
      */
-    public function update(ReasonOpeningCasesRequest $request, $uuid)
+    public function update(Setting $request, ReasonOpeningCase $reason_opening_case)
     {
-     
         try {
-
-
-            $datafound = ReasonOpeningCase::find($uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-                return redirect()->route('purposeofvisits.index') ->with('success', 'Updated successfully!');
-       
-            } catch (\Throwable $th) {
-            
-                throw $th;
+            $reason_opening_case->update($request->all());
+            session()->flash('success', 'Motivo de abertura de processo actualizada com sucesso.');
+            return redirect()->route('reason_opening_case.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do objectivo da visita.');
+            return redirect()->route('reason_opening_case.index');
         }
-            
-         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ReasonOpeningCase  $ReasonOpeningCase
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(ReasonOpeningCase $reason_opening_case)
     {
-        $datafound = ReasonOpeningCase::find($uuid);
 
-        if($datafound!=null){
-            
-            $datafound->delete();
-            
+
+        if ($reason_opening_case && $reason_opening_case->benificiaries()->count() == 0) {
+            try {
+                $reason_opening_case->delete();
+                session()->flash('success', 'Motivo de abertura de processo deletado com sucesso.');
+                return redirect()->route('reason_opening_case.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar objectivo da visita.');
+                return redirect()->route('reason_opening_case.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O objectivo da visita esta sendo usado em um benificiario."');
+            return redirect()->route('reason_opening_case.index');
         }
-        
-        return redirect()->back() ->with('error', 'Error during the creation!');
-    }
-
-   
-    
-    
+}
 }

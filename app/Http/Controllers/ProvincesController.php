@@ -1,160 +1,98 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\Province\Setting;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProvincesRequest;
 class ProvincesController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-   try {
-        $getAll = DB::table('provinces')->get();
-
-        return view('web.backend.admin.provinces.index')->with('provinces',$getAll);
-
-   } catch (\Throwable $th) {
-       
-        throw $th;
-   }
-        
+        return view('backend.province.province')->with('provinces', Province::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.provinces.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Province\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProvincesRequest $request)
+    public function store(Setting $request)
     {
         try {
-
-            Province::create([
-                'name'=>$request->name
-            ]);
-
-            return redirect()->back() ->with('success', 'Created successfully!');
-
-        } catch (\Throwable $th) {
-            
-            dd($th);
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            Province::create($request->all());
+            session()->flash('success', 'Provincia criada com sucesso.');
+            return redirect()->route('province.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação da provincia.');
+            return redirect()->route('province.index');
         }
-      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Province  $Province
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Province $province)
     {
-        try {
-            $foundData = DB::table('provinces')->where('uuid',$uuid)->get();
-           if($foundData!=null){
-               
-               return view('web.backend.admin.provinces.show')->with('provinces',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $province;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $provinces = DB::table('provinces')->where('uuid',$uuid)->get();
-           
-            if($provinces!=null){
-               return view('web.backend.admin.provinces.edit')
-               ->with('provinces',$provinces);
-           }
 
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Province  $Province
      * @return \Illuminate\Http\Response
      */
-    public function update(ProvincesRequest $request, $uuid)
+    public function update(Setting $request, Province $province)
     {
-     
         try {
-
-            $datafound = DB::table('provinces')->where('uuid',$uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-                return redirect()->route('provinces.index')->with('success', 'Updated successfully!');
-       
-            } catch (\Throwable $th) {
-            
-                throw $th;
+            $province->update($request->all());
+            session()->flash('success', 'Provincia actualizada com sucesso.');
+            return redirect()->route('province.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização da provincia.');
+            return redirect()->route('province.index');
         }
-            
-         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Province  $Province
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(Province $province)
     {
-        $datafound = DB::table('provinces')->where('uuid',$uuid);
-        
-        if($datafound!=null){
-            
-            $datafound->delete();
-        
-        return redirect()->back();
-    }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
-    
+
+        if ($province && $province->neighborhoods()->count() == 0) {
+            try {
+                $province->delete();
+                session()->flash('success', 'Provincia deletada com sucesso.');
+                return redirect()->route('province.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar provincia.');
+                return redirect()->route('province.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " A província esta sendo usado em um bairro."');
+            return redirect()->route('province.index');
+        }
     }
 }

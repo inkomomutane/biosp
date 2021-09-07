@@ -1,172 +1,95 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\GenresRequest;
+
+use App\Http\Requests\Genero\Setting;
 use App\Models\Genre;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 class GenresController extends Controller
-{
-    /**
+{/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $getAll = DB::table('genres')->get();
-        return view('web.backend.admin.genres.index')->with('genres',$getAll);
+        return view('backend.genre.genre')->with('genres', Genre::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.genres.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Genre\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenresRequest $request)
+    public function store(Setting $request)
     {
         try {
-            DocumentType::create([
-                'name'=>$request->name
-            ]);
-    
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            Genre::create($request->all());
+            session()->flash('success', 'Genero criado com sucesso.');
+            return redirect()->route('genre.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação da Genero.');
+            return redirect()->route('genre.index');
         }
-      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Genre  $Genre
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Genre $genre)
     {
-        try {
-            $foundData = DB::table('provinces')->where('uuid',$uuid)->get();
-           
-            if($foundData!=null){
-               
-               return view('web.backend.admin.genres.show')->with('genres',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $genre;
     }
-    
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $genres = DB::table('genres')->where('uuid',$uuid)->get();
-           
-            if($genres!=null){
-               return view('web.backend.admin.genres.edit')
-               ->with('genres',$genres);
-           }
 
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-    }
-/**$( document ).ready(function() {
-    $('#form').submit(function (e) {
-        e.preventDefault();
-        swal({
-            icon: "warning",
-            title: "Are you sure?",
-            text: "Do you want to submit and pay 10 Rupiah",
-            buttons: ["No, cancel pls!", "Yes, send it!"],
-        })
-        .then((value) => {
-            console.log('form submitted');
-        });
-    });
-});
 
-try {
-            Item::create([
-                'name' => $request->name,
-                'price' => $request->price
-            ]);
-
-            return redirect()->back()
-                ->with('success', 'Created successfully!');
-        } catch (\Exception $e){
-            return redirect()->back()
-                ->with('error', 'Error during the creation!');
-        } */
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Genre  $Genre
      * @return \Illuminate\Http\Response
      */
-    public function update(GenresRequest $request, $uuid)
+    public function update(Setting $request, Genre $genre)
     {
-        
         try {
-
-            $datafound = DB::table('genres')->where('uuid',$uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-               return redirect()->route('genres.index') ->with('success', 'Created successfully!'); ;
-       
-            } catch (\Throwable $th) {
-            //throw $th;
+            $genre->update($request->all());
+            session()->flash('success', 'Genero actualizada com sucesso.');
+            return redirect()->route('genre.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do genero.');
+            return redirect()->route('genre.index');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Genre  $Genre
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(Genre $genre)
     {
-    
-    $datafound = DB::table('genres')->where('uuid',$uuid);
-        
-    if($datafound!=null){
-            
-            $datafound->delete();
-        
-        return redirect()->back();
+
+
+        if ($genre && $genre->benificiaries()->count() == 0) {
+            try {
+                $genre->delete();
+                session()->flash('success', 'Genero deletado com sucesso.');
+                return redirect()->route('genre.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar genero.');
+                return redirect()->route('genre.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O genero esta sendo usado em um benificiario."');
+            return redirect()->route('genre.index');
+        }
     }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
-    
-    }
-    
 }

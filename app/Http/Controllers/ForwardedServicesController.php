@@ -2,157 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ForwardedService\Setting;
 use App\Models\ForwardedService;
-use App\Http\Requests\ForwardedServicesRequest;
 
 class ForwardedServicesController extends Controller
 {
-   /**
+/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-   try {
-        $getAll = DB::table('forwarded_services')->get();
-
-        return view('web.backend.admin.forwarded_services.index')->with('forwarded_services',$getAll);
-
-   } catch (\Throwable $th) {
-       
-        throw $th;
-   }
-        
+        return view('backend.forwarded_service.forwarded_service')->with('forwarded_services', ForwardedService::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.forwarded_services.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ForwardedService\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ForwardedServicesRequest $request)
+    public function store(Setting $request)
     {
         try {
-            ForwardedService::create([
-                'name'=>$request->name
-            ]);
-    
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            ForwardedService::create($request->all());
+            session()->flash('success', 'Genero criado com sucesso.');
+            return redirect()->route('forwarded_service.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação da Genero.');
+            return redirect()->route('forwarded_service.index');
         }
-      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ForwardedService  $ForwardedService
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(ForwardedService $forwarded_service)
     {
-        try {
-            $foundData = DB::table('forwarded_services')->where('uuid',$uuid)->get();
-           if($foundData!=null){
-               
-               return view('web.backend.admin.forwarded_services.show')->with('forwarded_services',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $forwarded_service;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $forwarded_services = DB::table('forwarded_services')->where('uuid',$uuid)->get();
-           
-            if($forwarded_services!=null){
-               return view('web.backend.admin.forwarded_services.edit')
-               ->with('forwarded_services',$forwarded_services);
-           }
 
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\ForwardedService  $ForwardedService
      * @return \Illuminate\Http\Response
      */
-    public function update(ForwardedServicesRequest $request, $uuid)
+    public function update(Setting $request, ForwardedService $forwarded_service)
     {
-     
         try {
-
-            $datafound = DB::table('forwarded_services')->where('uuid',$uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-                return redirect()->route('forwardedservices.index')->with('success', 'Updated successfully!');
-       
-            } catch (\Throwable $th) {
-            
-                throw $th;
+            $forwarded_service->update($request->all());
+            session()->flash('success', 'Genero actualizada com sucesso.');
+            return redirect()->route('forwarded_service.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do Serviço encaminhado.');
+            return redirect()->route('forwarded_service.index');
         }
-            
-         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ForwardedService  $ForwardedService
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(ForwardedService $forwarded_service)
     {
-        $datafound = DB::table('forwarded_services')->where('uuid',$uuid);
-        
-        if($datafound!=null){
-            
-            $datafound->delete();
-        
-        return redirect()->back();
-    }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
-    
+
+        if ($forwarded_service && $forwarded_service->benificiaries()->count() == 0) {
+            try {
+                $forwarded_service->delete();
+                session()->flash('success', 'Genero deletado com sucesso.');
+                return redirect()->route('forwarded_service.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar Serviço encaminhado.');
+                return redirect()->route('forwarded_service.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O Serviço encaminhado esta sendo usado em um benificiario."');
+            return redirect()->route('forwarded_service.index');
+        }
     }
 }

@@ -13,7 +13,7 @@ class DashbordController extends Controller
      */
     public function index()
     {
-        return view('web.backend.admin.dashboard.dashboard');
+        return view('backend.dashboard');
     }
 
     /**

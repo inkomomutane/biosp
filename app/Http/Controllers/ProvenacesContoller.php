@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Provenace;
 use App\Http\Requests\ProvenacesRequest;
+use App\Http\Requests\Provenance\Setting;
+
 class ProvenacesContoller extends Controller
 {
     /**
@@ -14,142 +16,84 @@ class ProvenacesContoller extends Controller
      */
     public function index()
     {
-        try {
-            $getAll = DB::table('provenaces')->get();
-    
-            return view('web.backend.admin.provenaces.index')->with('provenaces',$getAll);
-    
-       } catch (\Throwable $th) {
-           
-            throw $th;
-       }
-            
+        return view('backend.provenace.provenace')->with('provenaces', Provenace::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('web.backend.admin.provenaces.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Provenace\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProvenacesRequest $request)
+    public function store(Setting $request)
     {
         try {
-
-            Provenace::create([
-                'name'=>$request->name
-            ]);
-    
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            return redirect()->back() ->with('error', 'Error during the creation!');
+            Provenace::create($request->all());
+            session()->flash('success', 'Genero criado com sucesso.');
+            return redirect()->route('provenace.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação do Genero.');
+            return redirect()->route('provenace.index');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Provenace  $Provenace
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Provenace $provenace)
     {
-        try {
-            $foundData = DB::table('provenaces')->where('uuid',$uuid)->get();
-           
-            if($foundData!=null){
-               
-               return view('web.backend.admin.provenaces.show')->with('provenaces',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
+        return $provenace;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uuid)
-    {
-        try {
-           
-            $provenaces = DB::table('provenaces')->where('uuid',$uuid)->get();
-           
-            if($provenaces!=null){
-               return view('web.backend.admin.provenaces.edit')
-               ->with('provenaces',$provenaces);
-           }
 
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Provenace  $Provenace
      * @return \Illuminate\Http\Response
      */
-    public function update(ProvenacesRequest $request, $uuid)
+    public function update(Setting $request, Provenace $provenace)
     {
         try {
-
-            $datafound = DB::table('provenaces')->where('uuid',$uuid);
-            
-            $datafound->update([
-                    'name'=>$request->name,
-                ]);
-       
-                return redirect()->back() ->with('success', 'Created successfully!');
-       
-            } catch (\Throwable $th) {
-            
-                throw $th;
+            $provenace->update($request->all());
+            session()->flash('success', 'Genero actualizada com sucesso.');
+            return redirect()->route('provenace.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do proviniência.');
+            return redirect()->route('provenace.index');
         }
-           
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Provenace  $Provenace
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(Provenace $provenace)
     {
-        $datafound = DB::table('provenaces')->where('uuid',$uuid);
-        
-        if($datafound!=null){
-            
-            $datafound->delete();
-        
-        return redirect()->back();
+
+
+        if ($provenace && $provenace->benificiaries()->count() == 0) {
+            try {
+                $provenace->delete();
+                session()->flash('success', 'Genero deletado com sucesso.');
+                return redirect()->route('provenace.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar proviniência.');
+                return redirect()->route('provenace.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O proviniência esta sendo usado em um benificiario."');
+            return redirect()->route('provenace.index');
+        }
     }
 
-    return redirect()->back() ->with('error', 'Error during the creation!');
-    
-    }
-    
 }

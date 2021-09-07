@@ -6,172 +6,103 @@ use Illuminate\Http\Request;
 use App\Http\Resources\NeighborhoodsResource;
 use App\Models\Neighborhood;
 use App\Http\Requests\NeighborhoodsRequest;
+use App\Http\Requests\Neighbornhood\Setting;
+use App\Models\Province;
+
 class NeighborhoodsController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        try { 
-        return view('web.backend.admin.neighborhoods.index')
-        ->with('neighborhoods',NeighborhoodsResource::collection(Neighborhood::all()));
-
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-       
+        return view('backend.bairro.bairro')->with('bairros', Neighborhood::all())->with('cidades',Province::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-        try {
-
-            $getAll = DB::table('provinces')->get();
-            if(!$getAll->isEmpty()){
-                return view('web.backend.admin.neighborhoods.create')->with('provinces',$getAll);
-            }
-
-            return;
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-        
-       
-    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Neighborhood\Setting  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NeighborhoodsRequest $request)
+    public function store(Setting $request)
     {
         try {
-            $getAll = DB::table('neighborhoods')->get();
-            if($getAll->contains(collect($request->all())->toArray())){
-                return ;
-            }
-            DB::table('neighborhoods')->insert([
-                'uuid'=>$request->uuid,
-                'name'=>$request->name,
-                'province_uuid'=>$request->province_uuid
-            ]);
-            return redirect()->back() ->with('success', 'Created successfully!');
-        } catch (\Throwable $th) {
-            
-            return redirect()->back() ->with('error', 'Error during the creation!');
-
+            Neighborhood::create($request->all());
+            session()->flash('success', 'Bairro criado com sucesso.');
+            return redirect()->route('bairro.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na criação do bairro.');
+            return redirect()->route('bairro.index');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Neighborhood  $bairro
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Neighborhood $bairro)
     {
-        try {
-            $foundData = DB::table('neighborhoods')->where('uuid',$uuid)->get();
-           if($foundData!=null){
-               
-               return view('web.backend.admin.neighborhoods.show')->with('neighborhood',$foundData);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
-
-
-     
+        return $bairro;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Neighborhood  $bairro
      * @return \Illuminate\Http\Response
      */
-    public function edit($uuid)
+    public function edit(Neighborhood $bairro)
     {
-        try {
-            $get =DB::table('provinces')->get();
-            $neighborhood = DB::table('neighborhoods')->where('uuid',$uuid)->get();
-           
-            if($neighborhood!=null){
-               return view('web.backend.admin.neighborhoods.edit')
-               ->with('neighborhoods',$neighborhood)->with('provinces',$get);
-           }
-
-           return 'register not found';
-
-        } catch (\Throwable $th) {
-            
-            throw $th;
-        }
-     
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Neighborhood  $bairro
      * @return \Illuminate\Http\Response
      */
-    public function update(NeighborhoodsRequest $request, $uuid)
+    public function update(Setting $request, Neighborhood $bairro)
     {
-        $neighborhood = DB::table('neighborhoods')->where('uuid',$uuid)->get();
-        $neighborhood->update([
-            'uuid'=>$request->uuid,
-            'name'=>$request->name,
-            'province_uuid'=>$request->province_uuid
-        ]);
-
-        return 'teste';
+        try {
+            $bairro->update($request->all());
+            session()->flash('success', 'Bairro actualizado com sucesso.');
+            return redirect()->route('bairro.index');
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Erro na actualização do bairro.');
+            return redirect()->route('bairro.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Neighborhood  $bairro
      * @return \Illuminate\Http\Response
      */
-    public function destroy($uuid)
+    public function destroy(Neighborhood $bairro)
     {
-       try {
-        $getAll = DB::table('neighborhoods')->get();
-        $datafound = DB::table('neighborhoods')->where('uuid',$uuid);
-        if($datafound!=null){
-            
-            $datafound->delete();
 
-            return redirect()->back();
+
+        if ($bairro && $bairro->benificiaries()->count() == 0) {
+            try {
+                $bairro->delete();
+                session()->flash('success', 'Bairro deletado com sucesso.');
+                return redirect()->route('bairro.index');
+            } catch (\Throwable $e) {
+                session()->flash('error', 'Erro ao deletar bairro.');
+                return redirect()->route('bairro.index');
+            }
+        } else {
+            session()->flash('error', 'Erro ao deletar: " O bairro esta sendo usado em um benificiario."');
+            return redirect()->route('bairro.index');
         }
-       } catch (\Throwable $th) {
-           throw $th;
-       }
-       
-       
-        
-        return 'province deleted successfully';
     }
-    
 }
