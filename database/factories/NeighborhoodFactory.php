@@ -22,9 +22,9 @@ class NeighborhoodFactory extends Factory
     public function definition()
     {
         return [
-            'uuid' => $this->faker->uuid,
-            'name' => $this->faker->name,
-            'province_uuid' => \App\Models\Province::all()->random(1)->first(),
+            'uuid' => $this->faker->uuid(),
+            'name' => "Geral",
+            'province_uuid' => \App\Models\Province::all()->first(),
         ];
     }
 }

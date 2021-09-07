@@ -26,9 +26,9 @@ class UserFactory extends Factory
             'name' =>"Administrator",
             'email' => "administrator@sumburero.org",
             'email_verified_at' => now(),
-            'password' => bcrypt('#admin@trator@2021#'),
+            'password' => bcrypt('#adminis@trator@2021#'),
             'remember_token' => Str::random(10),
-            'neighborhood_uuid' => \App\Models\Neighborhood::all()->random(1)->first(),
+            'neighborhood_uuid' => \App\Models\Neighborhood::all()->first(),
         ];
     }
 }
