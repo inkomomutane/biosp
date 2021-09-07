@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
@@ -21,14 +22,15 @@ use App\Http\Controllers\ReasonOpeningCasesController;
 
 Auth::routes([
     "register" => false,
-    "password.confirm" =>true,
-    "password.reset" => false
+    "confirm" =>false,
+    "reset" => false
 ]);
 
 
 Route::get('/', function () {
     return  redirect('/dashboard');
 });
+Route::get('/coll',[BenificiariesController::class,'importCollection']);
 Route::group(['middleware'=>'auth'],function(){
 
      Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
@@ -40,7 +42,7 @@ Route::group(['middleware'=>'auth'],function(){
      Route::resource('forwarded_service', ForwardedServicesController::class);
      Route::resource('purpose_of_visit', PurposeOfVisitsController::class);
      Route::resource('reason_opening_case', ReasonOpeningCasesController::class);
-     Route::resource('benificiary', BenificiariesController::class);
+    // Route::resource('benificiary', BenificiariesController::class);
      Route::resource('user', UsersController::class);
 });
 

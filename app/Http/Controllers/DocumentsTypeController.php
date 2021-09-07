@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DocumentType\Create;
 use App\Http\Requests\DocumentType\Setting;
 use App\Models\DocumentType;
 class DocumentsTypeController extends Controller
@@ -24,7 +25,7 @@ class DocumentsTypeController extends Controller
      * @param  \App\Http\Requests\DocumentType\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             DocumentType::create($request->all());

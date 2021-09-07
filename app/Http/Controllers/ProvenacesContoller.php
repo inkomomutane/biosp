@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Provenace;
 use App\Http\Requests\ProvenacesRequest;
+use App\Http\Requests\Provenance\Create;
 use App\Http\Requests\Provenance\Setting;
 
 class ProvenacesContoller extends Controller
@@ -27,7 +28,7 @@ class ProvenacesContoller extends Controller
      * @param  \App\Http\Requests\Provenace\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             Provenace::create($request->all());

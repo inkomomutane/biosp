@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReasonOpeningCase\Create;
 use App\Http\Requests\ReasonOpeningCase\Setting;
 use App\Models\ReasonOpeningCase;
 
@@ -25,7 +26,7 @@ class ReasonOpeningCasesController extends Controller
      * @param  \App\Http\Requests\ReasonOpeningCase\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             ReasonOpeningCase::create($request->all());

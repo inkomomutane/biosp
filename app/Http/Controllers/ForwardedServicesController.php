@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ForwardedService\Create;
 use App\Http\Requests\ForwardedService\Setting;
 use App\Models\ForwardedService;
 
@@ -25,7 +26,7 @@ class ForwardedServicesController extends Controller
      * @param  \App\Http\Requests\ForwardedService\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             ForwardedService::create($request->all());

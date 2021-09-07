@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Province\Create;
 use App\Http\Requests\Province\Setting;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ProvincesController extends Controller
      * @param  \App\Http\Requests\Province\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             Province::create($request->all());

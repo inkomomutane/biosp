@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurposeOfVisits\Create;
 use App\Http\Requests\PurposeOfVisits\Setting;
 use App\Models\PurposeOfVisit;
 
@@ -25,7 +26,7 @@ class PurposeOfVisitsController extends Controller
      * @param  \App\Http\Requests\PurposeOfVisit\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             PurposeOfVisit::create($request->all());

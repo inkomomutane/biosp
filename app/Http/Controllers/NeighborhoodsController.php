@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\NeighborhoodsResource;
 use App\Models\Neighborhood;
 use App\Http\Requests\NeighborhoodsRequest;
+use App\Http\Requests\Neighbornhood\Create;
 use App\Http\Requests\Neighbornhood\Setting;
 use App\Models\Province;
 
@@ -28,7 +29,7 @@ class NeighborhoodsController extends Controller
      * @param  \App\Http\Requests\Neighborhood\Setting  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             Neighborhood::create($request->all());

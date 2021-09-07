@@ -23,10 +23,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' =>"Administrator",
+            'email' => "administrator@sumburero.org",
             'email_verified_at' => now(),
-            'password' => bcrypt('password'),
+            'password' => bcrypt('#admin@trator@2021#'),
             'remember_token' => Str::random(10),
             'neighborhood_uuid' => \App\Models\Neighborhood::all()->random(1)->first(),
         ];

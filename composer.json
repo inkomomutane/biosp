@@ -13,6 +13,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "maatwebsite/excel": "^3.1",
+        "orangehill/iseed": "2.2",
         "overtrue/laravel-lang": "^5.0",
         "realrashid/sweet-alert": "^4.0"
     },

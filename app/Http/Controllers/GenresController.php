@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Genero\Create;
 use App\Http\Requests\Genero\Setting;
 use App\Models\Genre;
 class GenresController extends Controller
@@ -23,7 +24,7 @@ class GenresController extends Controller
      * @param  \App\Http\Requests\Genre\Add  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Setting $request)
+    public function store(Create $request)
     {
         try {
             Genre::create($request->all());
