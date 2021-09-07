@@ -32,12 +32,12 @@ class BenificiaryController extends Controller
         try {
             $done = Benificiary::create($data);
             if($done){
-                return true;
+                return ['status'=>true,'response'=>$done];
             }else{
-                return false;
+                return ['status'=>false];
             }
         } catch (\Throwable $th) {
-            return false;
+            return ['status'=>false];
         }
     }
 
@@ -49,7 +49,17 @@ class BenificiaryController extends Controller
      */
     public  function show(String $uuid)
     {
-        return Benificiary::where('uuid',$uuid)->first();
+        try {
+            $ben =  Benificiary::where('uuid',$uuid)->get()->first();
+            if($ben){
+               return ["status"=> true,"response"=> $ben];
+            }else{
+                return ["status"=>false];
+            }
+        } catch (\Throwable $th) {
+            return ["status"=>false];
+        }
+
     }
 
     /**
@@ -59,16 +69,17 @@ class BenificiaryController extends Controller
      * @param  \App\Models\Benificiary  $benificiary
      * @return \Illuminate\Http\Response
      */
-    public function update(Array $data, String $uuid)
+    public function update($data, String $uuid)
     {
-        $toUpdate = $this->show($uuid);
-        if($toUpdate){
-           try {
-            $toUpdate->update($data);
-            return true;
-           } catch (\Throwable $th) {
-            return false;
-           }
+        if($this->show($uuid)["status"] == true){
+            try {
+                Benificiary::where('uuid',$uuid)->get()->first()->update(
+                    $data
+                );
+                return ["status" => true];
+               } catch (\Throwable $th) {
+                return ["status" => false];
+               }
         }
     }
 
@@ -80,36 +91,15 @@ class BenificiaryController extends Controller
      */
     public function destroy(String $uuid)
     {
-        $toDestroy = $this->show($uuid);
-        if($toDestroy){
+
+        if($this->show($uuid)["status"] == true){
            try {
-            $toDestroy->delete();
-            return true;
+            Benificiary::where('uuid',$uuid)->get()->first()->delete();
+            return ["status"=>true];
            } catch (\Throwable $th) {
-            return false;
+            return ["status"=>false];
            }
         }
-    }
-
-    public function createdAfter()
-    {
-        $createdAt = $this->lastSync();
-       return Benificiary::where('neighborhood_uuid',auth()->user()->neighborhood_uuid)
-        ->where('created_at','>',$createdAt)->get();
-    }
-
-    public function updatedAfter()
-    {
-        $updatedAt = $this->lastSync();
-       return Benificiary::where('neighborhood_uuid',auth()->user()->neighborhood_uuid)
-        ->where('updated_at','>',$updatedAt)->get();
-    }
-
-    public function daletedAfter( )
-    {
-        $daletedAt = $this->lastSync();
-       return Benificiary::where('neighborhood_uuid',auth()->user()->neighborhood_uuid)
-        ->where('updated_at','>',$daletedAt)->get();
     }
     private function lastSync()
     {

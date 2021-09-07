@@ -13,6 +13,7 @@ use App\Models\ReasonOpeningCase;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BenificiaryController as Server;
 use App\Models\Benificiary;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class Sync extends Controller
@@ -25,34 +26,49 @@ class Sync extends Controller
 
     public function addCreated(Request  $request)
     {
-        $server =  new Server();
-        try {
-            return $server->store($request->all());
-        } catch (\Throwable $th) {
-            return false;
+        $errorOnCreating = Array();
+        $created = $request->all();
+
+        foreach ($created as $ben) {
+
+            try {
+               return Benificiary::create($ben);
+               } catch (\Throwable $th) {
+                   return $th;
+                   array_push($errorOnCreating,$ben);
+               }
         }
-        return false;
+        return $errorOnCreating;
     }
 
-    public function updateUpdated(Request  $request, Benificiary $benificiary)
+    public function updateUpdated(Request  $request)
     {
-        $server =  new Server();
-        try {
-            return $benificiary->update($request->all());
-        } catch (\Throwable $th) {
-            return false;
+        $errorOnUpdating = Array();
+        $updated = $request->all();
+
+        foreach ($updated as $ben) {
+           try {
+            Benificiary::where('uuid',$ben['uuid'])->get()->first()->update($ben);
+           } catch (\Throwable $th) {
+               array_push($errorOnUpdating,$ben);
+           }
         }
-        return false;
+        return $errorOnUpdating;
     }
 
-    public function deleteDeleted(Benificiary $benificiary)
+    public function deleteDeleted(Request $request)
     {
-        try {
-            return $benificiary->delete();
-        } catch (\Throwable $th) {
-            return false;
+        $errorOnDeleting = Array();
+        $deleted = $request->all();
+        foreach ($deleted as $ben) {
+            try {
+                Benificiary::where('uuid',$ben['uuid'])->get()->first()->delete();
+               } catch (\Throwable $th) {
+                   return $th;
+                   array_push($errorOnDeleting,$ben);
+               }
         }
-        return false;
+        return $errorOnDeleting;
     }
 
 
@@ -67,6 +83,7 @@ class Sync extends Controller
             'provenances' => Provenace::all(),
             'propuses_of_visits' => PurposeOfVisit::all(),
             'reason_of_opening_cases' => ReasonOpeningCase::all(),
+            'benificiaries' => $this->ben()
         ];
     }
 }

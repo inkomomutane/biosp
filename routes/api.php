@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/connected', function () {
+    return true;
+});
 
 Route::post('/login',[UserController::class,'login']);
 
@@ -32,10 +35,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::get('/sync/ben',[Sync::class,'ben']);
     Route::get('/sync/settings',[Sync::class,'settings']);
     Route::post('/sync/create',[Sync::class,'addCreated']);
-    Route::post('/sync/update/{benificiary}',[Sync::class,'updateUpdated']);
-    Route::post('/sync/delete/{benificiary}',[Sync::class,'deleteDeleted']);
+    Route::post('/sync/update',[Sync::class,'updateUpdated']);
+    Route::post('/sync/delete',[Sync::class,'deleteDeleted']);
 });
 

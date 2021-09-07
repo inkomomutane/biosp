@@ -27,9 +27,8 @@ class CreateBenificiariesTable extends Migration
             $table->softDeletes();
             $table->string('other_document_type')->nullable();
             $table->string('other_reason_opening_case')->nullable();
-            $table->string('forwarded_correct_service_uuid')->nullable()->index('fk_biospdatabases_forwarded_correct_services1_idx');
             $table->string('other_forwarded_service')->nullable();
-            $table->string('specify_forwarded_service')->nullable();
+            $table->string('specify_purpose_of_visit')->nullable();
             $table->string('visit_proposes')->nullable();
             $table->string('neighborhood_uuid')->nullable()->index('fk_biospdatabases_neighborhoods1_idx');
             $table->string('genre_uuid')->nullable()->index('fk_biospdatabases_genres1_idx');

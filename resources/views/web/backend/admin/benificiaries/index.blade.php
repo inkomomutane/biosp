@@ -24,8 +24,8 @@
                     <th>Data de Nasc</th>
                     <th>Bairro</th>
                     <th>Tel</th>
-                    <th>Gênero</th> 
-                    <th>Doc</th> 
+                    <th>Gênero</th>
+                    <th>Doc</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -35,20 +35,20 @@
                         <td class="d-inline-block text-truncate" style="max-width: 30px;">{{$benificiarie->uuid}}</td>
                         <td class="text-truncate" style="max-width: 80px;">{{$benificiarie->full_name}}</td>
                         <td class="text-truncate" style="max-width: 50px;">{{$benificiarie->birth_date}}</td>
-                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->neighborhood['name']}}</td>
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->neighborhood}}</td>
                         <td class="text-truncate" style="max-width: 50px;">{{$benificiarie->phone}}</td>
-                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->genre['name']}}</td>
-                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->document_type['name']}}</td>
-                       
-                       
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->genre}}</td>
+                        <td class="text-truncate" style="max-width: 60px;">{{$benificiarie->document_type}}</td>
+
+
                         <td>
                        <form action="{{route('benificiary.destroy',$benificiarie->uuid)}}" method="post">
-                            @csrf 
+                            @csrf
                             @method('delete')
-                            <a href="{{route('benificiaries.edit')}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                            <a href="{{route('benificiary.show')}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{route('benificiaries.edit',$benificiarie->uuid)}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="{{route('benificiary.show',$benificiarie->uuid)}}" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a>
                             <button type="submit" class="btn btn-icon btn-danger"><i class="fas fa-times"></i></button>
-                        </form> 
+                        </form>
                         </td>
                         </tr>
                     @endforeach
