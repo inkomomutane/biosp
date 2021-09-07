@@ -24,7 +24,7 @@ class Setting extends FormRequest
   public function rules()
   {
       return [
-          'name' => 'required',Rule::unique('provenances')->ignore($this->name, 'name'),
+          'name' => 'required',Rule::unique('provenaces')->ignore($this->name, 'name'),
       ];
   }
 }

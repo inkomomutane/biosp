@@ -24,7 +24,7 @@ class Create extends FormRequest
    */
   public function rules()
   {return [
-    'name' => 'required|unique:provenances',
+    'name' => 'required|unique:provenaces',
 ];
   }
 }
