@@ -34,7 +34,7 @@ class Sync extends Controller
             try {
                 Benificiary::create($ben);
                } catch (\Throwable $th) {
-                   return $th;
+
                    array_push($errorOnCreating,$ben);
                }
         }
@@ -64,7 +64,7 @@ class Sync extends Controller
             try {
                 Benificiary::where('uuid',$ben['uuid'])->get()->first()->delete();
                } catch (\Throwable $th) {
-                   return $th;
+
                    array_push($errorOnDeleting,$ben);
                }
         }
