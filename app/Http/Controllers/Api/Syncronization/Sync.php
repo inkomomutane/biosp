@@ -32,7 +32,7 @@ class Sync extends Controller
         foreach ($created as $ben) {
 
             try {
-               return Benificiary::create($ben);
+                Benificiary::create($ben);
                } catch (\Throwable $th) {
                    return $th;
                    array_push($errorOnCreating,$ben);
