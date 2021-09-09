@@ -28,13 +28,10 @@ class Sync extends Controller
     {
         $errorOnCreating = Array();
         $created = $request->all();
-
         foreach ($created as $ben) {
-
             try {
                 Benificiary::create($ben);
                } catch (\Throwable $th) {
-
                    array_push($errorOnCreating,$ben);
                }
         }
@@ -64,7 +61,6 @@ class Sync extends Controller
             try {
                 Benificiary::where('uuid',$ben['uuid'])->get()->first()->delete();
                } catch (\Throwable $th) {
-
                    array_push($errorOnDeleting,$ben);
                }
         }

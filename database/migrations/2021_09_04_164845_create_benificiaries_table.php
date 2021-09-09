@@ -21,7 +21,6 @@ class CreateBenificiariesTable extends Migration
             $table->string('phone')->nullable();
             $table->timestamp('service_date')->nullable();
             $table->boolean('home_care')->nullable();
-            $table->string('specify_forwarded_service');
             $table->timestamp('date_received')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
