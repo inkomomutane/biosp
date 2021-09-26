@@ -26,7 +26,7 @@ Auth::routes([
     "reset" => false
 ]);
 
-
+Route::get('/filtered_data/{startDate}/{endDate}',[DashbordController::class,'filterDate']);
 Route::get('/', function () {
     return  redirect('/dashboard');
 });

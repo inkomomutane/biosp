@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Benificiary;
+use App\Models\Neighborhood;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class DashbordController extends Controller
 {
+
+    private $startDate;
+    private $endDate;
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class DashbordController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard');
+        return view('backend.dashboard')->with('bairros', []);
     }
 
     /**
@@ -21,64 +30,30 @@ class DashbordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function todayData()
     {
-        //
+        Neighborhood::where('uuid')->where('created_at')->dd();
+        return Neighborhood::all()->pluck('uuid', 'name')->map(function ($uuid) {
+            return Benificiary::whereDay('service_date', '>=', Date::today()->day)
+                ->where('neighborhood_uuid', $uuid)->count();
+        })->toArray();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function filterDate($startDate = null, $endDate = null)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $this->startDate = $startDate != null ? $startDate : today();
+        $this->endDate = $endDate != null ? $endDate : today();
+        $data = Neighborhood::whereNotIn('uuid', ['3e6816de-ade8-3902-bdb5-11393d32badd'])
+            ->pluck('uuid', 'name')->map(function ($uuid) {
+                return Benificiary::where('neighborhood_uuid', $uuid)
+                    ->whereDate('service_date', '>=', Carbon::parse($this->startDate))
+                    ->whereDate('service_date', '<=', Carbon::parse($this->endDate))
+                    ->count();
+            });
+        return [
+            'keys'  => collect($data)->keys(),
+            "values" => collect($data)->values(),
+            'data' => collect($data)
+        ];
     }
 }

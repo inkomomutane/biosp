@@ -21,9 +21,11 @@ class BenificiariesController extends Controller
         for ($i=0; $i < $data->count() ; $i++) {
             $collection[0][3 + $i] = collect($data[$i])->values();
         }
-
-        //return $collection;
         return Excel::download(new BiospExport($collection), "relatorio". now() .'.xlsx');
+    }
+
+    public function filteredBenificiaries(Request $request)
+    {
     }
 
 
