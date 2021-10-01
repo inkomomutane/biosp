@@ -21,9 +21,9 @@ class BenificiaryResource extends JsonResource
             "Sexo" => $this->genre != null ? $this->genre->name : "",
             "1° visita ou Frequência" => $this->number_of_visits != null ? $this->number_of_visits : "",
             "Proveniência" => $this->provenace != null ? $this->provenace->name : "",
-            "Data de Nascimento" => $this->birth_date != null ? date_format($this->birth_date, "d/m/y h:m:s") : "",
+            "Data de Nascimento" => $this->birth_date != null ? date_format($this->birth_date, "m/d/y h:m:s") : "",
             "Contacto" => $this->phone != null ? $this->phone : "",
-            "Data de Atendimento" => $this->service_date != null ? date_format($this->service_date, "d/m/y h:m:s"): "",
+            "Data de Atendimento" => $this->service_date != null ? date_format($this->service_date, "m/d/y h:m:s"): "",
             "Objectivo da Visita" => $this->purpose_of_visit  != null ? $this->purpose_of_visit->name: "",
             "Especificar objectivo da visita " => $this->specify_purpose_of_visit   != null ? $this->specify_purpose_of_visit : "",
             "Motivo de Abertura do Processo" => $this->reason_opening_case  != null ? $this->reason_opening_case->name: "",
@@ -35,10 +35,10 @@ class BenificiaryResource extends JsonResource
             "Especificar serviço ecaminhado" => $this->specify_forwarded_service  != null ? $this->specify_forwarded_service : "",
             "Necessidade de Acompanhamento Domiciliar" => ( $this->home_care ?"Sim":"Não"),
             "Objectivos da(s) visitas" => $this->visit_proposes  != null  ?$this->visit_proposes: "",
-            "Data em que foi recebida pelo serviço" => $this->date_received  != null ?date_format($this->date_received, "d/m/y h:m:s"): "",
+            "Data em que foi recebida pelo serviço" => $this->date_received  != null ?date_format($this->date_received, "m/d/y h:m:s"): "",
             "Resolveu o seu Problema?" => ( $this->status == true ?"Sim":"Não"),
-            "Data da criação do registo" => $this->created_at   != null ?date_format($this->created_at, "d/m/y h:m:s"): "",
-            "Data da actualização do registo" => $this->updated_at   != null ?date_format($this->updated_at, "d/m/y h:m:s"): "",
+            "Data da criação do registo" => $this->created_at   != null ?date_format($this->created_at, "m/d/y h:m:s"): "",
+            "Data da actualização do registo" => $this->updated_at   != null ?date_format($this->updated_at, "m/d/y h:m:s"): "",
         ];
     }
 }

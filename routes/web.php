@@ -27,12 +27,19 @@ Auth::routes([
 ]);
 
 Route::get('/filtered_data/{startDate}/{endDate}',[DashbordController::class,'filterDate']);
+Route::post('/filtered_data',[DashbordController::class,'filtro']);
+//
 Route::get('/', function () {
     return  redirect('/dashboard');
 });
-Route::get('/coll',[BenificiariesController::class,'importCollection']);
-Route::group(['middleware'=>'auth'],function(){
 
+Route::get('/relatorio/{bairro}',[BenificiariesController::class,'lastMonth'])->name('relatorio');
+Route::get('/relatorio_geral',[BenificiariesController::class,'all'])->name('relatorio.geral');
+Route::get('/relatorio_geral/{bairro}',[BenificiariesController::class,'allByNeighborhood'])->name('relatorio.bairro');
+Route::get('/relatorio_actual/{bairro}',[BenificiariesController::class,'thisMonth'])->name('relatorio.mes.actual');
+Route::post('/relatorio/filtro',[BenificiariesController::class,'filtro'])->name('relatorio.filtro');
+
+Route::group(['middleware'=>'auth'],function(){
      Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
      Route::resource('province', ProvincesController::class);
      Route::resource('document_type', DocumentsTypeController::class);
@@ -42,7 +49,6 @@ Route::group(['middleware'=>'auth'],function(){
      Route::resource('forwarded_service', ForwardedServicesController::class);
      Route::resource('purpose_of_visit', PurposeOfVisitsController::class);
      Route::resource('reason_opening_case', ReasonOpeningCasesController::class);
-    // Route::resource('benificiary', BenificiariesController::class);
      Route::resource('user', UsersController::class);
 });
 

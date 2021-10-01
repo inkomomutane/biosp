@@ -37,8 +37,7 @@ class Biosp implements WithMultipleSheets, WithEvents
     public function sheets(): array
     {
         return [
-            new SA($this->collection),
-            new RSA($this->collection)
+            new SA($this->collection)
         ];
     }
 
@@ -64,10 +63,12 @@ class Biosp implements WithMultipleSheets, WithEvents
 class SA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths, WithTitle
 {
     private $collection;
+    private $length;
 
     public function __construct($collection)
     {
-        $this->collection = $collection[0];
+        $this->collection = $collection;
+        $this->length = collect($collection[0])->count();
     }
     public function title(): string
     {
@@ -75,7 +76,7 @@ class SA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('a1:x300')->getBorders()->applyFromArray([
+        $sheet->getStyle('a1:x'.$this->length)->getBorders()->applyFromArray([
             'allBorders' => [
                 'borderStyle' => Border::BORDER_THIN,
                 'color' => ['rgb' => '000000'],
@@ -109,7 +110,7 @@ class SA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths
         ]);
         //
 
-            $sheet->getStyle('a1:x300')->getAlignment()->applyFromArray(
+            $sheet->getStyle('a1:x'.$this->length)->getAlignment()->applyFromArray(
                 [
                     'horizontal'   => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
                     'vertical'     => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
@@ -130,30 +131,33 @@ class SA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths
         return [];
     }
 }
-class RSA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths, WithTitle
-{
-    private $collection;
 
-    public function __construct($collection)
+    /*
+    class RSA implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths, WithTitle
     {
-        $this->collection = $collection[1];
+        private $collection;
+
+        public function __construct($collection)
+        {
+            $this->collection = $collection[1];
+        }
+        public function title(): string
+        {
+            return "Relatório";
+        }
+        public function styles(Worksheet $sheet)
+        {
+        }
+        /**
+         * @return Builder
+
+        public function collection()
+        {
+            return  $this->collection;
+        }
+        public function columnWidths(): array
+        {
+            return [];
+        }
     }
-    public function title(): string
-    {
-        return "Relatório";
-    }
-    public function styles(Worksheet $sheet)
-    {
-    }
-    /**
-     * @return Builder
-     */
-    public function collection()
-    {
-        return  $this->collection;
-    }
-    public function columnWidths(): array
-    {
-        return [];
-    }
-}
+    */
