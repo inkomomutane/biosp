@@ -11,7 +11,9 @@ use App\Http\Controllers\GenresController;
 use App\Http\Controllers\NeighborhoodsController;
 use App\Http\Controllers\ProvenacesContoller;
 use App\Http\Controllers\BenificiariesController;
+use App\Http\Controllers\EnviarRelatorio;
 use App\Http\Controllers\ForwardedServicesController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PurposeOfVisitsController;
 use App\Http\Controllers\ReasonOpeningCasesController;
 /*
@@ -19,6 +21,9 @@ use App\Http\Controllers\ReasonOpeningCasesController;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::any('/enviar',[EnviarRelatorio::class,'enviarRelatorio']);
+Route::any('/actualizar',[NotificationController::class,'dadosActuais']);
 
 Auth::routes([
     "register" => false,

@@ -35,10 +35,15 @@ class BenificiariesController extends Controller
         return Excel::download(new BiospExport($collection), "Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx');
     }
 
-    public function lastMonth(Neighborhood $bairro)
+    public function lastMonth(Request $request,Neighborhood $bairro)
     {
+        if ($request->hasValidSignature()) {
         return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
+    }else{
+       return abort(403);
     }
+
+}
 
     public function thisMonth(Neighborhood $bairro)
     {
@@ -59,6 +64,8 @@ class BenificiariesController extends Controller
 
     public function filtro(Request $request)
     {
+
+
         $request->validate([
             'minAge' => 'nullable|integer|min:0',
             'maxAge' => 'nullable|integer|max:500'
@@ -91,5 +98,6 @@ class BenificiariesController extends Controller
                 ->WhereYear('birth_date', '<=', $queries->minAge != null ? (now()->year -  $queries->minAge)  :  now()->year)
                 ->get()
         ), '[Filtrado]');
+
     }
 }

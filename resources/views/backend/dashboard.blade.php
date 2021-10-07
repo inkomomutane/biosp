@@ -74,7 +74,7 @@
                                     </button>
                             <div class="dropdown-menu" aria-labelledby="triggerId">
                                 @foreach ($bairros as $bairro)
-                                <a class="dropdown-item has-icon" href="{{ route('relatorio',$bairro->uuid) }}">
+                                <a class="dropdown-item has-icon" href="{{ URL::temporarySignedRoute('relatorio',now()->addSeconds(15),$bairro->uuid) }}">
                                     <i class="fas fa-file-excel"></i>
                                     {{$bairro->name}}
                                 </a>
