@@ -41,14 +41,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body row">
-                    <div class="col-sm-3">
-                        <a href="{{ route('relatorio.geral') }}" class="btn btn-dark w-100 float-right"
-                            aria-expanded="false">
-                            Baixar Relatório geral
-                        </a>
-                    </div>
-
-
+                   @role('admin')
+                        <div class="col-sm-3">
+                            <a href="{{ route('relatorio.geral') }}" class="btn btn-dark w-100 float-right"
+                                aria-expanded="false">
+                                Baixar Relatório geral
+                            </a>
+                        </div>
+                        @endrole
 
                     <div class="col-sm-3">
                         <div class="dropdown open w-100">
@@ -242,6 +242,7 @@
                     for (const key in object) {
                         if (Object.hasOwnProperty.call(object, key)) {
                             const element = object[key];
+                            if (key != 0 ) {
                             cardData += '<div class="mb-4">' +
                                 '<div class="text-small float-right font-weight-bold text-muted">' +
                                 element + '</div>' +
@@ -250,7 +251,7 @@
                                 '<div class="progress-bar" role="progressbar" data-width="80%"' +
                                 'aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">' +
                                 '</div></div></div>';
-                        }
+                        }}
                     }
 
                     $('#card_bairros').empty();
@@ -329,12 +330,18 @@
                 data: $('#filterForm').serialize(),
                 dataType: "json",
                 success: function(response) {
+
+                    console.log(response);
+
                     chart(myChart ,response.keys, response.values)
                     const object = response.data;
                     var cardData = '';
                     for (const key in object) {
                         if (Object.hasOwnProperty.call(object, key)) {
                             const element = object[key];
+                            if (key != 0 ) {
+
+
                             cardData += '<div class="mb-4">' +
                                 '<div class="text-small float-right font-weight-bold text-muted">' +
                                 element + '</div>' +
@@ -343,7 +350,7 @@
                                 '<div class="progress-bar" role="progressbar" data-width="80%"' +
                                 'aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">' +
                                 '</div></div></div>';
-                        }
+                            } }
                     }
 
                     $('#card_bairros').empty();
@@ -464,7 +471,7 @@
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal" id="filterByFilter">Filtar</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" id="filterByFilter">Ver Gráfico</button>
                         <button type="submit" class="btn btn-success">Baixar relatório</button>
                     </div>
                 </form>

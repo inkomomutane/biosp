@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -32,7 +33,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use Uuids,HasApiTokens, HasFactory, Notifiable;
+    use Uuids,HasApiTokens, HasFactory, Notifiable,HasRoles;
 	protected $table = 'users';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;

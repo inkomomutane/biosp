@@ -11,9 +11,7 @@ use App\Http\Controllers\GenresController;
 use App\Http\Controllers\NeighborhoodsController;
 use App\Http\Controllers\ProvenacesContoller;
 use App\Http\Controllers\BenificiariesController;
-use App\Http\Controllers\EnviarRelatorio;
 use App\Http\Controllers\ForwardedServicesController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PurposeOfVisitsController;
 use App\Http\Controllers\ReasonOpeningCasesController;
 /*
@@ -22,30 +20,37 @@ use App\Http\Controllers\ReasonOpeningCasesController;
 |--------------------------------------------------------------------------
 */
 
-Route::any('/enviar',[EnviarRelatorio::class,'enviarRelatorio']);
-Route::any('/actualizar',[NotificationController::class,'dadosActuais']);
-
 Auth::routes([
     "register" => false,
     "confirm" =>false,
     "reset" => false
 ]);
 
-Route::get('/filtered_data/{startDate}/{endDate}',[DashbordController::class,'filterDate']);
-Route::post('/filtered_data',[DashbordController::class,'filtro']);
+
 //
 Route::get('/', function () {
     return  redirect('/dashboard');
 });
 
-Route::get('/relatorio/{bairro}',[BenificiariesController::class,'lastMonth'])->name('relatorio');
-Route::get('/relatorio_geral',[BenificiariesController::class,'all'])->name('relatorio.geral');
-Route::get('/relatorio_geral/{bairro}',[BenificiariesController::class,'allByNeighborhood'])->name('relatorio.bairro');
-Route::get('/relatorio_actual/{bairro}',[BenificiariesController::class,'thisMonth'])->name('relatorio.mes.actual');
-Route::post('/relatorio/filtro',[BenificiariesController::class,'filtro'])->name('relatorio.filtro');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/filtered_data/{startDate}/{endDate}',[DashbordController::class,'filterDateJson']);
 
-Route::group(['middleware'=>'auth'],function(){
-     Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
+    Route::post('/filtered_data',[DashbordController::class,'filtroJson']);
+
+    Route::get('/relatorio/{bairro}',[DashbordController::class,'lastMonth'])->name('relatorio');
+
+    Route::get('/relatorio_geral',[DashbordController::class,'all'])->name('relatorio.geral');
+
+    Route::get('/relatorio_geral/{bairro}',[DashbordController::class,'allByNeighborhood'])->name('relatorio.bairro');
+
+    Route::get('/relatorio_actual/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio.mes.actual');
+
+    Route::post('/relatorio/filtro',[DashbordController::class,'filtro'])->name('relatorio.filtro');
+
+    Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
+});
+
+Route::group(['middleware'=> ['auth', 'role:admin']],function(){
      Route::resource('province', ProvincesController::class);
      Route::resource('document_type', DocumentsTypeController::class);
      Route::resource('bairro', NeighborhoodsController::class);

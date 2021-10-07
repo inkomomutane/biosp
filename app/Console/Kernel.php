@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\SendReport::class,
+        Commands\SendHourlyRaport::class,
     ];
 
     /**
@@ -24,8 +25,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-    }
+         $schedule->command('send:report')->everyMinute()->days([
+             Schedule::MONDAY,Schedule::THURSDAY,Schedule::WEDNESDAY,Schedule::TUESDAY,Schedule::FRIDAY
+         ])->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
+
+         $schedule->command('send:hourly-report')->everyMinute()->days([
+            Schedule::MONDAY,Schedule::THURSDAY,Schedule::WEDNESDAY,Schedule::TUESDAY,Schedule::FRIDAY
+        ])->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
+        }
 
     /**
      * Register the commands for the application.

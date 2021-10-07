@@ -1,14 +1,43 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
-use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 use Paymentsds\MPesa\Client;
 use Illuminate\Support\Str;
 
-class NotificationController extends Controller
+class SendHourlyRaport extends Command
 {
-    public function dadosActuais()
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'send:hourly-report';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Send report of database data store for my mobile using Mpesa SandBox every 1 hour';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
     {
         $client = new Client([
             'apiKey' => '83f7zvajuj5dp27aj9fsrcm1py6lqsr4',             // API Key
@@ -24,6 +53,9 @@ class NotificationController extends Controller
 
         try {
             $client->receive($paymentData);
-         } catch (\Throwable $th) {}
+            $this->info('Report sent successful.');
+         } catch (\Throwable $th) {
+            $this->info('Error sending report.');
+         }
     }
 }
