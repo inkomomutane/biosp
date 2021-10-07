@@ -153,12 +153,6 @@ class DashbordController extends Controller
         ];
     }
 
-
-    /**
-     *
-     */
-
-
     public function importCollection($dataCollection, $bairro)
     {
         $collection = Excel::toCollection(new BiospImport, storage_path('SA.xlsx'));
@@ -173,51 +167,69 @@ class DashbordController extends Controller
     public function lastMonth(Request $request, Neighborhood $bairro)
     {
         if (
-            $request->hasValidSignature() ||
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid
+            $request->hasValidSignature()
         ) {
             return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
-        } else {
-            return abort(403);
+        } elseif(auth()->check()){
+            if (
+            auth()->user()->hasRole('admin') ||
+            auth()->user()->neighborhood_uuid == $bairro->uuid) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
+            }
+            abort(404);
+        }else{
+            return abort(404);
         }
     }
 
     public function thisMonth(Request $request, Neighborhood $bairro)
     {
         if (
-            $request->hasValidSignature() ||
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid
+            $request->hasValidSignature()
         ) {
-            return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name);
-        } else {
-            abort(404);
+            return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
+        } elseif(auth()->check()){
+            if (
+            auth()->user()->hasRole('admin') ||
+            auth()->user()->neighborhood_uuid == $bairro->uuid) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month ))->get()), $bairro->name);
+            }
+        }else{
+            return abort(403);
         }
     }
 
     public function allByNeighborhood(Request $request, Neighborhood $bairro)
     {
         if (
-            $request->hasValidSignature() ||
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid
+            $request->hasValidSignature()
         ) {
-            return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)
-                ->get()), $bairro->name);
-        } else {
-            abort(404);
+            return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
+        } elseif(auth()->check()){
+            if (
+            auth()->user()->hasRole('admin') ||
+            auth()->user()->neighborhood_uuid == $bairro->uuid) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->get()), $bairro->name);
+            }
+        }else{
+            return abort(403);
         }
     }
 
     public function all(Request $request)
     {
         if (
-            $request->hasValidSignature() ||
-            auth()->user()->hasRole('admin')
+            $request->hasValidSignature()
         ) {
-            return  $this->importCollection(BenificiaryResource::collection(Benificiary::all()), 'Todos');
-        } else abort(404);
+            return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
+        } elseif(auth()->check()){
+            if (
+            auth()->user()->hasRole('admin') ) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::all()),'Todos');
+            }
+        }else{
+            return abort(403);
+        }
     }
 
 

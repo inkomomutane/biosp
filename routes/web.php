@@ -32,13 +32,12 @@ Route::get('/', function () {
     return  redirect('/dashboard');
 });
 
+Route::any('/relatorio/{bairro}',[DashbordController::class,'lastMonth'])->name('relatorio');
+
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/filtered_data/{startDate}/{endDate}',[DashbordController::class,'filterDateJson']);
-
     Route::post('/filtered_data',[DashbordController::class,'filtroJson']);
-
-    Route::get('/relatorio/{bairro}',[DashbordController::class,'lastMonth'])->name('relatorio');
-
     Route::get('/relatorio_geral',[DashbordController::class,'all'])->name('relatorio.geral');
 
     Route::get('/relatorio_geral/{bairro}',[DashbordController::class,'allByNeighborhood'])->name('relatorio.bairro');

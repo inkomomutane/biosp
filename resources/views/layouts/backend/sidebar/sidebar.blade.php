@@ -10,7 +10,12 @@
             <li class="menu-header">Painel Administrativo</li>
             <li class="@if (Route::is('dashboard.index')) active @endif"><a
                     class="nav-link" href="{{ route('dashboard.index') }}"><i class="fas fa-chart-line"></i>
-                    <span>Estatísticas</span></a></li>
+                    <span>
+                        @if (auth()->user()->hasRole('admin'))
+                        Estatísticas
+                        @else
+                        Relatórios
+                        @endif</span></a></li>
         </ul>
         @role('admin')
             <ul class="sidebar-menu">
