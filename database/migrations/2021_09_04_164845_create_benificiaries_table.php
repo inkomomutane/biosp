@@ -23,8 +23,8 @@ class CreateBenificiariesTable extends Migration
             $table->boolean('home_care')->nullable();
             $table->timestamp('date_received')->nullable();
             $table->boolean('status')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestamps($precision = 6);
+            $table->softDeletes($precision = 6);
             $table->string('other_document_type')->nullable();
             $table->string('other_reason_opening_case')->nullable();
             $table->string('other_forwarded_service')->nullable();

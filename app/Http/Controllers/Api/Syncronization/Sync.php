@@ -15,22 +15,32 @@ use App\Http\Controllers\Api\BenificiaryController as Server;
 use App\Models\Benificiary;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 class Sync extends Controller
 {
 
     public function ben()
     {
-        return Benificiary::where('neighborhood_uuid', Auth::user()->neighborhood_uuid)->get();
+        $beneficiaries =  collect(Benificiary::where('neighborhood_uuid', Auth::user()->neighborhood_uuid)->get());
+        $benificiaries = $beneficiaries->map(function($ben,$key){
+             $ben->created_at = $ben->created_at->format('Y-m-d H:i:s.u');
+             $ben->updated_at = $ben->updated_at->format('Y-m-d H:i:s.u');
+             return $ben;
+        });
+        return $benificiaries;
     }
 
     public function addCreated(Request  $request)
     {
         $errorOnCreating = Array();
         $created = $request->all();
+        
+        
+        //return $created; //dd(Storage::put('json.json', $created));
+        //$created = collect($created)->sortBy('created_at');
         foreach ($created as $ben) {
             try {
-                Benificiary::create($ben);
+                 Benificiary::create($ben);
                } catch (\Throwable $th) {
                    array_push($errorOnCreating,$ben);
                }

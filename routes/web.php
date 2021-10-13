@@ -14,6 +14,9 @@ use App\Http\Controllers\BenificiariesController;
 use App\Http\Controllers\ForwardedServicesController;
 use App\Http\Controllers\PurposeOfVisitsController;
 use App\Http\Controllers\ReasonOpeningCasesController;
+use Illuminate\Support\Facades\File;
+use App\Models\Benificiary;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +32,13 @@ Auth::routes([
 
 //
 Route::get('/', function () {
+ /*   try{
+//dd(File::link(storage_path('app/public'), __DIR__ . "/../../public_html/biosp/storage"));
+        
+    }
+catch(\Throwable $e){
+    throw $e;
+}*/
     return  redirect('/dashboard');
 });
 

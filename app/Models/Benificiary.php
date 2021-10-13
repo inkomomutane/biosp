@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Benificiary
@@ -57,6 +58,36 @@ class Benificiary extends Model
 	protected $table = 'benificiaries';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
+	
+	protected $dateFormat = 'Y-m-d\TH:i:s.u';
+
+    protected function asDateTime($value)
+    {
+        try {
+            return parent::asDateTime($value);
+        } catch (\InvalidArgumentException $e) {
+            return parent::asDateTime(new \DateTimeImmutable($value));
+        }
+    }
+
+      public function newQuery()
+    {
+        $query = parent::newQuery();
+
+        if($this->usesTimestamps()) {
+            $table = $this->getTable();
+
+            $createdAt = $this->getCreatedAtColumn();
+            $updatedAt = $this->getUpdatedAtColumn();
+            $query
+                ->select()
+                ->addSelect(DB::raw("$table.$updatedAt  as $updatedAt"))
+                ->addSelect(DB::raw("$table.$createdAt  as $createdAt"));
+            ; // Using CAST instead of CONCAT as it is compatible with SQLite database
+        }
+
+        return $query;
+    }
 
 	protected $casts = [
 		'number_of_visits' => 'int',
