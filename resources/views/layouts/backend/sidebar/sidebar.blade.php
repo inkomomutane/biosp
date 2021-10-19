@@ -75,6 +75,15 @@
                     <span>Abertura de processo</span></a>
                 </li>
             </ul>
+
+            <ul class="sidebar-menu">
+                <li class="
+                    @if (Route::is('sendMail.*')) active @endif ">
+                    <a class=" nav-link" href="{{ route('sendMail.index') }}"><i class="fas fa-mail-bulk    "></i>
+                    <span>Emails para relatórios</span></a>
+                </li>
+            </ul>
+
             <ul class="sidebar-menu">
                 <li class="
                     @if (Route::is('user.*')) active @endif ">

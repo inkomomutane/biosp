@@ -153,7 +153,7 @@ class DashbordController extends Controller
         ];
     }
 
-    public function importCollection($dataCollection, $bairro)
+    public function importCollection($dataCollection, $bairro,$toSave = false)
     {
         $collection = Excel::toCollection(new BiospImport, storage_path('SA.xlsx'));
         $data = $dataCollection;
@@ -161,8 +161,24 @@ class DashbordController extends Controller
         for ($i = 0; $i < $data->count(); $i++) {
             $collection[0][3 + $i] = collect($data[$i])->values();
         }
+        if($toSave) {
+            $path = 'rl/'."Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx';
+            try {
+                Excel::store(new BiospExport($collection), $path);
+                return $path;
+            } catch (\Throwable $th) {
+                return null;
+            }
+
+            return $path;
+        }
+        else
         return Excel::download(new BiospExport($collection), "Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx');
     }
+
+
+
+
 
     public function lastMonth(Request $request, Neighborhood $bairro)
     {
@@ -198,6 +214,12 @@ class DashbordController extends Controller
             return abort(403);
         }
     }
+
+    public function thisMonthForMail(Neighborhood $bairro)
+    {
+      return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name,true);
+    }
+
 
     public function allByNeighborhood(Request $request, Neighborhood $bairro)
     {

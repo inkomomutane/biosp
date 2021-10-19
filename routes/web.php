@@ -14,8 +14,10 @@ use App\Http\Controllers\BenificiariesController;
 use App\Http\Controllers\ForwardedServicesController;
 use App\Http\Controllers\PurposeOfVisitsController;
 use App\Http\Controllers\ReasonOpeningCasesController;
+use App\Http\Controllers\SendMailController;
 use Illuminate\Support\Facades\File;
 use App\Models\Benificiary;
+use App\Models\SendMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,7 @@ Auth::routes([
 Route::get('/', function () {
  /*   try{
 //dd(File::link(storage_path('app/public'), __DIR__ . "/../../public_html/biosp/storage"));
-        
+
     }
 catch(\Throwable $e){
     throw $e;
@@ -42,7 +44,7 @@ catch(\Throwable $e){
     return  redirect('/dashboard');
 });
 
-Route::any('/relatorio/{bairro}',[DashbordController::class,'lastMonth'])->name('relatorio');
+Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -69,6 +71,7 @@ Route::group(['middleware'=> ['auth', 'role:admin']],function(){
      Route::resource('purpose_of_visit', PurposeOfVisitsController::class);
      Route::resource('reason_opening_case', ReasonOpeningCasesController::class);
      Route::resource('user', UsersController::class);
+     Route::resource('sendMail', SendMailController::class);
 });
 
 

@@ -18,9 +18,12 @@ class EnviarRelatorio extends Mailable
      */
 
      public $detalhes;
+     public $paths;
 
-    public function __construct($detalhes)
+    public function __construct($detalhes,$paths)
     {   $this->detalhes = $detalhes;
+        $this->paths = $paths;
+
     }
 
     /**
@@ -30,6 +33,10 @@ class EnviarRelatorio extends Mailable
      */
     public function build()
     {
-        return $this->subject('Relatório mensal de base de dados BIOSP.')->view('backend.relatorios');
+        $email =  $this->subject('Relatório mensal de base de dados BIOSP.')
+        ->view('backend.relatorios');
+        foreach ($this->paths as $path) {
+            $email->attachFromStorage($path);
+        }
     }
 }

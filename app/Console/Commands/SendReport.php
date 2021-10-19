@@ -6,6 +6,9 @@ use App\Models\Neighborhood;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviarRelatorio as MailEnviarRelatorio;
+use App\Models\SendMail;
+use App\Http\Controllers\DashbordController;
+use Illuminate\Support\Facades\Storage;
 
 class SendReport extends Command
 {
@@ -15,6 +18,7 @@ class SendReport extends Command
      * @var string
      */
     protected $signature = 'send:report';
+     public $controller;
 
     /**
      * The console command description.
@@ -30,6 +34,7 @@ class SendReport extends Command
      */
     public function __construct()
     {
+        $this->controller = new DashbordController();
         parent::__construct();
     }
 
@@ -40,27 +45,43 @@ class SendReport extends Command
      */
     public function handle()
     {
-        $detalhes = [
-            'title' => 'Relatório mensal de Base de Dados Biosp',
-            'body' =>
-            [
-            'Bom dia, espero que esteja bem',
+        $mails = SendMail::all()->map(function($mail){
+            $mail->details = [
+                'title' => 'Relatório mensal de Base de Dados Biosp',
+                'body' =>
+                [
+                'Bom dia, espero que esteja bem',
 
-                'Envio em anexo os relatórios de base de dados ' .
-                'referentes as datas de  ' . date_format(now(), 'd-M-Y') . ' a ' .
-                date_format(now(), 'd-M-Y')
+                    'Envio em anexo os relatórios de base de dados ' .
+                    'referentes as datas de  ' . date_format(now(), 'd-M-Y') . ' a ' .
+                    date_format(now(), 'd-M-Y')
 
-            ], 'bairros' => Neighborhood::whereNotIn('uuid',['3e6816de-ade8-3902-bdb5-11393d32badd'])->get()];
+                ], 'bairros' => $mail->neighborhoods];
+                return $mail;
+        });
 
+        if ($mails->count() > 0) {
             try {
-                foreach (['nelsonmutane@gmail.com'] as $recipient) {
-                    Mail::to($recipient)->send(new MailEnviarRelatorio($detalhes));
+                foreach ($mails as $recipient) {
+
+                    $paths = array();
+
+                    foreach ($recipient->details['bairros'] as $value) {
+                        $path = $this->controller->thisMonthForMail($value);
+                        if($path != null) array_push($paths,$path);
+                    }
+
+                    Mail::to($recipient->email)->send(new MailEnviarRelatorio($recipient->details,$paths));
                 }
 
                 $this->info('Email sent successful.');
+                Storage::deleteDirectory('rl');
+                $this->info('Storage cleaned successful.');
 
             } catch (\Throwable $th) {
                 $this->info('Fail with send email');
             }
+        }else  $this->info('Fail with send email');
+
     }
 }
