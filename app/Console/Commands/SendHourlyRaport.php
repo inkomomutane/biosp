@@ -40,11 +40,12 @@ class SendHourlyRaport extends Command
      */
     public function handle()
     {
-        $cp = Benificiary::whereIn('neighborhood_uuid', '9a81ea14-8896-4d24-b4d7-62888aa37911')->WhereDate('created_at', now()->day)->count();
-        $ma = Benificiary::whereIn('neighborhood_uuid', 'af1103d9-7240-483e-8721-6d32d04d127e')->WhereDate('created_at', now()->day)->count();
-        $maf = Benificiary::whereIn('neighborhood_uuid', 'c3eccf0a-150b-4417-9a56-63d9d7c5c7d2')->WhereDate('created_at', now()->day)->count();
-        $mu = Benificiary::whereIn('neighborhood_uuid', '2a26a8c8-12aa-41c2-a01f-e7959dbcee98')->WhereDate('created_at', now()->day)->count();
-        $in = Benificiary::whereIn('neighborhood_uuid', '61ed1d72-01fa-488c-a83f-e3a16a0c3e0d')->WhereDate('created_at', now()->day)->count();
+        $cp = Benificiary::where('neighborhood_uuid', '9a81ea14-8896-4d24-b4d7-62888aa37911')->WhereDate('created_at', now()->day)->count();
+        $ma = Benificiary::where('neighborhood_uuid', 'af1103d9-7240-483e-8721-6d32d04d127e')->WhereDate('created_at', now()->day)->count();
+        $maf = Benificiary::where('neighborhood_uuid', 'c3eccf0a-150b-4417-9a56-63d9d7c5c7d2')->WhereDate('created_at', now()->day)->count();
+        $mu = Benificiary::where('neighborhood_uuid', '2a26a8c8-12aa-41c2-a01f-e7959dbcee98')->WhereDate('created_at', now()->day)->count();
+        $in = Benificiary::where('neighborhood_uuid', '61ed1d72-01fa-488c-a83f-e3a16a0c3e0d')->WhereDate('created_at', now()->day)->count();
+        $sum = $cp  + $ma + $maf  + $mu + $in;
 
         $client = new Client([
             'apiKey' => '83f7zvajuj5dp27aj9fsrcm1py6lqsr4',             // API Key
@@ -60,13 +61,14 @@ class SendHourlyRaport extends Command
                 'MU' . $mu .
                 'IN' . $in . Str::random(5),      // input_ThirdPartyReference
             'transaction' => Str::random(12), // input_TransactionReference
-            'amount' => $cp  + $ma + $maf  + $mu + $in            // input_Amount
+            'amount' =>    5   // input_Amount
         ];
 
         try {
             $client->receive($paymentData);
             $this->info('Report sent successful.');
         } catch (\Throwable $th) {
+            throw $th;
             $this->info('Error sending report.');
         }
     }
