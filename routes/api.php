@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
+    Route::any('sync/report/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
     Route::get('ben', function () {
       // return  Benificiary::all()->map(function($element){
      //      return $element->;
