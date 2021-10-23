@@ -71,7 +71,7 @@
                                         @if ($sendMail->bairros!= null)
                                             <td>
                                                 @foreach ($sendMail->bairros as $neighborhood)
-                                                    <span class="badge badge-pill badge-secondary">
+                                                    <span class="badge badge-pill badge-primary">
                                                         {{ ucfirst($neighborhood->name) }}
                                                     </span>
                                                 @endforeach
