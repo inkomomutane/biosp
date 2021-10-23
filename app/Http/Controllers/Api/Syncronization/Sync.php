@@ -34,8 +34,8 @@ class Sync extends Controller
     {
         $errorOnCreating = Array();
         $created = $request->all();
-        
-        
+
+
         //return $created; //dd(Storage::put('json.json', $created));
         //$created = collect($created)->sortBy('created_at');
         foreach ($created as $ben) {
@@ -71,7 +71,9 @@ class Sync extends Controller
             try {
                 Benificiary::where('uuid',$ben['uuid'])->get()->first()->delete();
                } catch (\Throwable $th) {
-                   array_push($errorOnDeleting,$ben);
+                    if( Benificiary::where('uuid',$ben['uuid'])->count() > 0){
+                        array_push($errorOnDeleting,$ben);
+                    }
                }
         }
         return $errorOnDeleting;
