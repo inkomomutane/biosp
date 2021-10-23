@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
+use App\Models\Neighborhood;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::any('sync/report/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
+
+    Route::any('sync/report/{bairro}',function (Neighborhood $bairro)
+    {
+       return  URL::temporarySignedRoute('relatorio', now()->addDays(1), $bairro->uuid);
+    });
+
     Route::get('ben', function () {
       // return  Benificiary::all()->map(function($element){
      //      return $element->;
