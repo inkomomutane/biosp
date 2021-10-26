@@ -57,7 +57,9 @@ class Sync extends Controller
            try {
             Benificiary::where('uuid',$ben['uuid'])->get()->first()->update($ben);
            } catch (\Throwable $th) {
-               array_push($errorOnUpdating,$ben);
+            if( Benificiary::where('uuid',$ben['uuid'])->count() > 0){
+                array_push($errorOnDeleting,$ben);
+            }
            }
         }
         return $errorOnUpdating;
