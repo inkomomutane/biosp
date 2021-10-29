@@ -245,21 +245,4 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
             'a' => 70
         ];
     }
-
-
-
-
-    /**
-     *
-    public function drawings()
-    {
-        $drawing = new Drawing();
-        $drawing->setName('Sumburero');
-        $drawing->setDescription('Sumburero');
-        $drawing->setPath(storage_path('akulu.png'));
-        $drawing->setHeight(100);
-        $drawing->setCoordinates('g1');
-        return $drawing;
-    }
-     */
 }

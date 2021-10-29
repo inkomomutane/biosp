@@ -31,7 +31,7 @@
                                              style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3d4852;font-size:19px;font-weight:bold;text-decoration:none;display:inline-block"
                                              target="_blank"
                                              data-saferedirecturl="https://www.google.com/url?q=https://sumburero.org&amp;source=gmail&amp;ust=1633604461867000&amp;usg=AFQjCNFQBFlAiKfdB3XlHOldNXPJz_GblQ">
-                                             Relatórios de base de dados BIOSP
+                                             Relatórios de base de dados BIOSP'S
                                          </a>
                                      </td>
                                  </tr>
@@ -57,9 +57,9 @@
                                                              <p
                                                                  style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
 
-                                                                 Envio em anexo os relatórios de base de dados
-                                                                 referente ao mês de
-                                                                 {{ __(date('F', strtotime('last day of previous month'))) }}.
+                                                                 Em anexo constam os relatórios de base de dados
+                                                                 referentes ao mês de
+                                                                 {{ __(date('F', strtotime('last day of this month'))) }} de {{now()->year}} .
                                                              </p>
                                                          </span>
                                                          <table role="presentation"
