@@ -68,17 +68,9 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
                 'color' => ['rgb' => '000000'],
             ],
         ]);
-        function random_color_part()
-        {
-            return str_pad(dechex(mt_rand(210, 255)), 2, '0', STR_PAD_LEFT);
-        }
 
-        function random_color()
-        {
-            return random_color_part() . random_color_part(). random_color_part();
-        }
         $i = 5;
-        $color = random_color();
+        $color = $this->random_color();
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
         ++$i;
@@ -111,7 +103,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color = random_color();
+        $color =  $this->random_color();
         foreach (PurposeOfVisit::all() as  $value) {
             ++$i;
             $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
@@ -144,7 +136,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color = random_color();
+        $color =  $this->random_color();
         foreach (ReasonOpeningCase::all() as  $value) {
             ++$i;
             $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
@@ -162,7 +154,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color = random_color();
+        $color =  $this->random_color();
         foreach (ForwardedService::all() as  $value) {
             ++$i;
             $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
@@ -195,7 +187,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
         }
         ++$i;
         $sheet->mergeCells("a{$i}:B$i");
-        $color = random_color();
+        $color =  $this->random_color();
         foreach (ForwardedService::all() as  $value) {
             ++$i;
             $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
@@ -226,7 +218,20 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
             ]
         );
     }
+
+    function random_color_part()
+        {
+            return str_pad(dechex(mt_rand(210, 255)), 2, '0', STR_PAD_LEFT);
+        }
+
+        function random_color()
+        {
+            return  $this->random_color_part() .  $this->random_color_part().  $this->random_color_part();
+        }
     /**
+     *
+     *
+     *
      * @return Builder
      * */
 
