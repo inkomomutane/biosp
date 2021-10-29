@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/relatorio_actual/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio.mes.actual');
 
-    Route::post('/relatorio/filtro',[DashbordController::class,'filtro'])->name('relatorio.filtro');
+    Route::post('/relatoriofiltrado/filtro',[DashbordController::class,'filtro'])->name('relatorio.filtro');
 
     Route::get('/dashboard',[DashbordController::class,'index'])->name('dashboard.index');
 });
