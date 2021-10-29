@@ -14,10 +14,12 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Imports\Biosp as BiospImport;
 use App\Exports\Biosp as BiospExport;
+use App\Traits\SumProduct;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashbordController extends Controller
 {
+    use SumProduct;
 
     private $startDate;
     private $endDate;
@@ -34,6 +36,7 @@ class DashbordController extends Controller
      */
     public function index()
     {
+
         if (auth()->user()->hasRole('admin')) {
             return view('backend.dashboard')->with([
                 'bairros' => Neighborhood::whereNotIn('uuid', ['3e6816de-ade8-3902-bdb5-11393d32badd'])->get(),
@@ -153,16 +156,25 @@ class DashbordController extends Controller
         ];
     }
 
-    public function importCollection($dataCollection, $bairro,$toSave = false)
+    public function importCollection($dataCollection, $bairro, $toSave = false)
     {
         $collection = Excel::toCollection(new BiospImport, storage_path('SA.xlsx'));
         $data = $dataCollection;
         $collection[0][0][0] .= '-' . $bairro;
+
+        /**
+         * @author @inkomomutane
+         * Generating report
+         */
+
         for ($i = 0; $i < $data->count(); $i++) {
             $collection[0][3 + $i] = collect($data[$i])->values();
         }
-        if($toSave) {
-            $path = 'rl/'."Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx';
+
+        $collection[1]= $this->relatorio($dataCollection,$bairro);
+
+        if ($toSave) {
+            $path = 'rl/' . "Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx';
             try {
                 Excel::store(new BiospExport($collection), $path);
                 return $path;
@@ -171,14 +183,9 @@ class DashbordController extends Controller
             }
 
             return $path;
-        }
-        else
-        return Excel::download(new BiospExport($collection), "Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx');
+        } else
+            return Excel::download(new BiospExport($collection), "Relatório do bairro de " . $bairro . " " . date_format(now(), "d-M-Y") . '.xlsx');
     }
-
-
-
-
 
     public function lastMonth(Request $request, Neighborhood $bairro)
     {
@@ -186,14 +193,15 @@ class DashbordController extends Controller
             $request->hasValidSignature()
         ) {
             return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
-        } elseif(auth()->check()){
+        } elseif (auth()->check()) {
             if (
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid) {
+                auth()->user()->hasRole('admin') ||
+                auth()->user()->neighborhood_uuid == $bairro->uuid
+            ) {
                 return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
             }
             abort(404);
-        }else{
+        } else {
             return abort(404);
         }
     }
@@ -204,20 +212,21 @@ class DashbordController extends Controller
             $request->hasValidSignature()
         ) {
             return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name);
-        } elseif(auth()->check()){
+        } elseif (auth()->check()) {
             if (
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid) {
-                return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month ))->get()), $bairro->name);
+                auth()->user()->hasRole('admin') ||
+                auth()->user()->neighborhood_uuid == $bairro->uuid
+            ) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name);
             }
-        }else{
+        } else {
             return abort(403);
         }
     }
 
     public function thisMonthForMail(Neighborhood $bairro)
     {
-      return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name,true);
+        return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name, true);
     }
 
 
@@ -227,13 +236,14 @@ class DashbordController extends Controller
             $request->hasValidSignature()
         ) {
             return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
-        } elseif(auth()->check()){
+        } elseif (auth()->check()) {
             if (
-            auth()->user()->hasRole('admin') ||
-            auth()->user()->neighborhood_uuid == $bairro->uuid) {
+                auth()->user()->hasRole('admin') ||
+                auth()->user()->neighborhood_uuid == $bairro->uuid
+            ) {
                 return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->get()), $bairro->name);
             }
-        }else{
+        } else {
             return abort(403);
         }
     }
@@ -244,12 +254,13 @@ class DashbordController extends Controller
             $request->hasValidSignature()
         ) {
             return  $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month - 1))->get()), $bairro->name);
-        } elseif(auth()->check()){
+        } elseif (auth()->check()) {
             if (
-            auth()->user()->hasRole('admin') ) {
-                return  $this->importCollection(BenificiaryResource::collection(Benificiary::all()),'Todos');
+                auth()->user()->hasRole('admin')
+            ) {
+                return  $this->importCollection(BenificiaryResource::collection(Benificiary::all()), 'Todos');
             }
-        }else{
+        } else {
             return abort(403);
         }
     }
