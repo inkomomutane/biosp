@@ -14,11 +14,6 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-
-        $date  = now();
-        //echo $date->month(0)->monthName;
-        echo $date->month(12);
-        dd(( $date->month(5)->month > 3  ? $date->month - 3 : 1 ));
         $this->assertTrue(true);
     }
 }

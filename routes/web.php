@@ -32,9 +32,6 @@ Auth::routes([
 ]);
 
 
-//
-
-Route::get('/json',[Sync::class,'settings']);
 Route::get('/', function () {
  /*   try{
 //dd(File::link(storage_path('app/public'), __DIR__ . "/../../public_html/biosp/storage"));
