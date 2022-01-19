@@ -35,7 +35,7 @@ trait RemoveDuplicates
         try {
          return  DB::table($model->getTable())->whereIn($uniqueKey,$this->toRemove)->delete();
         } catch (\Throwable $th) {
-            throw $th;
+            //$th
         }
     }
 

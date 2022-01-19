@@ -12,12 +12,15 @@ use App\Models\PurposeOfVisit;
 use App\Models\ReasonOpeningCase;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BenificiaryController as Server;
+use App\Http\Traits\RemoveDuplicates;
 use App\Models\Benificiary;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 class Sync extends Controller
 {
+
+    use RemoveDuplicates;
 
     public function ben()
     {
@@ -90,6 +93,8 @@ class Sync extends Controller
 
     public function settings()
     {
+        $this->init(new Benificiary(),'uuid');
+
         return [
             'document_types' => DocumentType::all(),
             'forwarded_services' => ForwardedService::all(),
