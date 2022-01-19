@@ -19,7 +19,9 @@ trait RemoveDuplicates
     {
         $this->model  = $model;
         $this->uniqueKey  = $uniqueKey;
-        $model::all()->lazy()->each(function ($singleModel){
+        $model::whereYear('service_date',now()->year)
+        ->whereMonth('service_date','>=',( now()->month > 2 ? now()->month - 2 : 1 ))
+        ->lazy()->each(function ($singleModel){
            $data = DB::table($singleModel->getTable())
            ->where(
             $this->queryParams($this->model->getFillable(),$singleModel->toArray())
