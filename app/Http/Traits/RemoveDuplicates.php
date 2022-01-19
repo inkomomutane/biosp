@@ -19,8 +19,7 @@ trait RemoveDuplicates
     {
         $this->model  = $model;
         $this->uniqueKey  = $uniqueKey;
-        $model::whereYear('service_date',now()->year)
-        ->lazy()->each(function ($singleModel){
+        $model::all()->lazy()->each(function ($singleModel){
            $data = DB::table($singleModel->getTable())
            ->where(
             $this->queryParams($this->model->getFillable(),$singleModel->toArray())
@@ -34,7 +33,7 @@ trait RemoveDuplicates
             }
         });
 
-dd($this->toRemove);
+        //dd($this->toRemove);
 
         try {
          return  DB::table($model->getTable())->whereIn($uniqueKey,$this->toRemove)->delete();
