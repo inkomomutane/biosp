@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Api\Syncronization\Sync;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
@@ -32,7 +32,6 @@ Auth::routes([
 ]);
 
 
-//
 Route::get('/', function () {
  /*   try{
 //dd(File::link(storage_path('app/public'), __DIR__ . "/../../public_html/biosp/storage"));

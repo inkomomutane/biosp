@@ -21,7 +21,13 @@ class Sync extends Controller
 
     public function ben()
     {
-        $beneficiaries =  collect(Benificiary::where('neighborhood_uuid', Auth::user()->neighborhood_uuid)->get());
+        $beneficiaries =  collect(
+            Benificiary::
+            where('neighborhood_uuid', Auth::user()->neighborhood_uuid)
+            ->whereYear('service_date',now()->year)
+            ->whereMonth('service_date','>=',( now()->month > 2 ? now()->month - 2 : 1 ))
+            ->limit(1000)->orderBy('service_date','desc')->get()
+        );
         $benificiaries = $beneficiaries->map(function($ben,$key){
              $ben->created_at = $ben->created_at->format('Y-m-d H:i:s.u');
              $ben->updated_at = $ben->updated_at->format('Y-m-d H:i:s.u');
