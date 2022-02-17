@@ -25,7 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('send:report')->monthlyOn(30,'6:0')->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
+         $schedule->command('send:report')->everyMinute()->days([
+            Schedule::MONDAY,Schedule::THURSDAY,Schedule::WEDNESDAY,Schedule::TUESDAY,Schedule::FRIDAY
+        ])->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
          $schedule->command('send:hourly-report')->everyMinute()->days([
             Schedule::MONDAY,Schedule::THURSDAY,Schedule::WEDNESDAY,Schedule::TUESDAY,Schedule::FRIDAY
         ])->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
