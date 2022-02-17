@@ -221,7 +221,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
 
     function random_color_part()
         {
-            return "#ffffff";
+            return "ffffff";
         }
 
         function random_color()
