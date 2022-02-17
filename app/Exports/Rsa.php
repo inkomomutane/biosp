@@ -70,164 +70,37 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
         ]);
 
         $i = 5;
-        $color = $this->random_color();
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
         ++$i;
-                $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                    [
-                        'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                        'rotation' => 0,
-                        'startColor' => [
-                            'rgb' =>  $color
-                        ],
-                        'endColor' => [
-                            'argb' => $color
-                        ]
-                    ]
-                );
         foreach (Genre::all() as $value) {
             ++$i;
-            $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                [
-                    'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                    'rotation' => 0,
-                    'startColor' => [
-                        'rgb' =>  $color
-                    ],
-                    'endColor' => [
-                        'argb' => $color
-                    ]
-                ]
-            );
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color =  $this->random_color();
         foreach (PurposeOfVisit::all() as  $value) {
             ++$i;
-            $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                [
-                    'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                    'rotation' => 0,
-                    'startColor' => [
-                        'rgb' =>  $color
-                    ],
-                    'endColor' => [
-                        'argb' => $color
-                    ]
-                ]
-            );
+
             foreach (Genre::all() as $genre) {
                 ++$i;
-                $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                    [
-                        'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                        'rotation' => 0,
-                        'startColor' => [
-                            'rgb' =>  $color
-                        ],
-                        'endColor' => [
-                            'argb' => $color
-                        ]
-                    ]
-                );
             }
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color =  $this->random_color();
         foreach (ReasonOpeningCase::all() as  $value) {
             ++$i;
-            $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                [
-                    'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                    'rotation' => 0,
-                    'startColor' => [
-                        'rgb' =>  $color
-                    ],
-                    'endColor' => [
-                        'argb' => $color
-                    ]
-                ]
-            );
         }
         ++$i;
         $sheet->mergeCells("A{$i}:B$i");
-        $color =  $this->random_color();
-        foreach (ForwardedService::all() as  $value) {
-            ++$i;
-            $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                [
-                    'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                    'rotation' => 0,
-                    'startColor' => [
-                        'rgb' =>  $color
-                    ],
-                    'endColor' => [
-                        'argb' => $color
-                    ]
-                ]
-            );
-            foreach (Genre::all() as $genre) {
-                ++$i;
-                $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                    [
-                        'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                        'rotation' => 0,
-                        'startColor' => [
-                            'rgb' =>  $color
-                        ],
-                        'endColor' => [
-                            'argb' => $color
-                        ]
-                    ]
-                );
-            }
+        foreach (ForwardedService::all() as  $value) {++$i;
+            foreach (Genre::all() as $genre) {++$i;}
         }
         ++$i;
         $sheet->mergeCells("a{$i}:B$i");
-        $color =  $this->random_color();
         foreach (ForwardedService::all() as  $value) {
-            ++$i;
-            $sheet->getStyle("A$i:b$i")->getFill()->applyFromArray(
-                [
-                    'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                    'rotation' => 0,
-                    'startColor' => [
-                        'rgb' =>  $color
-                    ],
-                    'endColor' => [
-                        'argb' => $color
-                    ]
-                ]
-            );
-        }
-
-        //#bbd8f2
-        $sheet->getStyle("b7:b{$this->length}")->getFill()->applyFromArray(
-            [
-                'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                'rotation' => 0,
-                'startColor' => [
-                    'rgb' =>  "bbd8f2"
-                ],
-                'endColor' => [
-                    'argb' => "bbd8f2"
-                ]
-            ]
-        );
+            ++$i;}
     }
 
-    function random_color_part()
-        {
-            return "ffffff";
-        }
-
-        function random_color()
-        {
-            return  $this->random_color_part();
-        }
     /**
      *
      *
