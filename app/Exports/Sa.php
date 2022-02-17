@@ -47,29 +47,7 @@ class Sa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidths
         ]);
 
         $sheet->mergeCells("a1:x2");
-        $sheet->getStyle('A1:x2')->getFill()->applyFromArray(
-            [
-                'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                'rotation' => 0,
-                'startColor' => [
-                    'rgb' => 'aed199'
-                ],
-                'endColor' => [
-                    'argb' => 'aed199'
-                ]
-        ]);
-        $sheet->getStyle('A3:x3')->getFill()->applyFromArray(
-            [
-                'fillType' => Fill::FILL_GRADIENT_LINEAR,
-                'rotation' => 0,
-                'startColor' => [
-                    'rgb' => 'a5abac'
-                ],
-                'endColor' => [
-                    'argb' => 'a5abac'
-                ]
-        ]);
-        //
+       
 
             $sheet->getStyle('a1:x'.$this->length)->getAlignment()->applyFromArray(
                 [
