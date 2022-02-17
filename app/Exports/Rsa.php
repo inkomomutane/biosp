@@ -226,7 +226,7 @@ class Rsa implements FromCollection, ShouldAutoSize, WithStyles, WithColumnWidth
 
         function random_color()
         {
-            return  $this->random_color_part() .  $this->random_color_part().  $this->random_color_part();
+            return  $this->random_color_part();
         }
     /**
      *
