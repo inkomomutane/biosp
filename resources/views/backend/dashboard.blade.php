@@ -131,10 +131,10 @@
                 <div class="card-header">
                     <div class="col-sm-12">
                         <h4 class="float-left">Gráfico Resumo.</h4>
-                        <button class="btn btn-primary float-right" data-toggle="modal" data-target="#filtroRelatorio">
+                        <!--button class="btn btn-primary float-right" data-toggle="modal" data-target="#filtroRelatorio">
                             <i class="fa fa-chart-line" aria-hidden="true"></i>
                             Usar filtro avançado
-                        </button>
+                        </button-->
                     </div>
 
                 </div>
