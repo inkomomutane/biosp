@@ -44,6 +44,7 @@ catch(\Throwable $e){
 });
 
 Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
+Route::any('/relatorio_mensal/{bairro}',[DashbordController::class,'thisMonthForMailWeb'])->name('relatorio_mensal');
 
 Route::middleware(['auth'])->group(function () {
 

@@ -224,6 +224,18 @@ class DashbordController extends Controller
         }
     }
 
+    public function thisMonthForMailWeb(Request $request,Neighborhood $bairro)
+    {
+        if (
+            $request->hasValidSignature()
+        ){
+            return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month) - 1 )->get()), $bairro->name, true);
+
+        }else{
+            abort(401);
+        }
+          }
+
     public function thisMonthForMail(Neighborhood $bairro)
     {
         return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month) - 1 )->get()), $bairro->name, true);
