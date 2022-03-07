@@ -226,7 +226,7 @@ class DashbordController extends Controller
 
     public function thisMonthForMail(Neighborhood $bairro)
     {
-        return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month))->get()), $bairro->name, true);
+        return $this->importCollection(BenificiaryResource::collection(Benificiary::where('neighborhood_uuid', $bairro->uuid)->whereMonth('service_date', (now()->month) - 1 )->get()), $bairro->name, true);
     }
 
 
