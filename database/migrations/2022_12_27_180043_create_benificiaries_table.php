@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('other_forwarded_service')->nullable();
             $table->string('specify_purpose_of_visit')->nullable();
             $table->string('visit_proposes')->nullable();
+            $table->string('biosp_uuid')->nullable()->index('fk_benificiaries_biosp1_idx');
+
             $table->string('genre_uuid')->nullable()->index('fk_biospdatabases_genres1_idx');
             $table->string('provenace_uuid')->nullable()->index('fk_biospdatabases_provenaces1_idx');
             $table->string('reason_opening_case_uuid')->nullable()->index('fk_biospdatabases_reason_opening_cases1_idx');

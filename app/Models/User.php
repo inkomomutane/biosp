@@ -59,4 +59,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Biosp::class, 'biosp_uuid');
     }
+
+    public function biosps()
+	{
+		return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_uuid', 'biosp_uuid')
+					->withPivot('uuid')
+					->withTimestamps();
+	}
 }

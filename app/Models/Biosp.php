@@ -55,4 +55,16 @@ class Biosp extends Model
 					->withPivot('uuid')
 					->withTimestamps();
 	}
+
+    public function users()
+	{
+		return $this->belongsToMany(User::class, 'user_biosps', 'biosp_uuid', 'user_uuid')
+					->withPivot('uuid')
+					->withTimestamps();
+	}
+
+    public function biosp() : BelongsTo
+    {
+        return $this->belongsTo(Biosp::class, 'biosp_uuid');
+    }
 }

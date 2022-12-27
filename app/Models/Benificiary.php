@@ -79,6 +79,7 @@ class Benificiary extends Model
 		'home_care',
 		'date_received',
 		'status',
+        'biosp_uuid',
 		'6',
 		'other_document_type',
 		'other_reason_opening_case',

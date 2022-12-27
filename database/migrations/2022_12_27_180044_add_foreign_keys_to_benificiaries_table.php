@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('benificiaries', function (Blueprint $table) {
+            $table->foreign(['biosp_uuid'], 'fk_benificiaries_biosp1')->references(['uuid'])->on('biosps')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['document_type_uuid'], 'fk_benificiaries_document_types1')->references(['uuid'])->on('document_types')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['forwarded_service_uuid'], 'fk_benificiaries_forwarded_services1')->references(['uuid'])->on('forwarded_services')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['purpose_of_visit_uuid'], 'fk_benificiaries_purpose_of_visits1')->references(['uuid'])->on('purpose_of_visits')->onUpdate('NO ACTION')->onDelete('NO ACTION');
@@ -31,6 +32,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('benificiaries', function (Blueprint $table) {
+            $table->dropForeign('fk_benificiaries_biosp1_idx');
             $table->dropForeign('fk_benificiaries_document_types1');
             $table->dropForeign('fk_benificiaries_forwarded_services1');
             $table->dropForeign('fk_benificiaries_purpose_of_visits1');
