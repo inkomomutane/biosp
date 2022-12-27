@@ -13,7 +13,7 @@ class LoginTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic feature test example.
+     * Login Auth.
      *
      * @return void
      */

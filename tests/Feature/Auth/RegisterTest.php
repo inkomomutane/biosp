@@ -11,14 +11,13 @@ class RegisterTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic feature test example.
+     * Register desibling testing.
      *
      * @return void
      */
     public function test_is_register_route_for_visitor_route_disabled()
     {
         $response = $this->get('/register');
-
         $response->assertStatus(404);
     }
 }
