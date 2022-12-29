@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Admin;
+namespace Tests\Feature\Http\Controllers\Admin\UserController;
 
 use App\Models\User;
 use Database\Seeders\RolesAndPermissionsSeeder;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
-class UserControllerTest extends TestCase
+class AllUsersTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -68,7 +68,7 @@ class UserControllerTest extends TestCase
      /**
       * @group views
       */
-     public function test_user_index_cable_to_show_all_users()
+     public function test_user_index_view_is_showing_all_users()
      {
          $user = (User::factory(45)->create())->first();
          $user->syncRoles(['super-admin']);

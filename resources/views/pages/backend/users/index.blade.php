@@ -14,7 +14,7 @@
                             <span class="text-muted mt-1 fw-semibold fs-7"></span>
                         </h3>
                         <div class="card-toolbar">
-                            <a href="#" class="btn btn-sm btn-light-info">
+                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-light-info">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                 <span class="svg-icon svg-icon-2">
                                     @svg('fluentui-person-add-24')
@@ -77,7 +77,7 @@
                                         </td>
 
                                         <td class="text-end">
-                                            <a href=""
+                                            <a href="{{ route('user.edit',$user->uuid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Edit user')}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -94,7 +94,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                            <a href="#" onclick="document.querySelector('#user_index_{{$user->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Delete user')}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
@@ -113,6 +113,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
+                                            <form action="{{ route('user.destroy',$user->uuid) }}" method="post" id="user_index_{{$user->uuid}}" >@csrf @method('DELETE')</form>
                                         </td>
                                     </tr>
                                     @empty
