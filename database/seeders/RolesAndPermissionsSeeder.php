@@ -17,17 +17,11 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-
         $arrayOfRolesNames = ['super-admin', 'admin','aops-admin','aosp'];
         $permissions = collect($arrayOfRolesNames)->map(function ($role) {
             return ['name' => $role, 'guard_name' => 'web' ,'created_at' => now(),'updated_at' => now() ];
         });
 
         Role::insert($permissions->toArray());
-
-        // Role::create(['name' => 'super-admin']);
-        // Role::create(['name' => 'admin']);
-        // Role::create(['name' => 'aops-admin']);
-        // Role::create(['name' =>  'aosp']);
     }
 }

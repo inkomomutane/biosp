@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('biosps', function (Blueprint $table) {
             $table->comment('');
             $table->uuid('uuid')->primary();
+            $table->softDeletes();
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('project_name')->nullable();
-            $table->foreignUuid('neighborhood_uuid')->constrained('neighborhoods','uuid');
+            $table->foreignUuid('neighborhood_uuid')->constrained('neighborhoods','uuid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

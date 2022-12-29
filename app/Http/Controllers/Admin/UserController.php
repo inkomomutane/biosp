@@ -10,14 +10,20 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware([ 'auth','role:super-admin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
-        //
+        return User::all();
     }
 
     /**

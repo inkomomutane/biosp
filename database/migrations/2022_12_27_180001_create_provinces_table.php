@@ -19,7 +19,7 @@ return new class extends Migration
             $table->uuid('uuid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->foreignUuid('country_uuid')->constrained('countries','uuid');
+            $table->foreignUuid('country_uuid')->constrained('countries','uuid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

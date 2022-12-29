@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('/dashboard');
 })->name('welcome');
 
 Auth::routes([
@@ -28,12 +29,16 @@ Auth::routes([
     'password.update' => false,
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::any('/dark_mode', function () {
     Session::put(['dark' => ((! Session::get('dark')) ?? true)]);
-
     return redirect()->back();
 });
+
+Route::prefix('dashboard')->middleware(['auth', 'role:super-admin'])->group(function () {
+    Route::resource('user', UserController::class);
+});
+
 
 /**
  * Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');

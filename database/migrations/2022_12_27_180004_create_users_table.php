@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps','uuid') ;
+            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps','uuid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

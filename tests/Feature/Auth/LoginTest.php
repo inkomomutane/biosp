@@ -16,18 +16,18 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function test_user_can_authenticate_and_redirect_to_home()
+    public function test_user_can_authenticate_and_redirect_to_dashboard()
     {
         User::factory()->create([
             'email' => 'test@email.com',
             'password' => Hash::make('password'),
         ]);
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email' => 'test@email.com',
             'password' => 'password',
         ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect('/home');
+        $response->assertRedirect(route('dashboard'));
     }
 }

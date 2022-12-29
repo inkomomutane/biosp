@@ -31,7 +31,6 @@ final class BiospFactory extends Factory
             'name' => $this->faker->name,
             'project_name' => $this->faker->word,
             'neighborhood_uuid' => \App\Models\Neighborhood::factory(),
-            'biosp_uuid' => \App\Models\Biosp::factory(),
         ];
     }
 }

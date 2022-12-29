@@ -31,8 +31,7 @@ return new class extends Migration
             $table->string('specify_purpose_of_visit')->nullable();
             $table->string('visit_proposes')->nullable();
 
-
-            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps', 'uuid');
+            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('genre_uuid')->nullable()->constrained('genres', 'uuid');
             $table->foreignUuid('provenace_uuid')->nullable()->constrained('provenaces', 'uuid');
             $table->foreignUuid('reason_opening_case_uuid')->nullable()->constrained('reason_opening_cases', 'uuid');
