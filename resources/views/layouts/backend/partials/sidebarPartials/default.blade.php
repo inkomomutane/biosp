@@ -21,7 +21,7 @@
             </span>
             <!--end::Svg Icon-->
         </span>
-        <span class="menu-title">Dashboard</span>
+        <span class="menu-title">{{__('Dashboard')}}</span>
     </a>
 </div>
 
@@ -31,11 +31,9 @@
             <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
             <span class="svg-icon svg-icon-2 ">
                 @svg('fluentui-person-board-24')
-                {{-- <i class="far fa-users align-middle text-light " data-feather="users"></i> --}}
-
             </span>
             <!--end::Svg Icon-->
         </span>
-        <span class="menu-title">Usuários</span>
+        <span class="menu-title">{{__('Users')}}</span>
     </a>
 </div>

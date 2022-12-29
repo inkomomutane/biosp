@@ -16,17 +16,16 @@ class LoginTest extends DuskTestCase
      *
      * @return void
      */
-    public function test_user_can_authenticate_and_redirect_to_home()
+    public function test_user_can_authenticate_and_redirect_to_dashboard()
     {
         $user = User::factory()->create();
-
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/login')
+            $browser->visit(route('login'))
             ->type('email', $user->email)
             ->type('password', 'password')
             ->press('Login')
-            ->assertPathIs('/home')
-            ->screenshot('homepage.png');
+            ->assertPathIs('/dashboard')
+            ->screenshot('dashboard');
         });
     }
 }

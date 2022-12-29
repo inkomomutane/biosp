@@ -15,9 +15,9 @@ class ExampleTest extends DuskTestCase
     public function testBasicExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
+            $browser->visit(route('login'))
                     ->assertSee('Password')
-                    ->screenshot('login.png');
+                    ->screenshot('login');
         });
     }
 }

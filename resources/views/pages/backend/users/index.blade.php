@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', 'Create Users')
-@section('title', 'Create Users')
+@section('dashboard_title', __('Users'))
+@section('title', __('Users'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -10,7 +10,7 @@
                     <!--begin::Header-->
                     <div class="card-header border-0 pt-3">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bold fs-3 mb-1">Users</span>
+                            <span class="card-label fw-bold fs-3 mb-1">{{__('Users')}}</span>
                             <span class="text-muted mt-1 fw-semibold fs-7"></span>
                         </h3>
                         <div class="card-toolbar">
@@ -19,7 +19,7 @@
                                 <span class="svg-icon svg-icon-2">
                                     @svg('fluentui-person-add-24')
                                 </span>
-                                <!--end::Svg Icon-->Create User
+                                <!--end::Svg Icon-->{{__('Create user')}}
                             </a>
                         </div>
                     </div>
@@ -33,10 +33,10 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bolder fs-7 text-light bg-dark rounded">
-                                        <th class="ps-4 rounded-start">User</th>
-                                        <th class="">Previleges</th>
-                                        <th class="">Email</th>
-                                        <th class=" text-center rounded-end">Actions</th>
+                                        <th class="ps-4 rounded-start">{{__('User')}}</th>
+                                        <th class="">{{__('Previleges')}}</th>
+                                        <th class="">{{__('Email')}}</th>
+                                        <th class=" text-center rounded-end">{{__('Actions')}}</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
@@ -66,7 +66,7 @@
                                                 class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
                                                Level
                                             </a>
-                                            <span class="text-muted fw-semibold text-muted d-block fs-7"> {{ Str::upper($user->roles()?->first()?->name ?? 'Without roles') }} </span>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7"> {{ __(Str::upper($user->roles()?->first()?->name ?? 'Without roles')) }} </span>
                                         </td>
                                         <td class="">
                                             <a href="#"
@@ -79,7 +79,7 @@
                                         <td class="text-end">
                                             <a href=""
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Edit user">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Edit user')}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -95,7 +95,7 @@
                                                 <!--end::Svg Icon-->
                                             </a>
                                             <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete user">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Delete user')}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -117,7 +117,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5">Nenuma aplicação foi encontrada</td>
+                                        <td colspan="5">{{__('No users found.')}}</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
