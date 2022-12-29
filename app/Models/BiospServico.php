@@ -6,8 +6,8 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 class BiospServico extends Model
 {
     use HasFactory;
-    use Uuids;
+    use HasUuids;
 
     protected $table = 'biosp_servicos';
 

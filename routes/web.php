@@ -32,13 +32,13 @@ Auth::routes([
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::any('/dark_mode', function () {
     Session::put(['dark' => ((! Session::get('dark')) ?? true)]);
+
     return redirect()->back();
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'role:super-admin'])->group(function () {
     Route::resource('user', UserController::class);
 });
-
 
 /**
  * Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');

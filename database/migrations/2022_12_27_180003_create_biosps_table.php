@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('project_name')->nullable();
-            $table->foreignUuid('neighborhood_uuid')->constrained('neighborhoods','uuid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('neighborhood_uuid')->constrained('neighborhoods', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

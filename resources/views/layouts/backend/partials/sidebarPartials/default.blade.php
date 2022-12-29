@@ -1,6 +1,6 @@
 <!--begin::Dashboard Route Link-->
 <div class="menu-item">
-    <a class="menu-link @if (request()->routeIs('home')) active @endif" href="{{ route('home') }}">
+    <a class="menu-link @if (request()->routeIs('dashboard')) active @endif" href="{{ route('dashboard') }}">
         <span class="menu-icon">
             <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
             <span class="svg-icon svg-icon-2">
@@ -22,5 +22,20 @@
             <!--end::Svg Icon-->
         </span>
         <span class="menu-title">Dashboard</span>
+    </a>
+</div>
+
+<div class="menu-item">
+    <a class="menu-link @if (request()->routeIs('user.index')) active @endif" href="{{ route('user.index') }}">
+        <span class="menu-icon">
+            <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+            <span class="svg-icon svg-icon-2 ">
+                @svg('fluentui-person-board-24')
+                {{-- <i class="far fa-users align-middle text-light " data-feather="users"></i> --}}
+
+            </span>
+            <!--end::Svg Icon-->
+        </span>
+        <span class="menu-title">Usuários</span>
     </a>
 </div>

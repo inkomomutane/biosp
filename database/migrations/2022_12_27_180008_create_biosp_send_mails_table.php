@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('biosp_send_mails', function (Blueprint $table) {
             $table->comment('responsabel to store email to send repports');
             $table->uuid('uuid')->primary();
-            $table->foreignUuid('biosps_uuid')->constrained('biosps','uuid')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('send_mails_uuid')->constrained('send_mails','uuid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('biosps_uuid')->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUuid('send_mails_uuid')->constrained('send_mails', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

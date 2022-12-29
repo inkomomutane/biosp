@@ -21,17 +21,17 @@ import jQuery from 'jquery'
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
 window.Sortable = Sortable;
 Sortable.mount(new MultiDrag(), new Swap());
-import './modules/datatables';
+// import './modules/datatables';
 
 // import 'datatables.net-responsive-bs5';
 
-$("#kt_datatable_example_1").DataTable({
-    language:{
-        url:'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json'
-    },
-    responsive: {
-        details: true
-    }});
+// $("#kt_datatable_example_1").DataTable({
+//     language:{
+//         url:'https://cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json'
+//     },
+//     responsive: {
+//         details: true
+//     }});
 
 // Class definition
 var KTApp = function () {

@@ -10,10 +10,9 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware([ 'auth','role:super-admin']);
+        $this->middleware(['auth', 'role:super-admin']);
     }
 
     /**
@@ -23,7 +22,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::paginate(5);
+
+        return view('pages.backend.users.index')
+        ->with('users', $users);
     }
 
     /**
