@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forwarded_services', function (Blueprint $table) {
+        Schema::create('provenaces', function (Blueprint $table) {
             $table->comment('');
+            $table->uuid('uuid')->primary();
             $table->softDeletes();
-            $table->string('uuid')->primary();
-            $table->string('name')->nullable();
             $table->timestamps();
+            $table->string('name')->nullable();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forwarded_services');
+        Schema::dropIfExists('provenaces');
     }
 };

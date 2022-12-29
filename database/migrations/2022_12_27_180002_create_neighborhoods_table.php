@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reason_opening_cases', function (Blueprint $table) {
+        Schema::create('neighborhoods', function (Blueprint $table) {
             $table->comment('');
             $table->softDeletes();
-            $table->string('uuid')->primary();
-            $table->string('name')->nullable();
+            $table->uuid('uuid')->primary();
             $table->timestamps();
+            $table->string('name')->nullable();
+            $table->foreignUuid('province_uuid')->nullable()->constrained('provinces','uuid');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reason_opening_cases');
+        Schema::dropIfExists('neighborhoods');
     }
 };

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('syncronizations', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->comment('');
-            $table->timestamp('last_sync_at')->nullable();
+            $table->softDeletes();
+            $table->uuid('uuid')->primary();
             $table->timestamps();
-            $table->bigInteger('id', true);
-            $table->string('user_uuid');
-            $table->boolean('complete')->nullable()->default(false);
+            $table->string('name')->nullable();
+            $table->foreignUuid('country_uuid')->constrained('countries','uuid');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('syncronizations');
+        Schema::dropIfExists('provinces');
     }
 };

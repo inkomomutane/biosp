@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('neighborhoods', function (Blueprint $table) {
-            $table->foreign(['province_uuid'], 'fk_neighborhoods_provinces1')->references(['uuid'])->on('provinces')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+        Schema::create('forwarded_services', function (Blueprint $table) {
+            $table->comment('');
+            $table->softDeletes();
+            $table->uuid('uuid')->primary();
+            $table->string('name')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('neighborhoods', function (Blueprint $table) {
-            $table->dropForeign('fk_neighborhoods_provinces1');
-        });
+        Schema::dropIfExists('forwarded_services');
     }
 };

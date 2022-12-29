@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('send_mails', function (Blueprint $table) {
             $table->comment('');
-            $table->string('uuid')->primary();
+            $table->uuid('uuid')->primary();
             $table->string('email');
             $table->timestamps();
         });

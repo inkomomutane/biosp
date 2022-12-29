@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('biosps', function (Blueprint $table) {
-            $table->foreign(['neighborhood_uuid'], 'fk_biosps_neighborhoods1')->references(['uuid'])->on('neighborhoods')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+        Schema::create('document_types', function (Blueprint $table) {
+            $table->comment('');
+            $table->softDeletes();
+            $table->timestamps();
+            $table->string('name')->nullable();
+            $table->uuid('uuid')->primary();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('biosps', function (Blueprint $table) {
-            $table->dropForeign('fk_biosps_neighborhoods1');
-        });
+        Schema::dropIfExists('document_types');
     }
 };

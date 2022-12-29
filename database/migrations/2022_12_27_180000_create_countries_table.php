@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('biosps', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->comment('');
-            $table->string('uuid')->primary();
+            $table->softDeletes();
+            $table->uuid('uuid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->string('project_name')->nullable();
-            $table->string('neighborhood_uuid');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biosps');
+        Schema::dropIfExists('countries');
     }
 };

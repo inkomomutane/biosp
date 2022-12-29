@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('provenaces', function (Blueprint $table) {
+        Schema::create('biosps', function (Blueprint $table) {
             $table->comment('');
-            $table->string('uuid')->primary();
-            $table->softDeletes();
+            $table->uuid('uuid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
+            $table->string('project_name')->nullable();
+            $table->foreignUuid('neighborhood_uuid')->constrained('neighborhoods','uuid');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provenaces');
+        Schema::dropIfExists('biosps');
     }
 };

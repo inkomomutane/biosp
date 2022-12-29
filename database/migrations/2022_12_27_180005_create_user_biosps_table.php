@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('document_types', function (Blueprint $table) {
-            $table->comment('');
-            $table->softDeletes();
-            $table->timestamps();
-            $table->string('name')->nullable();
+        Schema::create('user_biosps', function (Blueprint $table) {
             $table->string('uuid')->primary();
+            $table->foreignUuid('user_uuid')->constrained('users','uuid');
+            $table->foreignUuid('biosp_uuid')->constrained('biosps','uuid');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_types');
+        Schema::dropIfExists('user_biosps');
     }
 };

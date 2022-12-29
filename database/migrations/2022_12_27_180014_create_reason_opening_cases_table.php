@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
+        Schema::create('reason_opening_cases', function (Blueprint $table) {
             $table->comment('');
-            $table->string('uuid')->primary();
             $table->softDeletes();
+            $table->uuid('uuid')->primary();
             $table->string('name')->nullable();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
+        Schema::dropIfExists('reason_opening_cases');
     }
 };

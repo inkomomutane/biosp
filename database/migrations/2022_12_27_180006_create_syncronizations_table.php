@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('biosp_servicos', function (Blueprint $table) {
+        Schema::create('syncronizations', function (Blueprint $table) {
             $table->comment('');
-            $table->string('uuid')->primary();
+            $table->timestamp('last_sync_at')->nullable();
             $table->timestamps();
-            $table->string('model_type')->nullable();
-            $table->string('model_id')->nullable();
-            $table->string('table')->nullable();
+            $table->bigInteger('id', true);
+            $table->uuid('user_uuid');
+            $table->boolean('complete')->nullable()->default(false);
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biosp_servicos');
+        Schema::dropIfExists('syncronizations');
     }
 };

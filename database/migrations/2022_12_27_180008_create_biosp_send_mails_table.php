@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_biosps', function (Blueprint $table) {
-            $table->string('uuid')->primary();
-            $table->string('user_uuid')->index('fk_user_biosps_user_uuid1_idx');
-            $table->string('biosp_uuid')->index('fk_user_biosps_biosp_uuid1_idx');
+        Schema::create('biosp_send_mails', function (Blueprint $table) {
+            $table->comment('responsabel to store email to send repports');
+            $table->uuid('uuid')->primary();
+            $table->foreignUuid('biosps_uuid')->constrained('biosps','uuid');
+            $table->foreignUuid('send_mails_uuid')->constrained('send_mails','uuid');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_biosps');
+        Schema::dropIfExists('biosp_send_mails');
     }
 };

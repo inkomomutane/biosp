@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('provinces', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->comment('');
-            $table->softDeletes();
-            $table->string('uuid')->primary();
+            $table->uuid('uuid')->primary();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
-            $table->string('name')->nullable();
-            $table->string('country_uuid');
+            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps','uuid') ;
         });
     }
 
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provinces');
+        Schema::dropIfExists('users');
     }
 };
