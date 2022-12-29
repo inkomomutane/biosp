@@ -22,27 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property string $uuid
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class DocumentType extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'document_types';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'document_types';
 
-	protected $fillable = [
-		'name'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function benificiaries() : HasMany
-	{
-		return $this->hasMany(Benificiary::class, 'document_type_uuid');
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'document_type_uuid');
+    }
 }

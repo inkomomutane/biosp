@@ -24,34 +24,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property string|null $province_uuid
- *
  * @property Province|null $province
  * @property Collection|Biosp[] $biosps
- *
- * @package App\Models
  */
 class Neighborhood extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'neighborhoods';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'neighborhoods';
 
-	protected $fillable = [
-		'name',
-		'province_uuid'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function province() : BelongsTo
-	{
-		return $this->belongsTo(Province::class, 'province_uuid');
-	}
+    public $incrementing = false;
 
-	public function biosps() : HasMany
-	{
-		return $this->hasMany(Biosp::class, 'neighborhood_uuid');
-	}
+    protected $fillable = [
+        'name',
+        'province_uuid',
+    ];
+
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class, 'province_uuid');
+    }
+
+    public function biosps(): HasMany
+    {
+        return $this->hasMany(Biosp::class, 'neighborhood_uuid');
+    }
 }

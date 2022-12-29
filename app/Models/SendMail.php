@@ -20,28 +20,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $email
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Biosp[] $biosps
- *
- * @package App\Models
  */
 class SendMail extends Model
 {
     use HasFactory;
     use Uuids;
 
-	protected $table = 'send_mails';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'send_mails';
 
-	protected $fillable = [
-		'email'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function biosps() : BelongsToMany
-	{
-		return $this->belongsToMany(Biosp::class, 'biosp_send_mails', 'send_mails_uuid', 'biosps_uuid')
-					->withPivot('uuid')
-					->withTimestamps();
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'email',
+    ];
+
+    public function biosps(): BelongsToMany
+    {
+        return $this->belongsToMany(Biosp::class, 'biosp_send_mails', 'send_mails_uuid', 'biosps_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
+    }
 }

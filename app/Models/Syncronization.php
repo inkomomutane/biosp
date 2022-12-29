@@ -19,27 +19,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $user_uuid
  * @property bool|null $complete
- *
- * @package App\Models
  */
 class Syncronization extends Model
 {
-
     use HasFactory;
 
-	protected $table = 'syncronizations';
+    protected $table = 'syncronizations';
 
-	protected $casts = [
-		'complete' => 'bool'
-	];
+    protected $casts = [
+        'complete' => 'bool',
+    ];
 
-	protected $dates = [
-		'last_sync_at'
-	];
+    protected $dates = [
+        'last_sync_at',
+    ];
 
-	protected $fillable = [
-		'last_sync_at',
-		'user_uuid',
-		'complete'
-	];
+    protected $fillable = [
+        'last_sync_at',
+        'user_uuid',
+        'complete',
+    ];
 }

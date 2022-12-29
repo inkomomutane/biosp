@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::table('user_biosps', function (Blueprint $table) {
             $table->foreign(['biosp_uuid'], 'fk_user_biosps_biosp_uuid1')->references(['uuid'])->on('biosps')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['user_uuid'], 'fk_user_biosps_user_uuid1')->references(['uuid'])->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-
         });
     }
 

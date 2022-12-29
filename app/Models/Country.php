@@ -22,27 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- *
  * @property Collection|Province[] $provinces
- *
- * @package App\Models
  */
 class Country extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'countries';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'countries';
 
-	protected $fillable = [
-		'name'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function provinces() : HasMany
-	{
-		return $this->hasMany(Province::class, 'country_uuid');
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function provinces(): HasMany
+    {
+        return $this->hasMany(Province::class, 'country_uuid');
+    }
 }

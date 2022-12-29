@@ -11,36 +11,35 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class UserBiosp
- * 
+ *
  * @property string $uuid
  * @property string $user_uuid
  * @property string $biosp_uuid
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
  * @property Biosp $biosp
  * @property User $user
- *
- * @package App\Models
  */
 class UserBiosp extends Model
 {
-	protected $table = 'user_biosps';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'user_biosps';
 
-	protected $fillable = [
-		'user_uuid',
-		'biosp_uuid'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function biosp()
-	{
-		return $this->belongsTo(Biosp::class, 'biosp_uuid');
-	}
+    public $incrementing = false;
 
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'user_uuid');
-	}
+    protected $fillable = [
+        'user_uuid',
+        'biosp_uuid',
+    ];
+
+    public function biosp()
+    {
+        return $this->belongsTo(Biosp::class, 'biosp_uuid');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_uuid');
+    }
 }

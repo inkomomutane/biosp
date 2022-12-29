@@ -23,47 +23,46 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string|null $name
  * @property string|null $project_name
  * @property string $neighborhood_uuid
- *
  * @property Neighborhood $neighborhood
  * @property Collection|SendMail[] $send_mails
- *
- * @package App\Models
  */
 class Biosp extends Model
 {
     use HasFactory;
     use Uuids;
 
-	protected $table = 'biosps';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'biosps';
 
-	protected $fillable = [
-		'name',
-		'project_name',
-		'neighborhood_uuid'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function neighborhood() : BelongsTo
-	{
-		return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
-	}
+    public $incrementing = false;
 
-	public function send_mails() : BelongsToMany
-	{
-		return $this->belongsToMany(SendMail::class, 'biosp_send_mails', 'biosps_uuid', 'send_mails_uuid')
-					->withPivot('uuid')
-					->withTimestamps();
-	}
+    protected $fillable = [
+        'name',
+        'project_name',
+        'neighborhood_uuid',
+    ];
+
+    public function neighborhood(): BelongsTo
+    {
+        return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
+    }
+
+    public function send_mails(): BelongsToMany
+    {
+        return $this->belongsToMany(SendMail::class, 'biosp_send_mails', 'biosps_uuid', 'send_mails_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
+    }
 
     public function users()
-	{
-		return $this->belongsToMany(User::class, 'user_biosps', 'biosp_uuid', 'user_uuid')
-					->withPivot('uuid')
-					->withTimestamps();
-	}
+    {
+        return $this->belongsToMany(User::class, 'user_biosps', 'biosp_uuid', 'user_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
+    }
 
-    public function biosp() : BelongsTo
+    public function biosp(): BelongsTo
     {
         return $this->belongsTo(Biosp::class, 'biosp_uuid');
     }

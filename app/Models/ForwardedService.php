@@ -22,27 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class ForwardedService extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'forwarded_services';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'forwarded_services';
 
-	protected $fillable = [
-		'name'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function benificiaries() : HasMany
-	{
-		return $this->hasMany(Benificiary::class, 'forwarded_service_uuid');
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'forwarded_service_uuid');
+    }
 }

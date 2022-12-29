@@ -22,28 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class Genre extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
+    protected $table = 'genres';
 
-	protected $table = 'genres';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $primaryKey = 'uuid';
 
-	protected $fillable = [
-		'name'
-	];
+    public $incrementing = false;
 
-	public function benificiaries() : HasMany
-	{
-		return $this->hasMany(Benificiary::class, 'genre_uuid');
-	}
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'genre_uuid');
+    }
 }

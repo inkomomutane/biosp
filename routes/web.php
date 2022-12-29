@@ -25,17 +25,17 @@ Auth::routes([
     'reset' => false,
     'password.email' => false,
     'confirm' => false,
-    'password.update' => false
+    'password.update' => false,
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::any('/dark_mode', function () {
-    Session::put(['dark' => ( (!Session::get('dark')) ?? true ) ]);
+    Session::put(['dark' => ((! Session::get('dark')) ?? true)]);
+
     return redirect()->back();
 });
 
 /**
- *
  * Route::any('/relatorio/{bairro}',[DashbordController::class,'thisMonth'])->name('relatorio');
 
 Route::middleware(['auth'])->group(function () {

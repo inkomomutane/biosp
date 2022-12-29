@@ -22,27 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class ReasonOpeningCase extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'reason_opening_cases';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'reason_opening_cases';
 
-	protected $fillable = [
-		'name'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function benificiaries() : HasMany
-	{
-		return $this->hasMany(Benificiary::class, 'reason_opening_case_uuid');
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'reason_opening_case_uuid');
+    }
 }

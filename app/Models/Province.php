@@ -24,34 +24,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property string $country_uuid
- *
  * @property Country $country
  * @property Collection|Neighborhood[] $neighborhoods
- *
- * @package App\Models
  */
 class Province extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'provinces';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'provinces';
 
-	protected $fillable = [
-		'name',
-		'country_uuid'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function country() : BelongsTo
-	{
-		return $this->belongsTo(Country::class, 'country_uuid');
-	}
+    public $incrementing = false;
 
-	public function neighborhoods() : HasMany
-	{
-		return $this->hasMany(Neighborhood::class, 'province_uuid');
-	}
+    protected $fillable = [
+        'name',
+        'country_uuid',
+    ];
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class, 'country_uuid');
+    }
+
+    public function neighborhoods(): HasMany
+    {
+        return $this->hasMany(Neighborhood::class, 'province_uuid');
+    }
 }

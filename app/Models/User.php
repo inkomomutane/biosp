@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,7 +21,8 @@ class User extends Authenticatable
     use HasUuids;
 
     protected $primaryKey = 'uuid';
-	public $incrementing = false;
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +33,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'biosp_uuid'
+        'biosp_uuid',
     ];
 
     /**
@@ -55,15 +55,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function biosp() : BelongsTo
+    public function biosp(): BelongsTo
     {
         return $this->belongsTo(Biosp::class, 'biosp_uuid');
     }
 
     public function biosps()
-	{
-		return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_uuid', 'biosp_uuid')
-					->withPivot('uuid')
-					->withTimestamps();
-	}
+    {
+        return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_uuid', 'biosp_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
+    }
 }

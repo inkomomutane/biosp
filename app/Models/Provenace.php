@@ -22,27 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class Provenace extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
     use HasFactory;
     use Uuids;
 
-	protected $table = 'provenaces';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'provenaces';
 
-	protected $fillable = [
-		'name'
-	];
+    protected $primaryKey = 'uuid';
 
-	public function benificiaries() : HasMany
-	{
-		return $this->hasMany(Benificiary::class, 'provenace_uuid');
-	}
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'provenace_uuid');
+    }
 }

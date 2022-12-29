@@ -4,7 +4,6 @@ namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
@@ -16,7 +15,7 @@ class UserControllerTest extends TestCase
     {
         $role = Role::create([
             'guard' => 'web',
-            'name' => 'aosp'
+            'name' => 'aosp',
         ]);
         $user = User::factory()->create();
         $user->assignRole($role);

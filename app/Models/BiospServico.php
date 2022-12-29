@@ -20,22 +20,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $model_type
  * @property string|null $model_id
  * @property string|null $table
- *
- * @package App\Models
  */
 class BiospServico extends Model
 {
-
     use HasFactory;
     use Uuids;
 
-	protected $table = 'biosp_servicos';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    protected $table = 'biosp_servicos';
 
-	protected $fillable = [
-		'model_type',
-		'model_id',
-		'table'
-	];
+    protected $primaryKey = 'uuid';
+
+    public $incrementing = false;
+
+    protected $fillable = [
+        'model_type',
+        'model_id',
+        'table',
+    ];
 }
