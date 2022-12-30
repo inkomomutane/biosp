@@ -7,6 +7,7 @@
     "click here to request another": "click here to request another",
     "Confirm Password": "Confirm Password",
     "Dashboard": "Dashboard",
+    "Dark Mode" : "Dark Mode",
     "Email Address": "Email Address",
     "Forbidden": "Forbidden",
     "Forgot Your Password?": "Forgot Your Password?",
@@ -52,5 +53,16 @@
     "Verify Your Email Address": "Verify Your Email Address",
     "Whoops!": "Whoops!",
     "You are logged in!": "You are logged in!",
-    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account."
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+    "Create user": "Create user",
+    "Users": "Users",
+    "Full name": "Full name",
+    "All users": "All users",
+    "Store user": "Store user",
+    "Update user": "Update user",
+    "Privileges": "Privileges",
+    "Actions": "Actions",
+    "Edit user": "Edit user",
+     "Delete user": "Delete user",
+     "Change language" : "Change language"
 }

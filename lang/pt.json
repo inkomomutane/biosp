@@ -7,7 +7,7 @@
     "click here to request another": "clique aqui para solicitar outro",
     "Confirm Password": "Confirmar Palavra-passe",
     "Dashboard": "Painel de Controlo",
-    "Email Address": "endereco",
+    "Email Address": "Endereço de email",
     "Forbidden": "Proibido",
     "Forgot Your Password?": "Esqueceu a Palavra-passe?",
     "Go to page :page": "Ir para a página :page",
@@ -52,5 +52,17 @@
     "Verify Your Email Address": "Verifique o seu endereço de e-mail",
     "Whoops!": "Ops!",
     "You are logged in!": "Tem sessão iniciada!",
-    "You are receiving this email because we received a password reset request for your account.": "Recebeu esse e-mail porque foi solicitada a redefinição da palavra-passe da sua conta."
+    "You are receiving this email because we received a password reset request for your account.": "Recebeu esse e-mail porque foi solicitada a redefinição da palavra-passe da sua conta.",
+    "Create user": "Criar usuário",
+    "Edit user": "Editar usuário",
+    "Delete user": "Excluir usuário",
+    "Users": "Usuários",
+    "Full name": "Nome completo",
+    "All users": "Todos usuários",
+    "Store user": "Salvar usuário",
+    "Dark Mode" : "Modo Noturno",
+    "Update user": "Atualizar usuário",
+    "Privileges": "Privilégios",
+    "Actions": "Ações",
+    "Change language" : "Alterar idioma"
 }

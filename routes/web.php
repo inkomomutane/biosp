@@ -29,14 +29,19 @@ Auth::routes([
     'password.update' => false,
 ]);
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])
+->name('dashboard')
+->middleware(['auth','lang']);
+
+Route::get('/dashboard/location/{lang}',[App\Http\Controllers\Core\LanguageController::class , 'change'])
+->name('change.language')->middleware(['auth','lang']);
+
 Route::any('/dark_mode', function () {
     Session::put(['dark' => ((! Session::get('dark')) ?? true)]);
-
     return redirect()->back();
-});
+})->middleware(['auth','lang']);
 
-Route::prefix('dashboard')->middleware(['auth', 'role:super-admin'])->group(function () {
+Route::prefix('dashboard')->middleware(['auth','lang','role:super-admin'])->group(function () {
     Route::resource('user', UserController::class);
 });
 

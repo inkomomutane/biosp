@@ -72,9 +72,9 @@ class CreateUserTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('user.create'));
         $response->assertViewIs('pages.backend.users.create_edit');
         $response->assertSee(__('Full name'));
-        $response->assertSee(__('Email'));
+        $response->assertSee(__('Email Address'));
         $response->assertSee(__('Password'));
-        $response->assertSee(__('Password confirmation'));
+        $response->assertSee(__('Confirm Password'));
         $response->assertSee(__('Create user'));
         $response->assertSee(__('Store user'));
     }

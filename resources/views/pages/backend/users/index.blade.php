@@ -34,8 +34,8 @@
                                 <thead>
                                     <tr class="fw-bolder fs-7 text-light bg-dark rounded">
                                         <th class="ps-4 rounded-start">{{__('User')}}</th>
-                                        <th class="">{{__('Previleges')}}</th>
-                                        <th class="">{{__('Email')}}</th>
+                                        <th class="">{{__('Privileges')}}</th>
+                                        <th class="">{{__('Email Address')}}</th>
                                         <th class=" text-center rounded-end">{{__('Actions')}}</th>
                                     </tr>
                                 </thead>

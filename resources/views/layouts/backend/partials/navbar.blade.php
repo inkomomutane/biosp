@@ -1,6 +1,11 @@
 <div id="kt_header" style="" class="header align-items-stretch">
+
+
+
     <!--begin::Container-->
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
+
+
         <!--begin::Aside mobile toggle-->
         <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
@@ -21,6 +26,7 @@
         </div>
         <!--end::Aside mobile toggle-->
 
+
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="{{ route('welcome') }}" class="d-lg-none">
                 <img src="" class="resource_image h-30px" data-image="logo/logo.svg">
@@ -38,6 +44,7 @@
                     data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
                     data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                     <!--begin::Menu-->
+
                     <!--end::Menu-->
                 </div>
                 <!--end::Menu wrapper-->
@@ -45,6 +52,54 @@
             <!--end::Navbar-->
             <!--begin::Toolbar wrapper-->
             <div class="d-flex align-items-stretch flex-shrink-0">
+                <div class="d-flex align-items-center ms-1 ms-lg-3">
+                      <span class="menu-link py-2 btn btn-active-light btn-active-color-primary btn-text-mutted" data-kt-menu-trigger="click"
+                    data-kt-menu-placement="bottom-start">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
+                            <span class="svg-icon-2">
+                                @foreach ((config('app.avaliable_locates')) as $key => $locate)
+                                    @if($locate == app()->getLocale())
+                                        @svg('flag-country-'. ($locate  == 'en'? 'us' : $locate ),'flag')
+                                        @break
+                                    @endif
+
+                                @endforeach
+                             </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title fs-6"> {{__('Change language')}}</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+
+                    <!--begin::Menu-->
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4"
+                        data-kt-menu="true">
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                            <a href="{{ route('change.language', ['lang'=> 'pt']) }}" class="menu-link @if (app()->getLocale() == 'pt') active @endif  px-3">
+                                Português
+                            </a>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3">
+                            <a href="{{ route('change.language', ['lang'=> 'fr']) }}" class="menu-link px-3  @if (app()->getLocale() == 'fr') active @endif ">
+                                Français
+                            </a>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-3 ">
+                            <a href="{{ route('change.language', ['lang'=> 'en']) }}" class="menu-link px-3  @if (app()->getLocale() == 'en') active @endif">
+                                English
+                            </a>
+                        </div>
+                        <!--end::Menu item-->
+                    </div>
+                    <!--end::Menu-->
+
+                </div>
 
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
                     <!--begin::Theme mode docs-->
@@ -65,6 +120,7 @@
                     </span>
                     <!--end::Theme mode docs-->
                 </div>
+
 
                 <!--begin::User menu-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
@@ -104,8 +160,8 @@
                         <div class="menu-item px-5">
                             <form action="{{ route('logout') }}" method="post" id="logout">@method('POST')@csrf
                             </form>
-                            <span class="menu-link px-5" onclick="document.querySelector('#logout').submit()">Sign
-                                Out</span>
+                            <span class="menu-link px-5"
+                                onclick="document.querySelector('#logout').submit()">{{ __('Logout') }}</span>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu separator-->
@@ -124,7 +180,7 @@
                                         id="kt_user_menu_dark_mode_toggle"
                                         @if (Session::get('dark')) checked @endif />
                                     <span class="pulse-ring ms-n1"></span>
-                                    <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
+                                    <span class="form-check-label text-gray-600 fs-7">{{ __('Dark Mode') }}</span>
                                 </label>
                             </div>
                         </div>
@@ -141,3 +197,5 @@
     </div>
     <!--end::Container-->
 </div>
+
+{{-- file:///home/alex-mutane/Documents/Workspace/Web_dev/html/demo1/dist/index.html --}}

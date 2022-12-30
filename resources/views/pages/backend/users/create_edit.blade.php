@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', request()->routeIs('user.edit') ? __('Update user ' . $user->name) : __('Create user'))
-@section('title', request()->routeIs('user.edit') ? __('Update user ' . $user->name) : __('Create user'))
+@section('dashboard_title', request()->routeIs('user.edit') ? __('Update user') ." " . $user->name : __('Create user'))
+@section('title', request()->routeIs('user.edit') ? __('Update user'). ' ' . $user->name : __('Create user'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -68,11 +68,11 @@
                                     <!--begin::Col-->
                                     <div class="col-md-6 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Email') }}</label>
+                                        <label class="required fs-5 fw-bold mb-2">{{ __('Email Address') }}</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid"
-                                            placeholder="{{ __('Email') }}" name="email" required
+                                            placeholder="{{ __('Email Address') }}" name="email" required
                                             value="@if (old('email')) {{ old('email') }}@elseif(request()->routeIs('user.edit'))
                                             {{ $user->email }} @endif" />
                                         <!--end::Input-->
@@ -113,11 +113,11 @@
                                     <!--begin::Col-->
                                     <div class="col-md-6 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Password confirmation') }}</label>
+                                        <label class="required fs-5 fw-bold mb-2">{{ __('Confirm Password') }}</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <input type="password" class="form-control form-control-solid"
-                                            placeholder="{{ __('Password confirmation') }}" name="password_confirmation" required" />
+                                            placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required" />
                                         <!--end::Input-->
                                         @error('password_confirmation')
                                             <!--begin::Error full name -->
@@ -143,4 +143,4 @@
     </div>
 @endsection
 
-{{-- file:///home/alex-mutane/Documents/Workspace/Web_dev/html/demo1/dist/pages/careers/apply.html --}}
+

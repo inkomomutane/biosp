@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', 'Dashboard')
-@section('title', 'Dashboard')
+@section('dashboard_title', __('Dashboard'))
+@section('title', __('Dashboard'))
 @section('content')
     <div class="row justify-content-center">
         <div class="row g-3">
