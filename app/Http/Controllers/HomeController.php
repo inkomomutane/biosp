@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
+        $this->flash()->addSuccess('Data has been saved successfully!');
         return view('pages.backend.home');
     }
 }

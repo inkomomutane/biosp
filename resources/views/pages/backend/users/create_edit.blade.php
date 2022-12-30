@@ -23,7 +23,7 @@
                                 <span class="text-muted mt-1 fw-semibold fs-7"></span>
                             </h3>
                             <div class="card-toolbar">
-                                <button type="submit" class="btn btn-sm btn-light-success">
+                                <button type="submit" class="btn btn-sm btn-light-success" name="store user">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         @svg('fluentui-person-add-24')

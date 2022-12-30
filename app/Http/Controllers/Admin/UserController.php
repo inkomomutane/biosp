@@ -7,6 +7,7 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,7 +47,28 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+            try {
+                $data = $request->all();
+                $dataCreate  = array();
+
+                foreach ($data as $key => $value) {
+                    if ($key == "password"  || $key == "password_confirmation" && $value) {
+                        $value = Hash::make($value);
+                    }
+                    if (!is_null($value)) {
+                        $dataCreate[$key] = $value;
+                    }
+                }
+                 $user = User::create($dataCreate);
+                 $user->syncRoles(['aosp']);
+                $this->flash()->addSuccess(__('User created.'));
+                return redirect()->route('user.index');
+        } catch (\Throwable $th) {
+            throw $th;
+            $this->flash()->addError(__('Error creating user.'));
+            return redirect()->route('user.index');
+        }
+
     }
 
     /**

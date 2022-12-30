@@ -6,6 +6,7 @@ use App\Models\User;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -34,6 +35,7 @@ class StoreUserTest extends TestCase
     public function test_is_store_user_route_forbide_to_sucess_with_empty_request()
     {
         $response = $this->actingAs($this->user)->post(route('user.store'));
+
         $response->assertSessionHasErrors('name');
         $response->assertSessionHasErrors('email');
         $response->assertSessionHasErrors('password');
@@ -48,8 +50,9 @@ class StoreUserTest extends TestCase
             'email' => $this->faker->userName,
             'name' => $this->faker->words(400),
             'password' => $this->faker()->words(3),
-            'passowrd_confirmation' => $this->faker()->words(7),
+            'password_confirmation' => $this->faker()->words(7),
         ]));
+
         $response->assertSessionHasErrors('name');
         $response->assertSessionHasErrors('email');
         $response->assertSessionHasErrors('password');
@@ -60,21 +63,23 @@ class StoreUserTest extends TestCase
      */
     public function test_is_store_user_route_success_with_valid_data_request()
     {
-        $user = User::factory()->make();
-
-        $response = $this->actingAs($this->user)->post(route('user.store', [
+        $userCreate = [
             'email' => $this->faker->safeEmail(),
             'name' => $this->faker->userName(),
+        ];
+        $response = $this->actingAs($this->user)->post(route('user.store', array_merge([
             'password' => 'password',
-            'password_confirmation' => 'password',
-        ]));
-        $response->assertOk();
+            'password_confirmation' => 'password'
+        ], $userCreate)));
+
         $response->assertRedirectToRoute('user.index');
-        $response->assertViewIs('pages.backend.users.index');
-        $response->assertSee($user->name);
-        $response->assertSee($user->email);
-        $response->assertSee(__(Str::upper($user->roles()->first()->name)));
-        $response->assertSee(__('WITHOUT ROLES'));
-        $response->assertViewHas('users');
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseHas('users', $userCreate);
+        $lastCreatedUser = User::latest()->first();
+        $this->assertEquals($userCreate, [
+            'name' => $lastCreatedUser->name,
+            'email' => $lastCreatedUser->email
+        ]);
+
     }
 }
