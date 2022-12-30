@@ -21,6 +21,7 @@ import jQuery from 'jquery'
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
 window.Sortable = Sortable;
 Sortable.mount(new MultiDrag(), new Swap());
+
 // import './modules/datatables';
 
 // import 'datatables.net-responsive-bs5';

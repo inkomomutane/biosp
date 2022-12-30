@@ -47,28 +47,29 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-            try {
-                $data = $request->all();
-                $dataCreate  = array();
+        try {
+            $data = $request->all();
+            $dataCreate = [];
 
-                foreach ($data as $key => $value) {
-                    if ($key == "password"  || $key == "password_confirmation" && $value) {
-                        $value = Hash::make($value);
-                    }
-                    if (!is_null($value)) {
-                        $dataCreate[$key] = $value;
-                    }
+            foreach ($data as $key => $value) {
+                if ($key == 'password' || $key == 'password_confirmation' && $value) {
+                    $value = Hash::make($value);
                 }
-                 $user = User::create($dataCreate);
-                 $user->syncRoles(['aosp']);
-                $this->flash()->addSuccess(__('User created.'));
-                return redirect()->route('user.index');
+                if (! is_null($value)) {
+                    $dataCreate[$key] = $value;
+                }
+            }
+            $user = User::create($dataCreate);
+            $user->syncRoles(['aosp']);
+            $this->flash()->addSuccess(__('User created.'));
+
+            return redirect()->route('user.index');
         } catch (\Throwable $th) {
             throw $th;
             $this->flash()->addError(__('Error creating user.'));
+
             return redirect()->route('user.index');
         }
-
     }
 
     /**
@@ -79,7 +80,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        abort(401);
     }
 
     /**
@@ -90,7 +91,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+
+        return view('pages.backend.users.create_edit',[
+            'user' => $user
+        ]);
     }
 
     /**

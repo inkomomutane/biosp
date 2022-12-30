@@ -5,13 +5,13 @@
  * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
  */
 
-return array(
-    'scripts' => array(
-        'cdn' => array(
+return [
+    'scripts' => [
+        'cdn' => [
             'https://cdn.jsdelivr.net/npm/@flasher/flasher-notyf@1.2.4/dist/flasher-notyf.min.js',
-        ),
-        'local' => array(
+        ],
+        'local' => [
             '/vendor/flasher/flasher-notyf.min.js',
-        ),
-    ),
-);
+        ],
+    ],
+];

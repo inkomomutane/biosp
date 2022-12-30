@@ -15,6 +15,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@flasher/flasher": "^1.2.4",
         "animate.css": "^4.1.1",
         "datatables.net": "^1.13.1",
         "datatables.net-responsive-bs5": "^2.4.0",

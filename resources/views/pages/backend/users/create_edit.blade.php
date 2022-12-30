@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', request()->routeIs('user.edit') ? __('Update user') ." " . $user->name : __('Create user'))
-@section('title', request()->routeIs('user.edit') ? __('Update user'). ' ' . $user->name : __('Create user'))
+@section('dashboard_title', request()->routeIs('user.edit') ? __('Update user') . ' ' . $user->name : __('Create user'))
+@section('title', request()->routeIs('user.edit') ? __('Update user') . ' ' . $user->name : __('Create user'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -19,7 +19,14 @@
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-3">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold fs-3 mb-1">{{ __('Create user') }}</span>
+                                <span class="card-label fw-bold fs-3 mb-1">
+                                    @if (request()->routeIs('user.edit'))
+                                        {{ __('Update user') }}
+                                    @else
+                                        {{ __('Store user') }}
+                                    @endif
+
+                                </span>
                                 <span class="text-muted mt-1 fw-semibold fs-7"></span>
                             </h3>
                             <div class="card-toolbar">
@@ -53,8 +60,7 @@
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid"
                                             placeholder="{{ __('Full name') }}" name="name" required
-                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('user.edit'))
-                                            {{ $user->name }} @endif" />
+                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('user.edit')){{ $user->name }} @endif" />
                                         <!--end::Input-->
                                         @error('name')
                                             <!--begin::Error full name -->
@@ -73,8 +79,7 @@
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid"
                                             placeholder="{{ __('Email Address') }}" name="email" required
-                                            value="@if (old('email')) {{ old('email') }}@elseif(request()->routeIs('user.edit'))
-                                            {{ $user->email }} @endif" />
+                                            value="@if (old('email')) {{ old('email') }}@elseif(request()->routeIs('user.edit')){{ $user->email }} @endif" />
                                         <!--end::Input-->
                                         @error('email')
                                             <!--begin::Error Email -->
@@ -89,46 +94,47 @@
                                 <!--end::Input group-->
 
                                 @if (!request()->routeIs('user.edit'))
-                                <!--begin::Input group-->
-                                <div class="row mb-5">
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Password') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="password" class="form-control form-control-solid"
-                                            placeholder="{{ __('Password') }}" name="password" required
-                                            value="@if (old('password')) {{ old('password') }} @endif" />
-                                        <!--end::Input-->
-                                        @error('password')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
-                                    </div>
-                                    <!--end::Col-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-5">
+                                        <!--begin::Col-->
+                                        <div class="col-md-6 fv-row">
+                                            <!--begin::Label-->
+                                            <label class="required fs-5 fw-bold mb-2">{{ __('Password') }}</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                placeholder="{{ __('Password') }}" name="password" required
+                                                value="@if (old('password')) {{ old('password') }} @endif" />
+                                            <!--end::Input-->
+                                            @error('password')
+                                                <!--begin::Error full name -->
+                                                <span
+                                                    class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
+                                                <!--end::Error full name-->
+                                            @enderror
+                                        </div>
+                                        <!--end::Col-->
 
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Confirm Password') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="password" class="form-control form-control-solid"
-                                            placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required" />
-                                        <!--end::Input-->
-                                        @error('password_confirmation')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
+                                        <!--begin::Col-->
+                                        <div class="col-md-6 fv-row">
+                                            <!--begin::Label-->
+                                            <label class="required fs-5 fw-bold mb-2">{{ __('Confirm Password') }}</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                placeholder="{{ __('Confirm Password') }}" name="password_confirmation"
+                                                required" />
+                                            <!--end::Input-->
+                                            @error('password_confirmation')
+                                                <!--begin::Error full name -->
+                                                <span
+                                                    class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
+                                                <!--end::Error full name-->
+                                            @enderror
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
+                                    <!--end::Input group-->
                                 @endif
                                 <!--end::Form-->
                             </div>
@@ -142,5 +148,3 @@
         </div>
     </div>
 @endsection
-
-

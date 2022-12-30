@@ -6,8 +6,6 @@ use App\Models\User;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class StoreUserTest extends TestCase
@@ -69,7 +67,7 @@ class StoreUserTest extends TestCase
         ];
         $response = $this->actingAs($this->user)->post(route('user.store', array_merge([
             'password' => 'password',
-            'password_confirmation' => 'password'
+            'password_confirmation' => 'password',
         ], $userCreate)));
 
         $response->assertRedirectToRoute('user.index');
@@ -78,8 +76,7 @@ class StoreUserTest extends TestCase
         $lastCreatedUser = User::latest()->first();
         $this->assertEquals($userCreate, [
             'name' => $lastCreatedUser->name,
-            'email' => $lastCreatedUser->email
+            'email' => $lastCreatedUser->email,
         ]);
-
     }
 }

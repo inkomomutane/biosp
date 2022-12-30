@@ -24,19 +24,16 @@ class CreateAndStoreUserTest extends DuskTestCase
         $this->user->assignRole('super-admin');
     }
 
-
-
     public function test_is_admin_us_up_to_store_user_without_error_on_screen()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->user)->visit(route('user.create'))
-            ->type('name','Mulato')
-            ->typeSlowly('email','mulatolas@gmail.com')
-            ->typeSlowly('password','password')
-            ->typeSlowly('password_confirmation','password')
+            ->type('name', 'Mulato')
+            ->typeSlowly('email', 'mulatolas@gmail.com')
+            ->typeSlowly('password', 'password')
+            ->typeSlowly('password_confirmation', 'password')
             ->press('store user')
-            ->assertRouteIs('user.index')
-            ;
+            ->assertRouteIs('user.index');
         });
     }
 }

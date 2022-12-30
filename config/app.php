@@ -110,7 +110,6 @@ return [
 
     'faker_locale' => 'en_US',
 
-
     /**
      |-------------------------------------------------------------------------
      | Available Locates
@@ -118,14 +117,13 @@ return [
      | All locates that is switchable with app
      |
      */
-
-     'avaliable_locates' =>  [
+    'avaliable_locates' => [
         'United States' => 'en',
         'Mozambique' => 'pt',
         'France' => 'fr',
         'Guinea-Bissau' => 'pt',
         'Chad' => 'fr',
-        'Portugal' => 'pt'
+        'Portugal' => 'pt',
     ],
 
     /*

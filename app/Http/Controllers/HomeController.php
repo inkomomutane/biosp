@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+
 
 class HomeController extends Controller
 {
@@ -19,9 +19,9 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Renderable
+     * @return View
      */
-    public function index(): Renderable
+    public function index()
     {
         $this->flash()->addSuccess('Data has been saved successfully!');
         return view('pages.backend.home');

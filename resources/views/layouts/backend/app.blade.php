@@ -29,7 +29,6 @@
         <!--end::Page-->
     </div>
     <!--end::Root-->
-    @livewireScripts
     @include('layouts.backend.partials.js')
 </body>
 </html>

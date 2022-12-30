@@ -13,7 +13,6 @@ class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-
     public function setUp(): void
     {
         parent::setUp();
@@ -42,7 +41,6 @@ class LoginTest extends DuskTestCase
             ->assertPathIs('/dashboard')->screenshot('dashboard');
         });
     }
-
 
     public function test_super_admin_user_can_authenticate_and_redirect_to_complete_dashboard()
     {

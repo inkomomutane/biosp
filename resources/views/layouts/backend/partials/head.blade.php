@@ -23,6 +23,5 @@
     @vite([ 'resources/sass/backend/style.scss', 'resources/js/backend/app.js'])
     @endguest
     <!-- Scripts -->
-    @livewireStyles
     @stack('css')
 </head>

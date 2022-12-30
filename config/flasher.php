@@ -5,7 +5,7 @@
  * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
  */
 
-return array(
+return [
     /*
     |--------------------------------------------------------------------------
     | Default PHPFlasher library
@@ -49,10 +49,10 @@ return array(
     | You can then specify the local path to the javascript file in the 'local'
     | field of this option.
     */
-    'root_script' => array(
+    'root_script' => [
         'cdn' => 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.2.4/dist/flasher.min.js',
         'local' => '/vendor/flasher/flasher.min.js',
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -102,9 +102,9 @@ return array(
     | into the response, you can set this option to 'false'. In this case, you will
     | need to manually include the necessary files in your application's layout.
     */
-    'auto_render' => true,
+    'auto_render' => env('PHP_FLASHER',true),
 
-    'flash_bag' => array(
+    'flash_bag' => [
         /*
         |-----------------------------------------------------------------------
         | Enable flash bag
@@ -135,13 +135,13 @@ return array(
         | the following entry to the mapping:
         |     'error' => ['danger'],
         */
-        'mapping' => array(
-            'success' => array('success'),
-            'error' => array('error', 'danger'),
-            'warning' => array('warning', 'alarm'),
-            'info' => array('info', 'notice', 'alert'),
-        ),
-    ),
+        'mapping' => [
+            'success' => ['success'],
+            'error' => ['error', 'danger'],
+            'warning' => ['warning', 'alarm'],
+            'info' => ['info', 'notice', 'alert'],
+        ],
+    ],
 
     /*
     |-----------------------------------------------------------------------
@@ -167,7 +167,7 @@ return array(
     |     'limit' => 5,
     |     'types' => ['error'],
     */
-    'filter_criteria' => array(
+    'filter_criteria' => [
         'limit' => 5, // Limit the number of notifications to display
-    ),
-);
+    ],
+];
