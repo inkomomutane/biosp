@@ -16,7 +16,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function test_user_can_authenticate_and_redirect_to_dashboard()
+    public function test_is_any_user_able_to_authenticate_and_redirect_to_dashboard()
     {
         User::factory()->create([
             'email' => 'test@email.com',

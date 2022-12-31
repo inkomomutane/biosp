@@ -11,8 +11,6 @@ class LanguageControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user;
-
     public function setUp(): void
     {
         parent::setUp();
@@ -25,14 +23,14 @@ class LanguageControllerTest extends TestCase
         $this->user->assignRole('aosp');
     }
 
-    public function test_is_possible_to_any_authenticated_user_change_their_prefered_language_on_app()
+    public function test_is_any_authenticated_user_able_to_change_their_prefered_language_on_app()
     {
         $response = $this->actingAs($this->user)->get(route('change.language', ['lang' => 'pt']));
         $response->assertStatus(302);
         $this->assertEquals('pt', app()->getLocale());
     }
 
-    public function test_is_anauthenticated_forbiden_to_change_langua()
+    public function test_is_any_anauthenticated_user_forbiden_to_change_their_prefered_language()
     {
         $response = $this->get(route('change.language', ['lang' => 'pt']));
         $response->assertRedirectToRoute('login');

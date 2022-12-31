@@ -229,4 +229,16 @@ return [
         'Location' => 'Stevebauman\Location\Facades\Location',
     ])->toArray(),
 
+
+    /*
+    |-----------------------------------------------------------------------------
+    | Avaliable Roles
+    |-----------------------------------------------------------------------------
+    |
+    | This array of all roles in this app
+    |
+    */
+
+    'app_roles' => ['super-admin','admin','aosp-admin','aosp'],
+
 ];

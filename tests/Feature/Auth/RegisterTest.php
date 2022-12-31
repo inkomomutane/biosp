@@ -14,7 +14,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function test_is_register_route_for_visitor_route_disabled()
+    public function test_is_the_register_route_disabled_for_guest_or_visitors()
     {
         $response = $this->get('/register');
         $response->assertStatus(404);

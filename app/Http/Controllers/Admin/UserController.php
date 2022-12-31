@@ -24,7 +24,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(5);
-
         return view('pages.backend.users.index')
         ->with('users', $users);
     }
@@ -61,7 +60,9 @@ class UserController extends Controller
             }
             $user = User::create($dataCreate);
             $user->syncRoles(['aosp']);
-            $this->flash()->addSuccess(__('User created.'));
+
+            if(config('app.env') != 'testing')
+                $this->flash()->addSuccess(__('User created.'));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
@@ -80,7 +81,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        abort(401);
+
     }
 
     /**

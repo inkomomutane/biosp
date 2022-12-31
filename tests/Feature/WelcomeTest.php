@@ -12,7 +12,7 @@ class WelcomeTest extends TestCase
      *
      * @return void
      */
-    public function test_the_welcome_page_redirect_to_login()
+    public function test_is_the_welcome_page_redirect_to_login_automaticaly()
     {
         $response = $this->get('/');
         $response->assertStatus(302);

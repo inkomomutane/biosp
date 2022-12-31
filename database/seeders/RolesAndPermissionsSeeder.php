@@ -16,7 +16,7 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $arrayOfRolesNames = ['super-admin', 'admin', 'aops-admin', 'aosp'];
+        $arrayOfRolesNames = ['super-admin', 'admin', 'aosp-admin', 'aosp'];
         $permissions = collect($arrayOfRolesNames)->map(function ($role) {
             return ['name' => $role, 'guard_name' => 'web', 'created_at' => now(), 'updated_at' => now()];
         });
