@@ -64,5 +64,10 @@
     "Actions": "Actions",
     "Edit user": "Edit user",
      "Delete user": "Delete user",
-     "Change language" : "Change language"
+     "Change language" : "Change language",
+     "Viewing user":"Viewing user",
+     "View user":"View user",
+     "User details":"User details",
+     "Alert":"Alert",
+     "Change user role":"Change user role"
 }

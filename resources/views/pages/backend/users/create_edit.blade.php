@@ -37,7 +37,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                     @if (request()->routeIs('user.edit'))
-                                        {{ __('Update user') }}
+                                        
                                     @else
                                         {{ __('Store user') }}
                                     @endif

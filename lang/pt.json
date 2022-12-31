@@ -64,5 +64,10 @@
     "Update user": "Atualizar usuário",
     "Privileges": "Privilégios",
     "Actions": "Ações",
-    "Change language" : "Alterar idioma"
+    "Change language" : "Alterar idioma",
+    "Viewing user":"Visualizando usuário",
+    "View user":"Visualizar usuário",
+    "User details":"Detalhes do usuário",
+    "Alert":"Alerta",
+    "Change user role":"Alterar privilégio de usuário"
 }

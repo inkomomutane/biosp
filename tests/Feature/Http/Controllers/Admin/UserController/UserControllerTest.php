@@ -8,6 +8,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -53,13 +54,14 @@ class UserControllerTest extends TestCase
      /**
      * @group routing_permission_check
      */
-    public function test_is_only_super_admin_able_to_access_user_store_route_with_200()
+    public function test_is_only_super_admin_able_to_access_user_store_route_with_302()
     {
+
         foreach (config('app.app_roles') as $role) {
             if($role == 'super-admin')
-                $this->login(role: $role)->get(route('user.store'))->assertSuccessful();
+                $this->login(role: $role)->post(route('user.store'))->assertRedirect();
             else
-                $this->login(role: $role)->get(route('user.store'))->assertForbidden();
+                $this->login(role: $role)->post(route('user.store'))->assertForbidden();
         }
     }
 
@@ -92,13 +94,13 @@ class UserControllerTest extends TestCase
      /**
      * @group routing_permission_check
      */
-    public function test_is_only_super_admin_able_to_access_user_update_route_with_200()
+    public function test_is_only_super_admin_able_to_access_user_update_route_with_302()
     {
         foreach (config('app.app_roles') as $role) {
             if($role == 'super-admin')
-                $this->login(role: $role)->get(route('user.update',$this->user))->assertSuccessful();
+                $this->login(role: $role)->put(route('user.update',$this->user))->assertRedirect();
             else
-                $this->login(role: $role)->get(route('user.update',$this->user))->assertForbidden();
+                $this->login(role: $role)->put(route('user.update',$this->user))->assertForbidden();
         }
     }
 
@@ -106,13 +108,31 @@ class UserControllerTest extends TestCase
      /**
      * @group routing_permission_check
      */
-    public function test_is_only_super_admin_able_to_access_user_destroy_route_with_200()
+    public function test_is_only_super_admin_able_to_access_user_destroy_route_with_302()
+    {
+        foreach (config('app.app_roles') as $role) {
+            if($role == 'super-admin'){
+                $user = User::factory()->create();
+                $this->login(role: $role)->delete(route('user.destroy',$user))->assertRedirect();
+            }
+            else{
+                $user = User::factory()->create();
+                $this->login(role: $role)->delete(route('user.destroy',$this->user))->assertForbidden();
+            }
+
+        }
+    }
+
+     /**
+     * @group routing_permission_check
+     */
+    public function test_is_only_super_admin_able_to_access_user_grant_role_route_with_302()
     {
         foreach (config('app.app_roles') as $role) {
             if($role == 'super-admin')
-                $this->login(role: $role)->get(route('user.destroy',$this->user))->assertSuccessful();
+                $this->login(role: $role)->post(route('user.grant_role',$this->user),['role' => '1'])->assertRedirect();
             else
-                $this->login(role: $role)->get(route('user.destroy',$this->user))->assertForbidden();
+                $this->login(role: $role)->post(route('user.grant_role',$this->user),['role' => '1'])->assertForbidden();
         }
     }
 
@@ -133,7 +153,7 @@ class UserControllerTest extends TestCase
      }
 
 
-       /**
+    /**
      * @group views
      */
     public function test_is_user_create_view_showing_all_params_to_create_new_user()
@@ -146,6 +166,23 @@ class UserControllerTest extends TestCase
         $response->assertSee(__('Confirm Password'));
         $response->assertSee(__('Create user'));
         $response->assertSee(__('Store user'));
+    }
+
+    /**
+     * @group views
+     */
+    public function test_is_user_show_view_showing_the_correct_user()
+    {
+        $response = $this->login(role:'super-admin')->get(route('user.show',[
+            'user' => $this->user
+        ]));
+        $response->assertViewIs('pages.backend.users.show');
+        $response->assertViewHas('user',$this->user);
+        $response->assertSee(__('Full name'));
+        $response->assertSee(__('Email Address'));
+        $response->assertSee($this->user->name);
+        $response->assertSee($this->user->email);
+        $response->assertSee($this->user->roles()?->first()?->name);
     }
 
 
@@ -232,4 +269,25 @@ class UserControllerTest extends TestCase
         ]);
 
     }
+
+
+    public function test_is_super_admin_able_to_change_user_role()
+    {
+        $role = Role::first();
+
+        $response = $this->login(role: 'super-admin')
+        ->post(route('user.grant_role',[
+            'user' => $this->user->uuid
+        ]),[
+            'role' => $role->id,
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertRedirectToRoute('user.show',[
+            'user' => $this->user->uuid
+        ]);
+        $this->assertEquals(true,$this->user->hasRole($role));
+
+    }
+
 }

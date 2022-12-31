@@ -44,6 +44,7 @@ Route::any('/dark_mode', function () {
 
 Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->group(function () {
     Route::resource('user', UserController::class);
+    Route::post('user/roles/grant/{user}',[UserController::class,'grant'])->name('user.grant_role');
 });
 
 /**

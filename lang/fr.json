@@ -64,5 +64,10 @@
     "Actions": "Actions",
     "Edit user": "Modifier l'utilisateur",
     "Delete user": "Supprimer l'utilisateur",
-    "Change language" : "Changer de langue"
+    "Change language" : "Changer de langue",
+    "Viewing user":"!empty",
+    "View user":"!empty",
+    "User details":"!empty",
+    "Alert":"!empty",
+    "Change user role":"!empty"
 }

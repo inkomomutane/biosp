@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\GrantRoleRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -80,7 +82,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
+        return view('pages.backend.users.show')
+        ->with('user',$user)
+        ->with('roles',Role::all());
     }
 
     /**
@@ -143,6 +147,23 @@ class UserController extends Controller
         } catch (\Throwable $th) {
           //  $this->flash()->addError('Error deleting user.');
             return redirect()->route('user.index');
+        }
+    }
+
+
+    public function grant(User $user, GrantRoleRequest $request)
+    {
+        try {
+            $user->syncRoles($request->role);
+            //  $this->flash()->addSuccess('User role granted.');
+            return redirect()->route('user.show',[
+                'user' => $user->uuid
+            ]);
+        } catch (\Throwable $th) {
+          //  $this->flash()->addError('Error grantig role to user.');
+            return redirect()->route('user.show',[
+                'user' => $user->uuid
+            ]);
         }
     }
 }
