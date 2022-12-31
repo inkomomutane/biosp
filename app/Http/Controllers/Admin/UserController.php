@@ -51,7 +51,7 @@ class UserController extends Controller
             $dataCreate = [];
 
             foreach ($data as $key => $value) {
-                if ($key == 'password' || $key == 'password_confirmation' && $value) {
+                if ($key == 'password' && $value) {
                     $value = Hash::make($value);
                 }
                 if (! is_null($value)) {
@@ -61,13 +61,12 @@ class UserController extends Controller
             $user = User::create($dataCreate);
             $user->syncRoles(['aosp']);
 
-            if(config('app.env') != 'testing')
-                $this->flash()->addSuccess(__('User created.'));
+            //  $this->flash()->addSuccess(__('User created.'));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
-            throw $th;
-            $this->flash()->addError(__('Error creating user.'));
+            // throw $th;
+          //  $this->flash()->addError(__('Error creating user.'));
 
             return redirect()->route('user.index');
         }
@@ -107,7 +106,26 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->all();
+
+        $dataUpdate  = array();
+        foreach ($data as $key => $value) {
+            if ($key == "password" && $value) {
+                $value = Hash::make($value);
+            }
+            if (!is_null($value)) {
+                $dataUpdate[$key] = $value;
+            }
+        }
+        try {
+            $user->update($dataUpdate);
+            //  $this->flash()->addSuccess('User updated.');
+            return redirect()->route('user.index');
+        } catch (\Throwable $e) {
+            // throw $e;
+          //  $this->flash()->addError('Error updating user.');
+            return redirect()->route('user.index');
+        }
     }
 
     /**
@@ -118,6 +136,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            //  $this->flash()->addSuccess('User deleted.');
+            return redirect()->route('user.index');
+        } catch (\Throwable $th) {
+          //  $this->flash()->addError('Error deleting user.');
+            return redirect()->route('user.index');
+        }
     }
 }

@@ -102,7 +102,8 @@ return [
     | into the response, you can set this option to 'false'. In this case, you will
     | need to manually include the necessary files in your application's layout.
     */
-    'auto_render' => env('PHP_FLASHER',true),
+    'auto_render' => false,
+    // env('PHP_FLASHER',null),
 
     'flash_bag' => [
         /*
@@ -119,7 +120,7 @@ return [
         | mapping specified in the 'mapping' option. When this option is set
         | to 'false', PHPFlasher will ignore flash messages in the session.
         */
-        'enabled' => true,
+        'enabled' => false,
 
         /*
         |-----------------------------------------------------------------------

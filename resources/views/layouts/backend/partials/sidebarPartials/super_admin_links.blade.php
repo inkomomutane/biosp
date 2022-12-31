@@ -27,8 +27,8 @@
 <!--End::Dashboard Route Link-->
 
 <!--begin::Users Route Links-->
-<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('user.index') || request()->routeIs('user.create')) show @endif">
-    <span class="menu-link @if (request()->routeIs('user.index') || request()->routeIs('user.create')) active @endif">
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('user.*')) show @endif">
+    <span class="menu-link @if (request()->routeIs('user.*')) active @endif">
         <span class="menu-icon">
             <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
             <span class="svg-icon svg-icon-2">

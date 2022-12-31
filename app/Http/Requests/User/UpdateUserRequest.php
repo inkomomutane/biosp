@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Unique;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->hasRole('super-admin');
     }
 
     /**
@@ -25,6 +26,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
 
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required'] , ['email'],'unique:users,email,'.$this->user->email . ',' . $this->user->uuid ,
+            'password' => ['string', 'min:8', 'confirmed','nullable'],
         ];
     }
 }

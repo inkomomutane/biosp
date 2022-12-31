@@ -169,10 +169,6 @@ class UserControllerTest extends TestCase
         $response->assertRedirectToRoute('user.index');
         $response->assertSessionDoesntHaveErrors();
         $this->assertDatabaseHas('users', $userCreate);
-        $this->assertEquals($userCreate, [
-            'name' => $userCreate['name'],
-            'email' => $userCreate['email'],
-        ]);
     }
 
 
@@ -196,5 +192,44 @@ class UserControllerTest extends TestCase
         $response->assertSee(__('Edit user'));
         $response->assertSee(__('Update user'));
         $response->assertViewHas('user',$this->user);
+    }
+
+    public function test_is_update_user_route_success_with_only_valid_data_request()
+    {
+        // $this->withExceptionHandling();
+        $userUpdate = [
+            'email' => $this->faker->safeEmail(),
+            'name' => $this->faker->userName(),
+        ];
+        $response = $this->login(role:'super-admin')
+        ->patch(route('user.update',[
+            'user' => $this->user->uuid,
+        ]),$userUpdate);
+        // dd($response);
+        $response->assertStatus(302);
+        $response->assertRedirectToRoute('user.index');
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseHas('users', $userUpdate);
+
+    }
+
+
+    public function test_is_super_admin_able_to_delete_user_()
+    {
+        $user  = clone $this->user;
+        $response = $this->login(role:'super-admin')
+        ->delete(route('user.update',[
+            'user' => $this->user->uuid,
+        ]));
+
+        $response->assertStatus(302);
+        $response->assertRedirectToRoute('user.index');
+        $response->assertSessionDoesntHaveErrors();
+        $this->assertDatabaseMissing('users',[
+            'name'  => $user->name,
+            'email' => $user->email,
+            'uuid'  => $user->uuid
+        ]);
+
     }
 }
