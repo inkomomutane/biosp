@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Admin\UserController;
+namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
@@ -255,7 +255,7 @@ class UserControllerTest extends TestCase
     {
         $user  = clone $this->user;
         $response = $this->login(role:'super-admin')
-        ->delete(route('user.update',[
+        ->delete(route('user.destroy',[
             'user' => $this->user->uuid,
         ]));
 

@@ -3,7 +3,7 @@
 
 
     <!--begin::Container-->
-    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+    <div class="container-fluid d-flex align-items-stretch justify-content-between shadow-sm">
 
 
         <!--begin::Aside mobile toggle-->
