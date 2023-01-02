@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCountryRequest extends FormRequest
 {
@@ -24,7 +25,13 @@ class UpdateCountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string','max:125', 'unique:countries,name,'.$this->country->name . ',' . $this->country->uuid ]
+            'name' => [
+                'required',
+                'string',
+                'max:125',
+                Rule::unique(table: 'countries', column: 'name')
+                ->ignore(id: $this->country->uuid, idColumn: 'uuid')
+                ]
         ];
     }
 }
