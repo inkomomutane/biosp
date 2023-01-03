@@ -147,8 +147,8 @@
                     <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
                         <!--begin::Content-->
                         <div class="mb-3 mb-md-0 fw-bold">
-                            <h4 class="text-warning fw-bolder">Alert!</h4>
-                            <div class="fs-6 text-gray-700 pe-7">Is not allowed for Super Admin Users change role for it self.  &nbsp; <strong class="text-info fw-bolder">[ Security Policy ]</strong></div>
+                            <h4 class="text-warning fw-bolder">{{__('Alert')}}!</h4>
+                            <div class="fs-6 text-gray-700 pe-7">{{__('Is not allowed for Super Admin Users change role for it self.')}}  &nbsp; <strong class="text-info fw-bolder">[ {{__('Security Policy')}} ]</strong></div>
                         </div>
                         <!--end::Content-->
                     </div>

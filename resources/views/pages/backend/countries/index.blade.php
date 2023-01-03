@@ -99,7 +99,7 @@
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{  request()->routeIs('country.trash') ?   __('Delete country Permanently')  : __('Delete country')  }} ">
+                                                    title="{{  request()->routeIs('country.trash') ?   __('Delete country permanently')  : __('Delete country')  }} ">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24"

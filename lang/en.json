@@ -69,5 +69,18 @@
      "View user":"View user",
      "User details":"User details",
      "Alert":"Alert",
-     "Change user role":"Change user role"
+     "Security Policy": "Security Policy",
+     "Change user role":"Change user role",
+     "Country": "Country",
+     "Create country": "Create country",
+     "Store country": "Store country",
+     "Update country":  "Update country",
+     "Edit country": "Edit country",
+     "Delete country": "Delete country",
+     "Restore country": "Restore country",
+     "Countries trash": "Countries trash",
+     "Delete country permanently": "Delete country permanetly",
+     "No countries found.": "No countries found.",
+     "Countries": "Countries",
+     "Is not allowed for Super Admin Users change role for it self.":"Is not allowed for Super Admin Users change role for it self."
 }

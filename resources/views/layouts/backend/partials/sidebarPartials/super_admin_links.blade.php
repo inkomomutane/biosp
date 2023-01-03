@@ -154,7 +154,7 @@
                     {{-- <span class="bullet bullet-dot"></span> --}}
                     @svg('fluentui-flag-off-16')
                 </span>
-                <span class="menu-title">{{ __('Countries Trash') }}</span>
+                <span class="menu-title">{{ __('Countries trash') }}</span>
             </a>
         </div>
     </div>

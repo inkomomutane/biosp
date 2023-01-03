@@ -69,5 +69,18 @@
     "View user":"Visualizar usuário",
     "User details":"Detalhes do usuário",
     "Alert":"Alerta",
-    "Change user role":"Alterar privilégio de usuário"
+    "Country": "País",
+    "Countries": "Paises",
+    "Create country": "Criar país",
+    "Store country": "Salvar um país",
+    "Update country":  "Actualizar um país",
+    "Edit country": "Editar país",
+    "Delete country": "Excluir país",
+    "Countries trash": "Países excluidos",
+    "No countries found.": "Nenhum país encontrado.",
+    "Restore country": "Restorar país",
+    "Delete country permanently": "Excluir permanentemente o país",
+    "Change user role":"Alterar privilégio de usuário",
+    "Security Policy": "Política de Seguraça",
+    "Is not allowed for Super Admin Users change role for it self.":"Não é permitido que usuários Super Admin alterem a função por conta própria."
 }
