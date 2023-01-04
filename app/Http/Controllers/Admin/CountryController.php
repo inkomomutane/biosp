@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Country\StoreCountryRequest;
 use App\Http\Requests\Country\UpdateCountryRequest;
+use Illuminate\Http\Response;
 
 class CountryController extends Controller
 {
@@ -18,7 +19,7 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -30,7 +31,7 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function trashedCountries()
     {
@@ -42,7 +43,7 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -52,8 +53,8 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCountryRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreCountryRequest  $request
+     * @return Response
      */
     public function store(StoreCountryRequest $request)
     {
@@ -73,8 +74,8 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
     public function show(Country $country)
     {
@@ -84,8 +85,8 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param  Country  $country
+     * @return Response
      */
     public function edit(Country $country)
     {
@@ -97,9 +98,9 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCountryRequest  $request
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param  UpdateCountryRequest  $request
+     * @param  Country $country
+     * @return Response
      */
     public function update(UpdateCountryRequest $request, Country $country)
     {
@@ -119,8 +120,8 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
     public function destroy(Country $country)
     {

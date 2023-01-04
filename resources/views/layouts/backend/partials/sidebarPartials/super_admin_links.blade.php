@@ -162,3 +162,62 @@
 
 </div>
 <!--End::Countries Route Links-->
+
+<!--begin::Provinces Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('province.*')) show @endif">
+    <span class="menu-link @if (request()->routeIs('province.*')) active @endif">
+        <span class="menu-icon">
+            <!--begin::Svg Icon -->
+            <span class="svg-icon svg-icon-2">
+                @svg('fluentui-city-16')
+            </span>
+            <!--end::Svg Icon-->
+        </span>
+        <span class="menu-title">{{ __('Provinces') }}</span>
+        <span class="menu-arrow"></span>
+    </span>
+
+    <!--begin::All provinces Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('province.index')) active @endif" href="{{ route('province.index') }}">
+                <span class="menu-bullet">
+                    @svg('fluentui-city-16')
+                </span>
+                <span class="menu-title">{{ __('All provinces') }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::All provinces Route Link-->
+
+    <!--begin::Create province Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('province.create')) active @endif" href="{{ route('province.create') }}">
+                <span class="menu-bullet">
+
+                    @svg('fluentui-city-16')
+                </span>
+                <span class="menu-title">{{ __('Create province') }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::Create country Route Link-->
+
+    @if (request()->routeIs('province.edit'))
+        <!--begin::Edit country Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('province.edit')) active @endif" href="">
+                    <span class="menu-bullet">
+                        @svg('fluentui-city-16')
+                    </span>
+                    <span class="menu-title">{{ __('Edit province') }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit country Route Link-->
+    @endif
+
+</div>
+<!--End::Provinces Route Links-->

@@ -7,7 +7,6 @@ use Stevebauman\Location\Facades\Location;
 use Tests\TestCase;
 use Mockery as m;
 use Stevebauman\Location\Drivers\IpApi;
-use Stevebauman\Location\Location as LocationLocation;
 
 class BootChangeLocationTest extends TestCase
 {

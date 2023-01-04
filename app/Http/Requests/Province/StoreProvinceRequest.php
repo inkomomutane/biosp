@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Country;
+namespace App\Http\Requests\Province;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreCountryRequest extends FormRequest
+class StoreProvinceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,13 @@ class StoreCountryRequest extends FormRequest
     public function rules():array
     {
         return [
-            'name' => 'required|string|max:125|unique:countries'
+            'name' => [
+                'required',
+                'string',
+                'max:125',
+                Rule::unique(table: 'provinces', column: 'name')
+            ],
+            'country_uuid' => ['required','string','uuid']
         ];
     }
 }
