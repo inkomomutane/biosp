@@ -231,6 +231,10 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('user',$this->user);
     }
 
+     /**
+     * @group views
+     */
+
     public function test_is_update_user_route_success_with_only_valid_data_request()
     {
         // $this->withExceptionHandling();
@@ -250,6 +254,9 @@ class UserControllerTest extends TestCase
 
     }
 
+     /**
+     * @group views
+     */
 
     public function test_is_super_admin_able_to_delete_user_()
     {
@@ -270,7 +277,9 @@ class UserControllerTest extends TestCase
 
     }
 
-
+ /**
+     * @group views
+     */
     public function test_is_super_admin_able_to_change_user_role()
     {
         $role = Role::first();
