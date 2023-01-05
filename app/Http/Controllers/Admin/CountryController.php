@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Country;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Country\StoreCountryRequest;
 use App\Http\Requests\Country\UpdateCountryRequest;
+use App\Models\Country;
+use Flasher\Noty\Laravel\Facade\Noty;
 use Illuminate\Http\Response;
 
 class CountryController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth', 'role:super-admin']);
@@ -24,6 +24,7 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::latest()->paginate(5);
+
         return view('pages.backend.countries.index')
         ->with('countries', $countries);
     }
@@ -36,6 +37,7 @@ class CountryController extends Controller
     public function trashedCountries()
     {
         $countries = Country::onlyTrashed()->latest()->paginate(5);
+
         return view('pages.backend.countries.index')
         ->with('countries', $countries);
     }
@@ -59,14 +61,15 @@ class CountryController extends Controller
     public function store(StoreCountryRequest $request)
     {
         try {
-
             Country::create(['name' => $request->name]);
 
-            //  $this->flash()->addSuccess(__('Country created.'));
+            Noty::addSuccess(__('Country created.'));
+
             return redirect()->route('country.index');
         } catch (\Throwable $th) {
             // throw $th;
-          //  $this->flash()->addError(__('Error creating country.'));
+            Noty::addError(__('Error creating country.'));
+
             return redirect()->route('country.index');
         }
     }
@@ -74,7 +77,7 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Country $country
+     * @param  Country  $country
      * @return Response
      */
     public function show(Country $country)
@@ -90,8 +93,8 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        return view('pages.backend.countries.create_edit',[
-            'country' => $country
+        return view('pages.backend.countries.create_edit', [
+            'country' => $country,
         ]);
     }
 
@@ -99,20 +102,22 @@ class CountryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateCountryRequest  $request
-     * @param  Country $country
+     * @param  Country  $country
      * @return Response
      */
     public function update(UpdateCountryRequest $request, Country $country)
     {
         try {
             $country->update([
-                'name' => $request->name
+                'name' => $request->name,
             ]);
-            //  $this->flash()->addSuccess('Country updated.');
+            Noty::addSuccess('Country updated.');
+
             return redirect()->route('country.index');
         } catch (\Throwable $e) {
             // throw $e;
-          //  $this->flash()->addError('Error updating country.');
+            Noty::addError('Error updating country.');
+
             return redirect()->route('country.index');
         }
     }
@@ -120,42 +125,47 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Country $country
+     * @param  Country  $country
      * @return Response
      */
     public function destroy(Country $country)
     {
         try {
             $country->delete();
-            //  $this->flash()->addSuccess('Country deleted.');
+            Noty::addSuccess('Country deleted.');
+
             return redirect()->route('country.index');
         } catch (\Throwable $th) {
-          //  $this->flash()->addError('Error deleting country.');
+            Noty::addError('Error deleting country.');
+
             return redirect()->route('country.index');
         }
     }
 
-
-    public function destroyForced(String $country)
+    public function destroyForced(string $country)
     {
         try {
-            Country::withTrashed()->where('uuid',$country)->first()->forceDelete();
-            //  $this->flash()->addSuccess('Country deleted.');
+            Country::withTrashed()->where('uuid', $country)->first()->forceDelete();
+            Noty::addSuccess('Country deleted.');
+
             return redirect()->route('country.trash');
         } catch (\Throwable $th) {
-          //  $this->flash()->addError('Error deleting country.');
+            Noty::addError('Error deleting country.');
+
             return redirect()->route('country.trash');
         }
     }
 
-    public function restore(String $country)
+    public function restore(string $country)
     {
         try {
-            Country::onlyTrashed()->where('uuid',$country)->first()->restore();
-            //  $this->flash()->addSuccess('Country deleted.');
+            Country::onlyTrashed()->where('uuid', $country)->first()->restore();
+            Noty::addSuccess('Country deleted.');
+
             return redirect()->route('country.trash');
         } catch (\Throwable $th) {
-          //  $this->flash()->addError('Error deleting country.');
+            Noty::addError('Error deleting country.');
+
             return redirect()->route('country.trash');
         }
     }

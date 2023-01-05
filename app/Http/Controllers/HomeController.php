@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Flasher\Noty\Laravel\Facade\Noty;
 
 class HomeController extends Controller
 {
@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $this->flash()->addSuccess('Data has been saved successfully!');
+        Noty::addSuccess('Data has been saved successfully!');
+
         return view('pages.backend.home');
     }
 }

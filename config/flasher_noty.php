@@ -8,10 +8,10 @@
 return [
     'scripts' => [
         'cdn' => [
-            'https://cdn.jsdelivr.net/npm/@flasher/flasher-notyf@1.2.4/dist/flasher-notyf.min.js',
+            'https://cdn.jsdelivr.net/npm/@flasher/flasher-noty@1.2.4/dist/flasher-noty.min.js',
         ],
         'local' => [
-            '/vendor/flasher/flasher-notyf.min.js',
+            '/vendor/flasher/flasher-noty.min.js',
         ],
     ],
 ];

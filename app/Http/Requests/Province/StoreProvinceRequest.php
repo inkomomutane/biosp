@@ -12,7 +12,7 @@ class StoreProvinceRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -22,16 +22,16 @@ class StoreProvinceRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
             'name' => [
                 'required',
                 'string',
                 'max:125',
-                Rule::unique(table: 'provinces', column: 'name')
+                Rule::unique(table: 'provinces', column: 'name'),
             ],
-            'country_uuid' => ['required','string','uuid']
+            'country_uuid' => ['required', 'string', 'uuid'],
         ];
     }
 }

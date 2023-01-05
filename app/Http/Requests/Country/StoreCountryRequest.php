@@ -11,7 +11,7 @@ class StoreCountryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -21,10 +21,10 @@ class StoreCountryRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
-            'name' => 'required|string|max:125|unique:countries'
+            'name' => 'required|string|max:125|unique:countries',
         ];
     }
 }

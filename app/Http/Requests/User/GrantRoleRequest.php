@@ -24,7 +24,7 @@ class GrantRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => ['integer','required'],
+            'role' => ['integer', 'required'],
         ];
     }
 }

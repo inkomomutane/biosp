@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6f501cca18b936e6693886b348bd5a9",
+    "content-hash": "0c70e76fb787e94ce63b551bab614348",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -3045,17 +3045,17 @@
             "time": "2022-12-30T11:58:54+00:00"
         },
         {
-            "name": "php-flasher/flasher-notyf",
+            "name": "php-flasher/flasher-noty",
             "version": "v1.10.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-flasher/flasher-notyf.git",
-                "reference": "c0b168dde041bc87b800316ca7b6dddf562859fd"
+                "url": "https://github.com/php-flasher/flasher-noty.git",
+                "reference": "30e2d7af2dd0695c6ada95a11973730ca14a11ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-notyf/zipball/c0b168dde041bc87b800316ca7b6dddf562859fd",
-                "reference": "c0b168dde041bc87b800316ca7b6dddf562859fd",
+                "url": "https://api.github.com/repos/php-flasher/flasher-noty/zipball/30e2d7af2dd0695c6ada95a11973730ca14a11ad",
+                "reference": "30e2d7af2dd0695c6ada95a11973730ca14a11ad",
                 "shasum": ""
             },
             "require": {
@@ -3068,7 +3068,7 @@
                     "helpers.php"
                 ],
                 "psr-4": {
-                    "Flasher\\Notyf\\Prime\\": ""
+                    "Flasher\\Noty\\Prime\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3083,7 +3083,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "PHPFlasher adapter for Notyf",
+            "description": "PHPFlasher adapter for Noty",
             "homepage": "https://php-flasher.io",
             "keywords": [
                 "alerts",
@@ -3092,14 +3092,13 @@
                 "messages",
                 "notifications",
                 "notify",
-                "notyf",
+                "noty",
                 "php",
                 "pnotify",
-                "sweet alert",
                 "symfony"
             ],
             "support": {
-                "source": "https://github.com/php-flasher/flasher-notyf/tree/v1.10.4"
+                "source": "https://github.com/php-flasher/flasher-noty/tree/v1.10.4"
             },
             "funding": [
                 {
@@ -3126,38 +3125,38 @@
             "time": "2022-12-26T11:22:42+00:00"
         },
         {
-            "name": "php-flasher/flasher-notyf-laravel",
+            "name": "php-flasher/flasher-noty-laravel",
             "version": "v1.10.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-flasher/flasher-notyf-laravel.git",
-                "reference": "fd95b2ed701737bb0ba319e4b00fb9d86dd0a3a9"
+                "url": "https://github.com/php-flasher/flasher-noty-laravel.git",
+                "reference": "f567600b76f5f0c352e8baf78312f53823c14e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-notyf-laravel/zipball/fd95b2ed701737bb0ba319e4b00fb9d86dd0a3a9",
-                "reference": "fd95b2ed701737bb0ba319e4b00fb9d86dd0a3a9",
+                "url": "https://api.github.com/repos/php-flasher/flasher-noty-laravel/zipball/f567600b76f5f0c352e8baf78312f53823c14e0b",
+                "reference": "f567600b76f5f0c352e8baf78312f53823c14e0b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
                 "php-flasher/flasher-laravel": "^1.10",
-                "php-flasher/flasher-notyf": "^1.10"
+                "php-flasher/flasher-noty": "^1.10"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "aliases": {
-                        "Notyf": "Flasher\\Notyf\\Laravel\\Facade\\Notyf"
+                        "Noty": "Flasher\\Laravel\\Facade\\Flasher"
                     },
                     "providers": [
-                        "Flasher\\Notyf\\Laravel\\FlasherNotyfServiceProvider"
+                        "Flasher\\Noty\\Laravel\\FlasherNotyServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Flasher\\Notyf\\Laravel\\": ""
+                    "Flasher\\Noty\\Laravel\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3172,7 +3171,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "PHPFlasher Laravel adapter for Notyf",
+            "description": "PHPFlasher Laravel adapter for Noty",
             "homepage": "https://php-flasher.io",
             "keywords": [
                 "alerts",
@@ -3183,15 +3182,14 @@
                 "messages",
                 "notifications",
                 "notify",
-                "notyf",
+                "noty",
                 "php",
                 "pnotify",
                 "symfony",
-                "toastr",
                 "yoeunes"
             ],
             "support": {
-                "source": "https://github.com/php-flasher/flasher-notyf-laravel/tree/v1.10.4"
+                "source": "https://github.com/php-flasher/flasher-noty-laravel/tree/v1.10.4"
             },
             "funding": [
                 {

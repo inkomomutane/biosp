@@ -7,6 +7,7 @@ use App\Http\Requests\User\GrantRoleRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use Flasher\Noty\Laravel\Facade\Noty;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -26,6 +27,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(5);
+
         return view('pages.backend.users.index')
         ->with('users', $users);
     }
@@ -63,12 +65,12 @@ class UserController extends Controller
             $user = User::create($dataCreate);
             $user->syncRoles(['aosp']);
 
-            //  $this->flash()->addSuccess(__('User created.'));
+            Noty::addSuccess(__('User created.'));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
             // throw $th;
-          //  $this->flash()->addError(__('Error creating user.'));
+            Noty::addError(__('Error creating user.'));
 
             return redirect()->route('user.index');
         }
@@ -83,8 +85,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('pages.backend.users.show')
-        ->with('user',$user)
-        ->with('roles',Role::all());
+        ->with('user', $user)
+        ->with('roles', Role::all());
     }
 
     /**
@@ -95,9 +97,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
-        return view('pages.backend.users.create_edit',[
-            'user' => $user
+        return view('pages.backend.users.create_edit', [
+            'user' => $user,
         ]);
     }
 
@@ -112,22 +113,24 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        $dataUpdate  = array();
+        $dataUpdate = [];
         foreach ($data as $key => $value) {
-            if ($key == "password" && $value) {
+            if ($key == 'password' && $value) {
                 $value = Hash::make($value);
             }
-            if (!is_null($value)) {
+            if (! is_null($value)) {
                 $dataUpdate[$key] = $value;
             }
         }
         try {
             $user->update($dataUpdate);
-            //  $this->flash()->addSuccess('User updated.');
+            Noty::addSuccess('User updated.');
+
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
             // throw $e;
-          //  $this->flash()->addError('Error updating user.');
+            Noty::addError('Error updating user.');
+
             return redirect()->route('user.index');
         }
     }
@@ -142,27 +145,30 @@ class UserController extends Controller
     {
         try {
             $user->delete();
-            //  $this->flash()->addSuccess('User deleted.');
+            Noty::addSuccess('User deleted.');
+
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
-          //  $this->flash()->addError('Error deleting user.');
+            Noty::addError('Error deleting user.');
+
             return redirect()->route('user.index');
         }
     }
-
 
     public function grant(User $user, GrantRoleRequest $request)
     {
         try {
             $user->syncRoles($request->role);
-            //  $this->flash()->addSuccess('User role granted.');
-            return redirect()->route('user.show',[
-                'user' => $user->uuid
+            Noty::addSuccess('User role granted.');
+
+            return redirect()->route('user.show', [
+                'user' => $user->uuid,
             ]);
         } catch (\Throwable $th) {
-          //  $this->flash()->addError('Error grantig role to user.');
-            return redirect()->route('user.show',[
-                'user' => $user->uuid
+            Noty::addError('Error grantig role to user.');
+
+            return redirect()->route('user.show', [
+                'user' => $user->uuid,
             ]);
         }
     }

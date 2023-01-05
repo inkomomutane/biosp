@@ -29,7 +29,7 @@ return [
     | "sweetalert" : composer require php-flasher/flasher-sweetalert-laravel
     | "pnotify"    : composer require php-flasher/flasher-pnotify-laravel
     */
-    'default' => 'notyf',
+    'default' => 'noty',
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ return [
     |
     | This will copy the necessary assets to your application's public folder.
     */
-    'use_cdn' => true,
+    'use_cdn' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -102,8 +102,7 @@ return [
     | into the response, you can set this option to 'false'. In this case, you will
     | need to manually include the necessary files in your application's layout.
     */
-    'auto_render' => false,
-    // env('PHP_FLASHER',null),
+    'auto_render' => env('PHP_FLASHER'),
 
     'flash_bag' => [
         /*

@@ -15,8 +15,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
         "outhebox/blade-flags": "^1.1",
-        "php-flasher/flasher-laravel": "^1.10",
-        "php-flasher/flasher-notyf-laravel": "^1.10",
+        "php-flasher/flasher-noty-laravel": "^1.10",
         "spatie/laravel-permission": "^5.7",
         "stevebauman/location": "^6.5"
     },

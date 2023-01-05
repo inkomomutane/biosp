@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Country;
-use App\Models\Province;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 use App\Http\Requests\Province\StoreProvinceRequest;
 use App\Http\Requests\Province\UpdateProvinceRequest;
-
-
+use App\Models\Country;
+use App\Models\Province;
+use Flasher\Noty\Laravel\Facade\Noty;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 
 class ProvinceController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth', 'role:super-admin']);
@@ -27,9 +25,9 @@ class ProvinceController extends Controller
     public function index()
     {
         $countries = Province::latest()->paginate(5);
+
         return view('pages.backend.provinces.index')
             ->with('provinces', $countries);
-
     }
 
     /**
@@ -39,28 +37,29 @@ class ProvinceController extends Controller
      */
     public function create()
     {
-        return view('pages.backend.provinces.create_edit')->with('countries',Country::all());
+        return view('pages.backend.provinces.create_edit')->with('countries', Country::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreProvinceRequest $request
+     * @param  StoreProvinceRequest  $request
      * @return Response
      */
     public function store(StoreProvinceRequest $request)
     {
         try {
-
             Province::create(
                 ['name' => $request->name, 'country_uuid' => $request->country_uuid]
             );
 
-            //  $this->flash()->addSuccess(__('Province created.'));
+            Noty::addSuccess(__('Province created.'));
+
             return redirect()->route('province.index');
         } catch (\Throwable $th) {
             // throw $th;
-            //  $this->flash()->addError(__('Error creating province.'));
+            Noty::addError(__('Error creating province.'));
+
             return redirect()->route('province.index');
         }
     }
@@ -68,7 +67,7 @@ class ProvinceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Province $province
+     * @param  Province  $province
      * @return Response
      */
     public function show(Province $province)
@@ -79,21 +78,21 @@ class ProvinceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Province $province
+     * @param  Province  $province
      * @return Response
      */
     public function edit(Province $province)
     {
-        return view('pages.backend.provinces.create_edit',[
-            'province' => $province
-        ])->with('countries',Country::all());
+        return view('pages.backend.provinces.create_edit', [
+            'province' => $province,
+        ])->with('countries', Country::all());
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  UpdateProvinceRequest  $request
-     * @param Province $province
+     * @param  Province  $province
      * @return Response
      */
     public function update(UpdateProvinceRequest $request, Province $province)
@@ -101,13 +100,15 @@ class ProvinceController extends Controller
         try {
             $province->update([
                 'name' => $request->name,
-                'country_uuid' => $request->country_uuid
+                'country_uuid' => $request->country_uuid,
             ]);
-            //  $this->flash()->addSuccess('Province updated.');
+            Noty::addSuccess('Province updated.');
+
             return redirect()->route('province.index');
         } catch (\Throwable $e) {
-            // throw $e;
-            //  $this->flash()->addError('Error updating province.');
+//             throw $e;
+            Noty::addError('Error updating province.');
+
             return redirect()->route('province.index');
         }
     }
@@ -115,17 +116,19 @@ class ProvinceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Province $province
+     * @param  Province  $province
      * @return Response
      */
     public function destroy(Province $province)
     {
         try {
             $province->forceDelete();
-            //  $this->flash()->addSuccess('Province deleted.');
+            Noty::addSuccess('Province deleted.');
+
             return redirect()->route('province.index');
         } catch (\Throwable $th) {
-            //  $this->flash()->addError('Error deleting province.');
+            Noty::addError('Error deleting province.');
+
             return redirect()->route('province.index');
         }
     }

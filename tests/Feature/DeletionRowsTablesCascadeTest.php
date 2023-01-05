@@ -4,11 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\Benificiary;
 use App\Models\Country;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class DeletionRowsTablesCascadeTest extends TestCase
 {
-
+    use RefreshDatabase;
 
     public function test_is_forced_delete_country_remove_all_subchildrens_entries()
     {

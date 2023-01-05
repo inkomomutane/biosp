@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Fluent;
-use Stevebauman\Location\Facades\Location;
-use Tests\TestCase;
 use Mockery as m;
 use Stevebauman\Location\Drivers\IpApi;
+use Stevebauman\Location\Facades\Location;
+use Tests\TestCase;
 
 class BootChangeLocationTest extends TestCase
 {
