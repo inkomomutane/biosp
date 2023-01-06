@@ -19,6 +19,7 @@ class NeighborhoodController extends Controller
     public function index()
     {
         $neighborhoods = Neighborhood::latest()->paginate(5);
+
         return view('pages.backend.neighborhoods.index')
             ->with('neighborhoods', $neighborhoods);
     }
@@ -48,14 +49,16 @@ class NeighborhoodController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:[ 'resource' => __('Neighborhood')]
+                replace:['resource' => __('Neighborhood')]
             ));
+
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:[ 'resource' => __('Neighborhood')]
+                replace:['resource' => __('Neighborhood')]
             ));
+
             return redirect()->route('neighborhood.index');
         }
     }
@@ -70,6 +73,7 @@ class NeighborhoodController extends Controller
     {
         Noty::addInfo(__(
             key: 'Not Found'));
+
         return abort(404);
     }
 
@@ -102,16 +106,16 @@ class NeighborhoodController extends Controller
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:[ 'resource' => __('Neighborhood')]
+                replace:['resource' => __('Neighborhood')]
             ));
 
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $e) {
 //             throw $e;
-                Noty::addError(__(
-                    key: 'Error updating :resource.',
-                    replace:[ 'resource' => __('Neighborhood')]
-                ));
+            Noty::addError(__(
+                key: 'Error updating :resource.',
+                replace:['resource' => __('Neighborhood')]
+            ));
 
             return redirect()->route('neighborhood.index');
         }
@@ -129,13 +133,14 @@ class NeighborhoodController extends Controller
             $neighborhood->forceDelete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:[ 'resource' => __('Neighborhood')]
+                replace:['resource' => __('Neighborhood')]
             ));
+
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:[ 'resource' => __('Neighborhood')]
+                replace:['resource' => __('Neighborhood')]
             ));
 
             return redirect()->route('neighborhood.index');

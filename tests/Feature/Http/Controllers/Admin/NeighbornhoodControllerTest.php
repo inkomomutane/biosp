@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Models\Neighborhood;
 use App\Models\Province;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -22,8 +21,6 @@ class NeighbornhoodControllerTest extends TestCase
         $this->baseConfig();
         $this->neighborhood = Neighborhood::factory()->create();
     }
-
-
 
     /**
      * @group views
@@ -49,8 +46,8 @@ class NeighbornhoodControllerTest extends TestCase
         $response->assertViewIs('pages.backend.neighborhoods.create_edit');
         $response->assertSee(__('Name'));
         $response->assertSee(__('Province'));
-        $response->assertSee( __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]));
-        $response->assertSee( __(key:'Store :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]));
+        $response->assertSee(__(key:'Create :resource', replace:['resource' => Str::lower(__('Neighborhood'))]));
+        $response->assertSee(__(key:'Store :resource', replace:['resource' => Str::lower(__('Neighborhood'))]));
     }
 
     /**
@@ -97,8 +94,8 @@ class NeighbornhoodControllerTest extends TestCase
         $response->assertViewIs('pages.backend.neighborhoods.create_edit');
         $response->assertSee(__('Name'));
         $response->assertSee($this->neighborhood->name);
-        $response->assertSee( __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]));
-        $response->assertSee( __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]));
+        $response->assertSee(__(key:'Edit :resource', replace:['resource' => Str::lower(__('Neighborhood'))]));
+        $response->assertSee(__(key:'Update :resource', replace:['resource' => Str::lower(__('Neighborhood'))]));
         $response->assertViewHas('neighborhood', $this->neighborhood);
     }
 

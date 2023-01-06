@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Flasher\Noty\Laravel\Facade\Noty;
-
 class HomeController extends Controller
 {
     /**
@@ -23,11 +21,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Noty::addSuccess(__(
-            key: ':resource created',
-            replace:[ 'resource' => 'Country']
-        ));
-
         return view('pages.backend.home');
     }
 }

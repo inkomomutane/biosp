@@ -19,7 +19,6 @@ class UserPolicyTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-
     /**
      * @group routing_permission_check
      */
@@ -133,5 +132,4 @@ class UserPolicyTest extends TestCase
             }
         }
     }
-
 }

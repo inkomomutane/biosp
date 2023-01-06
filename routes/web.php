@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BiospController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvinceController;
@@ -46,13 +47,19 @@ Route::any('/dark_mode', function () {
 })->middleware(['auth', 'lang']);
 
 Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->group(function () {
-    Route::resource('user', UserController::class);
-    Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])->name('user.grant_role');
-    Route::resource('country', CountryController::class);
-    Route::delete('country/{country}/forced', [CountryController::class, 'destroyForced'])->name('country.delete.forced');
-    Route::get('country/{country}/restore', [CountryController::class, 'restore'])->name('country.restore');
-    Route::get('trashed/countries', [CountryController::class, 'trashedCountries'])->name('country.trash');
-
-    Route::resource('province', ProvinceController::class);
-    Route::resource('neighborhood', NeighborhoodController::class);
+    Route::resources([
+        'user' => UserController::class,
+        'country' => CountryController::class,
+        'biosp' => BiospController::class,
+        'province' => ProvinceController::class,
+        'neighborhood' => NeighborhoodController::class,
+    ]);
+    Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
+        ->name('user.grant_role');
+    Route::delete('country/{country}/forced', [CountryController::class, 'destroyForced'])
+        ->name('country.delete.forced');
+    Route::get('country/{country}/restore', [CountryController::class, 'restore'])
+        ->name('country.restore');
+    Route::get('trashed/countries', [CountryController::class, 'trashedCountries'])
+        ->name('country.trash');
 });

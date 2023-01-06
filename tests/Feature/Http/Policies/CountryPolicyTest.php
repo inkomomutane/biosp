@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class CountryPolicyTest extends TestCase
 {
-
-
     use WithFaker;
 
     private Country $country;
@@ -120,5 +118,4 @@ class CountryPolicyTest extends TestCase
             }
         }
     }
-
 }

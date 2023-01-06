@@ -5,9 +5,9 @@ namespace Tests\Feature\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
-use Illuminate\Support\Str;
 
 class UserControllerTest extends TestCase
 {
@@ -21,7 +21,6 @@ class UserControllerTest extends TestCase
         $this->baseConfig();
         $this->user = User::factory()->create();
     }
-
 
      /**
       * @group views
@@ -50,8 +49,8 @@ class UserControllerTest extends TestCase
         $response->assertSee(__('Email Address'));
         $response->assertSee(__('Password'));
         $response->assertSee(__('Confirm Password'));
-        $response->assertSee( __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]));
-        $response->assertSee( __(key:'Store :resource',replace:[ 'resource' => Str::lower(__('User'))]));
+        $response->assertSee(__(key:'Create :resource', replace:['resource' => Str::lower(__('User'))]));
+        $response->assertSee(__(key:'Store :resource', replace:['resource' => Str::lower(__('User'))]));
     }
 
     /**
@@ -108,8 +107,8 @@ class UserControllerTest extends TestCase
         $response->assertDontSeeText(__('Confirm Password'));
         $response->assertSee('value="'.$this->user->name.' "', false);
         $response->assertSee('value="'.$this->user->email.' "', false);
-        $response->assertSee( __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('User'))]));
-        $response->assertSee( __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))]));
+        $response->assertSee(__(key:'Edit :resource', replace:['resource' => Str::lower(__('User'))]));
+        $response->assertSee(__(key:'Update :resource', replace:['resource' => Str::lower(__('User'))]));
         $response->assertViewHas('user', $this->user);
     }
 

@@ -90,5 +90,6 @@
     ":resource restored" : ":resource restaurado",
     "Delete :resource permanently": "Excluír :resource permanentemente",
     "Select a :resource name" :  "Selecione um nome de :resource",
-    "No :resource found.": ":resource não encontrados."
+    "No :resource found.": ":resource não encontrados.",
+    "Project name" : "Nome do projecto"
 }

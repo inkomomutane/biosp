@@ -55,14 +55,14 @@ class ProvinceController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
 
             return redirect()->route('province.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
             return redirect()->route('province.index');
         }
@@ -77,6 +77,7 @@ class ProvinceController extends Controller
     public function show(Province $province)
     {
         Noty::addInfo(__('Not Found'));
+
         return abort(404);
     }
 
@@ -109,15 +110,16 @@ class ProvinceController extends Controller
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
 
             return redirect()->route('province.index');
         } catch (\Throwable $e) {
             Noty::addError(__(
                 key: 'Error updating :resource.',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
+
             return redirect()->route('province.index');
         }
     }
@@ -134,15 +136,16 @@ class ProvinceController extends Controller
             $province->forceDelete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
 
             return redirect()->route('province.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:[ 'resource' => __('Province')]
+                replace:['resource' => __('Province')]
             ));
+
             return redirect()->route('province.index');
         }
     }

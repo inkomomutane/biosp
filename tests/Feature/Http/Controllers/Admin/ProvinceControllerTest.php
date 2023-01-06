@@ -45,8 +45,8 @@ class ProvinceControllerTest extends TestCase
         $response->assertViewIs('pages.backend.provinces.create_edit');
         $response->assertSee(__('Name'));
         $response->assertSee(__('Country'));
-        $response->assertSee( __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Province'))]));
-        $response->assertSee( __(key:'Store :resource',replace:[ 'resource' => Str::lower(__('Province'))]));
+        $response->assertSee(__(key:'Create :resource', replace:['resource' => Str::lower(__('Province'))]));
+        $response->assertSee(__(key:'Store :resource', replace:['resource' => Str::lower(__('Province'))]));
     }
 
     /**
@@ -92,8 +92,8 @@ class ProvinceControllerTest extends TestCase
         $response->assertViewIs('pages.backend.provinces.create_edit');
         $response->assertSee(__('Name'));
         $response->assertSee($this->province->name);
-        $response->assertSee( __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Province'))]));
-        $response->assertSee( __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Province'))]));
+        $response->assertSee(__(key:'Edit :resource', replace:['resource' => Str::lower(__('Province'))]));
+        $response->assertSee(__(key:'Update :resource', replace:['resource' => Str::lower(__('Province'))]));
         $response->assertViewHas('province', $this->province);
     }
 

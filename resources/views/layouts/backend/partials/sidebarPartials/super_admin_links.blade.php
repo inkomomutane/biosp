@@ -1,3 +1,62 @@
+<!--begin::Biosp Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('biosp.*')) show @endif">
+    <span class="menu-link @if (request()->routeIs('biosp.*')) active @endif">
+        <span class="menu-icon">
+            <!--begin::Svg Icon -->
+            <span class="svg-icon svg-icon-2">
+                @svg('fluentui-tree-deciduous-20')
+            </span>
+            <!--end::Svg Icon-->
+        </span>
+        <span class="menu-title">{{ __('Biosp') }}</span>
+        <span class="menu-arrow"></span>
+    </span>
+
+    <!--begin::All biosp Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('biosp.index')) active @endif" href="{{ route('biosp.index') }}">
+                <span class="menu-bullet">
+                    @svg('fluentui-tree-deciduous-20-o')
+                </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Biosp'))])}}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::All biosp Route Link-->
+
+    <!--begin::Create biosp Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('biosp.create')) active @endif" href="{{ route('biosp.create') }}">
+                <span class="menu-bullet">
+
+                    @svg('fluentui-tree-deciduous-20-o')
+                </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Biosp'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::Create biosp Route Link-->
+
+    @if (request()->routeIs('biosp.edit'))
+        <!--begin::Edit province Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('biosp.edit')) active @endif" href="">
+                    <span class="menu-bullet">
+                        @svg('fluentui-tree-deciduous-20-o')
+                    </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Biosp'))]) }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit biosp Route Link-->
+    @endif
+
+</div>
+<!--End::Biosp Route Links-->
+
 <!--begin::Users Route Links-->
 <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('user.*')) show @endif">
     <span class="menu-link @if (request()->routeIs('user.*')) active @endif">
@@ -71,7 +130,6 @@
 
 </div>
 <!--End::Users Route Links-->
-
 
 <!--begin::Countries Route Links-->
 <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('country.*')) show @endif">

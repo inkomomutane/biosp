@@ -12,7 +12,7 @@ abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected  User $user;
+    protected User $user;
 
     /**
      * Prepare for Dusk test execution.

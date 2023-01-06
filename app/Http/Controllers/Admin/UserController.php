@@ -67,15 +67,16 @@ class UserController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
+
             return redirect()->route('user.index');
         }
     }
@@ -130,14 +131,14 @@ class UserController extends Controller
             $user->update($dataUpdate);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
             Noty::addError(__(
                 key: 'Error updating :resource.',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
@@ -156,15 +157,16 @@ class UserController extends Controller
             $user->delete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:[ 'resource' => __('User')]
+                replace:['resource' => __('User')]
             ));
+
             return redirect()->route('user.index');
         }
     }

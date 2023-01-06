@@ -19,7 +19,6 @@ class NeihborhoodTest extends TestCase
         $this->neighborhood = Neighborhood::factory()->create();
     }
 
-
     /**
      * @group routing_permission_check
      */
@@ -119,5 +118,4 @@ class NeihborhoodTest extends TestCase
             }
         }
     }
-
 }

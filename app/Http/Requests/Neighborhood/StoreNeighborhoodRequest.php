@@ -12,7 +12,7 @@ class StoreNeighborhoodRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -22,11 +22,11 @@ class StoreNeighborhoodRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
-            'name' => ['string','required','max:125',Rule::unique(table: 'neighborhoods', column: 'name')],
-            'province_uuid'  => ['required', 'string', 'uuid']
+            'name' => ['string', 'required', 'max:125', Rule::unique(table: 'neighborhoods', column: 'name')],
+            'province_uuid' => ['required', 'string', 'uuid'],
         ];
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', __('neighborhoods'))
-@section('title', __('neighborhoods'))
+@section('dashboard_title', __('Neighborhoods'))
+@section('title', __('Neighborhoods'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">

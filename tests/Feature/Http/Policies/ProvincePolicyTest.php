@@ -118,5 +118,4 @@ class ProvincePolicyTest extends TestCase
             }
         }
     }
-
 }
