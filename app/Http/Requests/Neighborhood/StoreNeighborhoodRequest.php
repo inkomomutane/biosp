@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Neighborhood;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class StoreNeighborhoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -21,14 +22,11 @@ class StoreUserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['string','required','max:125',Rule::unique(table: 'neighborhoods', column: 'name')],
+            'province_uuid'  => ['required', 'string', 'uuid']
         ];
     }
-
-
 }

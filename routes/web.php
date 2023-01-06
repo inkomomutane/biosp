@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -53,4 +54,5 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
     Route::get('trashed/countries', [CountryController::class, 'trashedCountries'])->name('country.trash');
 
     Route::resource('province', ProvinceController::class);
+    Route::resource('neighborhood', NeighborhoodController::class);
 });

@@ -17,10 +17,9 @@
         <div class="menu-item">
             <a class="menu-link @if (request()->routeIs('user.index')) active @endif" href="{{ route('user.index') }}">
                 <span class="menu-bullet">
-                    {{-- <span class="bullet bullet-dot"></span> --}}
                     @svg('fluentui-person-board-24')
                 </span>
-                <span class="menu-title">{{ __('All users') }}</span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Users')) ])}}</span>
             </a>
         </div>
     </div>
@@ -34,7 +33,7 @@
 
                     @svg('fluentui-person-add-28')
                 </span>
-                <span class="menu-title">{{ __('Create user') }}</span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User')) ]) }}</span>
             </a>
         </div>
     </div>
@@ -48,7 +47,7 @@
                     <span class="menu-bullet">
                         @svg('fluentui-person-edit-20')
                     </span>
-                    <span class="menu-title">{{ __('Edit user') }}</span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('User')) ]) }}</span>
                 </a>
             </div>
         </div>
@@ -63,7 +62,7 @@
                     <span class="menu-bullet">
                         @svg('fluentui-shield-person-20')
                     </span>
-                    <span class="menu-title">{{ __('Viewing user') }}</span>
+                    <span class="menu-title">{{ __(key:'View :resource',replace:[ 'resource' => Str::lower(__('User')) ]) }}</span>
                 </a>
             </div>
         </div>
@@ -96,7 +95,7 @@
                     {{-- <span class="bullet bullet-dot"></span> --}}
                     @svg('fluentui-flag-pride-16')
                 </span>
-                <span class="menu-title">{{ __('All countries') }}</span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Countries')) ]) }}</span>
             </a>
         </div>
     </div>
@@ -110,7 +109,7 @@
 
                     @svg('fluentui-flag-16-o')
                 </span>
-                <span class="menu-title">{{ __('Create country') }}</span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Country')) ])}}</span>
             </a>
         </div>
     </div>
@@ -124,7 +123,7 @@
                     <span class="menu-bullet">
                         @svg('fluentui-flag-48')
                     </span>
-                    <span class="menu-title">{{ __('Edit country') }}</span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}</span>
                 </a>
             </div>
         </div>
@@ -139,7 +138,7 @@
                     <span class="menu-bullet">
                         @svg('fluentui-flag-16-o')
                     </span>
-                    <span class="menu-title">{{ __('Viewing country') }}</span>
+                    <span class="menu-title">{{ __(key:'Viewing :resource',replace:[ 'resource' => Str::lower(__('Country'))])  }}</span>
                 </a>
             </div>
         </div>
@@ -154,7 +153,7 @@
                     {{-- <span class="bullet bullet-dot"></span> --}}
                     @svg('fluentui-flag-off-16')
                 </span>
-                <span class="menu-title">{{ __('Countries trash') }}</span>
+                <span class="menu-title">{{ __(key:':resource trash',replace:[ 'resource' => __('Countries')])  }}</span>
             </a>
         </div>
     </div>
@@ -184,7 +183,7 @@
                 <span class="menu-bullet">
                     @svg('fluentui-city-16')
                 </span>
-                <span class="menu-title">{{ __('All provinces') }}</span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Provinces'))])}}</span>
             </a>
         </div>
     </div>
@@ -198,26 +197,85 @@
 
                     @svg('fluentui-city-16')
                 </span>
-                <span class="menu-title">{{ __('Create province') }}</span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Province'))]) }}</span>
             </a>
         </div>
     </div>
     <!--End::Create country Route Link-->
 
     @if (request()->routeIs('province.edit'))
-        <!--begin::Edit country Route Link-->
+        <!--begin::Edit province Route Link-->
         <div class="menu-sub menu-sub-accordion menu-active-bg">
             <div class="menu-item">
                 <a class="menu-link @if (request()->routeIs('province.edit')) active @endif" href="">
                     <span class="menu-bullet">
                         @svg('fluentui-city-16')
                     </span>
-                    <span class="menu-title">{{ __('Edit province') }}</span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Province'))]) }}</span>
                 </a>
             </div>
         </div>
-        <!--End::Edit country Route Link-->
+        <!--End::Edit province Route Link-->
     @endif
 
 </div>
 <!--End::Provinces Route Links-->
+
+<!--begin::Neighborhood Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('neighborhood.*')) show @endif">
+    <span class="menu-link @if (request()->routeIs('neighborhood.*')) active @endif">
+        <span class="menu-icon">
+            <!--begin::Svg Icon -->
+            <span class="svg-icon svg-icon-2">
+                @svg('fluentui-align-bottom-48')
+            </span>
+            <!--end::Svg Icon-->
+        </span>
+        <span class="menu-title">{{ __('Neighborhoods') }}</span>
+        <span class="menu-arrow"></span>
+    </span>
+
+    <!--begin::All neighborhoods Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('neighborhood.index')) active @endif" href="{{ route('neighborhood.index') }}">
+                <span class="menu-bullet">
+                    @svg('fluentui-align-bottom-32-o')
+                </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Neighborhoods'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::All neighborhood Route Link-->
+
+    <!--begin::Create neighborhood Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('neighborhood.create')) active @endif" href="{{ route('neighborhood.create') }}">
+                <span class="menu-bullet">
+
+                    @svg('fluentui-align-bottom-32-o')
+                </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::Create neighborhood Route Link-->
+
+    @if (request()->routeIs('neighborhood.edit'))
+        <!--begin::Edit neighborhood Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('neighborhood.edit')) active @endif" href="">
+                    <span class="menu-bullet">
+                        @svg('fluentui-align-bottom-32-o')
+                    </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit neighborhood Route Link-->
+    @endif
+
+</div>
+<!--End::Neighborhood Route Links-->

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', __('Viewing user') . ' ' . $user->name)
-@section('title', __('Viewing user') . ' ' . $user->name)
+@section('dashboard_title', __(key:'Viewing :resource',replace:[ 'resource' => Str::lower(__('User'))]) . ' ' . $user->name)
+@section('title', __(key:'Viewing :resource',replace:[ 'resource' => Str::lower(__('User'))]) . ' ' . $user->name)
 @section('content')
     <div class="row justify-content-center pt-2">
         <!--begin::Post-->
@@ -169,7 +169,7 @@
                     <div class="card-header cursor-pointer">
                         <!--begin::Card title-->
                         <div class="card-title m-0">
-                            <h3 class="fw-bolder m-0">{{ __('User details') }}</h3>
+                            <h3 class="fw-bolder m-0">{{ __(key:':resource details',replace:[ 'resource' => Str::lower(__('User'))]) }}</h3>
                         </div>
                         <!--end::Card title-->
                         <!--begin::Action-->
@@ -178,7 +178,7 @@
                             @if (auth()->user()->uuid == $user->uuid) class="btn btn-info align-self-center disabled" @else type="submit" class="btn btn-info align-self-center" @endif>
                             <span class="svg-icon svg-icon-2">
                                 @svg('fluentui-person-add-24')
-                            </span> {{ __('Update user') }}
+                            </span> {{ __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))]) }}
                         </button>
                         <!--end::Action-->
                     </div>

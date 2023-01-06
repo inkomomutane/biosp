@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Neighborhood
+ * Class neighborhoods
  *
  * @property string|null $deleted_at
  * @property string $uuid

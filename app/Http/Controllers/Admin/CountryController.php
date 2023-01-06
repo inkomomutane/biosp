@@ -63,7 +63,10 @@ class CountryController extends Controller
         try {
             Country::create(['name' => $request->name]);
 
-            Noty::addSuccess(__('Country created.'));
+            Noty::addSuccess(__(
+                key: ':resource created',
+                replace:[ 'resource' => 'Country']
+            ));
 
             return redirect()->route('country.index');
         } catch (\Throwable $th) {
@@ -111,7 +114,10 @@ class CountryController extends Controller
             $country->update([
                 'name' => $request->name,
             ]);
-            Noty::addSuccess('Country updated.');
+            Noty::addSuccess(__(
+                key: ':resource updated',
+                replace:[ 'resource' => 'Country']
+            ));
 
             return redirect()->route('country.index');
         } catch (\Throwable $e) {

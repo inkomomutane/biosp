@@ -1,6 +1,9 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', request()->routeIs('user.edit') ? __('Update user') . ' ' . $user->name : __('Create user'))
-@section('title', request()->routeIs('user.edit') ? __('Update user') . ' ' . $user->name : __('Create user'))
+@section('dashboard_title', request()->routeIs('user.edit') ?
+ __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))])
+. ' ' . $user->name :
+__(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
+@section('title', request()->routeIs('user.edit') ? __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))]) . ' ' . $user->name : __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -13,7 +16,6 @@
                 @if (request()->routeIs('user.edit'))
                     @method('PATCH')
                 @endif
-
                 <div class="row">
                     <div class="card mb-5 mb-xl-7">
                         <!--begin::Header-->
@@ -21,9 +23,9 @@
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label fw-bold fs-3 mb-1">
                                     @if (request()->routeIs('user.edit'))
-                                        {{ __('Update user') }}
+                                        {{ __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))]) }}
                                     @else
-                                        {{ __('Store user') }}
+                                        {{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]) }}
                                     @endif
 
                                 </span>
@@ -37,9 +39,9 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                     @if (request()->routeIs('user.edit'))
-                                     {{ __('Update user') }}
+                                     {{ __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('User'))]) }}
                                     @else
-                                        {{ __('Store user') }}
+                                        {{ __(key:'Store :resource',replace:[ 'resource' => Str::lower(__('User'))]) }}
                                     @endif
                                 </button>
                             </div>

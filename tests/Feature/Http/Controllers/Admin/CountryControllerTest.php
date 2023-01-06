@@ -43,8 +43,12 @@ class CountryControllerTest extends TestCase
         $response = $this->login(role:'super-admin')->get(route('country.create'));
         $response->assertViewIs('pages.backend.countries.create_edit');
         $response->assertSee(__('Name'));
-        $response->assertSee(__('Create country'));
-        $response->assertSee(__('Store country'));
+        $response->assertSee(__('Create :resource',replace: [
+            'resource' => Str::lower(__('Country'))
+        ]));
+        $response->assertSee(__('Store :resource',replace: [
+            'resource' => Str::lower(__('Country'))
+        ]));
     }
 
     /**
@@ -88,8 +92,8 @@ class CountryControllerTest extends TestCase
         $response->assertViewIs('pages.backend.countries.create_edit');
         $response->assertSee(__('Name'));
         $response->assertSee($this->country->name);
-        $response->assertSee(__('Edit country'));
-        $response->assertSee(__('Update country'));
+        $response->assertSee( __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Country'))]));
+        $response->assertSee( __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Country'))]));
         $response->assertViewHas('country', $this->country);
     }
 

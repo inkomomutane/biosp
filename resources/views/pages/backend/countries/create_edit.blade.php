@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', request()->routeIs('country.edit') ? __('Update country') . ' ' . $country->name : __('Create country'))
-@section('title', request()->routeIs('country.edit') ? __('Update country') . ' ' . $country->name : __('Create country'))
+@section('dashboard_title', request()->routeIs('country.edit') ? __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Country'))]) . ' ' . $country->name : __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Country'))]))
+@section('title', request()->routeIs('country.edit') ?  __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Country'))]) . ' ' . $country->name :  __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Country'))]))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -21,9 +21,9 @@
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label fw-bold fs-3 mb-1">
                                     @if (request()->routeIs('country.edit'))
-                                        {{ __('Update country') }}
+                                        {{  __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}
                                     @else
-                                        {{ __('Store country') }}
+                                        {{  __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}
                                     @endif
 
                                 </span>
@@ -37,9 +37,9 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                     @if (request()->routeIs('country.edit'))
-                                     {{ __('Update country') }}
+                                     {{  __(key:'Update :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}
                                     @else
-                                        {{ __('Store country') }}
+                                        {{  __(key:'Store :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}
                                     @endif
                                 </button>
                             </div>

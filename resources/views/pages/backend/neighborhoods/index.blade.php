@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', __('Countries'))
-@section('title', __('Countries'))
+@section('dashboard_title', __('neighborhoods'))
+@section('title', __('neighborhoods'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -10,16 +10,16 @@
                     <!--begin::Header-->
                     <div class="card-header border-0 pt-3">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bold fs-3 mb-1">{{ __('Countries') }}</span>
+                            <span class="card-label fw-bold fs-3 mb-1">{{ __('Neighborhoods') }}</span>
                             <span class="text-muted mt-1 fw-semibold fs-7"></span>
                         </h3>
                         <div class="card-toolbar">
-                            <a href="{{ route('country.create') }}" class="btn btn-sm btn-light-info">
+                            <a href="{{ route('neighborhood.create') }}" class="btn btn-sm btn-light-info">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                 <span class="svg-icon svg-icon-2">
-                                    @svg('fluentui-flag-48')
+                                    @svg('fluentui-person-add-24')
                                 </span>
-                                <!--end::Svg Icon-->{{  __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}
+                                <!--end::Svg Icon-->{{ __(key: 'Create :resource', replace: ['resource' => Str::lower(__('Neighborhood'))]) }}
                             </a>
                         </div>
                     </div>
@@ -33,73 +33,68 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bolder fs-7 text-light bg-dark rounded">
-                                        <th class="ps-4 rounded-start">{{ __('Country') }}</th>
-                                        <th class="">{{ __('Name') }}</th>
+                                        <th class="ps-4 rounded-start">{{ __('Neighborhood') }}</th>
+                                        <th class="">{{ __('Province') }}</th>
                                         <th class=" text-center rounded-end">{{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    @forelse ($countries as $country)
+                                    @forelse ($neighborhoods as $neighborhood)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="symbol symbol-50px me-5">
                                                         <div
                                                             class="symbol-label fs-2 fw-bold text-primary bg-soft-blue text-uppercase">
-                                                            {{ explode(' ', $country->name)[0][0] }}
-                                                            {{ explode(' ', $country->name)[1][0] ?? '' }}
+                                                            {{ explode(' ', $neighborhood->name)[0][0] }}
+                                                            {{ explode(' ', $neighborhood->name)[1][0] ?? '' }}
                                                         </div>
                                                     </div>
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <a href="#"
                                                             class="text-dark fw-bold text-hover-primary mb-1 fs-6">
-                                                            {{ $country->name }}
+                                                            {{ $neighborhood->name }}
                                                         </a>
+                                                        <span
+                                                            class="text-muted fw-semibold text-muted d-block fs-7">{{ $neighborhood->province->name }}</span>
                                                     </div>
                                                 </div>
                                             </td>
-
                                             <td class="">
                                                 <a href="#"
                                                     class="btn btn-icon-info  btn-outline btn-outline-dashed btn-outline-info btn-active-light-info text-capitalize">
 
-                                                    {{ $country->name }} </a>
+                                                    {{ $neighborhood->province->name }} </a>
 
                                             </td>
 
                                             <td class="text-end">
 
-
-                                                    <a href="{{  request()->routeIs('country.trash') ?  route('country.restore', $country->uuid) : route('country.edit', $country->uuid)  }}"
-                                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="{{  request()->routeIs('country.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Country'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}">
-                                                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-                                                        <span class="svg-icon svg-icon-3">
-                                                            <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path opacity="0.3"
-                                                                    d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
-                                                                    fill="currentColor"></path>
-                                                                <path
-                                                                    d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
-                                                                    fill="currentColor"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </a>
-
-
-
-                                                <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $country->uuid }}').submit()"
-                                                    class="
-
-                                                    btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                                <a href="{{ route('neighborhood.edit', $neighborhood->uuid) }}"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{  request()->routeIs('country.trash') ?  __(key:'Delete :resource permanently',replace:[ 'resource' => Str::lower(__('Country'))])  : __(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }} ">
+                                                    title="{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]) }}">
+                                                    <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                                    <span class="svg-icon svg-icon-3">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path opacity="0.3"
+                                                                d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
+                                                                fill="currentColor"></path>
+                                                            <path
+                                                                d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
+                                                                fill="currentColor"></path>
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </a>
+                                                <a href="#"
+                                                    onclick="document.querySelector('#neighborhood_index_{{ $neighborhood->uuid }}').submit()"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="{{ __(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]) }}">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24"
@@ -117,20 +112,21 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  request()->routeIs('country.trash') ?  route('country.delete.forced', $country->uuid) : route('country.destroy', $country->uuid)  }}" method="post"
-                                                    id="user_index_{{ $country->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{ route('neighborhood.destroy', $neighborhood->uuid) }}"
+                                                    method="post" id="neighborhood_index_{{ $neighborhood->uuid }}">@csrf
+                                                    @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5">{{ __(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Countries'))]) }}</td>
+                                            <td colspan="5">{{ __(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Neighborhoods'))]) }}</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                                 <!--end::Table body-->
 
                             </table>
-                            {{ $countries->links() }}
+                            {{ $neighborhoods->links() }}
                             <!--end::Table-->
                         </div>
                         <!--end::Table container-->

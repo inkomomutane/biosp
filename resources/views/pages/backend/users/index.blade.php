@@ -19,7 +19,7 @@
                                 <span class="svg-icon svg-icon-2">
                                     @svg('fluentui-person-add-24')
                                 </span>
-                                <!--end::Svg Icon-->{{__('Create user')}}
+                                <!--end::Svg Icon-->{{__(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))])}}
                             </a>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
 
                                                 <a href="{{ route('user.show',$user->uuid) }}"
                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('View user')}}">
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'View :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -95,7 +95,7 @@
 
                                             <a href="{{ route('user.edit',$user->uuid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Edit user')}}">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -111,7 +111,7 @@
                                                 <!--end::Svg Icon-->
                                             </a>
                                             <a href="#" onclick="document.querySelector('#user_index_{{$user->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Delete user')}}">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -134,7 +134,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5">{{__('No users found.')}}</td>
+                                        <td colspan="5">{{__(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Users'))])}}</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

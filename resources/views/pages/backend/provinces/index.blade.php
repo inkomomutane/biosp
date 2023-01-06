@@ -19,7 +19,7 @@
                                 <span class="svg-icon svg-icon-2">
                                     @svg('fluentui-person-add-24')
                                 </span>
-                                <!--end::Svg Icon-->{{__('Create province')}}
+                                <!--end::Svg Icon-->{{__(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Province'))])}}
                             </a>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                                         class="text-dark fw-bold text-hover-primary mb-1 fs-6">
                                                         {{$province->name}}
                                                         </a>
-                                                    <span class="text-muted fw-semibold text-muted d-block fs-7">{{$province->country->name}}</span>
+                                                    <span class="text-muted fw-semibold text-muted d-block fs-7">{{$province?->country?->name}}</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -64,7 +64,7 @@
                                             <a href="#"
                                                 class="btn btn-icon-info  btn-outline btn-outline-dashed btn-outline-info btn-active-light-info text-capitalize">
 
-                                                {{ $province->country->name }} </a>
+                                                {{ $province?->country?->name }} </a>
 
                                         </td>
 
@@ -72,7 +72,7 @@
 
                                             <a href="{{ route('province.edit',$province->uuid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Edit province')}}">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Province'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -88,7 +88,7 @@
                                                 <!--end::Svg Icon-->
                                             </a>
                                             <a href="#" onclick="document.querySelector('#province_index_{{$province->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('Delete province')}}">
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Province'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -111,7 +111,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5">{{__('No provinces found.')}}</td>
+                                        <td colspan="5">{{__(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Provinces'))])}}</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

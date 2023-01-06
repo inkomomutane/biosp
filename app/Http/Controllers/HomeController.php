@@ -23,7 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Noty::addSuccess('Data has been saved successfully!');
+        Noty::addSuccess(__(
+            key: ':resource created',
+            replace:[ 'resource' => 'Country']
+        ));
 
         return view('pages.backend.home');
     }
