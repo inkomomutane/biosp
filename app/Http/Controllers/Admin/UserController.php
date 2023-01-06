@@ -65,13 +65,17 @@ class UserController extends Controller
             $user = User::create($dataCreate);
             $user->syncRoles(['aosp']);
 
-            Noty::addSuccess(__('User created.'));
+            Noty::addSuccess(__(
+                key: ':resource created',
+                replace:[ 'resource' => __('User')]
+            ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
-            // throw $th;
-            Noty::addError(__('Error creating user.'));
-
+            Noty::addError(__(
+                key: 'Error creating :resource.',
+                replace:[ 'resource' => __('User')]
+            ));
             return redirect()->route('user.index');
         }
     }
@@ -124,12 +128,17 @@ class UserController extends Controller
         }
         try {
             $user->update($dataUpdate);
-            Noty::addSuccess('User updated.');
+            Noty::addSuccess(__(
+                key: ':resource updated',
+                replace:[ 'resource' => __('User')]
+            ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
-            // throw $e;
-            Noty::addError('Error updating user.');
+            Noty::addError(__(
+                key: 'Error updating :resource.',
+                replace:[ 'resource' => __('User')]
+            ));
 
             return redirect()->route('user.index');
         }
@@ -145,12 +154,17 @@ class UserController extends Controller
     {
         try {
             $user->delete();
-            Noty::addSuccess('User deleted.');
+            Noty::addSuccess(__(
+                key: ':resource deleted',
+                replace:[ 'resource' => __('User')]
+            ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
-            Noty::addError('Error deleting user.');
-
+            Noty::addError(__(
+                key: 'Error deleting :resource.',
+                replace:[ 'resource' => __('User')]
+            ));
             return redirect()->route('user.index');
         }
     }

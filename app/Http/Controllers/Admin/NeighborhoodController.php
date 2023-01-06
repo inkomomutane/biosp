@@ -46,13 +46,16 @@ class NeighborhoodController extends Controller
                 ['name' => $request->name, 'province_uuid' => $request->province_uuid]
             );
 
-            Noty::addSuccess(__('neighborhoods created.'));
-
+            Noty::addSuccess(__(
+                key: ':resource created',
+                replace:[ 'resource' => __('Neighborhood')]
+            ));
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $th) {
-            // throw $th;
-            Noty::addError(__('Error creating neighborhood.'));
-
+            Noty::addError(__(
+                key: 'Error creating :resource.',
+                replace:[ 'resource' => __('Neighborhood')]
+            ));
             return redirect()->route('neighborhood.index');
         }
     }
@@ -65,6 +68,8 @@ class NeighborhoodController extends Controller
      */
     public function show(Neighborhood $neighborhood)
     {
+        Noty::addInfo(__(
+            key: 'Not Found'));
         return abort(404);
     }
 
@@ -95,12 +100,18 @@ class NeighborhoodController extends Controller
                 'name' => $request->name,
                 'province_uuid' => $request->province_uuid,
             ]);
-            Noty::addSuccess('neighborhoods updated.');
+            Noty::addSuccess(__(
+                key: ':resource updated',
+                replace:[ 'resource' => __('Neighborhood')]
+            ));
 
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $e) {
 //             throw $e;
-            Noty::addError('Error updating neighborhood.');
+                Noty::addError(__(
+                    key: 'Error updating :resource.',
+                    replace:[ 'resource' => __('Neighborhood')]
+                ));
 
             return redirect()->route('neighborhood.index');
         }
@@ -116,10 +127,16 @@ class NeighborhoodController extends Controller
     {
         try {
             $neighborhood->forceDelete();
-            Noty::addSuccess('neighborhoods deleted.');
+            Noty::addSuccess(__(
+                key: ':resource deleted',
+                replace:[ 'resource' => __('Neighborhood')]
+            ));
             return redirect()->route('neighborhood.index');
         } catch (\Throwable $th) {
-            Noty::addError('Error deleting neighborhood.');
+            Noty::addError(__(
+                key: 'Error deleting :resource.',
+                replace:[ 'resource' => __('Neighborhood')]
+            ));
 
             return redirect()->route('neighborhood.index');
         }

@@ -65,14 +65,15 @@ class CountryController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:[ 'resource' => 'Country']
+                replace:[ 'resource' => __('Country')]
             ));
 
             return redirect()->route('country.index');
         } catch (\Throwable $th) {
-            // throw $th;
-            Noty::addError(__('Error creating country.'));
-
+            Noty::addError(__(
+                key: 'Error creating :resource.',
+                replace:[ 'resource' => __('Country')]
+            ));
             return redirect()->route('country.index');
         }
     }
@@ -116,13 +117,15 @@ class CountryController extends Controller
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:[ 'resource' => 'Country']
+                replace:[ 'resource' => __('Country')]
             ));
 
             return redirect()->route('country.index');
         } catch (\Throwable $e) {
-            // throw $e;
-            Noty::addError('Error updating country.');
+            Noty::addError(__(
+                key: 'Error updating :resource.',
+                replace:[ 'resource' => __('Country')]
+            ));
 
             return redirect()->route('country.index');
         }
@@ -138,11 +141,16 @@ class CountryController extends Controller
     {
         try {
             $country->delete();
-            Noty::addSuccess('Country deleted.');
-
+            Noty::addSuccess(__(
+                key: ':resource deleted',
+                replace:[ 'resource' => __('Country')]
+            ));
             return redirect()->route('country.index');
         } catch (\Throwable $th) {
-            Noty::addError('Error deleting country.');
+            Noty::addError(__(
+                key: 'Error deleting :resource.',
+                replace:[ 'resource' => __('Country')]
+            ));
 
             return redirect()->route('country.index');
         }
@@ -152,11 +160,17 @@ class CountryController extends Controller
     {
         try {
             Country::withTrashed()->where('uuid', $country)->first()->forceDelete();
-            Noty::addSuccess('Country deleted.');
+            Noty::addSuccess(__(
+                key: ':resource deleted permanently',
+                replace:[ 'resource' => __('Country')]
+            ));
 
             return redirect()->route('country.trash');
         } catch (\Throwable $th) {
-            Noty::addError('Error deleting country.');
+            Noty::addError(__(
+                key: 'Error deleting :resource.',
+                replace:[ 'resource' => __('Country')]
+            ));
 
             return redirect()->route('country.trash');
         }
@@ -166,12 +180,16 @@ class CountryController extends Controller
     {
         try {
             Country::onlyTrashed()->where('uuid', $country)->first()->restore();
-            Noty::addSuccess('Country deleted.');
-
+            Noty::addSuccess(__(
+                key: ':resource restored',
+                replace:[ 'resource' => __('Country')]
+            ));
             return redirect()->route('country.trash');
         } catch (\Throwable $th) {
-            Noty::addError('Error deleting country.');
-
+            Noty::addError(__(
+                key: 'Error restoring :resource.',
+                replace:[ 'resource' => __('Country')]
+            ));
             return redirect()->route('country.trash');
         }
     }
