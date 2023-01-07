@@ -23,7 +23,7 @@ class BiospController extends Controller
      */
     public function index()
     {
-        $biosps = Biosp::latest()->paginate(5);
+        $biosps = Biosp::with('neighborhood')->latest()->paginate(5);
         return view('pages.backend.biosps.index')
             ->with('biosps', $biosps);
     }

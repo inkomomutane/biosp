@@ -18,7 +18,7 @@ class NeighborhoodController extends Controller
      */
     public function index()
     {
-        $neighborhoods = Neighborhood::latest()->paginate(5);
+        $neighborhoods = Neighborhood::with('province')->latest()->paginate(5);
 
         return view('pages.backend.neighborhoods.index')
             ->with('neighborhoods', $neighborhoods);

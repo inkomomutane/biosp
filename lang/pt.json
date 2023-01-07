@@ -93,5 +93,21 @@
     "No :resource found.": ":resource não encontrados.",
     "Project name" : "Nome do projecto",
     "Administration" : "Administração",
-    "Biosp services": "Serviços do biosp"
+    "Biosp services": "Serviços do biosp",
+    "Document needed":"Documento necessário",
+    "Document type":"Tipo de documento",
+    "Document types":"Tipos de documento",
+    "Female": "Feminino",
+    "Male": "Masculino",
+    "Other":"Outro",
+    "Genre": "Gênero",
+    "Genres": "Gêneros",
+    "Provenance": "Proveniência",
+    "Provenances": "Proveniências",
+    "Forwarded service": "Serviço encaminhado",
+    "Forwarded services": "Serviços encaminhados",
+    "Purpose of visit": "Objectivo da visita",
+    "Purposes of visit": "Objectivos da visita",
+    "Reason of opening case": "Motivo de abertura do processo",
+    "Reasons of opening case": "Motivos de abertura do processo"
 }

@@ -97,5 +97,22 @@
     "Project name" : "Project name",
     "Administration" : "Administration",
     "Biosp services": "Biosp services",
-     "Is not allowed for Super Admin Users change role for it self.":"Is not allowed for Super Admin Users change role for it self."
+    "Document needed":"Document needed",
+    "Document type":"Document type",
+    "Document types":"Document types",
+    "Female": "Female",
+    "Male": "Male",
+    "Other":"Other",
+    "Genre": "Genre",
+    "Genres": "Genres",
+    "Provenance": "Provenance",
+    "Provenances": "Provenances",
+    "Forwarded service": "Forwarded service",
+    "Forwarded services": "Forwarded services",
+    "Purpose of visit": "Purpose of visit",
+    "Purposes of visit": "Purposes of visit",
+    "Reason of opening case": "Reason of opening case",
+    "Reasons of opening case": "Reasons of opening case",
+
+    "Is not allowed for Super Admin Users change role for it self.":"Is not allowed for Super Admin Users change role for it self."
 }

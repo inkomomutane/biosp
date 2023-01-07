@@ -24,7 +24,7 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        $countries = Province::latest()->paginate(5);
+        $countries = Province::with('country')->latest()->paginate(5);
 
         return view('pages.backend.provinces.index')
             ->with('provinces', $countries);
