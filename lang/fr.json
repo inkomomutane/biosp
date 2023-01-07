@@ -90,5 +90,7 @@
     "Delete :resource permanently": "Supprimer :resource définitivement",
     "Select a :resource name" :  "Sélectionnez un nom de :resource",
     "No :resource found.": "Non :resource trouvée.",
-    "Project name" : "Project nom"
+    "Project name" : "Project nom",
+    "Administration" : "Administration",
+    "Biosp services": "Biosp services"
 }
