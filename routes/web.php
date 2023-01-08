@@ -5,10 +5,6 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,8 +37,7 @@ Route::get('/dashboard/location/{lang}', [App\Http\Controllers\Core\LanguageCont
 ->name('change.language')->middleware(['auth', 'lang']);
 
 Route::any('/dark_mode', function () {
-    Session::put(['dark' => ((! Session::get('dark')) ?? true)]);
-
+    Session::put(['dark' => !(Session::get('dark') ?? false)]);
     return redirect()->back();
 })->middleware(['auth', 'lang']);
 
@@ -56,6 +51,7 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
     ]);
     Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
         ->name('user.grant_role');
+
     Route::delete('country/{country}/forced', [CountryController::class, 'destroyForced'])
         ->name('country.delete.forced');
     Route::get('country/{country}/restore', [CountryController::class, 'restore'])
