@@ -64,6 +64,7 @@ class ProvinceController extends Controller
                 key: 'Error creating :resource.',
                 replace:['resource' => __('Province')]
             ));
+
             return redirect()->route('province.index');
         }
     }

@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location as FacadesLocation;
 
 class Location
@@ -18,7 +17,7 @@ class Location
      */
     public function handle(Request $request, Closure $next)
     {
-        $session_lang = Session::get('lang');
+        $session_lang = session()->get('lang');
         $geo = FacadesLocation::get(request()->ip());
 
         $country = $geo?->countryName ?? 'Mozambique';
@@ -30,7 +29,7 @@ class Location
             } else {
                 app()->setLocale('en');
             }
-        } elseif (($session_lang != app()->getLocale())) {
+        } elseif (($session_lang !== app()->getLocale())) {
             app()->setLocale($session_lang);
         }
 

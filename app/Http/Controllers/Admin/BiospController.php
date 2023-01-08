@@ -24,6 +24,7 @@ class BiospController extends Controller
     public function index()
     {
         $biosps = Biosp::with('neighborhood')->latest()->paginate(5);
+
         return view('pages.backend.biosps.index')
             ->with('biosps', $biosps);
     }
@@ -36,7 +37,6 @@ class BiospController extends Controller
     public function create()
     {
         return view('pages.backend.biosps.create_edit')->with('neighborhoods', Neighborhood::all());
-
     }
 
     /**
@@ -52,7 +52,7 @@ class BiospController extends Controller
                 [
                     'name' => $request->name,
                     'neighborhood_uuid' => $request->neighborhood_uuid,
-                    'project_name' => $request->project_name
+                    'project_name' => $request->project_name,
                 ]
             );
 
@@ -67,6 +67,7 @@ class BiospController extends Controller
                 key: 'Error creating :resource.',
                 replace:['resource' => __('Biosp')]
             ));
+
             return redirect()->route('biosp.index');
         }
     }
@@ -80,6 +81,7 @@ class BiospController extends Controller
     public function show(Biosp $biosp)
     {
         Noty::addInfo(__('Not Found'));
+
         return abort(404);
     }
 
@@ -109,7 +111,7 @@ class BiospController extends Controller
             $biosp->update([
                 'name' => $request->name,
                 'neighborhood_uuid' => $request->neighborhood_uuid,
-                'project_name' => $request->project_name
+                'project_name' => $request->project_name,
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',

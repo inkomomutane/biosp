@@ -43,8 +43,8 @@ abstract class DuskTestCase extends BaseTestCase
             $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
         ])->unless($this->hasHeadlessDisabled(), function ($items) {
             return $items->merge([
-//                 '--disable-gpu',
-//                 '--headless',
+                //                 '--disable-gpu',
+                //                 '--headless',
             ]);
         })->all());
 
@@ -78,15 +78,18 @@ abstract class DuskTestCase extends BaseTestCase
                isset($_ENV['DUSK_START_MAXIMIZED']);
     }
 
-    protected function login() :User {
+    protected function login(): User
+    {
         $user = User::factory()->create();
         $user->assignRole('super-admin');
+
         return $user;
     }
 
-    protected function rolesSeed():void {
-       $this->artisan('config:clear');
-       $this->seed(RolesAndPermissionsSeeder::class);
-       $this->app->make(PermissionRegistrar::class)->registerPermissions();
+    protected function rolesSeed(): void
+    {
+        $this->artisan('config:clear');
+        $this->seed(RolesAndPermissionsSeeder::class);
+        $this->app->make(PermissionRegistrar::class)->registerPermissions();
     }
 }

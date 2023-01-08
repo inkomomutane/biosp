@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,8 @@ Route::get('/dashboard/location/{lang}', [App\Http\Controllers\Core\LanguageCont
 ->name('change.language')->middleware(['auth', 'lang']);
 
 Route::any('/dark_mode', function () {
-    Session::put(['dark' => !(Session::get('dark') ?? false)]);
+    Session::put(['dark' => ! (Session::get('dark') ?? false)]);
+
     return redirect()->back();
 })->middleware(['auth', 'lang']);
 

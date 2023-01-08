@@ -12,7 +12,7 @@ class StoreBiospRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -22,7 +22,7 @@ class StoreBiospRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules(): array
     {
         return [
             'name' => [
@@ -31,7 +31,7 @@ class StoreBiospRequest extends FormRequest
                 'max:125',
                 Rule::unique(table: 'biosps', column: 'name'),
             ],
-            'project_name' => ['string','nullable','max:125'],
+            'project_name' => ['string', 'nullable', 'max:125'],
             'neighborhood_uuid' => ['required', 'string', 'uuid'],
         ];
     }

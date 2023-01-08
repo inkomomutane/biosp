@@ -3,15 +3,14 @@
 namespace Tests\Browser\Views;
 
 use App\Http\Controllers\Admin\UserController;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class UserFormsTest extends DuskTestCase
 {
-
     protected string $locate;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,16 +22,16 @@ class UserFormsTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
-                ->visit(action([UserController::class,'create']))
+                ->visit(action([UserController::class, 'create']))
                 ->assertRouteIs('user.create')
-                ->type('name',Str::random(280))
-                ->type('email','1234432121')
-                ->type('password','password')
-                ->type('password_confirmation','password_12345')
+                ->type('name', Str::random(280))
+                ->type('email', '1234432121')
+                ->type('password', 'password')
+                ->type('password_confirmation', 'password_12345')
                 ->press('store user')
                 ->assertSee(trans(key:'The :attribute may not be greater than :value characters.', replace: [
                     'attribute' => 'name',
-                    'value' => 255
+                    'value' => 255,
                 ], locale: $this->locate))
                 ->assertSee(trans(key:'The :attribute must be a valid email address.', replace: ['attribute' => 'email'],
                     locale: $this->locate))
@@ -41,16 +40,16 @@ class UserFormsTest extends DuskTestCase
         });
     }
 
-    public function  test_should_success_create_user_with_correct_data():void
+    public function test_should_success_create_user_with_correct_data(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([UserController::class, 'create']))
                 ->assertRouteIs('user.create')
-                ->type('name','Nelson Alexandre')
-                ->type('email','testmail@mail.org')
-                ->type('password','password')
-                ->type('password_confirmation','password')
+                ->type('name', 'Nelson Alexandre')
+                ->type('email', 'testmail@mail.org')
+                ->type('password', 'password')
+                ->type('password_confirmation', 'password')
                 ->press('store user')
                 ->assertRouteIs('user.index')
                 ->assertSee('Nelson Alexandre')

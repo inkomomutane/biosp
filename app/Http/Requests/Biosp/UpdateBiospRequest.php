@@ -12,7 +12,7 @@ class UpdateBiospRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return auth()->user()->hasRole('super-admin');
     }
@@ -32,7 +32,7 @@ class UpdateBiospRequest extends FormRequest
                 Rule::unique(table: 'biosps', column: 'name')
                     ->ignore(id: $this->biosp->uuid, idColumn: 'uuid'),
             ],
-            'project_name' => ['string','nullable','max:125'],
+            'project_name' => ['string', 'nullable', 'max:125'],
             'neighborhood_uuid' => ['required', 'string', 'uuid'],
         ];
     }

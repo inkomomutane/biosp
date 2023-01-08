@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use Tests\CreatesApplication;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 |
 */
 
- uses(TestCase::class,
-     CreatesApplication::class,
-     RefreshDatabase::class
- )->in('Feature','Unit');
+uses(TestCase::class,
+    CreatesApplication::class,
+    RefreshDatabase::class
+)->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -47,19 +47,18 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function login(User $user = null,  $roles = 'super-admin')
+function login(User $user = null, $roles = 'super-admin')
 {
-
     $user ??= (User::factory()->create())
         ->syncRoles($roles);
     \Pest\Laravel\actingAs($user);
+
     return $user;
 }
 
-
 function rolesSeed(): void
 {
-   \Pest\Laravel\artisan('config:clear');
-   \Pest\Laravel\seed(RolesAndPermissionsSeeder::class);
+    \Pest\Laravel\artisan('config:clear');
+    \Pest\Laravel\seed(RolesAndPermissionsSeeder::class);
     app()->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
 }
