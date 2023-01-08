@@ -3,14 +3,18 @@
 namespace Tests;
 
 use App\Models\User;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\TestCase as BaseTestCase;
+use Spatie\Permission\PermissionRegistrar;
 
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
+    use DatabaseMigrations;
 
     protected User $user;
 
@@ -39,8 +43,8 @@ abstract class DuskTestCase extends BaseTestCase
             $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
         ])->unless($this->hasHeadlessDisabled(), function ($items) {
             return $items->merge([
-                 '--disable-gpu',
-                 '--headless',
+//                 '--disable-gpu',
+//                 '--headless',
             ]);
         })->all());
 
@@ -72,5 +76,17 @@ abstract class DuskTestCase extends BaseTestCase
     {
         return isset($_SERVER['DUSK_START_MAXIMIZED']) ||
                isset($_ENV['DUSK_START_MAXIMIZED']);
+    }
+
+    protected function login() :User {
+        $user = User::factory()->create();
+        $user->assignRole('super-admin');
+        return $user;
+    }
+
+    protected function rolesSeed():void {
+       $this->artisan('config:clear');
+       $this->seed(RolesAndPermissionsSeeder::class);
+       $this->app->make(PermissionRegistrar::class)->registerPermissions();
     }
 }
