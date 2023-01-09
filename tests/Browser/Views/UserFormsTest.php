@@ -3,6 +3,7 @@
 namespace Tests\Browser\Views;
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Middleware\Location;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -16,6 +17,7 @@ class UserFormsTest extends DuskTestCase
         parent::setUp();
         $this->rolesSeed();
         $this->locate = 'en';
+        $this->app->setLocale('en');
     }
 
     public function test_should_fail_creating_user_with_wrong_data(): void

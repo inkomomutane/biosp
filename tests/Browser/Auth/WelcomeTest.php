@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Auth;
 
+use App\Http\Middleware\Location;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -14,14 +15,17 @@ class WelcomeTest extends DuskTestCase
         parent::setUp();
         $this->rolesSeed();
         $this->locate = 'en';
+
     }
 
-    /***
+    /***clea
      * @group authentication
      */
     public function test_should_refuse_authentication_with_wrong_data(): void
     {
         $this->browse(function (Browser $browser) {
+
+            $this->withoutMiddleware(Location::class);
             $browser->visitRoute('login')
                 ->assertRouteIs('login')
                 ->type('email', '')
@@ -43,6 +47,7 @@ class WelcomeTest extends DuskTestCase
     public function test_should_redirected_to_login_and_after_to_dashboard(): void
     {
         $user = $this->login();
+        $this->withoutMiddleware(Location::class);
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/')
                 ->assertRouteIs('login')

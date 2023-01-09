@@ -56,9 +56,8 @@
                       <span class="menu-link py-2 btn btn-active-light btn-active-color-primary btn-text-mutted" data-kt-menu-trigger="click"
                     data-kt-menu-placement="bottom-start">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
-                            <span class="svg-icon-2">
-                                @foreach ((config('app.avaliable_locates')) as $key => $locate)
+                           <span class="svg-icon-2">
+                                @foreach ((config('app.available_locates')) as $key => $locate)
                                     @if($locate == app()->getLocale())
                                         @svg('flag-country-'. ($locate  == 'en'? 'us' : $locate ),'flag')
                                         @break

@@ -17,11 +17,13 @@ class Location
      */
     public function handle(Request $request, Closure $next)
     {
+        if (env('APP_ENV') == "dusk"){app()->setLocale("en");return $next($request);}
+
         $session_lang = session()->get('lang');
         $geo = FacadesLocation::get(request()->ip());
 
         $country = $geo?->countryName ?? 'Mozambique';
-        $languages = config('app.avaliable_locates');
+        $languages = config('app.available_locates');
 
         if (is_null($session_lang)) {
             if (array_key_exists($country, $languages)) {

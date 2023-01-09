@@ -9,8 +9,8 @@ class LanguageController extends Controller
 {
     public function change(string $lang)
     {
-        $languages = config('app.avaliable_locates');
-        if (in_array($lang, array_values($languages))) {
+        $languages = config('app.available_locates');
+        if (in_array($lang, array_values($languages), true)) {
             Session::put(['lang' => $lang]);
         }
 

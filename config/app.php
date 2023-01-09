@@ -117,7 +117,7 @@ return [
      | All locates that is switchable with app
      |
      */
-    'avaliable_locates' => [
+    'available_locates' => [
         'United States' => 'en',
         'Mozambique' => 'pt',
         'France' => 'fr',
