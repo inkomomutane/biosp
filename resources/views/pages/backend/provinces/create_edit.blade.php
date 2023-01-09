@@ -58,13 +58,13 @@
                                         :value="old('name')?:(request()->routeIs('province.edit') ?$province->name : '' )"/>
 
                                     <x-forms.select
-                                        name="Country"
                                         label="Country"
                                         :multiple="false"
                                         name="country_uuid"
                                         placeholder="Country"
                                         :options="$countries->pluck('name','uuid')->toArray()"
-                                        :selected="request()->routeIs('neighborhood.edit') ? [ $province->country->uuid] : [] "/>
+                                        :selected="request()->routeIs('neighborhood.edit') ? [ $province->country->uuid] : [] "
+                                    />
                                 </div>
                                 <!--end::Input group-->
                                 <!--end::Form-->

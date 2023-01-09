@@ -59,7 +59,6 @@
                                 :value="old('name')?:(request()->routeIs('neighborhood.edit') ?$neighborhood->name : '' )"
                             />
                             <x-forms.select
-                                name="Province"
                                 label="Province"
                                 :multiple="false"
                                 name="province_uuid"

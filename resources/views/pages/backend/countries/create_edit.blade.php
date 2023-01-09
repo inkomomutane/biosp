@@ -52,25 +52,12 @@
                                 <!--begin::Form-->
                                 <!--begin::Input group-->
                                 <div class="row mb-5">
-                                    <!--begin::Col-->
-                                    <div class="col-md-12 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Name') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="{{ __('Name') }}" name="name" required
-                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('country.edit')){{ $country->name }} @endif" />
-                                        <!--end::Input-->
-                                        @error('name')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
+                                    <x-forms.input
+                                        className="col-md-4"
+                                        type="text" name="name" label="Name" placeholder="Name"
+                                        :required="true"
+                                        :value="old('name')?:(request()->routeIs('country.edit') ?$country->name : '' )"
+                                    />
                                 </div>
                                 <!--end::Input group-->
                                 <!--end::Form-->

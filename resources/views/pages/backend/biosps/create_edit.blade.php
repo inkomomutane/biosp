@@ -53,68 +53,25 @@
                                 <!--begin::Form-->
                                 <!--begin::Input group-->
                                 <div class="row mb-5">
-                                    <!--begin::Col-->
-                                    <div class="col-md-4 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Name') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="{{ __('Name') }}" name="name" required
-                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('biosp.edit')){{ $biosp->name }} @endif" />
-                                        <!--end::Input-->
-                                        @error('name')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-md-4 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Project name') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                               placeholder="{{ __('Project name') }}" name="project_name" required
-                                               value="@if (old('project_name')) {{ old('project_name') }}@elseif(request()->routeIs('biosp.edit')){{ $biosp->project_name }} @endif" />
-                                        <!--end::Input-->
-                                        @error('project_name')
-                                        <!--begin::Error full name -->
-                                        <span class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                        <!--end::Error full name-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-md-4 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Neighborhood') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select name="neighborhood_uuid" class="form-select form-select-solid"
-                                            data-control="select2" data-placeholder="{{ __(key:'Select a :resource name',replace:[ 'resource' => Str::lower(__('Biosp'))]) }}">
-                                            @foreach ($neighborhoods as $neighborhood)
-                                                <option value="{{ $neighborhood->uuid }}"
-                                                    @if (request()->routeIs('biosp.edit') && $biosp->neighborhood->uuid == $neighborhood->uuid) selected @endif><span
-                                                        class="text-capitalize text-mutted"> {{ $neighborhood->name }}</span>
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <!--end::Input-->
-                                        @error('neighborhood_uuid')
-                                            <!--begin::Error neighborhood -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error neighborhood-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
+                                    <x-forms.input
+                                        className="col-md-4"
+                                        type="text" name="name" label="Name" placeholder="Name"
+                                        :required="true"
+                                        :value="old('name')?:(request()->routeIs('biosp.edit') ?$biosp->name : '' )"/>
+                                    <x-forms.input
+                                        className="col-md-4"
+                                        type="text" name="project_name" label="Project name" placeholder="Project name"
+                                        :required="true"
+                                        :value="old('project_name')?:(request()->routeIs('biosp.edit') ?$biosp->project_name : '' )"/>
+                                    <x-forms.select
+                                        className="col-md-4"
+                                        label="Neighborhood"
+                                        :multiple="false"
+                                        name="neighborhood_uuid"
+                                        placeholder="Neighborhood"
+                                        :options="$neighborhoods->pluck('name','uuid')->toArray()"
+                                        :selected="request()->routeIs('biosp.edit') ? [ $biosp->neighborhood->uuid ] : [] "
+                                    />
                                 </div>
                                 <!--end::Input group-->
                                 <!--end::Form-->
