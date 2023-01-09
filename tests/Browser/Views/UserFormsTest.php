@@ -3,7 +3,7 @@
 namespace Tests\Browser\Views;
 
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Middleware\Location;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -11,12 +11,14 @@ use Tests\DuskTestCase;
 class UserFormsTest extends DuskTestCase
 {
     protected string $locate;
+    protected  User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->rolesSeed();
         $this->locate = 'en';
+        $this->user = User::factory()->create()->assignRole('aosp');
         $this->app->setLocale('en');
     }
 
@@ -59,4 +61,29 @@ class UserFormsTest extends DuskTestCase
                 ->assertSee(trans('AOSP', locale: $this->locate));
         });
     }
+
+    public function test_should_success_update_user_with_correct_data(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($this->login())
+                ->visit(action([UserController::class, 'edit'],[
+                    'user' => $this->user->uuid
+                ]))
+                ->assertRouteIs('user.edit',[
+                    'user' => $this->user->uuid
+                ])
+                ->waitForInput('name',5)
+                ->assertInputValue('name',$this->user->name)
+                ->waitForInput('email',5)
+                ->assertInputValue('email',$this->user->email)
+                ->type('name', $this->user->name . " Mutane")
+                ->type('email', 'testmail@mail.org')
+                ->press('store user')
+                ->assertRouteIs('user.index')
+                ->assertSee($this->user->name . " Mutane")
+                ->assertSee('testmail@mail.org')
+                ->assertSee(trans('AOSP', locale: $this->locate));
+        });
+    }
+
 }

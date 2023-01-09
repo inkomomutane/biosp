@@ -50,65 +50,33 @@
                         <!--begin::Body-->
                         <div class="card-body py-3">
                             <!--begin::Table container-->
-                            <div class="">
-                                <!--begin::Form-->
-                                <!--begin::Input group-->
-                                <div class="row mb-5">
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Name') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="{{ __('Name') }}" name="name" required
-                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('neighborhood.edit')){{ $neighborhood->name }} @endif" />
-                                        <!--end::Input-->
-                                        @error('name')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Province') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select name="province_uuid" class="form-select form-select-solid"
-                                            data-control="select2" data-placeholder="{{ __(key:'Select a :resource name',replace:[ 'resource' => Str::lower(__('Neighborhood'))]) }}">
-                                            @foreach ($provinces as $province)
-                                                <option value="{{ $province->uuid }}"
-                                                    @if (request()->routeIs('neighborhood.edit') && $neighborhood->province->uuid == $province->uuid) selected @endif><span
-                                                        class="text-capitalize text-mutted"> {{ $province->name }}</span>
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <!--end::Input-->
-                                        @error('province_uuid')
-                                            <!--begin::Error Email -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error Email-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Table container-->
+                            <!--begin::Form-->
+                            <!--begin::Input group-->
+                            <div class="row mb-5">
+                            <x-forms.input
+                                type="text" name="name" label="Name" placeholder="Name"
+                                :required="false"
+                                :value="old('name')?:(request()->routeIs('neighborhood.edit') ?$neighborhood->name : '' )"
+                            />
+                            <x-forms.select
+                                name="Province"
+                                label="Province"
+                                :multiple="false"
+                                name="province_uuid"
+                                placeholder="Province"
+                                :options="$provinces->pluck('name','uuid')->toArray()"
+                                :selected="request()->routeIs('neighborhood.edit') ? [$neighborhood->province->uuid] : [] "
+                            />
                         </div>
-                        <!--begin::Body-->
+                        <!--end::Input group-->
+                        <!--end::Form-->
                     </div>
+                    <!--end::Table container-->
                 </div>
-            </form>
-            <!--end::Col-->
+                <!--begin::Body-->
         </div>
+        </form>
+        <!--end::Col-->
+    </div>
     </div>
 @endsection

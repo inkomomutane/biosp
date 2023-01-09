@@ -14,7 +14,6 @@
                 @if (request()->routeIs('province.edit'))
                     @method('PATCH')
                 @endif
-
                 <div class="row">
                     <div class="card mb-5 mb-xl-7">
                         <!--begin::Header-->
@@ -53,50 +52,19 @@
                                 <!--begin::Form-->
                                 <!--begin::Input group-->
                                 <div class="row mb-5">
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Name') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="{{ __('Name') }}" name="name" required
-                                            value="@if (old('name')) {{ old('name') }}@elseif(request()->routeIs('province.edit')){{ $province->name }} @endif" />
-                                        <!--end::Input-->
-                                        @error('name')
-                                            <!--begin::Error full name -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error full name-->
-                                        @enderror
+                                    <x-forms.input
+                                        type="text" name="name" label="Name" placeholder="Name"
+                                        :required="false"
+                                        :value="old('name')?:(request()->routeIs('province.edit') ?$province->name : '' )"/>
 
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-md-6 fv-row">
-                                        <!--begin::Label-->
-                                        <label class="required fs-5 fw-bold mb-2">{{ __('Country') }}</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select name="country_uuid" class="form-select form-select-solid"
-                                            data-control="select2" data-placeholder="{{ __(key:'Select a :resource name',replace:[ 'resource' => Str::lower(__('Province'))]) }}">
-                                            @foreach ($countries as $country)
-                                                <option value="{{ $country->uuid }}"
-                                                    @if (request()->routeIs('province.edit') && $province->country->uuid == $country->uuid) selected @endif><span
-                                                        class="text-capitalize text-mutted"> {{ $country->name }}</span>
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <!--end::Input-->
-                                        @error('country_uuid')
-                                            <!--begin::Error country -->
-                                            <span
-                                                class="fv-plugins-message-container fw-bolder invalid-feedback">{{ $message }}</span>
-                                            <!--end::Error country-->
-                                        @enderror
-
-                                    </div>
-                                    <!--end::Col-->
+                                    <x-forms.select
+                                        name="Country"
+                                        label="Country"
+                                        :multiple="false"
+                                        name="country_uuid"
+                                        placeholder="Country"
+                                        :options="$countries->pluck('name','uuid')->toArray()"
+                                        :selected="request()->routeIs('neighborhood.edit') ? [ $province->country->uuid] : [] "/>
                                 </div>
                                 <!--end::Input group-->
                                 <!--end::Form-->
