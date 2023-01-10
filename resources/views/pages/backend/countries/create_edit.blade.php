@@ -53,7 +53,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-5">
                                     <x-forms.input
-                                        className="col-md-4"
+                                        className="col-md-12"
                                         type="text" name="name" label="Name" placeholder="Name"
                                         :required="true"
                                         :value="old('name')?:(request()->routeIs('country.edit') ?$country->name : '' )"
