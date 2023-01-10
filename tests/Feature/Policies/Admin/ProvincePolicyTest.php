@@ -9,7 +9,7 @@ beforeEach(function () {
 });
 
 it('should allow super_admins\'s to manage provinces', function (TestResponse $request) {
-    expect($request->status())->toBeIn([200, 302,404]);
+    expect($request->status())->toBeIn([200, 302, 404]);
 })->with('super_admin_manage_provinces_requests')->group('policy');
 
 it('should deny simple admins\'s to manage provinces', function (TestResponse $request) {

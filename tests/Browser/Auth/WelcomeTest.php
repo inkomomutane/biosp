@@ -15,7 +15,6 @@ class WelcomeTest extends DuskTestCase
         parent::setUp();
         $this->rolesSeed();
         $this->locate = 'en';
-
     }
 
     /***clea
@@ -24,7 +23,6 @@ class WelcomeTest extends DuskTestCase
     public function test_should_refuse_authentication_with_wrong_data(): void
     {
         $this->browse(function (Browser $browser) {
-
             $this->withoutMiddleware(Location::class);
             $browser->visitRoute('login')
                 ->assertRouteIs('login')

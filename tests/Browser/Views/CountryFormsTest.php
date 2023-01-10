@@ -12,7 +12,8 @@ use Throwable;
 class CountryFormsTest extends DuskTestCase
 {
     protected string $locate;
-    protected  Country $country;
+
+    protected Country $country;
 
     protected function setUp(): void
     {
@@ -64,18 +65,18 @@ class CountryFormsTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
-                ->visit(action([CountryController::class, 'edit'],[
-                    'country' => $this->country->uuid
+                ->visit(action([CountryController::class, 'edit'], [
+                    'country' => $this->country->uuid,
                 ]))
-                ->assertRouteIs('country.edit',[
-                    'country' => $this->country->uuid
+                ->assertRouteIs('country.edit', [
+                    'country' => $this->country->uuid,
                 ])
-                ->waitForInput('name',5)
-                ->assertInputValue('name',$this->country->name)
-                ->type('name', $this->country->name . " Mutane")
+                ->waitForInput('name', 5)
+                ->assertInputValue('name', $this->country->name)
+                ->type('name', $this->country->name.' Mutane')
                 ->press('store country')
                 ->assertRouteIs('country.index')
-                ->assertSee($this->country->name . " Mutane");
+                ->assertSee($this->country->name.' Mutane');
         });
     }
 }

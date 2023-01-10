@@ -12,7 +12,8 @@ use Throwable;
 class ProvinceFormsTest extends DuskTestCase
 {
     protected string $locate;
-    protected  Province $province;
+
+    protected Province $province;
 
     protected function setUp(): void
     {
@@ -64,18 +65,18 @@ class ProvinceFormsTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
-                ->visit(action([ProvinceController::class, 'edit'],[
-                    'province' => $this->province->uuid
+                ->visit(action([ProvinceController::class, 'edit'], [
+                    'province' => $this->province->uuid,
                 ]))
-                ->assertRouteIs('province.edit',[
-                    'province' => $this->province->uuid
+                ->assertRouteIs('province.edit', [
+                    'province' => $this->province->uuid,
                 ])
-                ->waitForInput('name',5)
-                ->assertInputValue('name',$this->province->name)
-                ->type('name', $this->province->name . " Mutane")
+                ->waitForInput('name', 5)
+                ->assertInputValue('name', $this->province->name)
+                ->type('name', $this->province->name.' Mutane')
                 ->press('store province')
                 ->assertRouteIs('province.index')
-                ->assertSee($this->province->name . " Mutane");
+                ->assertSee($this->province->name.' Mutane');
         });
     }
 }

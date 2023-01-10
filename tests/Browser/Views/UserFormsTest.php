@@ -11,7 +11,8 @@ use Tests\DuskTestCase;
 class UserFormsTest extends DuskTestCase
 {
     protected string $locate;
-    protected  User $user;
+
+    protected User $user;
 
     protected function setUp(): void
     {
@@ -66,24 +67,23 @@ class UserFormsTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
-                ->visit(action([UserController::class, 'edit'],[
-                    'user' => $this->user->uuid
+                ->visit(action([UserController::class, 'edit'], [
+                    'user' => $this->user->uuid,
                 ]))
-                ->assertRouteIs('user.edit',[
-                    'user' => $this->user->uuid
+                ->assertRouteIs('user.edit', [
+                    'user' => $this->user->uuid,
                 ])
-                ->waitForInput('name',5)
-                ->assertInputValue('name',$this->user->name)
-                ->waitForInput('email',5)
-                ->assertInputValue('email',$this->user->email)
-                ->type('name', $this->user->name . " Mutane")
+                ->waitForInput('name', 5)
+                ->assertInputValue('name', $this->user->name)
+                ->waitForInput('email', 5)
+                ->assertInputValue('email', $this->user->email)
+                ->type('name', $this->user->name.' Mutane')
                 ->type('email', 'testmail@mail.org')
                 ->press('store user')
                 ->assertRouteIs('user.index')
-                ->assertSee($this->user->name . " Mutane")
+                ->assertSee($this->user->name.' Mutane')
                 ->assertSee('testmail@mail.org')
                 ->assertSee(trans('AOSP', locale: $this->locate));
         });
     }
-
 }

@@ -51,15 +51,14 @@ it('should delete country and redirect to route country.index', function () {
 it('should restore country and redirect to route country.trash', function () {
     $country = clone $this->country;
     $this->actingAs(login())
-        ->get(action([CountryController::class, 'restore'],$country))
+        ->get(action([CountryController::class, 'restore'], $country))
         ->assertRedirectToRoute('country.trash')
         ->assertSessionDoesntHaveErrors();
     assertDatabaseHas('countries', [
         'name' => $country->name,
-        'deleted_at' => null
+        'deleted_at' => null,
     ]);
 })->group('controller');
-
 
 it('should force delete country and redirect to route country.index', function () {
     $country = clone $this->country;

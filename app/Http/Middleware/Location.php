@@ -17,7 +17,11 @@ class Location
      */
     public function handle(Request $request, Closure $next)
     {
-        if (env('APP_ENV') == "dusk"){app()->setLocale("en");return $next($request);}
+        if (env('APP_ENV') === 'dusk') {
+            app()->setLocale('en');
+
+            return $next($request);
+        }
 
         $session_lang = session()->get('lang');
         $geo = FacadesLocation::get(request()->ip());

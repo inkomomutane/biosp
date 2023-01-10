@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\CountryController;
 
 dataset('super_admin_manage_countries_requests', datasetsArrayOfCountries('super-admin'));
@@ -19,5 +20,5 @@ function datasetsArrayOfCountries($roles): array
         'route country.delete.forced' => fn () => $this->actingAs(login(roles: $roles))->delete(action([CountryController::class, 'destroyForced'], $this->country)),
         'route country.restore' => fn () => $this->actingAs(login(roles: $roles))->get(action([CountryController::class, 'restore'], $this->country)),
         'route country.trash' => fn () => $this->actingAs(login(roles: $roles))->get(action([CountryController::class, 'trashedCountries'], $this->country)),
-        ];
+    ];
 }

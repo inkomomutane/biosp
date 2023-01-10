@@ -9,7 +9,7 @@ beforeEach(function () {
 });
 
 it('should allow super_admins\'s to manage countries', function (TestResponse $request) {
-    expect($request->status())->toBeIn([200, 302,404]);
+    expect($request->status())->toBeIn([200, 302, 404]);
 })->with('super_admin_manage_countries_requests')->group('policy');
 
 it('should deny simple admins\'s to manage countries', function (TestResponse $request) {
