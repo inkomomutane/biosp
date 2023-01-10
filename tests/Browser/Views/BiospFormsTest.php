@@ -80,14 +80,13 @@ class BiospFormsTest extends DuskTestCase
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->biosp->name)
-                ->type('name', $this->biosp->name . ' Mutane')
+                ->type('name', $this->biosp->name.' Mutane')
                 ->assertInputValue('project_name', $this->biosp->project_name)
-                ->type('project_name', $this->biosp->project_name . ' Akulo')
+                ->type('project_name', $this->biosp->project_name.' Akulo')
                 ->press('store biosp')
                 ->assertRouteIs('biosp.index')
-                ->assertSee($this->biosp->name . ' Mutane')
-                ->assertSee($this->biosp->project_name . ' Akulo')
-            ;
+                ->assertSee($this->biosp->name.' Mutane')
+                ->assertSee($this->biosp->project_name.' Akulo');
         });
     }
 }

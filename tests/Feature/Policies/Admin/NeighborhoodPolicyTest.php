@@ -5,9 +5,9 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Testing\TestResponse;
 
 beforeEach(
-/**
- * @throws BindingResolutionException
- */
+    /**
+     * @throws BindingResolutionException
+     */
     function () {
         rolesSeed();
         $this->neighborhood = Neighborhood::factory()->create();

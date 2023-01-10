@@ -5,13 +5,13 @@ use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 beforeEach(
-/**
- * @throws BindingResolutionException
- */
+    /**
+     * @throws BindingResolutionException
+     */
     function () {
         rolesSeed();
         $this->user = User::factory()->create();
-});
+    });
 
 it('should fetch and see paginated users', function () {
     $users = User::factory()->count(5)->create();

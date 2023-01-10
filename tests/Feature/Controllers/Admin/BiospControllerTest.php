@@ -7,13 +7,13 @@ use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
 beforeEach(
-/**
- * @throws BindingResolutionException
- */
-function () {
-    rolesSeed();
-    $this->biosp = Biosp::factory()->create();
-});
+    /**
+     * @throws BindingResolutionException
+     */
+    function () {
+        rolesSeed();
+        $this->biosp = Biosp::factory()->create();
+    });
 
 it('should store biosp and redirect to route biosp.index', function () {
     $biospCreate = [
