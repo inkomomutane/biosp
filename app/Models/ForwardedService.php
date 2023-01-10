@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Class ForwardedService
@@ -29,11 +30,13 @@ class ForwardedService extends Model
     use SoftDeletes;
     use HasFactory;
     use HasUuids;
+    use HasTranslations;
+
 
     protected $table = 'forwarded_services';
 
     protected $primaryKey = 'uuid';
-
+    public array $translatable = ['name'];
     public $incrementing = false;
 
     protected $fillable = [
