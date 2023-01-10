@@ -1,0 +1,78 @@
+.feather {
+    width: 18px;
+    height: 18px;
+    font-weight: 800;
+    stroke-width: 2;
+  }
+
+  .feather-sm {
+    width: 14px;
+    font-weight: 800;
+    height: 14px;
+  }
+
+  .feather-lg {
+    width: 36px;
+    font-weight: 800;
+    height: 36px;
+  }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url("./fonts/ubuntu/ubuntu.ttf") format('truetype'), ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #e0eaff;
+    font-family: 'Ubuntu';
+    color: #3f3d56;
+}
+
+section {
+    width: 400px;
+    margin: auto;
+    margin-top: auto;
+    margin-top: 70px;
+}
+
+section img {
+    width: 100%;
+}
+
+.message {
+    width: 100%;
+    display: flex;
+    margin: 10px;
+}
+
+.message h1 {
+    align-self: auto;
+    margin: auto;
+}
+
+section .home {
+    box-sizing: border-box;
+    display: flex;
+    margin: 25px;
+       }
+
+section .home a {
+    box-sizing: border-box;
+    font-family: 'Ubuntu';
+
+    border-radius: 4px;
+    color: #fff;
+    overflow: hidden;
+    text-decoration: none;
+    background-color: #2d3748;
+    border-bottom: 8px solid #2d3748;
+    border-left: 18px solid #2d3748;
+    border-right: 18px solid #2d3748;
+    border-top: 8px solid #2d3748;
+    align-self: auto;
+    margin: auto;
+    padding: 3px;
+    font-weight: 600;
+}

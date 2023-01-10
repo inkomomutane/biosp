@@ -1,24 +1,46 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use App\Traits\Uuids;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Class SendMail
+ *
+ * @property string $uuid
+ * @property string $email
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Collection|Biosp[] $biosps
+ */
 class SendMail extends Model
 {
-    use HasFactory,Uuids;
+    use HasFactory;
+    use HasUuids;
+
     protected $table = 'send_mails';
+
     protected $primaryKey = 'uuid';
-	public $incrementing = false;
 
-	protected $fillable = [
-		'email'
-	];
+    public $incrementing = false;
 
-    public function neighborhoods()
+    protected $fillable = [
+        'email',
+    ];
+
+    public function biosps(): BelongsToMany
     {
-        return $this->belongsToMany(Neighborhood::class,'send_mail_neighborhoods')->as('send_mail_neighborhoods');
+        return $this->belongsToMany(Biosp::class, 'biosp_send_mails', 'send_mails_uuid', 'biosps_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
     }
 }

@@ -8,16 +8,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        Commands\SendReport::class,
-        Commands\SendHourlyRaport::class,
-    ];
-
-    /**
      * Define the application's command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
@@ -25,11 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('send:report')->monthlyOn(30,'6:0')->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
-         $schedule->command('send:hourly-report')->everyMinute()->days([
-            Schedule::MONDAY,Schedule::THURSDAY,Schedule::WEDNESDAY,Schedule::TUESDAY,Schedule::FRIDAY
-        ])->withoutOverlapping()->emailOutputTo('nelsonmutane@gmail.com');
-        }
+        // $schedule->command('inspire')->hourly();
+    }
 
     /**
      * Register the commands for the application.

@@ -6,11 +6,12 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -21,24 +22,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- *
  * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
  */
 class PurposeOfVisit extends Model
 {
-    use Uuids,HasFactory,SoftDeletes;
-	protected $table = 'purpose_of_visits';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    use SoftDeletes;
+    use HasFactory;
+    use HasUuids;
 
-	protected $fillable = [
-		'name'
-	];
+    protected $table = 'purpose_of_visits';
 
-	public function benificiaries()
-	{
-		return $this->hasMany(Benificiary::class, 'purpose_of_visit_uuid');
-	}
+    protected $primaryKey = 'uuid';
+
+    public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function benificiaries(): HasMany
+    {
+        return $this->hasMany(Benificiary::class, 'purpose_of_visit_uuid');
+    }
 }

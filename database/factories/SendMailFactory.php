@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\SendMail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SendMailFactory extends Factory
+/**
+ * @extends Factory<\App\Models\SendMail>
+ */
+final class SendMailFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -19,10 +24,11 @@ class SendMailFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'uuid' => $this->faker->uuid,
+            'email' => $this->faker->safeEmail,
         ];
     }
 }

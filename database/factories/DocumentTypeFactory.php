@@ -1,25 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\DocumentType;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DocumentTypeFactory extends Factory
+/**
+ * @extends Factory<\App\Models\DocumentType>
+ */
+final class DocumentTypeFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = DocumentType::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
-    public function definition()
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name,

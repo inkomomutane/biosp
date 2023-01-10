@@ -1,6 +1,6 @@
 @extends('errors.layout')
-@section('title','Forbidden')
-@section('message','Forbidden')
+@section('title',__('Forbidden'))
+@section('message',__('Forbidden'))
 @section('code','403')
-@section('image','403.svg')
+@section('image','svg/403.svg')
 

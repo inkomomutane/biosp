@@ -1,29 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Province;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProvinceFactory extends Factory
+/**
+ * @extends Factory<\App\Models\Province>
+ */
+final class ProvinceFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Province::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
-    public function definition()
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid(),
-            'name' => "Admin",
+            'uuid' => $this->faker->uuid,
+            'name' => $this->faker->name,
+            'country_uuid' => \App\Models\Country::factory(),
         ];
     }
 }

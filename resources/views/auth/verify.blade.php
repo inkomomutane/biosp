@@ -25,5 +25,5 @@
         </div>
     </div>
 </div>
-
 @endsection
+@section('title',__('Verify Your Email Address'))

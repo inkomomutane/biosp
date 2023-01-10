@@ -1,29 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Genre;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class GenreFactory extends Factory
+/**
+ * @extends Factory<\App\Models\Genre>
+ */
+final class GenreFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Genre::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
-    public function definition()
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid(),
-            'name' => $this->faker->name(),
+            'uuid' => $this->faker->uuid,
+            'name' => $this->faker->name,
         ];
     }
 }

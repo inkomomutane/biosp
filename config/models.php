@@ -416,11 +416,23 @@ return [
         |--------------------------------------------------------------------------
         | Move $fillable property to base files
         |--------------------------------------------------------------------------
-        | When base_files is true you can set fillable_in_base_files to true 
+        | When base_files is true you can set fillable_in_base_files to true
         | if you want the $fillable to be generated in base files
         |
         */
         'fillable_in_base_files' => false,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Generate return types for relation methods.
+        |--------------------------------------------------------------------------
+        | When enable_return_types is set to true, return type declarations are added
+        | to all generated relation methods for your models.
+        |
+        | NOTE: This requires PHP 7.0 or later.
+        |
+        */
+        'enable_return_types' => false,
     ],
 
     /*
@@ -477,18 +489,18 @@ return [
     |
     */
 
-//    'connections' => [
-//        'read_only_external' => [
-//            'parent' => \App\Models\ReadOnlyModel::class,
-//            'connection' => true,
-//            'users' => [
-//                'connection' => false,
-//            ],
-//            'my_other_database' => [
-//                'password_resets' => [
-//                    'connection' => false,
-//                ]
-//            ]
-//        ],
-//    ],
+    //    'connections' => [
+    //        'read_only_external' => [
+    //            'parent' => \App\Models\ReadOnlyModel::class,
+    //            'connection' => true,
+    //            'users' => [
+    //                'connection' => false,
+    //            ],
+    //            'my_other_database' => [
+    //                'password_resets' => [
+    //                    'connection' => false,
+    //                ]
+    //            ]
+    //        ],
+    //    ],
 ];

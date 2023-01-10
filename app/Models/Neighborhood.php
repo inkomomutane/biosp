@@ -6,15 +6,17 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Neighborhood
+ * Class neighborhoods
  *
  * @property string|null $deleted_at
  * @property string $uuid
@@ -22,36 +24,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property string|null $province_uuid
- *
  * @property Province|null $province
- * @property Collection|Benificiary[] $benificiaries
- * @property Collection|User[] $users
- *
- * @package App\Models
+ * @property Collection|Biosp[] $biosps
  */
 class Neighborhood extends Model
-{	use Uuids,HasFactory,SoftDeletes;
-	protected $table = 'neighborhoods';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+{
+    use SoftDeletes;
+    use HasFactory;
+    use HasUuids;
 
-	protected $fillable = [
-		'name',
-		'province_uuid'
-	];
+    protected $table = 'neighborhoods';
 
-	public function province()
-	{
-		return $this->belongsTo(Province::class, 'province_uuid');
-	}
+    protected $primaryKey = 'uuid';
 
-	public function benificiaries()
-	{
-		return $this->hasMany(Benificiary::class, 'neighborhood_uuid');
-	}
+    public $incrementing = false;
 
-	public function users()
-	{
-		return $this->hasMany(User::class, 'neighborhood_uuid');
-	}
+    protected $fillable = [
+        'name',
+        'province_uuid',
+    ];
+
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class, 'province_uuid');
+    }
+
+    public function biosps(): HasMany
+    {
+        return $this->hasMany(Biosp::class, 'neighborhood_uuid');
+    }
 }

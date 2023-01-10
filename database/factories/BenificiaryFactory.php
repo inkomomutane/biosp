@@ -1,31 +1,36 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Benificiary;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BenificiaryFactory extends Factory
+/**
+ * @extends Factory<\App\Models\Benificiary>
+ */
+final class BenificiaryFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Benificiary::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
-    public function definition()
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
     {
         return [
             'uuid' => $this->faker->uuid,
-            'full_name' => $this->faker->word,
+            'full_name' => $this->faker->name,
             'number_of_visits' => $this->faker->randomNumber(),
-            'birth_date' => $this->faker->dateTime(),
+            'birth_date' => $this->faker->date(),
             'phone' => $this->faker->phoneNumber,
             'service_date' => $this->faker->dateTime(),
             'home_care' => $this->faker->boolean,
@@ -33,17 +38,16 @@ class BenificiaryFactory extends Factory
             'status' => $this->faker->boolean,
             'other_document_type' => $this->faker->word,
             'other_reason_opening_case' => $this->faker->word,
-            'forwarded_correct_service_uuid' => $this->faker->word,
             'other_forwarded_service' => $this->faker->word,
-            'specify_forwarded_service' => $this->faker->word,
+            'specify_purpose_of_visit' => $this->faker->word,
             'visit_proposes' => $this->faker->word,
-            'neighborhood_uuid' => \App\Models\Neighborhood::all()->random(1)->first(),
-            'genre_uuid' => \App\Models\Genre::all()->random(1)->first(),
-            'provenace_uuid' => \App\Models\Provenace::all()->random(1)->first(),
-            'reason_opening_case_uuid' => \App\Models\ReasonOpeningCase::all()->random(1)->first(),
-            'document_type_uuid' => \App\Models\DocumentType::all()->random(1)->first(),
-            'forwarded_service_uuid' => \App\Models\ForwardedService::all()->random(1)->first(),
-            'purpose_of_visit_uuid' => \App\Models\PurposeOfVisit::all()->random(1)->first(),
+            'biosp_uuid' => \App\Models\Biosp::factory(),
+            'genre_uuid' => \App\Models\Genre::factory(),
+            'provenace_uuid' => \App\Models\Provenace::factory(),
+            'reason_opening_case_uuid' => \App\Models\ReasonOpeningCase::factory(),
+            'document_type_uuid' => \App\Models\DocumentType::factory(),
+            'forwarded_service_uuid' => \App\Models\ForwardedService::factory(),
+            'purpose_of_visit_uuid' => \App\Models\PurposeOfVisit::factory(),
         ];
     }
 }

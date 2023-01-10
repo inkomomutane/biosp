@@ -1,68 +1,69 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
-use App\Traits\Uuids;
-use Carbon\Carbon;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-/**
- * Class User
- *
- * @property string $uuid
- * @property string $name
- * @property string $email
- * @property Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $neighborhood_uuid
- *
- * @property Neighborhood|null $neighborhood
- *
- * @package App\Models
- */
 class User extends Authenticatable
 {
-    use Uuids,HasApiTokens, HasFactory, Notifiable,HasRoles;
-	protected $table = 'users';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use HasRoles;
+    use HasUuids;
 
-	protected $dates = [
-		'email_verified_at'
-	];
+    protected $primaryKey = 'uuid';
 
-	protected $hidden = [
-		'password',
-		'remember_token'
-	];
+    public $incrementing = false;
 
-	protected $fillable = [
-		'name',
-		'email',
-		'email_verified_at',
-		'password',
-		'remember_token',
-		'neighborhood_uuid'
-	];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'biosp_uuid',
+    ];
 
-	public function neighborhood()
-	{
-		return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
-	}
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    public function lastSync()
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function biosp(): BelongsTo
     {
-       return $this->hasMany(Syncronization::class,'user_uuid');
+        return $this->belongsTo(Biosp::class, 'biosp_uuid');
+    }
+
+    public function biosps()
+    {
+        return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_uuid', 'biosp_uuid')
+                    ->withPivot('uuid')
+                    ->withTimestamps();
     }
 }

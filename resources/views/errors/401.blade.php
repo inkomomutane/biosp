@@ -1,5 +1,5 @@
 @extends('errors.layout')
-@section('title','Unauthorized')
-@section('message','Unauthorized')
+@section('title',__('Unauthorized'))
+@section('message',__('Unauthorized'))
 @section('code','401')
-@section('image','401.svg')
+@section('image','svg/401.svg')

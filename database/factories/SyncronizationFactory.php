@@ -1,29 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Syncronization;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SyncronizationFactory extends Factory
+/**
+ * @extends Factory<\App\Models\Syncronization>
+ */
+final class SyncronizationFactory extends Factory
 {
     /**
-    * The name of the factory's corresponding model.
-    *
-    * @var  string
-    */
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Syncronization::class;
 
     /**
-    * Define the model's default state.
-    *
-    * @return  array
-    */
-    public function definition()
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
     {
         return [
             'last_sync_at' => $this->faker->dateTime(),
-            'user_uuid' => \App\Models\User::all()->random(1)->first(),
+            'user_uuid' => $this->faker->word,
             'complete' => $this->faker->boolean,
         ];
     }
