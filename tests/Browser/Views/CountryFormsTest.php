@@ -4,10 +4,10 @@ namespace Tests\Browser\Views;
 
 use App\Http\Controllers\Admin\CountryController;
 use App\Models\Country;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Throwable;
 
 class CountryFormsTest extends DuskTestCase
 {
@@ -23,6 +23,9 @@ class CountryFormsTest extends DuskTestCase
         $this->app->setLocale('en');
     }
 
+    /**
+     * @throws Throwable
+     */
     public function test_should_fail_creating_country_with_wrong_data(): void
     {
         $this->browse(function (Browser $browser) {
@@ -38,6 +41,9 @@ class CountryFormsTest extends DuskTestCase
         });
     }
 
+    /**
+     * @throws Throwable
+     */
     public function test_should_success_create_country_with_correct_data(): void
     {
         $this->browse(function (Browser $browser) {
@@ -51,6 +57,9 @@ class CountryFormsTest extends DuskTestCase
         });
     }
 
+    /**
+     * @throws Throwable
+     */
     public function test_should_success_update_country_with_correct_data(): void
     {
         $this->browse(function (Browser $browser) {
