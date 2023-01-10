@@ -15,13 +15,13 @@ class Location
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
+     * @param  Request  $request
+     * @param  Closure  $next
      * @return Response|RedirectResponse
+     *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
         if (env('APP_ENV') === 'dusk') {

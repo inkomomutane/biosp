@@ -43,5 +43,6 @@ it('should  delete province and redirect to route province.index', function () {
         ->assertSessionDoesntHaveErrors();
     assertDatabaseMissing('provinces', [
         'name' => $province->name,
+        'country_uuid' => $this->province->country_uuid,
     ]);
 })->group('controller');
