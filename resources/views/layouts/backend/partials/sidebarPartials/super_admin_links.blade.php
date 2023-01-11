@@ -411,3 +411,63 @@
 
 </div>
 <!--End::Document type Route Links-->
+
+
+
+<!--begin::Forwarded service Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('forwarded_service.*')) show @endif">
+        <span class="menu-link @if (request()->routeIs('forwarded_service.*')) active @endif">
+            <span class="menu-icon">
+                <!--begin::Svg Icon -->
+                <span class="svg-icon svg-icon-2">
+                    @svg('fluentui-square-arrow-forward-16')
+                </span>
+                <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">{{ __('Forwarded service') }}</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+    <!--begin::All document types Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('forwarded_service.index')) active @endif" href="{{ route('forwarded_service.index') }}">
+                    <span class="menu-bullet">
+                       @svg('fluentui-square-arrow-forward-16')
+                    </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Forwarded service'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::All document types Route Link-->
+
+    <!--begin::Create document type Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('forwarded_service.create')) active @endif" href="{{ route('forwarded_service.create') }}">
+                    <span class="menu-bullet">
+                        @svg('fluentui-square-arrow-forward-16')
+                    </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Forwarded service'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::Create document type Route Link-->
+
+    @if (request()->routeIs('forwarded_service.edit'))
+        <!--begin::Edit document type Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('forwarded_service.edit')) active @endif" href="">
+                        <span class="menu-bullet">
+                           @svg('fluentui-square-arrow-forward-16')
+                        </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Forwarded service'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit document type Route Link-->
+    @endif
+
+</div>
+<!--End::Forwarded service Route Links-->

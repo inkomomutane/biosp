@@ -52,14 +52,14 @@ class DocumentTypeController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
@@ -105,14 +105,14 @@ class DocumentTypeController extends Controller
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
         } catch (\Throwable $e) {
             Noty::addError(__(
                 key: 'Error updating :resource.',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
@@ -131,14 +131,14 @@ class DocumentTypeController extends Controller
             $document_type->forceDelete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:['resource' => __('DocumentType')]
+                replace:['resource' => __('Document type')]
             ));
 
             return redirect()->route('document_type.index');
