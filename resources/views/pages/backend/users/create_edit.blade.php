@@ -65,13 +65,16 @@ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
                                 </div>
                                 <!--end::Input group-->
 
+
                                 @if (!request()->routeIs('user.edit'))
                                     <!--begin::Input group-->
                                     <div class="row mb-5">
                                         <x-forms.input
                                             type="password" name="password" label="Password" placeholder="Password"
                                             :required="true"
-                                            :value="old('password')??''"/>
+                                            :value="old('password')??''">
+                                        </x-forms.input>
+
                                         <x-forms.input
                                             type="password" name="password_confirmation" label="Confirm Password" placeholder="Confirm Password"
                                             :required="true"

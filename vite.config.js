@@ -7,8 +7,6 @@ export default defineConfig({
                 'resources/sass/backend/style.scss',
                 'resources/sass/backend/style.dark.scss',
                 'resources/js/backend/app.js',
-                // 'resources/sass/frontend/style.scss',
-                // 'resources/js/frontend/theme.js',
                 'resources/sass/errors.scss',
                 'resources/js/errors.js',
                 'resources/js/backend/modules/plugins.js'

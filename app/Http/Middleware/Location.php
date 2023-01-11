@@ -29,13 +29,11 @@ class Location
 
             return $next($request);
         }
-
         $session_lang = session()->get('lang');
         $geo = FacadesLocation::get(request()->ip());
 
         $country = $geo?->countryName ?? 'Mozambique';
         $languages = config('app.available_locates');
-
         if (is_null($session_lang)) {
             if (array_key_exists($country, $languages)) {
                 app()->setLocale($languages[$country]);

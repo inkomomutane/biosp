@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * Class PurposeOfVisit
@@ -30,16 +29,12 @@ class PurposeOfVisit extends Model
     use SoftDeletes;
     use HasFactory;
     use HasUuids;
-    use HasTranslations;
-
 
     protected $table = 'purpose_of_visits';
 
     protected $primaryKey = 'uuid';
 
     public $incrementing = false;
-
-    public array $translatable = ['name'];
 
     protected $fillable = [
         'name',

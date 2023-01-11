@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * Class Provenace
@@ -30,8 +29,6 @@ class Provenace extends Model
     use SoftDeletes;
     use HasFactory;
     use HasUuids;
-    use HasTranslations;
-
 
     protected $table = 'provenaces';
 
@@ -39,7 +36,6 @@ class Provenace extends Model
 
     public $incrementing = false;
 
-    public array $translatable = ['name'];
     protected $fillable = [
         'name',
     ];

@@ -1,4 +1,5 @@
 <!--begin::Administration configurations group links -->
+
 <div class="menu-item here">
     <div class="menu-content pt-8 pb-2">
         <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('Administration')}}</span>
@@ -350,5 +351,63 @@
     <div class="menu-content pt-8 pb-2">
         <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('Biosp services')}}</span>
     </div>
-</div>
+</div>z
 <!--end::Biosp services group links -->
+
+<!--begin::Document type Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('document_type.*')) show @endif">
+        <span class="menu-link @if (request()->routeIs('document_type.*')) active @endif">
+            <span class="menu-icon">
+                <!--begin::Svg Icon -->
+                <span class="svg-icon svg-icon-2">
+                    @svg('fluentui-contact-card-20')
+                </span>
+                <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">{{ __('Document types') }}</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+    <!--begin::All document types Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('document_type.index')) active @endif" href="{{ route('document_type.index') }}">
+                    <span class="menu-bullet">
+                       @svg('fluentui-contact-card-20')
+                    </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Document types'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::All document types Route Link-->
+
+    <!--begin::Create document type Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('document_type.create')) active @endif" href="{{ route('document_type.create') }}">
+                    <span class="menu-bullet">
+                        @svg('fluentui-contact-card-20')
+                    </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Document type'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End::Create document type Route Link-->
+
+    @if (request()->routeIs('document_type.edit'))
+        <!--begin::Edit document type Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('document_type.edit')) active @endif" href="">
+                        <span class="menu-bullet">
+                           @svg('fluentui-contact-card-20')
+                        </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Document type'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit document type Route Link-->
+    @endif
+
+</div>
+<!--End::Document type Route Links-->

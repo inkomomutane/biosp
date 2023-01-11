@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BiospController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\DocumentTypeController;
 use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\UserController;
@@ -50,6 +51,7 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
         'biosp' => BiospController::class,
         'province' => ProvinceController::class,
         'neighborhood' => NeighborhoodController::class,
+        'document_type' => DocumentTypeController::class,
     ]);
     Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
         ->name('user.grant_role');

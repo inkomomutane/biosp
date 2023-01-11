@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * Class DocumentType
@@ -30,9 +29,6 @@ class DocumentType extends Model
     use SoftDeletes;
     use HasFactory;
     use HasUuids;
-    use HasTranslations;
-
-    public array $translatable = ['name'];
 
     protected $table = 'document_types';
 
