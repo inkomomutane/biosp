@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\NeighborhoodController;
 use App\Http\Controllers\Admin\ProvenanceController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\PurposeOfVisitController;
+use App\Http\Controllers\Admin\ReasonOpeningCaseController;
 use App\Http\Controllers\Admin\UserController;
 
 /*
@@ -58,6 +59,7 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
         'forwarded_service' => ForwardedServiceController::class,
         'provenance' => ProvenanceController::class,
         'purpose_of_visit' => PurposeOfVisitController::class,
+        'reason_opening_case' => ReasonOpeningCaseController::class
     ]);
     Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
         ->name('user.grant_role');

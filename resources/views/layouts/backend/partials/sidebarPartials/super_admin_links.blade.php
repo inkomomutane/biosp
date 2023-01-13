@@ -586,3 +586,61 @@
 
 </div>
 <!--End::Purpose of visit Route Links-->
+
+<!--begin::Reason of opening case  Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('reason_opening_case.*')) show @endif">
+        <span class="menu-link @if (request()->routeIs('reason_opening_case.*')) active @endif">
+            <span class="menu-icon">
+                <!--begin::Svg Icon -->
+                <span class="svg-icon svg-icon-2">
+                 @svg('fluentui-document-error-20')
+                </span>
+                <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">{{ __('Reason of opening cases') }}</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+    <!--begin::All Reason of opening case Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('reason_opening_case.index')) active @endif" href="{{ route('reason_opening_case.index') }}">
+                    <span class="menu-bullet">
+                     @svg('fluentui-document-error-20-o')
+                    </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Reason of opening case'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: All Reasson of opening case Route Link-->
+
+    <!--begin::Create reason of opening case Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('reason_opening_case.create')) active @endif" href="{{ route('reason_opening_case.create') }}">
+                    <span class="menu-bullet">
+                        @svg('fluentui-document-error-20-o')
+                    </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Reason of opening case'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: Create reason of opening case Route Link-->
+
+    @if (request()->routeIs('reason_opening_case.edit'))
+        <!--begin::Edit reason of opening case  Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('reason_opening_case.edit')) active @endif" href="">
+                        <span class="menu-bullet">
+                         @svg('fluentui-document-error-20-o')
+                        </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Provenance'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit reason of opening case Route Link-->
+    @endif
+
+</div>
+<!--End::Reason of opening case Route Links-->

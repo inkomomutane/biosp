@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Provenance\StorePurposeOfVisitRequest;
-use App\Http\Requests\Provenance\UpdatePurposeOfVisitRequest;
+use App\Http\Requests\Provenance\StoreProvenanceRequest;
+use App\Http\Requests\Provenance\UpdateProvenanceRequest;
 use App\Models\Provenance;
 use Flasher\Noty\Laravel\Facade\Noty;
 use Illuminate\Http\Response;
@@ -42,10 +42,10 @@ class ProvenanceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  StorePurposeOfVisitRequest  $request
+     * @param  StoreProvenanceRequest  $request
      * @return Response
      */
-    public function store(StorePurposeOfVisitRequest $request)
+    public function store(StoreProvenanceRequest $request)
     {
         try {
             Provenance::create(['name' => $request->name]);
@@ -93,11 +93,11 @@ class ProvenanceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdatePurposeOfVisitRequest  $request
+     * @param  UpdateProvenanceRequest  $request
      * @param  Provenance  $provenance
      * @return Response
      */
-    public function update(UpdatePurposeOfVisitRequest $request, Provenance $provenance)
+    public function update(UpdateProvenanceRequest $request, Provenance $provenance)
     {
         try {
             $provenance->update([
