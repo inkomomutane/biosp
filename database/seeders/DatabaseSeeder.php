@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(GenreSeeder::class);
         (User::factory()->create(['email' => 'test@test.com']))->assignRole('super-admin');
     }
 }
