@@ -15,22 +15,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Provenace
+ * Class Provenance
  *
  * @property string $uuid
  * @property string|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $name
- * @property Collection|Benificiary[] $benificiaries
+ * @property Collection|Beneficiary[] $beneficiaries
  */
-class Provenace extends Model
+class Provenance extends Model
 {
     use SoftDeletes;
     use HasFactory;
     use HasUuids;
 
-    protected $table = 'provenaces';
+    protected $table = 'provenances';
 
     protected $primaryKey = 'uuid';
 
@@ -40,8 +40,8 @@ class Provenace extends Model
         'name',
     ];
 
-    public function benificiaries(): HasMany
+    public function beneficiaries(): HasMany
     {
-        return $this->hasMany(Benificiary::class, 'provenace_uuid');
+        return $this->hasMany(Beneficiary::class, 'provenance_uuid');
     }
 }

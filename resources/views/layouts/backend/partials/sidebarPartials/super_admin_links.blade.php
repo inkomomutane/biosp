@@ -428,7 +428,7 @@
             <span class="menu-arrow"></span>
         </span>
 
-    <!--begin::All document types Route Links-->
+    <!--begin::All forwarded services Route Links-->
     <div class="menu-sub menu-sub-accordion menu-active-bg">
         <div class="menu-item">
             <a class="menu-link @if (request()->routeIs('forwarded_service.index')) active @endif" href="{{ route('forwarded_service.index') }}">
@@ -439,9 +439,9 @@
             </a>
         </div>
     </div>
-    <!--End::All document types Route Link-->
+    <!--End::All forwarded services Route Link-->
 
-    <!--begin::Create document type Route Link-->
+    <!--begin::Create forwarded services Route Link-->
     <div class="menu-sub menu-sub-accordion menu-active-bg">
         <div class="menu-item">
             <a class="menu-link @if (request()->routeIs('forwarded_service.create')) active @endif" href="{{ route('forwarded_service.create') }}">
@@ -452,10 +452,10 @@
             </a>
         </div>
     </div>
-    <!--End::Create document type Route Link-->
+    <!--End::Create forwarded services Route Link-->
 
     @if (request()->routeIs('forwarded_service.edit'))
-        <!--begin::Edit document type Route Link-->
+        <!--begin::Edit  forwarded service Route Link-->
         <div class="menu-sub menu-sub-accordion menu-active-bg">
             <div class="menu-item">
                 <a class="menu-link @if (request()->routeIs('forwarded_service.edit')) active @endif" href="">
@@ -466,8 +466,67 @@
                 </a>
             </div>
         </div>
-        <!--End::Edit document type Route Link-->
+        <!--End::Edit forwarded service Route Link-->
     @endif
 
 </div>
 <!--End::Forwarded service Route Links-->
+
+
+<!--begin::Provenance Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('provenance.*')) show @endif">
+        <span class="menu-link @if (request()->routeIs('provenance.*')) active @endif">
+            <span class="menu-icon">
+                <!--begin::Svg Icon -->
+                <span class="svg-icon svg-icon-2">
+                    @svg('fluentui-square-arrow-forward-16')
+                </span>
+                <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">{{ __('Provenance') }}</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+    <!--begin::All provenances Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('provenance.index')) active @endif" href="{{ route('provenance.index') }}">
+                    <span class="menu-bullet">
+                       @svg('fluentui-square-arrow-forward-16')
+                    </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: All provenances Route Link-->
+
+    <!--begin::Create provenance Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('provenance.create')) active @endif" href="{{ route('provenance.create') }}">
+                    <span class="menu-bullet">
+                        @svg('fluentui-square-arrow-forward-16')
+                    </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Provenance'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: Create provenance Route Link-->
+
+    @if (request()->routeIs('provenance.edit'))
+        <!--begin::Edit provenance  Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('provenance.edit')) active @endif" href="">
+                        <span class="menu-bullet">
+                           @svg('fluentui-square-arrow-forward-16')
+                        </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Provenance'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit provenance Route Link-->
+    @endif
+
+</div>
+<!--End::Provenance Route Links-->

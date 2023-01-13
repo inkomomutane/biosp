@@ -11,10 +11,10 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('benificiaries', function (Blueprint $table) {
-            $table->comment('Benificiares of certia Biosp.');
+        Schema::create('beneficiaries', function (Blueprint $table) {
+            $table->comment('Beneficiaries of certain Biosp.');
             $table->uuid('uuid')->primary();
             $table->string('full_name')->nullable();
             $table->integer('number_of_visits')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
 
             $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('genre_uuid')->nullable()->constrained('genres', 'uuid');
-            $table->foreignUuid('provenace_uuid')->nullable()->constrained('provenaces', 'uuid');
+            $table->foreignUuid('provenance_uuid')->nullable()->constrained('provenances', 'uuid');
             $table->foreignUuid('reason_opening_case_uuid')->nullable()->constrained('reason_opening_cases', 'uuid');
             $table->foreignUuid('document_type_uuid')->nullable()->constrained('document_types', 'uuid');
             $table->foreignUuid('forwarded_service_uuid')->nullable()->constrained('forwarded_services', 'uuid');
@@ -46,8 +46,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down():void
     {
-        Schema::dropIfExists('benificiaries');
+        Schema::dropIfExists('beneficiaries');
     }
 };

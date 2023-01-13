@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DocumentTypeController;
 use App\Http\Controllers\Admin\ForwardedServiceController;
 use App\Http\Controllers\Admin\NeighborhoodController;
+use App\Http\Controllers\Admin\ProvenanceController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\UserController;
 
@@ -53,7 +54,8 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
         'province' => ProvinceController::class,
         'neighborhood' => NeighborhoodController::class,
         'document_type' => DocumentTypeController::class,
-        'forwarded_service' => ForwardedServiceController::class
+        'forwarded_service' => ForwardedServiceController::class,
+        'provenance' => ProvenanceController::class
     ]);
     Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
         ->name('user.grant_role');

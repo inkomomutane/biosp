@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Benificiary
+ * Class Beneficiary
  *
  * @property string $uuid
  * @property string|null $full_name
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $specify_purpose_of_visit
  * @property string|null $visit_proposes
  * @property string|null $genre_uuid
- * @property string|null $provenace_uuid
+ * @property string|null $provenance_uuid
  * @property string|null $reason_opening_case_uuid
  * @property string|null $document_type_uuid
  * @property string|null $forwarded_service_uuid
@@ -42,15 +42,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ForwardedService|null $forwarded_service
  * @property PurposeOfVisit|null $purpose_of_visit
  * @property Genre|null $genre
- * @property Provenace|null $provenace
+ * @property Provenance|null $provenance
  * @property ReasonOpeningCase|null $reason_opening_case
  */
-class Benificiary extends Model
+class Beneficiary extends Model
 {
     use HasFactory;
     use HasUuids;
 
-    protected $table = 'benificiaries';
+    protected $table = 'beneficiaries';
 
     protected $primaryKey = 'uuid';
 
@@ -86,7 +86,7 @@ class Benificiary extends Model
         'specify_purpose_of_visit',
         'visit_proposes',
         'genre_uuid',
-        'provenace_uuid',
+        'provenance_uuid',
         'reason_opening_case_uuid',
         'document_type_uuid',
         'forwarded_service_uuid',
@@ -113,9 +113,9 @@ class Benificiary extends Model
         return $this->belongsTo(Genre::class, 'genre_uuid');
     }
 
-    public function provenace(): BelongsTo
+    public function provenance(): BelongsTo
     {
-        return $this->belongsTo(Provenace::class, 'provenace_uuid');
+        return $this->belongsTo(Provenance::class, 'provenance_uuid');
     }
 
     public function reason_opening_case(): BelongsTo

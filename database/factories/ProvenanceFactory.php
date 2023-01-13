@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Provenace;
+use App\Models\Provenance;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Provenace>
+ * @extends Factory<\App\Models\Provenance>
  */
-final class ProvenaceFactory extends Factory
+final class ProvenanceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Provenace::class;
+    protected $model = Provenance::class;
 
     /**
      * Define the model's default state.

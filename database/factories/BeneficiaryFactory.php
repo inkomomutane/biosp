@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\Benificiary;
+use App\Models\Beneficiary;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\Benificiary>
+ * @extends Factory<\App\Models\Beneficiary>
  */
-final class BenificiaryFactory extends Factory
+final class BeneficiaryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Benificiary::class;
+    protected $model = Beneficiary::class;
 
     /**
      * Define the model's default state.
@@ -43,7 +43,7 @@ final class BenificiaryFactory extends Factory
             'visit_proposes' => $this->faker->word,
             'biosp_uuid' => \App\Models\Biosp::factory(),
             'genre_uuid' => \App\Models\Genre::factory(),
-            'provenace_uuid' => \App\Models\Provenace::factory(),
+            'provenance_uuid' => \App\Models\Provenance::factory(),
             'reason_opening_case_uuid' => \App\Models\ReasonOpeningCase::factory(),
             'document_type_uuid' => \App\Models\DocumentType::factory(),
             'forwarded_service_uuid' => \App\Models\ForwardedService::factory(),

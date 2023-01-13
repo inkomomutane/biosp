@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property string $uuid
- * @property Collection|Benificiary[] $benificiaries
+ * @property Collection|Beneficiary[] $beneficiaries
  */
 class DocumentType extends Model
 {
@@ -40,8 +40,8 @@ class DocumentType extends Model
         'name',
     ];
 
-    public function benificiaries(): HasMany
+    public function beneficiaries(): HasMany
     {
-        return $this->hasMany(Benificiary::class, 'document_type_uuid');
+        return $this->hasMany(Beneficiary::class, 'document_type_uuid');
     }
 }

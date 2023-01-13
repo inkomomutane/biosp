@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('provenaces', function (Blueprint $table) {
+        Schema::create('provenances', function (Blueprint $table) {
             $table->comment('');
             $table->uuid('uuid')->primary();
             $table->softDeletes();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provenaces');
+        Schema::dropIfExists('provenances');
     }
 };
