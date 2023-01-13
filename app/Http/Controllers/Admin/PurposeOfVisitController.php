@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Provenance\StorePurposeOfVisitRequest;
-use App\Http\Requests\Provenance\UpdatePurposeOfVisitRequest;
-use App\Models\Provenance;
+use App\Http\Requests\PurposeOfVisit\StorePurposeOfVisitRequest;
+use App\Http\Requests\PurposeOfVisit\UpdatePurposeOfVisitRequest;
+use App\Models\PurposeOfVisit;
 use Flasher\Noty\Laravel\Facade\Noty;
 use Illuminate\Http\Response;
 
-class ProvenanceController extends Controller
+class PurposeOfVisitController extends Controller
 {
     public function __construct()
     {
@@ -23,10 +23,10 @@ class ProvenanceController extends Controller
      */
     public function index()
     {
-        $provenances = Provenance::latest()->paginate(5);
+        $purpose_of_visits = PurposeOfVisit::latest()->paginate(5);
 
-        return view('pages.backend.provenances.index')
-            ->with('provenances', $provenances);
+        return view('pages.backend.purpose_of_visits.index')
+            ->with('purpose_of_visits', $purpose_of_visits);
     }
 
     /**
@@ -36,7 +36,7 @@ class ProvenanceController extends Controller
      */
     public function create()
     {
-        return view('pages.backend.provenances.create_edit');
+        return view('pages.backend.purpose_of_visits.create_edit');
     }
 
     /**
@@ -48,31 +48,31 @@ class ProvenanceController extends Controller
     public function store(StorePurposeOfVisitRequest $request)
     {
         try {
-            Provenance::create(['name' => $request->name]);
+            PurposeOfVisit::create(['name' => $request->name]);
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Provenance  $provenance
+     * @param  PurposeOfVisit  $purpose_of_visit
      * @return Response
      */
-    public function show(Provenance $provenance)
+    public function show(PurposeOfVisit $purpose_of_visit)
     {
         abort(404);
     }
@@ -80,13 +80,13 @@ class ProvenanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Provenance  $provenance
+     * @param  PurposeOfVisit  $purpose_of_visit
      * @return Response
      */
-    public function edit(Provenance $provenance)
+    public function edit(PurposeOfVisit $purpose_of_visit)
     {
-        return view('pages.backend.provenances.create_edit', [
-            'provenance' => $provenance,
+        return view('pages.backend.purpose_of_visits.create_edit', [
+            'purpose_of_visit' => $purpose_of_visit,
         ]);
     }
 
@@ -94,54 +94,54 @@ class ProvenanceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdatePurposeOfVisitRequest  $request
-     * @param  Provenance  $provenance
+     * @param  PurposeOfVisit  $purpose_of_visit
      * @return Response
      */
-    public function update(UpdatePurposeOfVisitRequest $request, Provenance $provenance)
+    public function update(UpdatePurposeOfVisitRequest $request, PurposeOfVisit $purpose_of_visit)
     {
         try {
-            $provenance->update([
+            $purpose_of_visit->update([
                 'name' => $request->name,
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         } catch (\Throwable $e) {
             Noty::addError(__(
                 key: 'Error updating :resource.',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Provenance  $provenance
+     * @param  PurposeOfVisit  $purpose_of_visit
      * @return Response
      */
-    public function destroy(Provenance $provenance)
+    public function destroy(PurposeOfVisit $purpose_of_visit)
     {
         try {
-            $provenance->forceDelete();
+            $purpose_of_visit->forceDelete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:['resource' => __('Provenance')]
+                replace:['resource' => __('Purpose of visit')]
             ));
 
-            return redirect()->route('provenance.index');
+            return redirect()->route('purpose_of_visit.index');
         }
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('dashboard_title', __('Provenances'))
-@section('title', __('Provenances'))
+@section('dashboard_title', __('Purposes of visit'))
+@section('title', __('Purposes of visit'))
 @section('content')
     <div class="row justify-content-center pt-2">
         <div class="row">
@@ -10,16 +10,16 @@
                     <!--begin::Header-->
                     <div class="card-header border-0 pt-3">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bold fs-3 mb-1">{{ __('Provenances') }}</span>
+                            <span class="card-label fw-bold fs-3 mb-1">{{ __('Purposes of visit') }}</span>
                             <span class="text-muted mt-1 fw-semibold fs-7"></span>
                         </h3>
                         <div class="card-toolbar">
-                            <a href="{{ route('provenance.create') }}" class="btn btn-sm btn-light-info">
+                            <a href="{{ route('purpose_of_visit.create') }}" class="btn btn-sm btn-light-info">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                 <span class="svg-icon svg-icon-2">
                                    @svg('fluentui-people-community-20-o')
                                 </span>
-                                <!--end::Svg Icon-->{{  __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }}
+                                <!--end::Svg Icon-->{{  __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))]) }}
                             </a>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bolder fs-7 text-light bg-dark rounded">
-                                        <th class="ps-4 rounded-start">{{ __('Provenance') }}</th>
+                                        <th class="ps-4 rounded-start">{{ __('Purpose of visit') }}</th>
                                         <th class="">{{ __('Name') }}</th>
                                         <th class=" text-center rounded-end">{{ __('Actions') }}</th>
                                     </tr>
@@ -41,21 +41,21 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody>
-                                    @forelse ($provenances as $provenance)
+                                    @forelse ($purpose_of_visits as $purpose_of_visit)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="symbol symbol-50px me-5">
                                                         <div
                                                             class="symbol-label fs-2 fw-bold text-primary bg-soft-blue text-uppercase">
-                                                            {{ explode(' ', $provenance->name)[0][0] }}
-                                                            {{ explode(' ', $provenance->name)[1][0] ?? '' }}
+                                                            {{ explode(' ', $purpose_of_visit->name)[0][0] }}
+                                                            {{ explode(' ', $purpose_of_visit->name)[1][0] ?? '' }}
                                                         </div>
                                                     </div>
                                                     <div class="d-flex justify-content-start flex-column">
                                                         <a href="#"
                                                             class="text-dark fw-bold text-hover-primary mb-1 fs-6">
-                                                            {{ $provenance->name }}
+                                                            {{ $purpose_of_visit->name }}
                                                         </a>
                                                     </div>
                                                 </div>
@@ -65,17 +65,17 @@
                                                 <a href="#"
                                                     class="btn btn-icon-info  btn-outline btn-outline-dashed btn-outline-info btn-active-light-info text-capitalize">
 
-                                                    {{ $provenance->name }} </a>
+                                                    {{ $purpose_of_visit->name }} </a>
 
                                             </td>
 
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('provenance.trash') ?  route('provenance.restore', $provenance->uuid) : route('provenance.edit', $provenance->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('purpose_of_visit.trash') ?  route('purpose_of_visit.restore', $purpose_of_visit->uuid) : route('purpose_of_visit.edit', $purpose_of_visit->uuid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="{{  request()->routeIs('provenance.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }}">
+                                                        title="{{  request()->routeIs('purpose_of_visit.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))]) }}">
                                                         <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                         <span class="svg-icon svg-icon-3">
                                                             <svg width="24" height="24" viewBox="0 0 24 24"
@@ -94,12 +94,12 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $provenance->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $purpose_of_visit->uuid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title=" {{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }} ">
+                                                    title=" {{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))]) }} ">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24"
@@ -117,20 +117,20 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  route('provenance.destroy', $provenance->uuid)  }}" method="post"
-                                                    id="user_index_{{ $provenance->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  route('purpose_of_visit.destroy', $purpose_of_visit->uuid)  }}" method="post"
+                                                    id="user_index_{{ $purpose_of_visit->uuid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5">{{ __(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Provenances'))]) }}</td>
+                                            <td colspan="5">{{ __(key:'No :resource found.',replace:[ 'resource' => Str::lower(__('Purposes of visit'))]) }}</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                                 <!--end::Table body-->
 
                             </table>
-                            {{ $provenances->links() }}
+                            {{ $purpose_of_visits->links() }}
                             <!--end::Table-->
                         </div>
                         <!--end::Table container-->

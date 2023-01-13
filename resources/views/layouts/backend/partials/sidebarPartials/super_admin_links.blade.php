@@ -471,19 +471,17 @@
 
 </div>
 <!--End::Forwarded service Route Links-->
-
-
 <!--begin::Provenance Route Links-->
 <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('provenance.*')) show @endif">
         <span class="menu-link @if (request()->routeIs('provenance.*')) active @endif">
             <span class="menu-icon">
                 <!--begin::Svg Icon -->
                 <span class="svg-icon svg-icon-2">
-                    @svg('fluentui-square-arrow-forward-16')
+                   @svg('fluentui-people-community-20')
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">{{ __('Provenance') }}</span>
+            <span class="menu-title">{{ __('Provenances') }}</span>
             <span class="menu-arrow"></span>
         </span>
 
@@ -492,9 +490,9 @@
         <div class="menu-item">
             <a class="menu-link @if (request()->routeIs('provenance.index')) active @endif" href="{{ route('provenance.index') }}">
                     <span class="menu-bullet">
-                       @svg('fluentui-square-arrow-forward-16')
+                     @svg('fluentui-people-community-20-o')
                     </span>
-                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }}</span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Provenances'))]) }}</span>
             </a>
         </div>
     </div>
@@ -505,7 +503,7 @@
         <div class="menu-item">
             <a class="menu-link @if (request()->routeIs('provenance.create')) active @endif" href="{{ route('provenance.create') }}">
                     <span class="menu-bullet">
-                        @svg('fluentui-square-arrow-forward-16')
+                        @svg('fluentui-people-community-20-o')
                     </span>
                 <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Provenance'))])  }}</span>
             </a>
@@ -519,7 +517,7 @@
             <div class="menu-item">
                 <a class="menu-link @if (request()->routeIs('provenance.edit')) active @endif" href="">
                         <span class="menu-bullet">
-                           @svg('fluentui-square-arrow-forward-16')
+                         @svg('fluentui-people-community-20-o')
                         </span>
                     <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Provenance'))])  }}</span>
                 </a>
@@ -530,3 +528,61 @@
 
 </div>
 <!--End::Provenance Route Links-->
+
+<!--begin::Purpose of visit Route Links-->
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->routeIs('purpose_of_visit.*')) show @endif">
+        <span class="menu-link @if (request()->routeIs('purpose_of_visit.*')) active @endif">
+            <span class="menu-icon">
+                <!--begin::Svg Icon -->
+                <span class="svg-icon svg-icon-2">
+                   @svg('fluentui-document-bullet-list-multiple-20')
+                </span>
+                <!--end::Svg Icon-->
+            </span>
+            <span class="menu-title">{{ __('Purposes of visit') }}</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+    <!--begin::All Purposes of visit Route Links-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('purpose_of_visit.index')) active @endif" href="{{ route('purpose_of_visit.index') }}">
+                    <span class="menu-bullet">
+                     @svg('fluentui-document-bullet-list-multiple-20-o')
+                    </span>
+                <span class="menu-title">{{ __(key:'All :resource',replace:[ 'resource' => Str::lower(__('Purposes of visit'))]) }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: All Purposes of visit Route Link-->
+
+    <!--begin::Create Purpose of visit Route Link-->
+    <div class="menu-sub menu-sub-accordion menu-active-bg">
+        <div class="menu-item">
+            <a class="menu-link @if (request()->routeIs('purpose_of_visit.create')) active @endif" href="{{ route('purpose_of_visit.create') }}">
+                    <span class="menu-bullet">
+                         @svg('fluentui-document-bullet-list-multiple-20-o')
+                    </span>
+                <span class="menu-title">{{ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))])  }}</span>
+            </a>
+        </div>
+    </div>
+    <!--End:: Create Purpose of visit Route Link-->
+
+    @if (request()->routeIs('purpose_of_visit.edit'))
+        <!--begin::Edit Purpose of visit  Route Link-->
+        <div class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+                <a class="menu-link @if (request()->routeIs('purpose_of_visit.edit')) active @endif" href="">
+                        <span class="menu-bullet">
+                          @svg('fluentui-document-bullet-list-multiple-20-o')
+                        </span>
+                    <span class="menu-title">{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Purpose of visit'))])  }}</span>
+                </a>
+            </div>
+        </div>
+        <!--End::Edit provenance Route Link-->
+    @endif
+
+</div>
+<!--End::Purpose of visit Route Links-->
