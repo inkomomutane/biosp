@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('biosp_servicos', function (Blueprint $table) {
-            $table->comment('');
-            $table->uuid('uuid')->primary();
-            $table->timestamps();
-            $table->string('model_type')->nullable();
-            $table->uuid('model_id')->nullable();
-            $table->string('table')->nullable();
+        Schema::create('biospables', function (Blueprint $table) {
+            $table->comment('Relation of all services of biosp');
+            $table->uuidMorphs('biospable');
+            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps','uuid')
+                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biosp_servicos');
+        Schema::dropIfExists('biospables');
     }
 };

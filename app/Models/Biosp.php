@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * Class Biosp
@@ -66,4 +67,40 @@ class Biosp extends Model
     {
         return $this->belongsTo(Biosp::class, 'biosp_uuid');
     }
+
+   public function genres(): MorphToMany
+   {
+        return $this->morphedByMany(Genre::class,'biospable');
+   }
+
+    public function documentTypes(): MorphToMany
+    {
+        return $this->morphedByMany(DocumentType::class,'biospable');
+    }
+
+    public function forwardedServices(): MorphToMany
+    {
+        return $this->morphedByMany(ForwardedService::class,'biospable');
+    }
+
+    public function provenances(): MorphToMany
+    {
+        return $this->morphedByMany(Provenance::class,'biospable');
+    }
+
+
+    public function purposeOfVisits(): MorphToMany
+    {
+        return $this->morphedByMany(PurposeOfVisit::class,'biospable');
+    }
+
+
+
+    public function reasonOpeningCases(): MorphToMany
+    {
+        return $this->morphedByMany(ReasonOpeningCase::class,'biospable');
+    }
+
+
+
 }

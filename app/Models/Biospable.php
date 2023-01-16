@@ -17,24 +17,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $uuid
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null $model_type
- * @property string|null $model_id
- * @property string|null $table
+ * @property string|null $biospable_type
+ * @property string|null $biospable_uuid
+ * @property string|null $biosp_uuid
  */
-class BiospServico extends Model
+class Biospable extends Model
 {
     use HasFactory;
     use HasUuids;
 
-    protected $table = 'biosp_servicos';
+    protected $table = 'biospables';
 
     protected $primaryKey = 'uuid';
 
     public $incrementing = false;
 
     protected $fillable = [
-        'model_type',
-        'model_id',
-        'table',
+        'biospable_type',
+        'biospable_uuid',
+        'biosp_uuid',
     ];
 }

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -43,5 +44,10 @@ class Provenance extends Model
     public function beneficiaries(): HasMany
     {
         return $this->hasMany(Beneficiary::class, 'provenance_uuid');
+    }
+
+    public function biosps(): MorphToMany
+    {
+        return $this->morphToMany(Biosp::class,'biospable');
     }
 }
