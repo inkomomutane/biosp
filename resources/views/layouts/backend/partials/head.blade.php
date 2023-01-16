@@ -24,4 +24,5 @@
     @endguest
     <!-- Scripts -->
     @stack('css')
+    @livewireStyles
 </head>

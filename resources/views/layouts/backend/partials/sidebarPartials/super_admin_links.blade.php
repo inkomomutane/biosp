@@ -47,7 +47,7 @@
         <!--End::Create biosp Route Link-->
 
         @if (request()->routeIs('biosp.edit'))
-            <!--begin::Edit province Route Link-->
+            <!--begin::Edit biosp Route Link-->
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
                     <a class="menu-link @if (request()->routeIs('biosp.edit')) active @endif" href="">
@@ -59,6 +59,21 @@
                 </div>
             </div>
             <!--End::Edit biosp Route Link-->
+        @endif
+
+        @if (request()->routeIs('biosp.show'))
+            <!--begin::Show biosp Route Link-->
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link @if (request()->routeIs('biosp.show')) active @endif" href="">
+                        <span class="menu-bullet">
+                            @svg('fluentui-tree-deciduous-20-o')
+                        </span>
+                        <span class="menu-title">{{ __(key:'View :resource',replace:[ 'resource' => Str::lower(__('Biosp'))]) }}</span>
+                    </a>
+                </div>
+            </div>
+            <!--End::Show biosp Route Link-->
         @endif
 
     </div>

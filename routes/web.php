@@ -59,7 +59,7 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
         'forwarded_service' => ForwardedServiceController::class,
         'provenance' => ProvenanceController::class,
         'purpose_of_visit' => PurposeOfVisitController::class,
-        'reason_opening_case' => ReasonOpeningCaseController::class
+        'reason_opening_case' => ReasonOpeningCaseController::class,
     ]);
     Route::post('user/roles/grant/{user}', [UserController::class, 'grant'])
         ->name('user.grant_role');

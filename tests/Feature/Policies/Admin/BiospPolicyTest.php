@@ -14,7 +14,7 @@ beforeEach(
     });
 
 it('should allow super_admins\'s to manage biosps', function (TestResponse $request) {
-    expect($request->status())->toBeIn([200, 302, 404]);
+    expect($request->status())->toBeIn([200, 302]);
 })->with('super_admin_manage_biosps_requests')->group('policy');
 
 it('should deny simple admins\'s to manage biosps', function (TestResponse $request) {

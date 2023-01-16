@@ -80,9 +80,8 @@ class BiospController extends Controller
      */
     public function show(Biosp $biosp)
     {
-        Noty::addInfo(__('Not Found'));
-
-        return abort(404);
+        return view('pages.backend.biosps.show')
+            ->with('biosp', $biosp);
     }
 
     /**
