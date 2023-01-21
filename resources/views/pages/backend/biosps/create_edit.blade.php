@@ -70,7 +70,7 @@
                                         name="neighborhood_uuid"
                                         placeholder="Neighborhood"
                                         :options="$neighborhoods->pluck('name','uuid')->toArray()"
-                                        :selected="request()->routeIs('biosp.edit') ? [ $biosp->neighborhood->uuid ] : [] "
+                                        :selected="request()->routeIs('biosp.edit') ? array($biosp->neighborhood->uuid => $biosp->neighborhood->name ) : [] "
                                     />
                                 </div>
                                 <!--end::Input group-->

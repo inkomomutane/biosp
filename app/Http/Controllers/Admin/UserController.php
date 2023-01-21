@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\GrantRoleRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Biosp;
 use App\Models\User;
 use Flasher\Noty\Laravel\Facade\Noty;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -84,23 +89,28 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param User $user
+     * @return Application|Factory|View
      */
-    public function show(User $user)
+    public function show(User $user): Application|Factory|View
     {
         return view('pages.backend.users.show')
-        ->with('user', $user)
-        ->with('roles', Role::all());
+        ->with([
+            'user' => User::with([
+                'biosps'
+            ])->find($user->uuid),
+            'roles' => Role::all(),
+            'biosps' => Biosp::all()
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param User $user
+     * @return Application|Factory|View
      */
-    public function edit(User $user)
+    public function edit(User $user): Application|Factory|View
     {
         return view('pages.backend.users.create_edit', [
             'user' => $user,
@@ -110,11 +120,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param UpdateUserRequest $request
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $data = $request->all();
 
@@ -148,10 +158,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param User $user
+     * @return RedirectResponse|null
      */
-    public function destroy(User $user)
+    public function destroy(User $user): ?RedirectResponse
     {
         try {
             $user->delete();
@@ -171,18 +181,24 @@ class UserController extends Controller
         }
     }
 
-    public function grant(User $user, GrantRoleRequest $request)
+    /**
+     * @param User $user
+     * @param GrantRoleRequest $request
+     * @return RedirectResponse|null
+     */
+
+    public function grant(User $user, GrantRoleRequest $request): ?RedirectResponse
     {
         try {
             $user->syncRoles($request->role);
-            Noty::addSuccess('User role granted.');
+            $user->biosps()->sync($request->biosps);
+            Noty::addSuccess('User role and biosp granted.');
 
             return redirect()->route('user.show', [
                 'user' => $user->uuid,
             ]);
         } catch (\Throwable $th) {
-            Noty::addError('Error grantig role to user.');
-
+            Noty::addError('Error granting role and biosp to user.');
             return redirect()->route('user.show', [
                 'user' => $user->uuid,
             ]);

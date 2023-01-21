@@ -63,7 +63,7 @@
                                         name="country_uuid"
                                         placeholder="Country"
                                         :options="$countries->pluck('name','uuid')->toArray()"
-                                        :selected="request()->routeIs('neighborhood.edit') ? [ $province->country->uuid] : [] "
+                                        :selected="request()->routeIs('province.edit') ? array($province->country->uuid => $province->country->name) : [] "
                                     />
                                 </div>
                                 <!--end::Input group-->

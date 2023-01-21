@@ -18,7 +18,8 @@ it('should get all genres related to a specific biosp',  function ()  {
     actingAs(login(roles: 'super-admin'));
     $genres = Genre::factory(2)->create();
     $this->biosp->genres()->sync($genres->pluck('uuid')->toArray());
-    expect( $this->biosp->genres->pluck('name', 'uuid'))->toEqual($genres->pluck('name', 'uuid'))
+    expect( $this->biosp->genres->pluck('name', 'uuid'))
+        ->toEqual($genres->pluck('name', 'uuid'))
         ->and( $this->biosp->uuid)->toEqual(
             $genres->random()->first()->biosps()->first()->uuid
         );

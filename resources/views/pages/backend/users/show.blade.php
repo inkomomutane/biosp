@@ -227,7 +227,23 @@
                                         :multiple="false"
                                         placeholder="Change user role"
                                         :options="$roles->pluck('name','id')->toArray()"
-                                        :selected="$user->roles->pluck('id')->toArray()"
+                                        :selected="$user->roles->pluck('name','id')->toArray()"
+                                    />
+                                </div>
+                                <!--end::Input group-->
+
+
+                                <!--begin::Input group-->
+                                <div class="row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 fw-bold text-muted">{{ __('Change user biosps') }}</label>
+                                    <x-forms.select
+                                        :disabled="(auth()->user()->uuid === $user->uuid)"
+                                        name="biosps[]"
+                                        :multiple="true"
+                                        placeholder="Biosps"
+                                        :options="$biosps->pluck('name','uuid')->toArray()"
+                                        :selected="$user->biosps->pluck('name','uuid')->toArray()"
                                     />
                                 </div>
                                 <!--end::Input group-->
@@ -235,7 +251,7 @@
                             <!--end::Card body-->
                         </div>
                         <!--end::details View-->
-                        @if (auth()->user()->uuid != $user->uuid)
+                        @if (auth()->user()->uuid !== $user->uuid)
                     </form>
                 @endif
             </div>

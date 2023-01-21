@@ -18,7 +18,7 @@
                 <!--end::Close-->
             </div>
             <div class="modal-body">
-                <p> {{ $body  }}</p>
+                 {{ $body  }}
             </div>
             <div class="modal-footer border-top-0">
                {{ $buttons  }}

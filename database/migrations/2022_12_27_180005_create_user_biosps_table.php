@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_biosps', function (Blueprint $table) {
-            $table->string('uuid')->primary();
             $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignUuid('biosp_uuid')->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

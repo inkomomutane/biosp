@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Biosp;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GrantRoleRequest extends FormRequest
+class BiospAssignServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class GrantRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'role' => ['integer', 'required'],
-            'biosps' => ['array']
+            'services' => 'array'
         ];
     }
 }
