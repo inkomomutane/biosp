@@ -12,12 +12,12 @@ class BiospServiceAssignmentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','role:super-admin']);
+        $this->middleware(['auth', 'role:super-admin']);
     }
 
     /**
-     * @param Biosp $biosp
-     * @param BiospAssignServiceRequest $biospAssignServiceRequest
+     * @param  Biosp  $biosp
+     * @param  BiospAssignServiceRequest  $biospAssignServiceRequest
      * @return RedirectResponse|null
      */
     public function genres(Biosp $biosp, BiospAssignServiceRequest $biospAssignServiceRequest): ?RedirectResponse
@@ -28,12 +28,14 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Genres')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Genres')]
             ));
+
             return redirect()->back(302);
         }
     }
@@ -46,12 +48,14 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Document types')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Document types')]
             ));
+
             return redirect()->back(302);
         }
     }
@@ -64,12 +68,14 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Forwarded services')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Forwarded services')]
             ));
+
             return redirect()->back(302);
         }
     }
@@ -82,12 +88,14 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Provenances')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Provenances')]
             ));
+
             return redirect()->back(302);
         }
     }
@@ -100,12 +108,14 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Purposes of visit')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Purposes of visit')]
             ));
+
             return redirect()->back(302);
         }
     }
@@ -118,14 +128,15 @@ class BiospServiceAssignmentController extends Controller
                 key: ':resource assigned successful.',
                 replace: ['resource' => __('Reasons of opening case')]
             ));
+
             return redirect()->back(302);
         } catch (Exception $exception) {
             Noty::addError(__(
                 key: 'Error assigning :resource.',
                 replace: ['resource' => __('Reasons of opening case')]
             ));
+
             return redirect()->back(302);
         }
     }
-
 }

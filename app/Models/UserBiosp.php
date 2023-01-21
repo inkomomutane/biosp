@@ -24,7 +24,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserBiosp extends Model
 {
     use HasUuids;
+
     protected $table = 'user_biosps';
+
     public $incrementing = false;
 
     protected $fillable = [

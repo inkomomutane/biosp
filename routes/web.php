@@ -72,12 +72,12 @@ Route::prefix('dashboard')->middleware(['auth', 'lang', 'role:super-admin'])->gr
     Route::get('trashed/countries', [CountryController::class, 'trashedCountries'])
         ->name('country.trash');
 
-    Route::controller(BiospServiceAssignmentController::class)->group(function (){
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/genres','genres')->name('biosp_service_assignment.genres');
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/document_types','documentTypes')->name('biosp_service_assignment.document_types');
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/forwarded_services','forwardedServices')->name('biosp_service_assignment.forwarded_services');
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/provenances','provenances')->name('biosp_service_assignment.provenances');
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/purpose_of_visits','purposeOfVisits')->name('biosp_service_assignment.purpose_of_visits');
-        Route::match(['put','patch'],'/biosp/{biosp}/biosp_service_assignment/reason_opening_cases','reasonOpeningCases')->name('biosp_service_assignment.reason_opening_cases');
+    Route::controller(BiospServiceAssignmentController::class)->group(function () {
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/genres', 'genres')->name('biosp_service_assignment.genres');
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/document_types', 'documentTypes')->name('biosp_service_assignment.document_types');
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/forwarded_services', 'forwardedServices')->name('biosp_service_assignment.forwarded_services');
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/provenances', 'provenances')->name('biosp_service_assignment.provenances');
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/purpose_of_visits', 'purposeOfVisits')->name('biosp_service_assignment.purpose_of_visits');
+        Route::match(['put', 'patch'], '/biosp/{biosp}/biosp_service_assignment/reason_opening_cases', 'reasonOpeningCases')->name('biosp_service_assignment.reason_opening_cases');
     });
 });

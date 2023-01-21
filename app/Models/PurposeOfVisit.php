@@ -48,6 +48,6 @@ class PurposeOfVisit extends Model
 
     public function biosps(): MorphToMany
     {
-        return $this->morphToMany(Biosp::class,'biospable');
+        return $this->morphToMany(Biosp::class, 'biospable');
     }
 }

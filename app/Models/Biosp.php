@@ -70,37 +70,31 @@ class Biosp extends Model
 
    public function genres(): MorphToMany
    {
-        return $this->morphedByMany(Genre::class,'biospable');
+       return $this->morphedByMany(Genre::class, 'biospable');
    }
 
     public function documentTypes(): MorphToMany
     {
-        return $this->morphedByMany(DocumentType::class,'biospable');
+        return $this->morphedByMany(DocumentType::class, 'biospable');
     }
 
     public function forwardedServices(): MorphToMany
     {
-        return $this->morphedByMany(ForwardedService::class,'biospable');
+        return $this->morphedByMany(ForwardedService::class, 'biospable');
     }
 
     public function provenances(): MorphToMany
     {
-        return $this->morphedByMany(Provenance::class,'biospable');
+        return $this->morphedByMany(Provenance::class, 'biospable');
     }
-
 
     public function purposeOfVisits(): MorphToMany
     {
-        return $this->morphedByMany(PurposeOfVisit::class,'biospable');
+        return $this->morphedByMany(PurposeOfVisit::class, 'biospable');
     }
-
-
 
     public function reasonOpeningCases(): MorphToMany
     {
-        return $this->morphedByMany(ReasonOpeningCase::class,'biospable');
+        return $this->morphedByMany(ReasonOpeningCase::class, 'biospable');
     }
-
-
-
 }

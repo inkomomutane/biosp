@@ -25,7 +25,7 @@ class GrantRoleRequest extends FormRequest
     {
         return [
             'role' => ['integer', 'required'],
-            'biosps' => ['array']
+            'biosps' => ['array'],
         ];
     }
 }

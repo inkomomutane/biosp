@@ -24,7 +24,7 @@ class BiospAssignServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'services' => 'array'
+            'services' => 'array',
         ];
     }
 }

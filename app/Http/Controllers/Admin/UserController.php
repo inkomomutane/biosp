@@ -89,7 +89,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param User $user
+     * @param  User  $user
      * @return Application|Factory|View
      */
     public function show(User $user): Application|Factory|View
@@ -97,17 +97,17 @@ class UserController extends Controller
         return view('pages.backend.users.show')
         ->with([
             'user' => User::with([
-                'biosps'
+                'biosps',
             ])->find($user->uuid),
             'roles' => Role::all(),
-            'biosps' => Biosp::all()
+            'biosps' => Biosp::all(),
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
+     * @param  User  $user
      * @return Application|Factory|View
      */
     public function edit(User $user): Application|Factory|View
@@ -120,8 +120,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateUserRequest $request
-     * @param User $user
+     * @param  UpdateUserRequest  $request
+     * @param  User  $user
      * @return RedirectResponse
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
@@ -158,7 +158,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
+     * @param  User  $user
      * @return RedirectResponse|null
      */
     public function destroy(User $user): ?RedirectResponse
@@ -182,11 +182,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $user
-     * @param GrantRoleRequest $request
+     * @param  User  $user
+     * @param  GrantRoleRequest  $request
      * @return RedirectResponse|null
      */
-
     public function grant(User $user, GrantRoleRequest $request): ?RedirectResponse
     {
         try {
@@ -199,6 +198,7 @@ class UserController extends Controller
             ]);
         } catch (\Throwable $th) {
             Noty::addError('Error granting role and biosp to user.');
+
             return redirect()->route('user.show', [
                 'user' => $user->uuid,
             ]);

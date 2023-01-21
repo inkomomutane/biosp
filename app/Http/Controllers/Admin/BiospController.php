@@ -52,7 +52,7 @@ class BiospController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreBiospRequest $request
+     * @param  StoreBiospRequest  $request
      * @return RedirectResponse
      */
     public function store(StoreBiospRequest $request)
@@ -85,7 +85,7 @@ class BiospController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Biosp $biosp
+     * @param  Biosp  $biosp
      * @return Application|Factory|View
      */
     public function show(Biosp $biosp)
@@ -99,21 +99,21 @@ class BiospController extends Controller
                     'forwardedServices',
                     'provenances',
                     'purposeOfVisits',
-                    'reasonOpeningCases'
+                    'reasonOpeningCases',
                 ])->find($biosp->uuid),
                 'genres' => Genre::all(),
-                'documentTypes' =>DocumentType::all(),
+                'documentTypes' => DocumentType::all(),
                 'forwardedServices' => ForwardedService::all(),
                 'provenances' => Provenance::all(),
                 'purposeOfVisits' => PurposeOfVisit::all(),
-                'reasonOpeningCases' =>ReasonOpeningCase::all()
+                'reasonOpeningCases' => ReasonOpeningCase::all(),
             ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Biosp $biosp
+     * @param  Biosp  $biosp
      * @return Application|Factory|View
      */
     public function edit(Biosp $biosp)
@@ -126,8 +126,8 @@ class BiospController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateBiospRequest $request
-     * @param Biosp $biosp
+     * @param  UpdateBiospRequest  $request
+     * @param  Biosp  $biosp
      * @return RedirectResponse|null
      */
     public function update(UpdateBiospRequest $request, Biosp $biosp): ?RedirectResponse
@@ -157,7 +157,7 @@ class BiospController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Biosp $biosp
+     * @param  Biosp  $biosp
      * @return RedirectResponse|null
      */
     public function destroy(Biosp $biosp): ?RedirectResponse

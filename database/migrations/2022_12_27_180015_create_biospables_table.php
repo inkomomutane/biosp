@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('biospables', function (Blueprint $table) {
             $table->comment('Relation of all services of biosp');
             $table->uuidMorphs('biospable');
-            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps','uuid')
+            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps', 'uuid')
                 ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
