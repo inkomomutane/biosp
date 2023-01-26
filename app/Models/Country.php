@@ -23,6 +23,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property Collection|Province[] $provinces
+ * @property-read int|null $provinces_count
+ * @method static \Database\Factories\CountryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Country onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Country withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Country withoutTrashed()
+ * @mixin \Eloquent
  */
 class Country extends Model
 {

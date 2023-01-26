@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $biospable_type
  * @property string|null $biospable_ulid
  * @property string|null $biosp_ulid
+ * @property string $biospable_id
+ * @method static Builder|Biospable newModelQuery()
+ * @method static Builder|Biospable newQuery()
+ * @method static Builder|Biospable query()
+ * @method static Builder|Biospable whereBiospUlid($value)
+ * @method static Builder|Biospable whereBiospableId($value)
+ * @method static Builder|Biospable whereBiospableType($value)
+ * @mixin \Eloquent
  */
 class Biospable extends Model
 {
@@ -27,10 +36,6 @@ class Biospable extends Model
     use HasUlids;
 
     protected $table = 'biospables';
-
-    protected $primaryKey = 'ulid';
-
-    public $incrementing = false;
 
     protected $fillable = [
         'biospable_type',

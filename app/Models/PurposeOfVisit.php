@@ -24,6 +24,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property Collection|Beneficiary[] $beneficiaries
+ * @property-read int|null $beneficiaries_count
+ * @property-read Collection|\App\Models\Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\PurposeOfVisitFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newQuery()
+ * @method static \Illuminate\Database\Query\Builder|PurposeOfVisit onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|PurposeOfVisit withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|PurposeOfVisit withoutTrashed()
+ * @mixin \Eloquent
  */
 class PurposeOfVisit extends Model
 {

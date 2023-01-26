@@ -24,6 +24,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $updated_at
  * @property string|null $name
  * @property Collection|Beneficiary[] $beneficiaries
+ * @property-read int|null $beneficiaries_count
+ * @property-read Collection|\App\Models\Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\ProvenanceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Provenance onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Provenance withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Provenance withoutTrashed()
+ * @mixin \Eloquent
  */
 class Provenance extends Model
 {

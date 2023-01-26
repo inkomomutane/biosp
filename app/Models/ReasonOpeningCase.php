@@ -24,6 +24,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Collection|Beneficiary[] $beneficiaries
+ * @property-read int|null $beneficiaries_count
+ * @property-read Collection|\App\Models\Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\ReasonOpeningCaseFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ReasonOpeningCase onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|ReasonOpeningCase withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ReasonOpeningCase withoutTrashed()
+ * @mixin \Eloquent
  */
 class ReasonOpeningCase extends Model
 {

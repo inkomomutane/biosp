@@ -24,6 +24,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Collection|Beneficiary[] $beneficiaries
+ * @property-read int|null $beneficiaries_count
+ * @property-read Collection|\App\Models\Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\ForwardedServiceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ForwardedService onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|ForwardedService withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ForwardedService withoutTrashed()
+ * @mixin \Eloquent
  */
 class ForwardedService extends Model
 {

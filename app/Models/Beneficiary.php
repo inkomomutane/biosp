@@ -7,6 +7,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Database\Factories\BeneficiaryFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -44,6 +47,35 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Genre|null $genre
  * @property Provenance|null $provenance
  * @property ReasonOpeningCase|null $reason_opening_case
+ * @property string|null $biosp_ulid
+ * @method static BeneficiaryFactory factory(...$parameters)
+ * @method static Builder|Beneficiary newModelQuery()
+ * @method static Builder|Beneficiary newQuery()
+ * @method static Builder|Beneficiary query()
+ * @method static Builder|Beneficiary whereBiospUlid($value)
+ * @method static Builder|Beneficiary whereBirthDate($value)
+ * @method static Builder|Beneficiary whereCreatedAt($value)
+ * @method static Builder|Beneficiary whereDateReceived($value)
+ * @method static Builder|Beneficiary whereDocumentTypeUlid($value)
+ * @method static Builder|Beneficiary whereForwardedServiceUlid($value)
+ * @method static Builder|Beneficiary whereFullName($value)
+ * @method static Builder|Beneficiary whereGenreUlid($value)
+ * @method static Builder|Beneficiary whereHomeCare($value)
+ * @method static Builder|Beneficiary whereNumberOfVisits($value)
+ * @method static Builder|Beneficiary whereOtherDocumentType($value)
+ * @method static Builder|Beneficiary whereOtherForwardedService($value)
+ * @method static Builder|Beneficiary whereOtherReasonOpeningCase($value)
+ * @method static Builder|Beneficiary wherePhone($value)
+ * @method static Builder|Beneficiary whereProvenanceUlid($value)
+ * @method static Builder|Beneficiary wherePurposeOfVisitUlid($value)
+ * @method static Builder|Beneficiary whereReasonOpeningCaseUlid($value)
+ * @method static Builder|Beneficiary whereServiceDate($value)
+ * @method static Builder|Beneficiary whereSpecifyPurposeOfVisit($value)
+ * @method static Builder|Beneficiary whereStatus($value)
+ * @method static Builder|Beneficiary whereUlid($value)
+ * @method static Builder|Beneficiary whereUpdatedAt($value)
+ * @method static Builder|Beneficiary whereVisitProposes($value)
+ * @mixin Eloquent
  */
 class Beneficiary extends Model
 {

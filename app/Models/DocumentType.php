@@ -24,6 +24,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $name
  * @property string $ulid
  * @property Collection|Beneficiary[] $beneficiaries
+ * @property-read int|null $beneficiaries_count
+ * @property-read Collection|\App\Models\Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\DocumentTypeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType newQuery()
+ * @method static \Illuminate\Database\Query\Builder|DocumentType onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|DocumentType withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|DocumentType withoutTrashed()
+ * @mixin \Eloquent
  */
 class DocumentType extends Model
 {

@@ -26,6 +26,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $province_ulid
  * @property Province|null $province
  * @property Collection|Biosp[] $biosps
+ * @property-read int|null $biosps_count
+ * @method static \Database\Factories\NeighborhoodFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Neighborhood onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereProvinceUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereUlid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Neighborhood withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Neighborhood withoutTrashed()
+ * @mixin \Eloquent
  */
 class Neighborhood extends Model
 {
