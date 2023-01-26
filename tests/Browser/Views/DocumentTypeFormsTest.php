@@ -65,10 +65,10 @@ class DocumentTypeFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([DocumentTypeController::class, 'edit'], [
-                    'document_type' => $this->document_type->uuid,
+                    'document_type' => $this->document_type->ulid,
                 ]))
                 ->assertRouteIs('document_type.edit', [
-                    'document_type' => $this->document_type->uuid,
+                    'document_type' => $this->document_type->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->document_type->name)

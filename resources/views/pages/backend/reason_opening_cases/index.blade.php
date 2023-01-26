@@ -72,7 +72,7 @@
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('reason_opening_case.trash') ?  route('reason_opening_case.restore', $reason_opening_case->uuid) : route('reason_opening_case.edit', $reason_opening_case->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('reason_opening_case.trash') ?  route('reason_opening_case.restore', $reason_opening_case->ulid) : route('reason_opening_case.edit', $reason_opening_case->ulid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="{{  request()->routeIs('reason_opening_case.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Reason of opening case'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Reason of opening case'))]) }}">
@@ -94,7 +94,7 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $reason_opening_case->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $reason_opening_case->ulid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -117,8 +117,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  route('reason_opening_case.destroy', $reason_opening_case->uuid)  }}" method="post"
-                                                    id="user_index_{{ $reason_opening_case->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  route('reason_opening_case.destroy', $reason_opening_case->ulid)  }}" method="post"
+                                                    id="user_index_{{ $reason_opening_case->ulid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty

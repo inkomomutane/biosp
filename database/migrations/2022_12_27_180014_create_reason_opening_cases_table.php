@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reason_opening_cases', function (Blueprint $table) {
             $table->comment('');
             $table->softDeletes();
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->string('name')->nullable();
             $table->timestamps();
         });

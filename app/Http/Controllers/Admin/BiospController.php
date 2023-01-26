@@ -61,7 +61,7 @@ class BiospController extends Controller
             Biosp::create(
                 [
                     'name' => $request->name,
-                    'neighborhood_uuid' => $request->neighborhood_uuid,
+                    'neighborhood_ulid' => $request->neighborhood_ulid,
                     'project_name' => $request->project_name,
                 ]
             );
@@ -100,7 +100,7 @@ class BiospController extends Controller
                     'provenances',
                     'purposeOfVisits',
                     'reasonOpeningCases',
-                ])->find($biosp->uuid),
+                ])->find($biosp->ulid),
                 'genres' => Genre::all(),
                 'documentTypes' => DocumentType::all(),
                 'forwardedServices' => ForwardedService::all(),
@@ -135,7 +135,7 @@ class BiospController extends Controller
         try {
             $biosp->update([
                 'name' => $request->name,
-                'neighborhood_uuid' => $request->neighborhood_uuid,
+                'neighborhood_ulid' => $request->neighborhood_ulid,
                 'project_name' => $request->project_name,
             ]);
             Noty::addSuccess(__(

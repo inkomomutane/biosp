@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,9 +18,9 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasRoles;
-    use HasUuids;
+    use HasUlids;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'ulid';
 
     public $incrementing = false;
 
@@ -33,7 +33,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'biosp_uuid',
+        'biosp_ulid',
     ];
 
     /**
@@ -57,12 +57,12 @@ class User extends Authenticatable
 
     public function biosp(): BelongsTo
     {
-        return $this->belongsTo(Biosp::class, 'biosp_uuid');
+        return $this->belongsTo(Biosp::class, 'biosp_ulid');
     }
 
     public function biosps()
     {
-        return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_uuid', 'biosp_uuid')
+        return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_ulid', 'biosp_ulid')
                     ->withTimestamps();
     }
 }

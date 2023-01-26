@@ -27,9 +27,9 @@ final class UserBiospFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
-            'user_uuid' => \App\Models\User::factory(),
-            'biosp_uuid' => \App\Models\Biosp::factory(),
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
+            'user_ulid' => \App\Models\User::factory(),
+            'biosp_ulid' => \App\Models\Biosp::factory(),
         ];
     }
 }

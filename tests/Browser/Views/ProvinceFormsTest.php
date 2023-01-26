@@ -66,10 +66,10 @@ class ProvinceFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([ProvinceController::class, 'edit'], [
-                    'province' => $this->province->uuid,
+                    'province' => $this->province->ulid,
                 ]))
                 ->assertRouteIs('province.edit', [
-                    'province' => $this->province->uuid,
+                    'province' => $this->province->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->province->name)

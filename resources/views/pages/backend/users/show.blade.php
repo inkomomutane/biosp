@@ -130,7 +130,7 @@
                 </div>
                 <!--end::Navbar-->
 
-                @if (auth()->user()->uuid == $user->uuid)
+                @if (auth()->user()->ulid == $user->ulid)
                     <!--begin::Notice-->
                     <div
                         class="notice d-flex bg-light-warning rounded border-warning mb-4 border border-dashed min-w-lg-600px flex-shrink-0 p-6">
@@ -163,7 +163,7 @@
                     </div>
                     <!--end::Notice-->
                 @endif
-                @if (auth()->user()->uuid != $user->uuid)
+                @if (auth()->user()->ulid != $user->ulid)
                     <form action="{{ route('user.grant_role', $user) }}" method="post">
                         @csrf
                         @endif
@@ -179,7 +179,7 @@
                                 <!--begin::Action-->
 
                                 <button
-                                    @if (auth()->user()->uuid == $user->uuid) class="btn btn-info align-self-center disabled"
+                                    @if (auth()->user()->ulid == $user->ulid) class="btn btn-info align-self-center disabled"
                                     @else type="submit" class="btn btn-info align-self-center" @endif>
                             <span class="svg-icon svg-icon-2">
                                 @svg('fluentui-person-add-24')
@@ -222,7 +222,7 @@
                                     <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">{{ __('Change user role') }}</label>
                                     <x-forms.select
-                                        :disabled="(auth()->user()->uuid === $user->uuid)"
+                                        :disabled="(auth()->user()->ulid === $user->ulid)"
                                         name="role"
                                         :multiple="false"
                                         placeholder="Change user role"
@@ -238,12 +238,12 @@
                                     <!--begin::Label-->
                                     <label class="col-lg-4 fw-bold text-muted">{{ __('Change user biosps') }}</label>
                                     <x-forms.select
-                                        :disabled="(auth()->user()->uuid === $user->uuid)"
+                                        :disabled="(auth()->user()->ulid === $user->ulid)"
                                         name="biosps[]"
                                         :multiple="true"
                                         placeholder="Biosps"
-                                        :options="$biosps->pluck('name','uuid')->toArray()"
-                                        :selected="$user->biosps->pluck('name','uuid')->toArray()"
+                                        :options="$biosps->pluck('name','ulid')->toArray()"
+                                        :selected="$user->biosps->pluck('name','ulid')->toArray()"
                                     />
                                 </div>
                                 <!--end::Input group-->
@@ -251,7 +251,7 @@
                             <!--end::Card body-->
                         </div>
                         <!--end::details View-->
-                        @if (auth()->user()->uuid !== $user->uuid)
+                        @if (auth()->user()->ulid !== $user->ulid)
                     </form>
                 @endif
             </div>

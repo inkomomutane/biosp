@@ -30,7 +30,7 @@ class UpdateCountryRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'countries', column: 'name')
-                ->ignore(id: $this->country->uuid, idColumn: 'uuid'),
+                ->ignore(id: $this->country->ulid, idColumn: 'ulid'),
             ],
         ];
     }

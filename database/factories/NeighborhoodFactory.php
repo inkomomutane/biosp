@@ -27,9 +27,9 @@ final class NeighborhoodFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
             'name' => $this->faker->name,
-            'province_uuid' => \App\Models\Province::factory(),
+            'province_ulid' => \App\Models\Province::factory(),
         ];
     }
 }

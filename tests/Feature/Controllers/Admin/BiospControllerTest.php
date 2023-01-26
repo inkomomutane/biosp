@@ -19,7 +19,7 @@ it('should store biosp and redirect to route biosp.index', function () {
     $biospCreate = [
         'name' => fake()->name(),
         'project_name' => fake()->name,
-        'neighborhood_uuid' => $this->biosp->neighborhood_uuid,
+        'neighborhood_ulid' => $this->biosp->neighborhood_ulid,
     ];
     $this->actingAs(login())->post(action([BiospController::class, 'store'], $biospCreate
     ))
@@ -32,7 +32,7 @@ it('should update biosp and redirect to route biosp.index', function () {
     $biospUpdate = [
         'name' => fake()->name(),
         'project_name' => fake()->name,
-        'neighborhood_uuid' => $this->biosp->neighborhood_uuid,
+        'neighborhood_ulid' => $this->biosp->neighborhood_ulid,
     ];
     $this->actingAs(login())
         ->patch(action([BiospController::class, 'update'], $this->biosp),
@@ -51,6 +51,6 @@ it('should  delete biosp and redirect to route biosp.index', function () {
     assertDatabaseMissing('biosps', [
         'name' => $biosp->name,
         'project_name' => $biosp->project_name,
-        'neighborhood_uuid' => $biosp->neighborhood_uuid,
+        'neighborhood_ulid' => $biosp->neighborhood_ulid,
     ]);
 })->group('controller');

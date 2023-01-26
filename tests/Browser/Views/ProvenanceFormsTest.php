@@ -66,10 +66,10 @@ class ProvenanceFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([ProvenanceController::class, 'edit'], [
-                    'provenance' => $this->provenance->uuid,
+                    'provenance' => $this->provenance->ulid,
                 ]))
                 ->assertRouteIs('provenance.edit', [
-                    'provenance' => $this->provenance->uuid,
+                    'provenance' => $this->provenance->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->provenance->name)

@@ -72,7 +72,7 @@
 
                                             <td class="text-end">
 
-                                                <a href="{{ route('neighborhood.edit', $neighborhood->uuid) }}"
+                                                <a href="{{ route('neighborhood.edit', $neighborhood->ulid) }}"
                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="{{ __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]) }}">
@@ -91,7 +91,7 @@
                                                     <!--end::Svg Icon-->
                                                 </a>
                                                 <a href="#"
-                                                    onclick="document.querySelector('#neighborhood_index_{{ $neighborhood->uuid }}').submit()"
+                                                    onclick="document.querySelector('#neighborhood_index_{{ $neighborhood->ulid }}').submit()"
                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="{{ __(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Neighborhood'))]) }}">
@@ -112,8 +112,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{ route('neighborhood.destroy', $neighborhood->uuid) }}"
-                                                    method="post" id="neighborhood_index_{{ $neighborhood->uuid }}">@csrf
+                                                <form action="{{ route('neighborhood.destroy', $neighborhood->ulid) }}"
+                                                    method="post" id="neighborhood_index_{{ $neighborhood->ulid }}">@csrf
                                                     @method('DELETE')</form>
                                             </td>
                                         </tr>

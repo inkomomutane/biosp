@@ -70,7 +70,7 @@
 
                                         <td class="text-end">
 
-                                            <a href="{{ route('biosp.show',$biosp->uuid) }}"
+                                            <a href="{{ route('biosp.show',$biosp->ulid) }}"
                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'View :resource',replace:[ 'resource' => Str::lower(__('Biosp'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -83,7 +83,7 @@
                                                 <!--end::Svg Icon-->
                                             </a>
 
-                                            <a href="{{ route('biosp.edit',$biosp->uuid) }}"
+                                            <a href="{{ route('biosp.edit',$biosp->ulid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Biosp'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -100,7 +100,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="#" onclick="document.querySelector('#biosp_index_{{$biosp->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                            <a href="#" onclick="document.querySelector('#biosp_index_{{$biosp->ulid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Biosp'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
@@ -119,7 +119,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <form action="{{ route('biosp.destroy',$biosp->uuid) }}" method="post" id="biosp_index_{{$biosp->uuid}}" >@csrf @method('DELETE')</form>
+                                            <form action="{{ route('biosp.destroy',$biosp->ulid) }}" method="post" id="biosp_index_{{$biosp->ulid}}" >@csrf @method('DELETE')</form>
                                         </td>
                                     </tr>
                                     @empty

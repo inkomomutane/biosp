@@ -30,7 +30,7 @@ class UpdateReasonOpeningCaseRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'reason_opening_cases', column: 'name')
-                    ->ignore(id: $this->reason_opening_case->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->reason_opening_case->ulid, idColumn: 'ulid'),
             ],
         ];
     }

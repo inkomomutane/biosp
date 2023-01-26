@@ -72,7 +72,7 @@
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('document_type.trash') ?  route('document_type.restore', $document_type->uuid) : route('document_type.edit', $document_type->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('document_type.trash') ?  route('document_type.restore', $document_type->ulid) : route('document_type.edit', $document_type->ulid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="{{  request()->routeIs('document_type.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Document type'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Document type'))]) }}">
@@ -94,7 +94,7 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $document_type->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $document_type->ulid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -117,8 +117,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  route('document_type.destroy', $document_type->uuid)  }}" method="post"
-                                                    id="user_index_{{ $document_type->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  route('document_type.destroy', $document_type->ulid)  }}" method="post"
+                                                    id="user_index_{{ $document_type->ulid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty

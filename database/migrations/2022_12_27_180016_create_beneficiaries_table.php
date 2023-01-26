@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('beneficiaries', function (Blueprint $table) {
             $table->comment('Beneficiaries of certain Biosp.');
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->string('full_name')->nullable();
             $table->integer('number_of_visits')->nullable();
             $table->date('birth_date')->nullable();
@@ -31,13 +31,13 @@ return new class extends Migration
             $table->string('specify_purpose_of_visit')->nullable();
             $table->string('visit_proposes')->nullable();
 
-            $table->foreignUuid('biosp_uuid')->nullable()->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('genre_uuid')->nullable()->constrained('genres', 'uuid');
-            $table->foreignUuid('provenance_uuid')->nullable()->constrained('provenances', 'uuid');
-            $table->foreignUuid('reason_opening_case_uuid')->nullable()->constrained('reason_opening_cases', 'uuid');
-            $table->foreignUuid('document_type_uuid')->nullable()->constrained('document_types', 'uuid');
-            $table->foreignUuid('forwarded_service_uuid')->nullable()->constrained('forwarded_services', 'uuid');
-            $table->foreignUuid('purpose_of_visit_uuid')->nullable()->constrained('purpose_of_visits', 'uuid');
+            $table->foreignUlid('biosp_ulid')->nullable()->constrained('biosps', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUlid('genre_ulid')->nullable()->constrained('genres', 'ulid');
+            $table->foreignUlid('provenance_ulid')->nullable()->constrained('provenances', 'ulid');
+            $table->foreignUlid('reason_opening_case_ulid')->nullable()->constrained('reason_opening_cases', 'ulid');
+            $table->foreignUlid('document_type_ulid')->nullable()->constrained('document_types', 'ulid');
+            $table->foreignUlid('forwarded_service_ulid')->nullable()->constrained('forwarded_services', 'ulid');
+            $table->foreignUlid('purpose_of_visit_ulid')->nullable()->constrained('purpose_of_visits', 'ulid');
         });
     }
 

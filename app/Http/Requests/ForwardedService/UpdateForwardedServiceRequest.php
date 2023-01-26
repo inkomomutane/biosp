@@ -30,7 +30,7 @@ class UpdateForwardedServiceRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'forwarded_services', column: 'name')
-                    ->ignore(id: $this->forwarded_service->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->forwarded_service->ulid, idColumn: 'ulid'),
             ],
         ];
     }

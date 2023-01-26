@@ -68,10 +68,10 @@ class UserFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([UserController::class, 'edit'], [
-                    'user' => $this->user->uuid,
+                    'user' => $this->user->ulid,
                 ]))
                 ->assertRouteIs('user.edit', [
-                    'user' => $this->user->uuid,
+                    'user' => $this->user->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->user->name)

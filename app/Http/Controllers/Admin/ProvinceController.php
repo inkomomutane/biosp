@@ -50,7 +50,7 @@ class ProvinceController extends Controller
     {
         try {
             Province::create(
-                ['name' => $request->name, 'country_uuid' => $request->country_uuid]
+                ['name' => $request->name, 'country_ulid' => $request->country_ulid]
             );
 
             Noty::addSuccess(__(
@@ -107,7 +107,7 @@ class ProvinceController extends Controller
         try {
             $province->update([
                 'name' => $request->name,
-                'country_uuid' => $request->country_uuid,
+                'country_ulid' => $request->country_ulid,
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',

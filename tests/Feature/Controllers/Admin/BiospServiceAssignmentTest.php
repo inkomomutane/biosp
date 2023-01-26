@@ -14,10 +14,10 @@ it('it should  assign genres to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'genres'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $genres->pluck('uuid')->toArray(),
+        'services' => $genres->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->genres->pluck('name', 'uuid'))
-        ->toEqual($genres->pluck('name', 'uuid'));
+    expect($this->biosp->genres->pluck('name', 'ulid'))
+        ->toEqual($genres->pluck('name', 'ulid'));
 })->group('controller');
 
 it('it should  assign document types to biosp', function () {
@@ -25,10 +25,10 @@ it('it should  assign document types to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'documentTypes'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $document_types->pluck('uuid')->toArray(),
+        'services' => $document_types->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->documentTypes->pluck('name', 'uuid'))
-        ->toEqual($document_types->pluck('name', 'uuid'));
+    expect($this->biosp->documentTypes->pluck('name', 'ulid'))
+        ->toEqual($document_types->pluck('name', 'ulid'));
 })->group('controller');
 
 it('it should  assign forwarded services to biosp', function () {
@@ -36,10 +36,10 @@ it('it should  assign forwarded services to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'forwardedServices'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $forwardedServices->pluck('uuid')->toArray(),
+        'services' => $forwardedServices->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->forwardedServices->pluck('name', 'uuid'))
-        ->toEqual($forwardedServices->pluck('name', 'uuid'));
+    expect($this->biosp->forwardedServices->pluck('name', 'ulid'))
+        ->toEqual($forwardedServices->pluck('name', 'ulid'));
 })->group('controller');
 
 it('it should  assign provenances to biosp', function () {
@@ -47,10 +47,10 @@ it('it should  assign provenances to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'provenances'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $provenances->pluck('uuid')->toArray(),
+        'services' => $provenances->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->provenances->pluck('name', 'uuid'))
-        ->toEqual($provenances->pluck('name', 'uuid'));
+    expect($this->biosp->provenances->pluck('name', 'ulid'))
+        ->toEqual($provenances->pluck('name', 'ulid'));
 })->group('controller');
 
 it('it should  assign purpose of visits to biosp', function () {
@@ -58,10 +58,10 @@ it('it should  assign purpose of visits to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'purposeOfVisits'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $purposeOfVisits->pluck('uuid')->toArray(),
+        'services' => $purposeOfVisits->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->purposeOfVisits->pluck('name', 'uuid'))
-        ->toEqual($purposeOfVisits->pluck('name', 'uuid'));
+    expect($this->biosp->purposeOfVisits->pluck('name', 'ulid'))
+        ->toEqual($purposeOfVisits->pluck('name', 'ulid'));
 })->group('controller');
 
 it('it should  assign reason of opening cases to biosp', function () {
@@ -69,8 +69,8 @@ it('it should  assign reason of opening cases to biosp', function () {
     $this->actingAs(login())->patch(action([BiospServiceAssignmentController::class, 'reasonOpeningCases'], [
         'biosp' => $this->biosp,
     ]), [
-        'services' => $reasonOpeningCases->pluck('uuid')->toArray(),
+        'services' => $reasonOpeningCases->pluck('ulid')->toArray(),
     ]);
-    expect($this->biosp->reasonOpeningCases->pluck('name', 'uuid'))
-        ->toEqual($reasonOpeningCases->pluck('name', 'uuid'));
+    expect($this->biosp->reasonOpeningCases->pluck('name', 'ulid'))
+        ->toEqual($reasonOpeningCases->pluck('name', 'ulid'));
 })->group('controller');

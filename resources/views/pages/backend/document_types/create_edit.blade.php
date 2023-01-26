@@ -6,7 +6,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('document_type.edit')) {{ route('document_type.update', $document_type->uuid) }} @else {{ route('document_type.store') }} @endif"
+                action="@if (request()->routeIs('document_type.edit')) {{ route('document_type.update', $document_type->ulid) }} @else {{ route('document_type.store') }} @endif"
                 method="post">
                 @csrf
 

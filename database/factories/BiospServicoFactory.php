@@ -27,7 +27,7 @@ final class BiospServicoFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
             'model_type' => $this->faker->word,
             'model_id' => $this->faker->word,
             'table' => $this->faker->word,

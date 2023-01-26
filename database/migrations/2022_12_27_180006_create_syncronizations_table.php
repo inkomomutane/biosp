@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('last_sync_at')->nullable();
             $table->timestamps();
             $table->bigInteger('id', true);
-            $table->uuid('user_uuid');
+            $table->ulid('user_ulid');
             $table->boolean('complete')->nullable()->default(false);
         });
     }

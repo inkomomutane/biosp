@@ -30,7 +30,7 @@ class UpdateDocumentTypeRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'document_types', column: 'name')
-                    ->ignore(id: $this->document_type->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->document_type->ulid, idColumn: 'ulid'),
             ],
         ];
     }

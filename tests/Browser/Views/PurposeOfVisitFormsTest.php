@@ -66,10 +66,10 @@ class PurposeOfVisitFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([PurposeOfVisitController::class, 'edit'], [
-                    'purpose_of_visit' => $this->purpose_of_visit->uuid,
+                    'purpose_of_visit' => $this->purpose_of_visit->ulid,
                 ]))
                 ->assertRouteIs('purpose_of_visit.edit', [
-                    'purpose_of_visit' => $this->purpose_of_visit->uuid,
+                    'purpose_of_visit' => $this->purpose_of_visit->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->purpose_of_visit->name)

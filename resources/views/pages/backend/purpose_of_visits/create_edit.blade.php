@@ -6,7 +6,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('purpose_of_visit.edit')) {{ route('purpose_of_visit.update', $purpose_of_visit->uuid) }} @else {{ route('purpose_of_visit.store') }} @endif"
+                action="@if (request()->routeIs('purpose_of_visit.edit')) {{ route('purpose_of_visit.update', $purpose_of_visit->ulid) }} @else {{ route('purpose_of_visit.store') }} @endif"
                 method="post">
                 @csrf
 

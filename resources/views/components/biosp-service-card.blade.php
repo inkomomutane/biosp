@@ -66,8 +66,8 @@
         )  }}">
             <x-slot:body>
                 <x-forms.select
-                    :selected="$selectedServices->pluck('name','uuid')->toArray()"
-                    :options="$services->pluck('name','uuid')->toArray()"
+                    :selected="$selectedServices->pluck('name','ulid')->toArray()"
+                    :options="$services->pluck('name','ulid')->toArray()"
                     :label="__($serviceName)"
                     name="services[]"
                     :placeholder="__($serviceName)"

@@ -6,7 +6,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('provenance.edit')) {{ route('provenance.update', $provenance->uuid) }} @else {{ route('provenance.store') }} @endif"
+                action="@if (request()->routeIs('provenance.edit')) {{ route('provenance.update', $provenance->ulid) }} @else {{ route('provenance.store') }} @endif"
                 method="post">
                 @csrf
 

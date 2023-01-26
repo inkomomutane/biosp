@@ -7,7 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class Beneficiary
  *
- * @property string $uuid
+ * @property string $ulid
  * @property string|null $full_name
  * @property int|null $number_of_visits
  * @property Carbon|null $birth_date
@@ -32,12 +32,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $other_forwarded_service
  * @property string|null $specify_purpose_of_visit
  * @property string|null $visit_proposes
- * @property string|null $genre_uuid
- * @property string|null $provenance_uuid
- * @property string|null $reason_opening_case_uuid
- * @property string|null $document_type_uuid
- * @property string|null $forwarded_service_uuid
- * @property string|null $purpose_of_visit_uuid
+ * @property string|null $genre_ulid
+ * @property string|null $provenance_ulid
+ * @property string|null $reason_opening_case_ulid
+ * @property string|null $document_type_ulid
+ * @property string|null $forwarded_service_ulid
+ * @property string|null $purpose_of_visit_ulid
  * @property DocumentType|null $document_type
  * @property ForwardedService|null $forwarded_service
  * @property PurposeOfVisit|null $purpose_of_visit
@@ -48,11 +48,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Beneficiary extends Model
 {
     use HasFactory;
-    use HasUuids;
+    use HasUlids;
 
     protected $table = 'beneficiaries';
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'ulid';
 
     public $incrementing = false;
 
@@ -78,48 +78,48 @@ class Beneficiary extends Model
         'home_care',
         'date_received',
         'status',
-        'biosp_uuid',
+        'biosp_ulid',
         '6',
         'other_document_type',
         'other_reason_opening_case',
         'other_forwarded_service',
         'specify_purpose_of_visit',
         'visit_proposes',
-        'genre_uuid',
-        'provenance_uuid',
-        'reason_opening_case_uuid',
-        'document_type_uuid',
-        'forwarded_service_uuid',
-        'purpose_of_visit_uuid',
+        'genre_ulid',
+        'provenance_ulid',
+        'reason_opening_case_ulid',
+        'document_type_ulid',
+        'forwarded_service_ulid',
+        'purpose_of_visit_ulid',
     ];
 
     public function document_type(): BelongsTo
     {
-        return $this->belongsTo(DocumentType::class, 'document_type_uuid');
+        return $this->belongsTo(DocumentType::class, 'document_type_ulid');
     }
 
     public function forwarded_service(): BelongsTo
     {
-        return $this->belongsTo(ForwardedService::class, 'forwarded_service_uuid');
+        return $this->belongsTo(ForwardedService::class, 'forwarded_service_ulid');
     }
 
     public function purpose_of_visit(): BelongsTo
     {
-        return $this->belongsTo(PurposeOfVisit::class, 'purpose_of_visit_uuid');
+        return $this->belongsTo(PurposeOfVisit::class, 'purpose_of_visit_ulid');
     }
 
     public function genre(): BelongsTo
     {
-        return $this->belongsTo(Genre::class, 'genre_uuid');
+        return $this->belongsTo(Genre::class, 'genre_ulid');
     }
 
     public function provenance(): BelongsTo
     {
-        return $this->belongsTo(Provenance::class, 'provenance_uuid');
+        return $this->belongsTo(Provenance::class, 'provenance_ulid');
     }
 
     public function reason_opening_case(): BelongsTo
     {
-        return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_uuid');
+        return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_ulid');
     }
 }

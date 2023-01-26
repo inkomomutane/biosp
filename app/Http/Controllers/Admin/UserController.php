@@ -98,7 +98,7 @@ class UserController extends Controller
         ->with([
             'user' => User::with([
                 'biosps',
-            ])->find($user->uuid),
+            ])->find($user->ulid),
             'roles' => Role::all(),
             'biosps' => Biosp::all(),
         ]);
@@ -194,13 +194,13 @@ class UserController extends Controller
             Noty::addSuccess('User role and biosp granted.');
 
             return redirect()->route('user.show', [
-                'user' => $user->uuid,
+                'user' => $user->ulid,
             ]);
         } catch (\Throwable $th) {
             Noty::addError('Error granting role and biosp to user.');
 
             return redirect()->route('user.show', [
-                'user' => $user->uuid,
+                'user' => $user->ulid,
             ]);
         }
     }

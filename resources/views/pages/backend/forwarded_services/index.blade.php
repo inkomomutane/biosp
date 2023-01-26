@@ -72,7 +72,7 @@
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('forwarded_service.trash') ?  route('forwarded_service.restore', $forwarded_service->uuid) : route('forwarded_service.edit', $forwarded_service->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('forwarded_service.trash') ?  route('forwarded_service.restore', $forwarded_service->ulid) : route('forwarded_service.edit', $forwarded_service->ulid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="{{  request()->routeIs('forwarded_service.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Forwarded service'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Forwarded service'))]) }}">
@@ -94,7 +94,7 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $forwarded_service->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $forwarded_service->ulid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -117,8 +117,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  route('forwarded_service.destroy', $forwarded_service->uuid)  }}" method="post"
-                                                    id="user_index_{{ $forwarded_service->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  route('forwarded_service.destroy', $forwarded_service->ulid)  }}" method="post"
+                                                    id="user_index_{{ $forwarded_service->ulid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty

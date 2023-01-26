@@ -28,7 +28,7 @@ final class SyncronizationFactory extends Factory
     {
         return [
             'last_sync_at' => $this->faker->dateTime(),
-            'user_uuid' => $this->faker->word,
+            'user_ulid' => $this->faker->word,
             'complete' => $this->faker->boolean,
         ];
     }

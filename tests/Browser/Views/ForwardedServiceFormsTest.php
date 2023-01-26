@@ -66,10 +66,10 @@ class ForwardedServiceFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([ForwardedServiceController::class, 'edit'], [
-                    'forwarded_service' => $this->forwarded_service->uuid,
+                    'forwarded_service' => $this->forwarded_service->ulid,
                 ]))
                 ->assertRouteIs('forwarded_service.edit', [
-                    'forwarded_service' => $this->forwarded_service->uuid,
+                    'forwarded_service' => $this->forwarded_service->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->forwarded_service->name)

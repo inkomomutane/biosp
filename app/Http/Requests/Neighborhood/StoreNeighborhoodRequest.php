@@ -26,7 +26,7 @@ class StoreNeighborhoodRequest extends FormRequest
     {
         return [
             'name' => ['string', 'required', 'max:125', Rule::unique(table: 'neighborhoods', column: 'name')],
-            'province_uuid' => ['required', 'string', 'uuid'],
+            'province_ulid' => ['required', 'string', 'ulid'],
         ];
     }
 }

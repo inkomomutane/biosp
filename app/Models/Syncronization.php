@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property int $id
- * @property string $user_uuid
+ * @property string $user_ulid
  * @property bool|null $complete
  */
 class Syncronization extends Model
@@ -36,7 +36,7 @@ class Syncronization extends Model
 
     protected $fillable = [
         'last_sync_at',
-        'user_uuid',
+        'user_ulid',
         'complete',
     ];
 }

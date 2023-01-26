@@ -13,7 +13,7 @@ beforeEach(function () {
 it('should store neighborhood and redirect to route neighborhood.index', function () {
     $neighborhoodCreate = [
         'name' => fake()->name(),
-        'province_uuid' => $this->neighborhood->province_uuid,
+        'province_ulid' => $this->neighborhood->province_ulid,
     ];
     $this->actingAs(login())->post(action([NeighborhoodController::class, 'store'], $neighborhoodCreate
     ))
@@ -25,7 +25,7 @@ it('should store neighborhood and redirect to route neighborhood.index', functio
 it('should update neighborhood and redirect to route neighborhood.index', function () {
     $neighborhoodUpdate = [
         'name' => fake()->name(),
-        'province_uuid' => $this->neighborhood->province_uuid,
+        'province_ulid' => $this->neighborhood->province_ulid,
     ];
     $this->actingAs(login())
         ->patch(action([NeighborhoodController::class, 'update'], $this->neighborhood),
@@ -43,6 +43,6 @@ it('should  delete neighborhood and redirect to route neighborhood.index', funct
         ->assertSessionDoesntHaveErrors();
     assertDatabaseMissing('neighborhoods', [
         'name' => $neighborhood->name,
-        'province_uuid' => $this->neighborhood->province_uuid,
+        'province_ulid' => $this->neighborhood->province_ulid,
     ]);
 })->group('controller');

@@ -161,7 +161,7 @@ class CountryController extends Controller
     public function destroyForced(string $country)
     {
         try {
-            Country::withTrashed()->where('uuid', $country)->first()->forceDelete();
+            Country::withTrashed()->where('ulid', $country)->first()->forceDelete();
             Noty::addSuccess(__(
                 key: ':resource deleted permanently',
                 replace:['resource' => __('Country')]
@@ -181,7 +181,7 @@ class CountryController extends Controller
     public function restore(string $country)
     {
         try {
-            Country::onlyTrashed()->where('uuid', $country)->first()->restore();
+            Country::onlyTrashed()->where('ulid', $country)->first()->restore();
             Noty::addSuccess(__(
                 key: ':resource restored',
                 replace:['resource' => __('Country')]

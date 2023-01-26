@@ -70,7 +70,7 @@
 
                                         <td class="text-end">
 
-                                            <a href="{{ route('province.edit',$province->uuid) }}"
+                                            <a href="{{ route('province.edit',$province->ulid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Province'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -87,7 +87,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="#" onclick="document.querySelector('#province_index_{{$province->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                            <a href="#" onclick="document.querySelector('#province_index_{{$province->ulid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('Province'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
@@ -106,7 +106,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <form action="{{ route('province.destroy',$province->uuid) }}" method="post" id="province_index_{{$province->uuid}}" >@csrf @method('DELETE')</form>
+                                            <form action="{{ route('province.destroy',$province->ulid) }}" method="post" id="province_index_{{$province->ulid}}" >@csrf @method('DELETE')</form>
                                         </td>
                                     </tr>
                                     @empty

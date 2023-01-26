@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('provenances', function (Blueprint $table) {
             $table->comment('');
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->softDeletes();
             $table->timestamps();
             $table->string('name')->nullable();

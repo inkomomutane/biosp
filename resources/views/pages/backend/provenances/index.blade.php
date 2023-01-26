@@ -72,7 +72,7 @@
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('provenance.trash') ?  route('provenance.restore', $provenance->uuid) : route('provenance.edit', $provenance->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('provenance.trash') ?  route('provenance.restore', $provenance->ulid) : route('provenance.edit', $provenance->ulid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="{{  request()->routeIs('provenance.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Provenance'))]) }}">
@@ -94,7 +94,7 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $provenance->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $provenance->ulid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -117,8 +117,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  route('provenance.destroy', $provenance->uuid)  }}" method="post"
-                                                    id="user_index_{{ $provenance->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  route('provenance.destroy', $provenance->ulid)  }}" method="post"
+                                                    id="user_index_{{ $provenance->ulid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty

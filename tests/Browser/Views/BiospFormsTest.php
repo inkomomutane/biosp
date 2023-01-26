@@ -73,10 +73,10 @@ class BiospFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([BiospController::class, 'edit'], [
-                    'biosp' => $this->biosp->uuid,
+                    'biosp' => $this->biosp->ulid,
                 ]))
                 ->assertRouteIs('biosp.edit', [
-                    'biosp' => $this->biosp->uuid,
+                    'biosp' => $this->biosp->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->biosp->name)

@@ -66,10 +66,10 @@ class NeighborhoodFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([NeighborhoodController::class, 'edit'], [
-                    'neighborhood' => $this->neighborhood->uuid,
+                    'neighborhood' => $this->neighborhood->ulid,
                 ]))
                 ->assertRouteIs('neighborhood.edit', [
-                    'neighborhood' => $this->neighborhood->uuid,
+                    'neighborhood' => $this->neighborhood->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->neighborhood->name)

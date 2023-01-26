@@ -60,11 +60,11 @@ it('should change user role and redirect to user.show', function () {
         $this->post(action([UserController::class, 'grant'], $this->user),
             [
                 'role' => $role->id,
-                'biosps' => $biosps->pluck('uuid')->toArray(),
+                'biosps' => $biosps->pluck('ulid')->toArray(),
             ]
         )
         ->assertRedirectToRoute('user.show', [
-            'user' => $this->user->uuid,
+            'user' => $this->user->ulid,
         ]);
     expect($this->user->hasRole($role))->toBeTrue();
 })->group('controller');

@@ -15,14 +15,14 @@ class GenreSeeder extends Seeder
     public function run()
     {
         Genre::updateOrInsert(
-            ['uuid' => '9a4b978b-cb92-4a80-9837-e1bb617e3ec1'],
+            ['ulid' => '01gqpb8q7pj22q7jjzdry9ssva'],
             [
                 'name' => 'Male',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         Genre::updateOrInsert(
-            ['uuid' => 'bc6ab9f4-c279-452a-9adc-6200f61451c6'],
+            ['ulid' => '01gqpbb14asn1pnz0adxpc7fcr'],
             [
                 'name' => 'Female',
                 'created_at' => now(),
@@ -30,7 +30,7 @@ class GenreSeeder extends Seeder
             ]
         );
         Genre::updateOrInsert(
-            ['uuid' => '7ca7b4f8-94be-4aa4-a341-40434e862447'],
+            ['ulid' => '01gqpbcbn2s7ppz3ccbszch641'],
             [
                 'name' => 'Other',
                 'created_at' => now(),

@@ -30,7 +30,7 @@ class UpdateProvenanceRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'provenances', column: 'name')
-                    ->ignore(id: $this->provenance->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->provenance->ulid, idColumn: 'ulid'),
             ],
         ];
     }

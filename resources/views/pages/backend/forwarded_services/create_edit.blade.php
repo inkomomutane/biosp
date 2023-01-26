@@ -6,7 +6,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('forwarded_service.edit')) {{ route('forwarded_service.update', $forwarded_service->uuid) }} @else {{ route('forwarded_service.store') }} @endif"
+                action="@if (request()->routeIs('forwarded_service.edit')) {{ route('forwarded_service.update', $forwarded_service->ulid) }} @else {{ route('forwarded_service.store') }} @endif"
                 method="post">
                 @csrf
 

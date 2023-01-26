@@ -30,7 +30,7 @@ class UpdatePurposeOfVisitRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'purpose_of_visits', column: 'name')
-                    ->ignore(id: $this->purpose_of_visit->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->purpose_of_visit->ulid, idColumn: 'ulid'),
             ],
         ];
     }

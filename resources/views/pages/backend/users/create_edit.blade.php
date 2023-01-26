@@ -9,7 +9,7 @@ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('user.edit')) {{ route('user.update', $user->uuid) }} @else {{ route('user.store') }} @endif"
+                action="@if (request()->routeIs('user.edit')) {{ route('user.update', $user->ulid) }} @else {{ route('user.store') }} @endif"
                 method="post">
                 @csrf
 
