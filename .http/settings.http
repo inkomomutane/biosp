@@ -1,0 +1,5 @@
+GET 127.0.0.1:8000/api/v1/settings
+Accept:  application/vnd.api+json
+Content-Type: application/vnd.api+json
+Accept-Language: pt
+Authorization: Bearer 13|hmWxGTuwdjhj3qBVNl71WVN7PFk2Wh5Ej29ZV1R8

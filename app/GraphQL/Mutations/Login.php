@@ -17,7 +17,6 @@ final class Login
      */
     public function __invoke($_, array $args): String
     {
-
         // Plain Laravel: Auth::guard()
         // Laravel Sanctum: Auth::guard(Arr::first(config('sanctum.guard')))
         $guard = Auth::guard(Arr::first(config('sanctum.guard')));
