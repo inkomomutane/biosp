@@ -1,4 +1,4 @@
-scalar DateTimeUtc @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeUtc")
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
@@ -9,8 +9,8 @@ type User {
     ulid: ID
     name: String
     email: String
-    created_at: DateTimeUtc
-    updated_at: DateTimeUtc
+    created_at: DateTime
+    updated_at: DateTime
     biosps:[Biosp] @belongsToMany
     token:String  @method(name: "tokenize")
 }
@@ -71,7 +71,6 @@ type Beneficiary{
     home_care:Boolean
     date_received:Date
     status:Boolean
-#    6:DateTimeUtc
     other_document_type:String
     other_reason_opening_case:String
     other_forwarded_service:String
@@ -83,7 +82,7 @@ type Beneficiary{
     document_type: DocumentType @belongsTo
     forwarded_service: ForwardedService @belongsTo
     purpose_of_visit: PurposeOfVisit @belongsTo
-    created_at:DateTimeUtc
-    updated_at:DateTimeUtc
+    created_at:DateTime
+    updated_at:DateTime
 }
 
