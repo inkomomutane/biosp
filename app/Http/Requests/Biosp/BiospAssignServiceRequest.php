@@ -25,6 +25,7 @@ class BiospAssignServiceRequest extends FormRequest
     {
         return [
             'services' => 'array',
+            'boolean'
         ];
     }
 }

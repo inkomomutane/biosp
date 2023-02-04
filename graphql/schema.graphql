@@ -17,6 +17,50 @@ type User {
 
 type Mutation {
     login(email: String!, password: String!): User!
+    createBeneficiary(
+        full_name:String @rules(apply: ["required","string"])
+        number_of_visits:Int  @rules(apply: ["required","numeric"])
+        birth_date:Date @rules(apply: ["required","date"])
+        phone:String @rules(apply: ["required","string","nullable"])
+        service_date:Date @rules(apply: ["required","date"])
+        home_care:Boolean @rules(apply: ["required","boolean"])
+        date_received:Date @rules(apply: ["required","date"])
+        status:Boolean @rules(apply: ["required","boolean"])
+        other_document_type:String @rules(apply: ["string","nullable"])
+        other_reason_opening_case:String @rules(apply: ["string","nullable"])
+        other_forwarded_service:String @rules(apply: ["string","nullable"])
+        specify_purpose_of_visit:String @rules(apply: ["string","nullable"])
+        visit_proposes:String @rules(apply: ["string","nullable"])
+        genre_ulid:String @rules(apply: ["required","string"])
+        provenance_ulid:String @rules(apply: ["required","string"])
+        reason_opening_case_ulid:String @rules(apply: ["required","string"])
+        document_type_ulid:String @rules(apply: ["required","string"])
+        forwarded_service_ulid:String @rules(apply: ["required","string"])
+        purpose_of_visit_ulid:String @rules(apply: ["required","string"])
+    ):Beneficiary! @guard @can(ability: "create") @create
+    updateBeneficiary(
+        ulid:ID!  @rules(apply: ["required","string"])
+        full_name:String @rules(apply: ["required","string"])
+        number_of_visits:Int  @rules(apply: ["required","numeric"])
+        birth_date:Date @rules(apply: ["required","date"])
+        phone:String @rules(apply: ["required","string","nullable"])
+        service_date:Date @rules(apply: ["required","date"])
+        home_care:Boolean @rules(apply: ["required","boolean"])
+        date_received:Date @rules(apply: ["required","date"])
+        status:Boolean @rules(apply: ["required","boolean"])
+        other_document_type:String @rules(apply: ["string","nullable"])
+        other_reason_opening_case:String @rules(apply: ["string","nullable"])
+        other_forwarded_service:String @rules(apply: ["string","nullable"])
+        specify_purpose_of_visit:String @rules(apply: ["string","nullable"])
+        visit_proposes:String @rules(apply: ["string","nullable"])
+        genre_ulid:String @rules(apply: ["required","string"])
+        provenance_ulid:String @rules(apply: ["required","string"])
+        reason_opening_case_ulid:String @rules(apply: ["required","string"])
+        document_type_ulid:String @rules(apply: ["required","string"])
+        forwarded_service_ulid:String @rules(apply: ["required","string"])
+        purpose_of_visit_ulid:String @rules(apply: ["required","string"])
+    ):Beneficiary! @guard @can(ability: "update",find: "ulid") @update
+    deleteBeneficiary(ulid:ID!):Beneficiary! @guard @can(ability: "delete",find: "ulid") @delete
 }
 
 type Biosp {
@@ -77,11 +121,17 @@ type Beneficiary{
     specify_purpose_of_visit:String
     visit_proposes:String
     genre: Genre @belongsTo
+    genre_ulid:String
     provenance: Provenance @belongsTo
+    provenance_ulid:String
     reason_opening_case: ReasonOpeningCase @belongsTo
+    reason_opening_case_ulid:String
     document_type: DocumentType @belongsTo
+    document_type_ulid:String
     forwarded_service: ForwardedService @belongsTo
+    forwarded_service_ulid:String
     purpose_of_visit: PurposeOfVisit @belongsTo
+    purpose_of_visit_ulid:String
     created_at:DateTime
     updated_at:DateTime
 }
