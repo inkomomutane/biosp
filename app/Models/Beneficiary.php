@@ -125,6 +125,12 @@ class Beneficiary extends Model
         'purpose_of_visit_ulid',
     ];
 
+
+    public function biosp():BelongsTo
+    {
+        return $this->belongsTo(Biosp::class,'biosp_ulid');
+    }
+
     public function document_type(): BelongsTo
     {
         return $this->belongsTo(DocumentType::class, 'document_type_ulid');

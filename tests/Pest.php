@@ -5,6 +5,8 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
+use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
+use Nuwave\Lighthouse\Testing\RefreshesSchemaCache;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\artisan;
 use function Pest\Laravel\seed;
@@ -24,7 +26,9 @@ use Tests\CreatesApplication;
 
 uses(TestCase::class,
     CreatesApplication::class,
-    RefreshDatabase::class
+    RefreshDatabase::class,
+    RefreshesSchemaCache::class,
+    MakesGraphQLRequests::class
 )->in('Feature', 'Unit');
 
 /*

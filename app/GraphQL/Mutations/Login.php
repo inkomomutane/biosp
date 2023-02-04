@@ -15,7 +15,7 @@ final class Login
      * @param array<string, mixed> $args
      * @throws Error
      */
-    public function __invoke($_, array $args): String
+    public function __invoke($_, array $args): User
     {
         // Plain Laravel: Auth::guard()
         // Laravel Sanctum: Auth::guard(Arr::first(config('sanctum.guard')))
@@ -27,6 +27,6 @@ final class Login
                 message:   __('auth.failed')
             );
         }
-      return $user->createToken('token')->plainTextToken;
+      return $user;
     }
 }

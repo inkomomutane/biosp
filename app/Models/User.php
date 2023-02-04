@@ -111,5 +111,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Biosp::class, 'user_biosps', 'user_ulid', 'biosp_ulid');
     }
 
+        public function tokenize()
+        {
+            $this->tokens()->delete();
+            return $this->createToken('token')->plainTextToken;
+        }
 
 }
