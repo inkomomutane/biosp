@@ -19,13 +19,13 @@ it('it should create beneficiary from graphql', function () {
     $provenances = Provenance::factory(5)->create();
     $biosp->provenances()->sync($provenances->pluck('ulid')->toArray());
     $reason_opening_cases = ReasonOpeningCase::factory(3)->create();
-    $biosp->reasonOpeningCases()->sync( $reason_opening_cases->pluck('ulid')->toArray());
+    $biosp->reasonOpeningCases()->sync($reason_opening_cases->pluck('ulid')->toArray());
     $document_types = DocumentType::factory(2)->create();
-    $biosp->documentTypes()->sync( $document_types->pluck('ulid')->toArray());
+    $biosp->documentTypes()->sync($document_types->pluck('ulid')->toArray());
     $forwarded_services = ForwardedService::factory(2)->create();
-    $biosp->forwardedServices()->sync( $forwarded_services->pluck('ulid')->toArray());
+    $biosp->forwardedServices()->sync($forwarded_services->pluck('ulid')->toArray());
     $purpose_of_visits = PurposeOfVisit::factory(2)->create();
-    $biosp->purposeOfVisits()->sync( $purpose_of_visits->pluck('ulid')->toArray());
+    $biosp->purposeOfVisits()->sync($purpose_of_visits->pluck('ulid')->toArray());
     $user = login(roles: 'aosp');
     $user->biosps()->sync($biosp->ulid);
     $token = $user->createToken('token')->plainTextToken;
@@ -48,7 +48,7 @@ it('it should create beneficiary from graphql', function () {
             genre_ulid: "'.$genres->first()->ulid.'"
             provenance_ulid: "'.$provenances->first()->ulid.'"
             reason_opening_case_ulid: "'.$reason_opening_cases->first()->ulid.'"
-            document_type_ulid: "'.$document_types->first()->ulid. '"
+            document_type_ulid: "'.$document_types->first()->ulid.'"
             forwarded_service_ulid: "'.$forwarded_services->first()->ulid.'"
             purpose_of_visit_ulid: "'.$purpose_of_visits->first()->ulid.'"
             ){
@@ -97,52 +97,50 @@ it('it should create beneficiary from graphql', function () {
             }
         }'
     )->assertJsonStructure([
-       "data" => [
-           'createBeneficiary' =>
-               [
-                   'ulid',
-                   'full_name',
-                   'birth_date',
-                   'number_of_visits',
-                   'service_date',
-                   'home_care',
-                   'date_received',
-                   'status',
-                   'other_document_type',
-                   'other_reason_opening_case',
-                   'other_forwarded_service',
-                   'specify_purpose_of_visit',
-                   'visit_proposes',
-                   'genre' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'provenance' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'reason_opening_case' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'document_type' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'forwarded_service' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'purpose_of_visit' => [
-                       'ulid',
-                       'name',
-                   ],
-                   'created_at',
-                   'updated_at',
-               ],
-       ]
+        'data' => [
+            'createBeneficiary' => [
+                'ulid',
+                'full_name',
+                'birth_date',
+                'number_of_visits',
+                'service_date',
+                'home_care',
+                'date_received',
+                'status',
+                'other_document_type',
+                'other_reason_opening_case',
+                'other_forwarded_service',
+                'specify_purpose_of_visit',
+                'visit_proposes',
+                'genre' => [
+                    'ulid',
+                    'name',
+                ],
+                'provenance' => [
+                    'ulid',
+                    'name',
+                ],
+                'reason_opening_case' => [
+                    'ulid',
+                    'name',
+                ],
+                'document_type' => [
+                    'ulid',
+                    'name',
+                ],
+                'forwarded_service' => [
+                    'ulid',
+                    'name',
+                ],
+                'purpose_of_visit' => [
+                    'ulid',
+                    'name',
+                ],
+                'created_at',
+                'updated_at',
+            ],
+        ],
     ])->withHeaders([
-        'Authorization' => 'Bearer ' . $token
+        'Authorization' => 'Bearer '.$token,
     ]);
-
 });
