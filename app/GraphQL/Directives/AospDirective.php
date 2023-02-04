@@ -6,12 +6,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Nuwave\Lighthouse\Auth\AuthServiceProvider;
 use Nuwave\Lighthouse\Exceptions\AuthorizationException;
-use Nuwave\Lighthouse\Execution\AuthenticationErrorHandler;
-use Nuwave\Lighthouse\Execution\AuthorizationErrorHandler;
-use Nuwave\Lighthouse\Execution\ErrorHandler;
 use Nuwave\Lighthouse\Schema\Directives\BaseDirective;
 use Nuwave\Lighthouse\Schema\Values\FieldValue;
-use Nuwave\Lighthouse\Subscriptions\Exceptions\UnauthorizedSubscriber;
 use Nuwave\Lighthouse\Support\Contracts\FieldResolver;
 
 final class AospDirective extends BaseDirective implements FieldResolver
@@ -43,7 +39,7 @@ final class AospDirective extends BaseDirective implements FieldResolver
      * This must call $fieldValue->setResolver() before returning
      * the FieldValue.
      *
-     * @param FieldValue $fieldValue
+     * @param  FieldValue  $fieldValue
      * @return FieldValue
      */
     public function resolveField(FieldValue $fieldValue): FieldValue
@@ -56,7 +52,7 @@ final class AospDirective extends BaseDirective implements FieldResolver
                 ->authFactory
                 ->guard($guard)
                 ->user();
-            if (!$user->hasRole('aosp')) {
+            if (! $user->hasRole('aosp')) {
                 return throw new AuthorizationException();
             }
             // @phpstan-ignore-next-line phpstan does not know about App\User, which implements Authenticatable

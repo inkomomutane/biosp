@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $beneficiaries_count
  * @property-read Collection|\App\Models\Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static \Database\Factories\GenreFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Genre newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Genre newQuery()
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Genre whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Genre withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Genre withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Genre extends Model

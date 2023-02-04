@@ -22,12 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $biospable_ulid
  * @property string|null $biosp_ulid
  * @property string $biospable_id
+ *
  * @method static Builder|Biospable newModelQuery()
  * @method static Builder|Biospable newQuery()
  * @method static Builder|Biospable query()
  * @method static Builder|Biospable whereBiospUlid($value)
  * @method static Builder|Biospable whereBiospableId($value)
  * @method static Builder|Biospable whereBiospableType($value)
+ *
  * @mixin \Eloquent
  */
 class Biospable extends Model

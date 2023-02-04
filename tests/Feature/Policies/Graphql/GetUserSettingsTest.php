@@ -95,8 +95,8 @@ beforeEach(function () {
 it('should forbid unauthenticated user via graphql.', function () {
     $response = $this->graphQL(query: $this->query)->assertJson([
         'errors' => [
-            ['message' => 'Unauthenticated.']
-        ]
+            ['message' => 'Unauthenticated.'],
+        ],
     ]);
 });
 
@@ -104,17 +104,15 @@ it('should forbid user', function (User $user) {
     $token = $user->createToken('token')->plainTextToken;
     $response = $this->graphQL(query: $this->query)->assertJson([
         'errors' => [
-            ['message' => 'This action is unauthorized.']
-        ]
+            ['message' => 'This action is unauthorized.'],
+        ],
     ])->withHeaders([
-        'Authorization' => 'Bearer ' . $token
+        'Authorization' => 'Bearer '.$token,
     ]);
 })->with(
     [
         'super-admin role.' => fn () => login(),
         'admin role.' => fn () => login(roles: 'admin'),
-        'aosp-admin role.' => fn () => login(roles: 'aosp-admin')
+        'aosp-admin role.' => fn () => login(roles: 'aosp-admin'),
     ]
 );
-
-

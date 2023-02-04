@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Hash;
 final class Login
 {
     /**
-     * @param null $_
-     * @param array<string, mixed> $args
+     * @param  null  $_
+     * @param  array<string, mixed>  $args
+     *
      * @throws Error
      */
     public function __invoke($_, array $args): User
@@ -22,11 +23,12 @@ final class Login
         $guard = Auth::guard(Arr::first(config('sanctum.guard')));
         $user = User::whereEmail($args['email'])->first();
 
-        if(!$user || !Hash::check($args['password'],$user->password) ){
+        if (! $user || ! Hash::check($args['password'], $user->password)) {
             throw new Error(
                 message:   __('auth.failed')
             );
         }
-      return $user;
+
+        return $user;
     }
 }

@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use Database\Factories\BiospSendMailFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon|null $updated_at
  * @property Biosp $biosp
  * @property SendMail $send_mail
+ *
  * @method static BiospSendMailFactory factory(...$parameters)
  * @method static Builder|BiospSendMail newModelQuery()
  * @method static Builder|BiospSendMail newQuery()
@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static Builder|BiospSendMail whereSendMailsUlid($value)
  * @method static Builder|BiospSendMail whereUlid($value)
  * @method static Builder|BiospSendMail whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class BiospSendMail extends Model
@@ -41,7 +42,6 @@ class BiospSendMail extends Model
     use HasFactory;
 
     protected $table = 'biosp_send_mails';
-
 
     protected $fillable = [
         'biosps_ulid',

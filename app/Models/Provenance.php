@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $beneficiaries_count
  * @property-read Collection|\App\Models\Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static \Database\Factories\ProvenanceFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Provenance newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Provenance newQuery()
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Provenance whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Provenance withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Provenance withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Provenance extends Model

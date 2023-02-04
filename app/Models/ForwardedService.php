@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $beneficiaries_count
  * @property-read Collection|\App\Models\Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static \Database\Factories\ForwardedServiceFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newQuery()
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|ForwardedService withTrashed()
  * @method static \Illuminate\Database\Query\Builder|ForwardedService withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class ForwardedService extends Model

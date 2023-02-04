@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up():void
+    public function up(): void
     {
         Schema::create('biosp_send_mails', function (Blueprint $table) {
             $table->comment('responsible to store email to send reports');
@@ -25,7 +25,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down() :void
+    public function down(): void
     {
         Schema::dropIfExists('biosp_send_mails');
     }

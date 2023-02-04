@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up():void
+    public function up(): void
     {
         Schema::create('user_biosps', function (Blueprint $table) {
             $table->foreignUlid('user_ulid')->constrained('users', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
@@ -24,7 +24,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down():void
+    public function down(): void
     {
         Schema::dropIfExists('user_biosps');
     }

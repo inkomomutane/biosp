@@ -18,7 +18,7 @@ class GenrePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasAnyRole(['aosp','super-admin']);
+        return $user->hasAnyRole(['aosp', 'super-admin']);
     }
 
     /**
@@ -30,7 +30,7 @@ class GenrePolicy
      */
     public function view(User $user, Genre $genre)
     {
-        return $user->hasAnyRole(['aosp','super-admin']);
+        return $user->hasAnyRole(['aosp', 'super-admin']);
     }
 
     /**

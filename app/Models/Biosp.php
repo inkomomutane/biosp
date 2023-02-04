@@ -47,6 +47,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read int|null $send_mails_count
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
+ *
  * @method static BiospFactory factory(...$parameters)
  * @method static Builder|Biosp newModelQuery()
  * @method static Builder|Biosp newQuery()
@@ -58,6 +59,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @method static Builder|Biosp whereProjectName($value)
  * @method static Builder|Biosp whereUlid($value)
  * @method static Builder|Biosp whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class Biosp extends Model
@@ -77,11 +79,11 @@ class Biosp extends Model
         'neighborhood_ulid',
     ];
 
-
-    public function beneficiaries():HasMany
+    public function beneficiaries(): HasMany
     {
-        return $this->hasMany(Beneficiary::class,'biosp_ulid');
+        return $this->hasMany(Beneficiary::class, 'biosp_ulid');
     }
+
     public function neighborhood(): BelongsTo
     {
         return $this->belongsTo(Neighborhood::class, 'neighborhood_ulid');
@@ -96,7 +98,6 @@ class Biosp extends Model
     {
         return $this->belongsToMany(User::class, 'user_biosps', 'biosp_ulid', 'user_ulid');
     }
-
 
    public function genres(): MorphToMany
    {

@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Carbon|null $updated_at
  * @property Collection|Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static SendMailFactory factory(...$parameters)
  * @method static Builder|SendMail newModelQuery()
  * @method static Builder|SendMail newQuery()
@@ -33,6 +34,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static Builder|SendMail whereEmail($value)
  * @method static Builder|SendMail whereUlid($value)
  * @method static Builder|SendMail whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  */
 class SendMail extends Model

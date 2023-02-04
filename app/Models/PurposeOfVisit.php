@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $beneficiaries_count
  * @property-read Collection|\App\Models\Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static \Database\Factories\PurposeOfVisitFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newQuery()
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|PurposeOfVisit withTrashed()
  * @method static \Illuminate\Database\Query\Builder|PurposeOfVisit withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class PurposeOfVisit extends Model

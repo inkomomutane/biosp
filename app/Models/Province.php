@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Country $country
  * @property Collection|Neighborhood[] $neighborhoods
  * @property-read int|null $neighborhoods_count
+ *
  * @method static \Database\Factories\ProvinceFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Province newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Province newQuery()
@@ -40,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Province withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Province withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Province extends Model

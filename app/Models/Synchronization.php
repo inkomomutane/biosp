@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $user_ulid
  * @property bool|null $complete
+ *
  * @method static SynchronizationFactory factory(...$parameters)
  * @method static Builder|Synchronization newModelQuery()
  * @method static Builder|Synchronization newQuery()
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Synchronization whereLastSyncAt($value)
  * @method static Builder|Synchronization whereUpdatedAt($value)
  * @method static Builder|Synchronization whereUserUlid($value)
+ *
  * @mixin Eloquent
  */
 class Synchronization extends Model

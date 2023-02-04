@@ -8,7 +8,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -22,11 +21,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon|null $updated_at
  * @property Biosp $biosp
  * @property User $user
+ *
  * @method static Builder|UserBiosp newModelQuery()
  * @method static Builder|UserBiosp newQuery()
  * @method static Builder|UserBiosp query()
  * @method static Builder|UserBiosp whereBiospUlid($value)
  * @method static Builder|UserBiosp whereUserUlid($value)
+ *
  * @mixin \Eloquent
  */
 class UserBiosp extends Model

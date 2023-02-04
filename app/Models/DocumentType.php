@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read int|null $beneficiaries_count
  * @property-read Collection|\App\Models\Biosp[] $biosps
  * @property-read int|null $biosps_count
+ *
  * @method static \Database\Factories\DocumentTypeFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|DocumentType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DocumentType newQuery()
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|DocumentType whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|DocumentType withTrashed()
  * @method static \Illuminate\Database\Query\Builder|DocumentType withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class DocumentType extends Model

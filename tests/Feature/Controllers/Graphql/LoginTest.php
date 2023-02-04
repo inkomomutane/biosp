@@ -2,16 +2,16 @@
 
 use App\Models\User;
 
-beforeEach(function (){
+beforeEach(function () {
     $this->bootRefreshesSchemaCache();
     rolesSeed();
 });
 
-it('should authenticate via graphql .',function (){
+it('should authenticate via graphql .', function () {
     $user = User::factory()->create();
     $response = $this->graphQL(query:
         'mutation auth {
-          login(email: "' .$user->email. '", password: "password"){
+          login(email: "'.$user->email.'", password: "password"){
             ulid,
             name,
             email,
@@ -20,14 +20,14 @@ it('should authenticate via graphql .',function (){
           }
         }'
     )->assertJson([
-       'data' => [
-           'login' => [
-               'ulid' => $user->ulid,
-               'name' => $user->name,
-               'email' => $user->email,
-               'created_at' => $user->created_at,
-               'updated_at' => $user->updated_at
-           ]
-       ]
+        'data' => [
+            'login' => [
+                'ulid' => $user->ulid,
+                'name' => $user->name,
+                'email' => $user->email,
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at,
+            ],
+        ],
     ]);
 });

@@ -48,6 +48,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Provenance|null $provenance
  * @property ReasonOpeningCase|null $reason_opening_case
  * @property string|null $biosp_ulid
+ *
  * @method static BeneficiaryFactory factory(...$parameters)
  * @method static Builder|Beneficiary newModelQuery()
  * @method static Builder|Beneficiary newQuery()
@@ -75,6 +76,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static Builder|Beneficiary whereUlid($value)
  * @method static Builder|Beneficiary whereUpdatedAt($value)
  * @method static Builder|Beneficiary whereVisitProposes($value)
+ *
  * @mixin Eloquent
  */
 class Beneficiary extends Model
@@ -125,10 +127,9 @@ class Beneficiary extends Model
         'purpose_of_visit_ulid',
     ];
 
-
-    public function biosp():BelongsTo
+    public function biosp(): BelongsTo
     {
-        return $this->belongsTo(Biosp::class,'biosp_ulid');
+        return $this->belongsTo(Biosp::class, 'biosp_ulid');
     }
 
     public function document_type(): BelongsTo
