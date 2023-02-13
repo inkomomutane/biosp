@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
         "livewire/livewire": "^2.11",
+        "maatwebsite/excel": "^3.1",
         "nuwave/lighthouse": "^5.70",
         "outhebox/blade-flags": "^1.1",
         "php-flasher/flasher-noty-laravel": "^1.10",

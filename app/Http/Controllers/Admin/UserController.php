@@ -27,7 +27,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -40,7 +40,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -50,10 +50,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
-     * @return Response
+     * @param StoreUserRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         try {
             $data = $request->all();
@@ -190,12 +190,23 @@ class UserController extends Controller
     {
         try {
             $user->syncRoles($request->role);
-            $user->biosps()->sync($request->biosps);
-            Noty::addSuccess('User role and biosp granted.');
-
-            return redirect()->route('user.show', [
+            if ($user->hasRole('aosp')){
+                $user->biosps()->detach();
+                if ($request->biosp){
+                    $biosp = Biosp::find($request->biosp);
+                    $user->biosp()->associate($biosp);
+                    $user->save();
+                }
+            }else{
+                $user->biosp()->dissociate();
+                $user->save();
+                $user->biosps()->sync($request->biosps);
+            }
+            Noty::addSuccess(message: 'User role and biosp granted.');
+            return redirect()->route(route: 'user.show',parameters: [
                 'user' => $user->ulid,
             ]);
+
         } catch (\Throwable $th) {
             Noty::addError('Error granting role and biosp to user.');
 

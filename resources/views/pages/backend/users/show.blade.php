@@ -239,11 +239,11 @@
                                     <label class="col-lg-4 fw-bold text-muted">{{ __('Change user biosps') }}</label>
                                     <x-forms.select
                                         :disabled="(auth()->user()->ulid === $user->ulid)"
-                                        name="biosps[]"
-                                        :multiple="true"
+                                        :name="$user->hasRole('aosp') ? 'biosp' : 'biosps[]'"
+                                        :multiple="!$user->hasRole('aosp')"
                                         placeholder="Biosps"
                                         :options="$biosps->pluck('name','ulid')->toArray()"
-                                        :selected="$user->biosps->pluck('name','ulid')->toArray()"
+                                        :selected="$user->hasRole('aosp') ? collect([$user->biosp])->pluck('name', 'ulid')->toArray() : $user->biosps->pluck('name','ulid')->toArray() "
                                     />
                                 </div>
                                 <!--end::Input group-->

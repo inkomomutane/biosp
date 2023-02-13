@@ -11,9 +11,10 @@ beforeEach(function () {
           ulid,
           name,
           email,
-          biosps{
+          biosp{
             ulid
             name
+            project_name
             beneficiaries{
               ulid
               full_name

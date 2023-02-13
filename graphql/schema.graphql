@@ -11,7 +11,7 @@ type User {
     email: String
     created_at: DateTime
     updated_at: DateTime
-    biosps:[Biosp] @belongsToMany
+    biosp:Biosp @belongsTo
     token:String  @method(name: "tokenize")
 }
 
@@ -66,6 +66,7 @@ type Mutation {
 type Biosp {
     ulid: ID
     name: String
+    project_name: String
     users: [User] @belongsToMany
     genres: [Genre] @morphToMany
     neighborhood: Neighborhood @belongsTo
@@ -76,7 +77,6 @@ type Biosp {
     reasonOpeningCases: [ReasonOpeningCase] @morphToMany
     beneficiaries:[Beneficiary] @hasMany
 }
-
 type Neighborhood{
     ulid: ID
     name: String
