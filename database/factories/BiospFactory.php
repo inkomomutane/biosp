@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Biosp;
+use App\Models\Neighborhood;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends Factory<\App\Models\Biosp>
+ * @extends Factory<Biosp>
  */
 final class BiospFactory extends Factory
 {
@@ -27,10 +29,10 @@ final class BiospFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) Str::ulid()),
             'name' => $this->faker->name,
             'project_name' => $this->faker->word,
-            'neighborhood_uuid' => \App\Models\Neighborhood::factory(),
+            'neighborhood_ulid' => Neighborhood::factory(),
         ];
     }
 }

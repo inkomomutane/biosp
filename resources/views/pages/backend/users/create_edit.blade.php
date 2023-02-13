@@ -9,7 +9,7 @@ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('user.edit')) {{ route('user.update', $user->uuid) }} @else {{ route('user.store') }} @endif"
+                action="@if (request()->routeIs('user.edit')) {{ route('user.update', $user->ulid) }} @else {{ route('user.store') }} @endif"
                 method="post">
                 @csrf
 
@@ -65,13 +65,16 @@ __(key:'Create :resource',replace:[ 'resource' => Str::lower(__('User'))]))
                                 </div>
                                 <!--end::Input group-->
 
+
                                 @if (!request()->routeIs('user.edit'))
                                     <!--begin::Input group-->
                                     <div class="row mb-5">
                                         <x-forms.input
                                             type="password" name="password" label="Password" placeholder="Password"
                                             :required="true"
-                                            :value="old('password')??''"/>
+                                            :value="old('password')??''">
+                                        </x-forms.input>
+
                                         <x-forms.input
                                             type="password" name="password_confirmation" label="Confirm Password" placeholder="Confirm Password"
                                             :required="true"

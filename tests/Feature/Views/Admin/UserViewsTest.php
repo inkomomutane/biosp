@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
-beforeEach(function () {
-    rolesSeed();
-    $this->user = User::factory()->create();
-});
+beforeEach(
+    /**
+     * @throws BindingResolutionException
+     */
+    function () {
+        rolesSeed();
+        $this->user = User::factory()->create();
+    });
 
 it('should fetch and see paginated users', function () {
     $users = User::factory()->count(5)->create();

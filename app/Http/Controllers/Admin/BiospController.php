@@ -6,8 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Biosp\StoreBiospRequest;
 use App\Http\Requests\Biosp\UpdateBiospRequest;
 use App\Models\Biosp;
+use App\Models\DocumentType;
+use App\Models\ForwardedService;
+use App\Models\Genre;
 use App\Models\Neighborhood;
+use App\Models\Provenance;
+use App\Models\PurposeOfVisit;
+use App\Models\ReasonOpeningCase;
 use Flasher\Noty\Laravel\Facade\Noty;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class BiospController extends Controller
 {
@@ -19,7 +29,7 @@ class BiospController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -32,7 +42,7 @@ class BiospController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -42,8 +52,8 @@ class BiospController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Biosp\StoreBiospRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreBiospRequest  $request
+     * @return RedirectResponse
      */
     public function store(StoreBiospRequest $request)
     {
@@ -51,7 +61,7 @@ class BiospController extends Controller
             Biosp::create(
                 [
                     'name' => $request->name,
-                    'neighborhood_uuid' => $request->neighborhood_uuid,
+                    'neighborhood_ulid' => $request->neighborhood_ulid,
                     'project_name' => $request->project_name,
                 ]
             );
@@ -75,21 +85,36 @@ class BiospController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Biosp  $biosp
-     * @return \Illuminate\Http\Response
+     * @param  Biosp  $biosp
+     * @return Application|Factory|View
      */
     public function show(Biosp $biosp)
     {
-        Noty::addInfo(__('Not Found'));
-
-        return abort(404);
+        return view('pages.backend.biosps.show')
+            ->with([
+                'biosp' => Biosp::with([
+                    'neighborhood',
+                    'genres',
+                    'documentTypes',
+                    'forwardedServices',
+                    'provenances',
+                    'purposeOfVisits',
+                    'reasonOpeningCases',
+                ])->find($biosp->ulid),
+                'genres' => Genre::all(),
+                'documentTypes' => DocumentType::all(),
+                'forwardedServices' => ForwardedService::all(),
+                'provenances' => Provenance::all(),
+                'purposeOfVisits' => PurposeOfVisit::all(),
+                'reasonOpeningCases' => ReasonOpeningCase::all(),
+            ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Biosp  $biosp
-     * @return \Illuminate\Http\Response
+     * @param  Biosp  $biosp
+     * @return Application|Factory|View
      */
     public function edit(Biosp $biosp)
     {
@@ -101,16 +126,16 @@ class BiospController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Biosp\UpdateBiospRequest  $request
-     * @param  \App\Models\Biosp  $biosp
-     * @return \Illuminate\Http\Response
+     * @param  UpdateBiospRequest  $request
+     * @param  Biosp  $biosp
+     * @return RedirectResponse|null
      */
-    public function update(UpdateBiospRequest $request, Biosp $biosp)
+    public function update(UpdateBiospRequest $request, Biosp $biosp): ?RedirectResponse
     {
         try {
             $biosp->update([
                 'name' => $request->name,
-                'neighborhood_uuid' => $request->neighborhood_uuid,
+                'neighborhood_ulid' => $request->neighborhood_ulid,
                 'project_name' => $request->project_name,
             ]);
             Noty::addSuccess(__(
@@ -132,10 +157,10 @@ class BiospController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Biosp  $biosp
-     * @return \Illuminate\Http\Response
+     * @param  Biosp  $biosp
+     * @return RedirectResponse|null
      */
-    public function destroy(Biosp $biosp)
+    public function destroy(Biosp $biosp): ?RedirectResponse
     {
         try {
             $biosp->delete();

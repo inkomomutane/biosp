@@ -26,8 +26,8 @@ class UpdateNeighborhoodRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:125', Rule::unique(table: 'neighborhoods', column: 'name')
-                 ->ignore(id: $this->neighborhood->uuid, idColumn: 'uuid')],
-            'province_uuid' => ['required', 'uuid'],
+                 ->ignore(id: $this->neighborhood->ulid, idColumn: 'ulid')],
+            'province_ulid' => ['required', 'ulid'],
         ];
     }
 }

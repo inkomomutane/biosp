@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\GrantRoleRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Biosp;
 use App\Models\User;
 use Flasher\Noty\Laravel\Facade\Noty;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -22,20 +27,20 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
         $users = User::latest()->paginate(5);
 
         return view('pages.backend.users.index')
-        ->with('users', $users);
+            ->with('users', $users);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -45,10 +50,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
-     * @return Response
+     * @param StoreUserRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         try {
             $data = $request->all();
@@ -67,14 +72,14 @@ class UserController extends Controller
 
             Noty::addSuccess(__(
                 key: ':resource created',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error creating :resource.',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
@@ -84,23 +89,28 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param  User  $user
+     * @return Application|Factory|View
      */
-    public function show(User $user)
+    public function show(User $user): Application|Factory|View
     {
         return view('pages.backend.users.show')
-        ->with('user', $user)
-        ->with('roles', Role::all());
+            ->with([
+                'user' => User::with([
+                    'biosps',
+                ])->find($user->ulid),
+                'roles' => Role::all(),
+                'biosps' => Biosp::all(),
+            ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param  User  $user
+     * @return Application|Factory|View
      */
-    public function edit(User $user)
+    public function edit(User $user): Application|Factory|View
     {
         return view('pages.backend.users.create_edit', [
             'user' => $user,
@@ -110,11 +120,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param  UpdateUserRequest  $request
+     * @param  User  $user
+     * @return RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $data = $request->all();
 
@@ -131,14 +141,14 @@ class UserController extends Controller
             $user->update($dataUpdate);
             Noty::addSuccess(__(
                 key: ':resource updated',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
             Noty::addError(__(
                 key: 'Error updating :resource.',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
@@ -148,43 +158,60 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param  User  $user
+     * @return RedirectResponse|null
      */
-    public function destroy(User $user)
+    public function destroy(User $user): ?RedirectResponse
     {
         try {
             $user->delete();
             Noty::addSuccess(__(
                 key: ':resource deleted',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         } catch (\Throwable $th) {
             Noty::addError(__(
                 key: 'Error deleting :resource.',
-                replace:['resource' => __('User')]
+                replace: ['resource' => __('User')]
             ));
 
             return redirect()->route('user.index');
         }
     }
 
-    public function grant(User $user, GrantRoleRequest $request)
+    /**
+     * @param  User  $user
+     * @param  GrantRoleRequest  $request
+     * @return RedirectResponse|null
+     */
+    public function grant(User $user, GrantRoleRequest $request): ?RedirectResponse
     {
         try {
             $user->syncRoles($request->role);
-            Noty::addSuccess('User role granted.');
-
-            return redirect()->route('user.show', [
-                'user' => $user->uuid,
+            if ($user->hasRole('aosp')){
+                $user->biosps()->detach();
+                if ($request->biosp){
+                    $biosp = Biosp::find($request->biosp);
+                    $user->biosp()->associate($biosp);
+                    $user->save();
+                }
+            }else{
+                $user->biosp()->dissociate();
+                $user->save();
+                $user->biosps()->sync($request->biosps);
+            }
+            Noty::addSuccess(message: 'User role and biosp granted.');
+            return redirect()->route(route: 'user.show',parameters: [
+                'user' => $user->ulid,
             ]);
+
         } catch (\Throwable $th) {
-            Noty::addError('Error grantig role to user.');
+            Noty::addError('Error granting role and biosp to user.');
 
             return redirect()->route('user.show', [
-                'user' => $user->uuid,
+                'user' => $user->ulid,
             ]);
         }
     }

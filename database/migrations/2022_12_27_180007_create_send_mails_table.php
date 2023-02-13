@@ -11,11 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('send_mails', function (Blueprint $table) {
             $table->comment('');
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->string('email');
             $table->timestamps();
         });
@@ -26,7 +26,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('send_mails');
     }

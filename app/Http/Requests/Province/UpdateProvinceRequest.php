@@ -30,9 +30,9 @@ class UpdateProvinceRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'provinces', column: 'name')
-                    ->ignore(id: $this->province->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->province->ulid, idColumn: 'ulid'),
             ],
-            'country_uuid' => ['required', 'string', 'uuid'],
+            'country_ulid' => ['required', 'string', 'ulid'],
         ];
     }
 }

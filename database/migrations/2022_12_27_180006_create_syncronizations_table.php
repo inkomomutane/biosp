@@ -11,14 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('syncronizations', function (Blueprint $table) {
+        Schema::create('synchronizations', callback: function (Blueprint $table): void {
             $table->comment('');
             $table->timestamp('last_sync_at')->nullable();
             $table->timestamps();
             $table->bigInteger('id', true);
-            $table->uuid('user_uuid');
+            $table->ulid('user_ulid');
             $table->boolean('complete')->nullable()->default(false);
         });
     }
@@ -28,8 +28,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('syncronizations');
+        Schema::dropIfExists('synchronizations');
     }
 };

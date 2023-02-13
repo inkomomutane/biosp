@@ -80,7 +80,7 @@
 
 
 
-                                                <a href="{{ route('user.show',$user->uuid) }}"
+                                                <a href="{{ route('user.show',$user->ulid) }}"
                                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                     data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'View :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -93,7 +93,7 @@
                                                     <!--end::Svg Icon-->
                                                 </a>
 
-                                            <a href="{{ route('user.edit',$user->uuid) }}"
+                                            <a href="{{ route('user.edit',$user->ulid) }}"
                                                 class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -110,7 +110,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="#" onclick="document.querySelector('#user_index_{{$user->uuid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                            <a href="#" onclick="document.querySelector('#user_index_{{$user->ulid}}').submit()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
                                                 data-bs-toggle="tooltip" data-bs-placement="top" title="{{__(key:'Delete :resource',replace:[ 'resource' => Str::lower(__('User'))])}}">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                 <span class="svg-icon svg-icon-3">
@@ -129,7 +129,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <form action="{{ route('user.destroy',$user->uuid) }}" method="post" id="user_index_{{$user->uuid}}" >@csrf @method('DELETE')</form>
+                                            <form action="{{ route('user.destroy',$user->ulid) }}" method="post" id="user_index_{{$user->ulid}}" >@csrf @method('DELETE')</form>
                                         </td>
                                     </tr>
                                     @empty

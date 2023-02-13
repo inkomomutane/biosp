@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->comment('');
             $table->softDeletes();
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->foreignUuid('country_uuid')->constrained('countries', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUlid('country_ulid')->constrained('countries', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

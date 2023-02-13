@@ -31,7 +31,7 @@ class StoreProvinceRequest extends FormRequest
                 'max:125',
                 Rule::unique(table: 'provinces', column: 'name'),
             ],
-            'country_uuid' => ['required', 'string', 'uuid'],
+            'country_ulid' => ['required', 'string', 'ulid'],
         ];
     }
 }

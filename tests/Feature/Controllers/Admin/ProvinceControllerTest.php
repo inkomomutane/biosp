@@ -13,7 +13,7 @@ beforeEach(function () {
 it('should store province and redirect to route province.index', function () {
     $provinceCreate = [
         'name' => fake()->name(),
-        'country_uuid' => $this->province->country_uuid,
+        'country_ulid' => $this->province->country_ulid,
     ];
     $this->actingAs(login())->post(action([ProvinceController::class, 'store'], $provinceCreate
     ))
@@ -25,7 +25,7 @@ it('should store province and redirect to route province.index', function () {
 it('should update province and redirect to route province.index', function () {
     $provinceUpdate = [
         'name' => fake()->name(),
-        'country_uuid' => $this->province->country_uuid,
+        'country_ulid' => $this->province->country_ulid,
     ];
     $this->actingAs(login())
         ->patch(action([ProvinceController::class, 'update'], $this->province),
@@ -43,5 +43,6 @@ it('should  delete province and redirect to route province.index', function () {
         ->assertSessionDoesntHaveErrors();
     assertDatabaseMissing('provinces', [
         'name' => $province->name,
+        'country_ulid' => $this->province->country_ulid,
     ]);
 })->group('controller');

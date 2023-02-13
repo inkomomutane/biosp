@@ -33,6 +33,7 @@ class Select extends Input
 
     public function isSelected(mixed $value): bool
     {
-        return in_array($value, $this->selected, true);
+//        dd($this->selected);
+        return collect($this->selected)->has($value);
     }
 }

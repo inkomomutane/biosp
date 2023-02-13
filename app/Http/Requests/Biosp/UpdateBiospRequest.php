@@ -30,10 +30,10 @@ class UpdateBiospRequest extends FormRequest
                 'string',
                 'max:125',
                 Rule::unique(table: 'biosps', column: 'name')
-                    ->ignore(id: $this->biosp->uuid, idColumn: 'uuid'),
+                    ->ignore(id: $this->biosp->ulid, idColumn: 'ulid'),
             ],
             'project_name' => ['string', 'nullable', 'max:125'],
-            'neighborhood_uuid' => ['required', 'string', 'uuid'],
+            'neighborhood_ulid' => ['required', 'string', 'ulid'],
         ];
     }
 }

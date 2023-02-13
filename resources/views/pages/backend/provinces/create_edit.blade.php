@@ -7,7 +7,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('province.edit')) {{ route('province.update', $province->uuid) }} @else {{ route('province.store') }} @endif"
+                action="@if (request()->routeIs('province.edit')) {{ route('province.update', $province->ulid) }} @else {{ route('province.store') }} @endif"
                 method="post">
                 @csrf
 
@@ -60,10 +60,10 @@
                                     <x-forms.select
                                         label="Country"
                                         :multiple="false"
-                                        name="country_uuid"
+                                        name="country_ulid"
                                         placeholder="Country"
-                                        :options="$countries->pluck('name','uuid')->toArray()"
-                                        :selected="request()->routeIs('neighborhood.edit') ? [ $province->country->uuid] : [] "
+                                        :options="$countries->pluck('name','ulid')->toArray()"
+                                        :selected="request()->routeIs('province.edit') ? array($province->country->ulid => $province->country->name) : [] "
                                     />
                                 </div>
                                 <!--end::Input group-->

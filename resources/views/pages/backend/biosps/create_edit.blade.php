@@ -7,7 +7,7 @@
         <div class="row">
             <!--begin::Col-->
             <form
-                action="@if (request()->routeIs('biosp.edit')) {{ route('biosp.update', $biosp->uuid) }} @else {{ route('biosp.store') }} @endif"
+                action="@if (request()->routeIs('biosp.edit')) {{ route('biosp.update', $biosp->ulid) }} @else {{ route('biosp.store') }} @endif"
                 method="post">
                 @csrf
 
@@ -67,10 +67,10 @@
                                         className="col-md-4"
                                         label="Neighborhood"
                                         :multiple="false"
-                                        name="neighborhood_uuid"
+                                        name="neighborhood_ulid"
                                         placeholder="Neighborhood"
-                                        :options="$neighborhoods->pluck('name','uuid')->toArray()"
-                                        :selected="request()->routeIs('biosp.edit') ? [ $biosp->neighborhood->uuid ] : [] "
+                                        :options="$neighborhoods->pluck('name','ulid')->toArray()"
+                                        :selected="request()->routeIs('biosp.edit') ? array($biosp->neighborhood->ulid => $biosp->neighborhood->name ) : [] "
                                     />
                                 </div>
                                 <!--end::Input group-->

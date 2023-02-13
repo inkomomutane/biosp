@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('purpose_of_visits', function (Blueprint $table) {
             $table->comment('');
             $table->softDeletes();
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
         });

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('neighborhoods', function (Blueprint $table) {
             $table->comment('');
             $table->softDeletes();
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->foreignUuid('province_uuid')->nullable()->constrained('provinces', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUlid('province_ulid')->nullable()->constrained('provinces', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

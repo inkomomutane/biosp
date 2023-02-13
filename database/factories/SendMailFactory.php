@@ -27,7 +27,7 @@ final class SendMailFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
             'email' => $this->faker->safeEmail,
         ];
     }

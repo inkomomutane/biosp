@@ -1,0 +1,138 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    me:User @aosp @guard
+}
+
+type User {
+    ulid: ID
+    name: String
+    email: String
+    created_at: DateTime
+    updated_at: DateTime
+    biosp:Biosp @belongsTo
+    token:String  @method(name: "tokenize")
+}
+
+type Mutation {
+    login(email: String!, password: String!): User!
+    createBeneficiary(
+        full_name:String @rules(apply: ["required","string"])
+        number_of_visits:Int  @rules(apply: ["required","numeric"])
+        birth_date:Date @rules(apply: ["required","date"])
+        phone:String @rules(apply: ["required","string","nullable"])
+        service_date:Date @rules(apply: ["required","date"])
+        home_care:Boolean @rules(apply: ["required","boolean"])
+        date_received:Date @rules(apply: ["required","date"])
+        status:Boolean @rules(apply: ["required","boolean"])
+        other_document_type:String @rules(apply: ["string","nullable"])
+        other_reason_opening_case:String @rules(apply: ["string","nullable"])
+        other_forwarded_service:String @rules(apply: ["string","nullable"])
+        specify_purpose_of_visit:String @rules(apply: ["string","nullable"])
+        visit_proposes:String @rules(apply: ["string","nullable"])
+        genre_ulid:String @rules(apply: ["required","string"])
+        provenance_ulid:String @rules(apply: ["required","string"])
+        reason_opening_case_ulid:String @rules(apply: ["required","string"])
+        document_type_ulid:String @rules(apply: ["required","string"])
+        forwarded_service_ulid:String @rules(apply: ["required","string"])
+        purpose_of_visit_ulid:String @rules(apply: ["required","string"])
+    ):Beneficiary! @guard @can(ability: "create") @create
+    updateBeneficiary(
+        ulid:ID!  @rules(apply: ["required","string"])
+        full_name:String @rules(apply: ["required","string"])
+        number_of_visits:Int  @rules(apply: ["required","numeric"])
+        birth_date:Date @rules(apply: ["required","date"])
+        phone:String @rules(apply: ["required","string","nullable"])
+        service_date:Date @rules(apply: ["required","date"])
+        home_care:Boolean @rules(apply: ["required","boolean"])
+        date_received:Date @rules(apply: ["required","date"])
+        status:Boolean @rules(apply: ["required","boolean"])
+        other_document_type:String @rules(apply: ["string","nullable"])
+        other_reason_opening_case:String @rules(apply: ["string","nullable"])
+        other_forwarded_service:String @rules(apply: ["string","nullable"])
+        specify_purpose_of_visit:String @rules(apply: ["string","nullable"])
+        visit_proposes:String @rules(apply: ["string","nullable"])
+        genre_ulid:String @rules(apply: ["required","string"])
+        provenance_ulid:String @rules(apply: ["required","string"])
+        reason_opening_case_ulid:String @rules(apply: ["required","string"])
+        document_type_ulid:String @rules(apply: ["required","string"])
+        forwarded_service_ulid:String @rules(apply: ["required","string"])
+        purpose_of_visit_ulid:String @rules(apply: ["required","string"])
+    ):Beneficiary! @guard @can(ability: "update",find: "ulid") @update
+    deleteBeneficiary(ulid:ID!):Beneficiary! @guard @can(ability: "delete",find: "ulid") @delete
+}
+
+type Biosp {
+    ulid: ID
+    name: String
+    project_name: String
+    users: [User] @belongsToMany
+    genres: [Genre] @morphToMany
+    neighborhood: Neighborhood @belongsTo
+    documentTypes: [DocumentType] @morphToMany
+    forwardedServices: [ForwardedService] @morphToMany
+    provenances: [Provenance] @morphToMany
+    purposeOfVisits: [PurposeOfVisit] @morphToMany
+    reasonOpeningCases: [ReasonOpeningCase] @morphToMany
+    beneficiaries:[Beneficiary] @hasMany
+}
+type Neighborhood{
+    ulid: ID
+    name: String
+}
+type Genre {
+    ulid: ID
+    name: String
+}
+type DocumentType {
+    ulid: ID
+    name: String
+}
+type ForwardedService{
+    ulid: ID
+    name: String
+}
+type Provenance{
+    ulid: ID
+    name: String
+}
+type PurposeOfVisit{
+    ulid: ID
+    name: String
+}
+type ReasonOpeningCase{
+    ulid: ID
+    name: String
+}
+type Beneficiary{
+    ulid:ID
+    full_name:String
+    number_of_visits:Int
+    birth_date:Date
+    phone:String
+    service_date:Date,
+    home_care:Boolean
+    date_received:Date
+    status:Boolean
+    other_document_type:String
+    other_reason_opening_case:String
+    other_forwarded_service:String
+    specify_purpose_of_visit:String
+    visit_proposes:String
+    genre: Genre @belongsTo
+    genre_ulid:String
+    provenance: Provenance @belongsTo
+    provenance_ulid:String
+    reason_opening_case: ReasonOpeningCase @belongsTo
+    reason_opening_case_ulid:String
+    document_type: DocumentType @belongsTo
+    document_type_ulid:String
+    forwarded_service: ForwardedService @belongsTo
+    forwarded_service_ulid:String
+    purpose_of_visit: PurposeOfVisit @belongsTo
+    purpose_of_visit_ulid:String
+    created_at:DateTime
+    updated_at:DateTime
+}
+

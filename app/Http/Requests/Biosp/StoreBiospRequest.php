@@ -32,7 +32,7 @@ class StoreBiospRequest extends FormRequest
                 Rule::unique(table: 'biosps', column: 'name'),
             ],
             'project_name' => ['string', 'nullable', 'max:125'],
-            'neighborhood_uuid' => ['required', 'string', 'uuid'],
+            'neighborhood_ulid' => ['required', 'string', 'ulid'],
         ];
     }
 }

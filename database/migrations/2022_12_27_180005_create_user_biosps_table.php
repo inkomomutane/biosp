@@ -11,13 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('user_biosps', function (Blueprint $table) {
-            $table->string('uuid')->primary();
-            $table->foreignUuid('user_uuid')->constrained('users', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignUuid('biosp_uuid')->constrained('biosps', 'uuid')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamps();
+            $table->foreignUlid('user_ulid')->constrained('users', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignUlid('biosp_ulid')->constrained('biosps', 'ulid')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,7 +24,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('user_biosps');
     }

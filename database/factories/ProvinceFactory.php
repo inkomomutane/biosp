@@ -27,9 +27,9 @@ final class ProvinceFactory extends Factory
     public function definition(): array
     {
         return [
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
             'name' => $this->faker->name,
-            'country_uuid' => \App\Models\Country::factory(),
+            'country_ulid' => \App\Models\Country::factory(),
         ];
     }
 }

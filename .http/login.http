@@ -1,0 +1,17 @@
+POST 127.0.0.1:8000/api/v1/user/login HTTP/1.1
+Accept:  application/vnd.api+json
+Content-Type: application/vnd.api+json
+Accept-Language: pt
+
+
+{
+    "data": {
+        "type": "user",
+        "attributes": {
+            "email": "api@test.com",
+            "password": "password"
+        }
+    }
+}
+
+

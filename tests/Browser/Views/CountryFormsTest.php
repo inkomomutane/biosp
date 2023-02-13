@@ -66,10 +66,10 @@ class CountryFormsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($this->login())
                 ->visit(action([CountryController::class, 'edit'], [
-                    'country' => $this->country->uuid,
+                    'country' => $this->country->ulid,
                 ]))
                 ->assertRouteIs('country.edit', [
-                    'country' => $this->country->uuid,
+                    'country' => $this->country->ulid,
                 ])
                 ->waitForInput('name', 5)
                 ->assertInputValue('name', $this->country->name)

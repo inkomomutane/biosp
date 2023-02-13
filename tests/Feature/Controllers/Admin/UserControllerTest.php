@@ -54,11 +54,17 @@ it('should delete user and redirect to route user.index', function () {
 
 it('should change user role and redirect to user.show', function () {
     $role = Role::first();
+    $biosps = \App\Models\Biosp::factory(5)->create();
     login();
     $response =
-        $this->post(action([UserController::class, 'grant'], $this->user), ['role' => $role->id])
+        $this->post(action([UserController::class, 'grant'], $this->user),
+            [
+                'role' => $role->id,
+                'biosps' => $biosps->pluck('ulid')->toArray(),
+            ]
+        )
         ->assertRedirectToRoute('user.show', [
-            'user' => $this->user->uuid,
+            'user' => $this->user->ulid,
         ]);
     expect($this->user->hasRole($role))->toBeTrue();
 })->group('controller');

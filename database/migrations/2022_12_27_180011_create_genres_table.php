@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->comment('');
-            $table->uuid('uuid')->primary();
+            $table->ulid('ulid')->primary();
             $table->softDeletes();
             $table->string('name')->nullable();
             $table->timestamps();

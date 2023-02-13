@@ -28,7 +28,7 @@ final class DocumentTypeFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'uuid' => $this->faker->uuid,
+            'ulid' => strtolower((string) \Illuminate\Support\Str::ulid()),
         ];
     }
 }

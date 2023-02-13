@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Biosp;
 use App\Models\BiospSendMail;
+use App\Models\SendMail;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends Factory<\App\Models\BiospSendMail>
+ * @extends Factory<BiospSendMail>
  */
 final class BiospSendMailFactory extends Factory
 {
@@ -27,9 +30,9 @@ final class BiospSendMailFactory extends Factory
     public function definition(): array
     {
         return [
-            'biosps_uuid' => \App\Models\Biosp::factory(),
-            'send_mails_uuid' => \App\Models\SendMail::factory(),
-            'uuid' => $this->faker->uuid,
+            'biosps_ulid' => Biosp::factory(),
+            'send_mails_ulid' => SendMail::factory(),
+            'ulid' => strtolower((string) Str::ulid()),
         ];
     }
 }

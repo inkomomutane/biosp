@@ -72,7 +72,7 @@
                                             <td class="text-end">
 
 
-                                                    <a href="{{  request()->routeIs('country.trash') ?  route('country.restore', $country->uuid) : route('country.edit', $country->uuid)  }}"
+                                                    <a href="{{  request()->routeIs('country.trash') ?  route('country.restore', $country->ulid) : route('country.edit', $country->ulid)  }}"
                                                         class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="{{  request()->routeIs('country.trash') ? __(key:'Restore :resource',replace:[ 'resource' => Str::lower(__('Country'))]) : __(key:'Edit :resource',replace:[ 'resource' => Str::lower(__('Country'))]) }}">
@@ -94,7 +94,7 @@
 
 
                                                 <a href="#"
-                                                    onclick="document.querySelector('#user_index_{{ $country->uuid }}').submit()"
+                                                    onclick="document.querySelector('#user_index_{{ $country->ulid }}').submit()"
                                                     class="
 
                                                     btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -117,8 +117,8 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <form action="{{  request()->routeIs('country.trash') ?  route('country.delete.forced', $country->uuid) : route('country.destroy', $country->uuid)  }}" method="post"
-                                                    id="user_index_{{ $country->uuid }}">@csrf @method('DELETE')</form>
+                                                <form action="{{  request()->routeIs('country.trash') ?  route('country.delete.forced', $country->ulid) : route('country.destroy', $country->ulid)  }}" method="post"
+                                                    id="user_index_{{ $country->ulid }}">@csrf @method('DELETE')</form>
                                             </td>
                                         </tr>
                                     @empty

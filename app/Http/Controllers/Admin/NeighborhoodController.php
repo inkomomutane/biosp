@@ -44,7 +44,7 @@ class NeighborhoodController extends Controller
     {
         try {
             Neighborhood::create(
-                ['name' => $request->name, 'province_uuid' => $request->province_uuid]
+                ['name' => $request->name, 'province_ulid' => $request->province_ulid]
             );
 
             Noty::addSuccess(__(
@@ -102,7 +102,7 @@ class NeighborhoodController extends Controller
         try {
             $neighborhood->update([
                 'name' => $request->name,
-                'province_uuid' => $request->province_uuid,
+                'province_ulid' => $request->province_ulid,
             ]);
             Noty::addSuccess(__(
                 key: ':resource updated',
