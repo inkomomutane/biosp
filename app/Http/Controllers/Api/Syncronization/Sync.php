@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BenificiaryController as Server;
 use App\Http\Traits\RemoveDuplicates;
 use App\Models\Benificiary;
+use App\Models\KnownOfBiosp;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -104,7 +105,9 @@ class Sync extends Controller
             'provenances' => Provenace::all(),
             'propuses_of_visits' => PurposeOfVisit::all(),
             'reason_of_opening_cases' => ReasonOpeningCase::all(),
-            'benificiaries' => $this->ben()
+            'known_of_biosps' => KnownOfBiosp::all(),
+            'benificiaries' => $this->ben(),
+
         ];
     }
 }
