@@ -88,12 +88,12 @@ use Illuminate\Support\Facades\DB;
  */
 class Benificiary extends Model
 {
-    use Uuids,HasFactory,SoftDeletes;
-	protected $table = 'benificiaries';
-	protected $primaryKey = 'uuid';
-	public $incrementing = false;
+    use Uuids, HasFactory, SoftDeletes;
+    protected $table = 'benificiaries';
+    protected $primaryKey = 'uuid';
+    public $incrementing = false;
 
-	protected $dateFormat = 'Y-m-d\TH:i:s.u';
+    protected $dateFormat = 'Y-m-d\TH:i:s.u';
 
     protected function asDateTime($value)
     {
@@ -104,11 +104,11 @@ class Benificiary extends Model
         }
     }
 
-      public function newQuery()
+    public function newQuery()
     {
         $query = parent::newQuery();
 
-        if($this->usesTimestamps()) {
+        if ($this->usesTimestamps()) {
             $table = $this->getTable();
 
             $createdAt = $this->getCreatedAtColumn();
@@ -116,87 +116,86 @@ class Benificiary extends Model
             $query
                 ->select()
                 ->addSelect(DB::raw("$table.$updatedAt  as $updatedAt"))
-                ->addSelect(DB::raw("$table.$createdAt  as $createdAt"));
-            ; // Using CAST instead of CONCAT as it is compatible with SQLite database
+                ->addSelect(DB::raw("$table.$createdAt  as $createdAt"));; // Using CAST instead of CONCAT as it is compatible with SQLite database
         }
 
         return $query;
     }
 
-	protected $casts = [
-		'number_of_visits' => 'int',
-		'home_care' => 'bool',
-		'status' => 'bool'
-	];
+    protected $casts = [
+        'number_of_visits' => 'int',
+        'home_care' => 'bool',
+        'status' => 'bool'
+    ];
 
-	protected $dates = [
-		'birth_date',
-		'service_date',
-		'date_received'
-	];
+    protected $dates = [
+        'birth_date',
+        'service_date',
+        'date_received'
+    ];
 
-	protected $fillable = [
-		'full_name',
-		'number_of_visits',
-		'birth_date',
-		'phone',
-		'service_date',
-		'home_care',
-		'date_received',
-		'status',
-		'other_document_type',
-		'other_reason_opening_case',
-		'other_forwarded_service',
-		'specify_forwarded_service',
-		'visit_proposes',
+    protected $fillable = [
+        'full_name',
+        'number_of_visits',
+        'birth_date',
+        'phone',
+        'service_date',
+        'home_care',
+        'date_received',
+        'status',
+        'other_document_type',
+        'other_reason_opening_case',
+        'other_forwarded_service',
+        'specify_forwarded_service',
+        'visit_proposes',
         'specify_purpose_of_visit',
-		'neighborhood_uuid',
-		'genre_uuid',
-		'provenace_uuid',
-		'reason_opening_case_uuid',
-		'document_type_uuid',
-		'forwarded_service_uuid',
-		'purpose_of_visit_uuid',
-        'know'
-	];
+        'neighborhood_uuid',
+        'genre_uuid',
+        'provenace_uuid',
+        'reason_opening_case_uuid',
+        'document_type_uuid',
+        'forwarded_service_uuid',
+        'purpose_of_visit_uuid',
+        'known_of_biosp_uuid'
+    ];
 
-	public function document_type()
-	{
-		return $this->belongsTo(DocumentType::class, 'document_type_uuid');
-	}
+    public function document_type()
+    {
+        return $this->belongsTo(DocumentType::class, 'document_type_uuid');
+    }
 
-	public function forwarded_service()
-	{
-		return $this->belongsTo(ForwardedService::class, 'forwarded_service_uuid');
-	}
+    public function forwarded_service()
+    {
+        return $this->belongsTo(ForwardedService::class, 'forwarded_service_uuid');
+    }
 
-	public function purpose_of_visit()
-	{
-		return $this->belongsTo(PurposeOfVisit::class, 'purpose_of_visit_uuid');
-	}
+    public function purpose_of_visit()
+    {
+        return $this->belongsTo(PurposeOfVisit::class, 'purpose_of_visit_uuid');
+    }
 
-	public function genre()
-	{
-		return $this->belongsTo(Genre::class, 'genre_uuid');
-	}
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genre_uuid');
+    }
 
-	public function neighborhood()
-	{
-		return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
-	}
+    public function neighborhood()
+    {
+        return $this->belongsTo(Neighborhood::class, 'neighborhood_uuid');
+    }
 
-	public function provenace()
-	{
-		return $this->belongsTo(Provenace::class, 'provenace_uuid');
-	}
+    public function provenace()
+    {
+        return $this->belongsTo(Provenace::class, 'provenace_uuid');
+    }
 
-	public function reason_opening_case()
-	{
-		return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_uuid');
-	}
+    public function reason_opening_case()
+    {
+        return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_uuid');
+    }
 
     public function known_of_biosp()
-	{
-		return $this->belongsTo(KnownOfBiosp::class, 'known_of_biosp_uuid');
-	}
+    {
+        return $this->belongsTo(KnownOfBiosp::class, 'known_of_biosp_uuid');
+    }
 }
