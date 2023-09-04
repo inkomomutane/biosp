@@ -14,20 +14,33 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Neighborhood
+ * App\Models\Neighborhood
  *
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $uuid
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $name
  * @property string|null $province_uuid
- *
- * @property Province|null $province
- * @property Collection|Benificiary[] $benificiaries
- * @property Collection|User[] $users
- *
- * @package App\Models
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @property-read \App\Models\Province|null $province
+ * @property-read Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
+ * @method static \Database\Factories\NeighborhoodFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereProvinceUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood withoutTrashed()
+ * @mixin \Eloquent
  */
 class Neighborhood extends Model
 {	use Uuids,HasFactory,SoftDeletes;

@@ -14,17 +14,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class PurposeOfVisit
+ * App\Models\PurposeOfVisit
  *
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $uuid
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $name
- *
- * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @method static \Database\Factories\PurposeOfVisitFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfVisit withoutTrashed()
+ * @mixin \Eloquent
  */
 class PurposeOfVisit extends Model
 {

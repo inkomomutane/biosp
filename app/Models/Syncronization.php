@@ -11,16 +11,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Syncronization
+ * App\Models\Syncronization
  *
- * @property Carbon|null $last_sync_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $last_sync_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $id
  * @property string $user_uuid
  * @property bool|null $complete
- *
- * @package App\Models
+ * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\SyncronizationFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereComplete($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereLastSyncAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syncronization whereUserUuid($value)
+ * @mixin \Eloquent
  */
 class Syncronization extends Model
 {

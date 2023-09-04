@@ -7,32 +7,30 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Class Benificiary
+ * App\Models\Benificiary
  *
  * @property string $uuid
  * @property string|null $full_name
  * @property int|null $number_of_visits
- * @property Carbon|null $birth_date
+ * @property \Illuminate\Support\Carbon|null $birth_date
  * @property string|null $phone
- * @property Carbon|null $service_date
+ * @property \Illuminate\Support\Carbon|null $service_date
  * @property bool|null $home_care
- * @property Carbon|null $date_received
+ * @property \Illuminate\Support\Carbon|null $date_received
  * @property bool|null $status
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null $other_document_type
  * @property string|null $other_reason_opening_case
- * @property string|null $forwarded_correct_service_uuid
  * @property string|null $other_forwarded_service
- * @property string|null $specify_forwarded_service
+ * @property string|null $specify_purpose_of_visit
  * @property string|null $visit_proposes
  * @property string|null $neighborhood_uuid
  * @property string|null $genre_uuid
@@ -41,16 +39,52 @@ use Illuminate\Support\Facades\DB;
  * @property string|null $document_type_uuid
  * @property string|null $forwarded_service_uuid
  * @property string|null $purpose_of_visit_uuid
- *
- * @property DocumentType|null $document_type
- * @property ForwardedService|null $forwarded_service
- * @property PurposeOfVisit|null $purpose_of_visit
- * @property Genre|null $genre
- * @property Neighborhood|null $neighborhood
- * @property Provenace|null $provenace
- * @property ReasonOpeningCase|null $reason_opening_case
- *
- * @package App\Models
+ * @property string|null $specify_forwarded_service
+ * @property string|null $known_of_biosp_uuid
+ * @property string|null $other_known_of_biosp
+ * @property-read \App\Models\DocumentType|null $document_type
+ * @property-read \App\Models\ForwardedService|null $forwarded_service
+ * @property-read \App\Models\Genre|null $genre
+ * @property-read \App\Models\KnownOfBiosp|null $known_of_biosp
+ * @property-read \App\Models\Neighborhood|null $neighborhood
+ * @property-read \App\Models\Provenace|null $provenace
+ * @property-read \App\Models\PurposeOfVisit|null $purpose_of_visit
+ * @property-read \App\Models\ReasonOpeningCase|null $reason_opening_case
+ * @method static \Database\Factories\BenificiaryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereBirthDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereDateReceived($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereDocumentTypeUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereForwardedServiceUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereFullName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereGenreUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereHomeCare($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereKnownOfBiospUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereNeighborhoodUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereNumberOfVisits($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereOtherDocumentType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereOtherForwardedService($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereOtherKnownOfBiosp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereOtherReasonOpeningCase($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereProvenaceUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary wherePurposeOfVisitUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereReasonOpeningCaseUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereServiceDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereSpecifyForwardedService($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereSpecifyPurposeOfVisit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary whereVisitProposes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Benificiary withoutTrashed()
+ * @mixin \Eloquent
  */
 class Benificiary extends Model
 {
@@ -58,7 +92,7 @@ class Benificiary extends Model
 	protected $table = 'benificiaries';
 	protected $primaryKey = 'uuid';
 	public $incrementing = false;
-	
+
 	protected $dateFormat = 'Y-m-d\TH:i:s.u';
 
     protected function asDateTime($value)
@@ -122,7 +156,8 @@ class Benificiary extends Model
 		'reason_opening_case_uuid',
 		'document_type_uuid',
 		'forwarded_service_uuid',
-		'purpose_of_visit_uuid'
+		'purpose_of_visit_uuid',
+        'know'
 	];
 
 	public function document_type()
@@ -158,5 +193,10 @@ class Benificiary extends Model
 	public function reason_opening_case()
 	{
 		return $this->belongsTo(ReasonOpeningCase::class, 'reason_opening_case_uuid');
+	}
+
+    public function known_of_biosp()
+	{
+		return $this->belongsTo(KnownOfBiosp::class, 'known_of_biosp_uuid');
 	}
 }

@@ -14,17 +14,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class ForwardedService
+ * App\Models\ForwardedService
  *
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $uuid
  * @property string|null $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- *
- * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @method static \Database\Factories\ForwardedServiceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ForwardedService withoutTrashed()
+ * @mixin \Eloquent
  */
 class ForwardedService extends Model
 {

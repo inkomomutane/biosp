@@ -14,17 +14,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Genre
+ * App\Models\Genre
  *
  * @property string $uuid
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- *
- * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @method static \Database\Factories\GenreFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Genre withoutTrashed()
+ * @mixin \Eloquent
  */
 class Genre extends Model
 {

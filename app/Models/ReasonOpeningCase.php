@@ -14,17 +14,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class ReasonOpeningCase
+ * App\Models\ReasonOpeningCase
  *
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string $uuid
  * @property string|null $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- *
- * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @method static \Database\Factories\ReasonOpeningCaseFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReasonOpeningCase withoutTrashed()
+ * @mixin \Eloquent
  */
 class ReasonOpeningCase extends Model
 {

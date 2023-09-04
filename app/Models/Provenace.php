@@ -14,17 +14,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Provenace
+ * App\Models\Provenace
  *
  * @property string $uuid
- * @property string|null $deleted_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $name
- *
- * @property Collection|Benificiary[] $benificiaries
- *
- * @package App\Models
+ * @property-read Collection<int, \App\Models\Benificiary> $benificiaries
+ * @property-read int|null $benificiaries_count
+ * @method static \Database\Factories\ProvenaceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provenace withoutTrashed()
+ * @mixin \Eloquent
  */
 class Provenace extends Model
 {
