@@ -2,23 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\Http\Traits\RemoveDuplicates;
-use App\Models\Benificiary;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    use RemoveDuplicates;
     /**
      * A basic test example.
-     *
-     * @return void
      */
-    public function test_example()
+    public function test_the_application_returns_a_successful_response(): void
     {
+        $response = $this->get('/');
 
-        $variables = $this->init(new Benificiary(),'uuid');
-        	dd($variables);
+        $response->assertStatus(200);
     }
 }
